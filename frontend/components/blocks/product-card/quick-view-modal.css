@@ -1,0 +1,264 @@
+/* Quick View Modal Styles */
+.ayur-quickview-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.ayur-quickview-modal-content {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  transform: scale(0.9);
+  animation: slideIn 0.3s ease-out forwards;
+}
+
+@keyframes slideIn {
+  from {
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    transform: scale(1) translateY(0);
+  }
+}
+
+.ayur-quickview-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.ayur-quickview-modal-close:hover {
+  background: rgba(0, 0, 0, 0.2);
+  transform: scale(1.1);
+}
+
+.ayur-quickview-modal-main {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.ayur-quickview-modal-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.ayur-quickview-modal-img {
+  max-width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.ayur-quickview-modal-nav {
+  background: rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #333;
+}
+
+.ayur-quickview-modal-nav:hover {
+  background: rgba(0, 0, 0, 0.2);
+  transform: scale(1.1);
+}
+
+.ayur-quickview-modal-thumbnails {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.ayur-quickview-modal-thumbnail {
+  width: 80px;
+  height: 60px;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+  opacity: 0.7;
+}
+
+.ayur-quickview-modal-thumbnail:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.ayur-quickview-modal-thumbnail.active {
+  border-color: #007bff;
+  opacity: 1;
+}
+
+.ayur-quickview-modal-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ayur-quickview-modal-info {
+  text-align: center;
+  padding-top: 16px;
+  border-top: 1px solid #eee;
+}
+
+.ayur-quickview-modal-info h3 {
+  margin: 0 0 16px 0;
+  font-size: 24px;
+  color: #333;
+  line-height: 1.3;
+}
+
+.ayur-quickview-modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.ayur-btn {
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+}
+
+.ayur-btn-secondary {
+  background: #f8f9fa;
+  color: #333;
+  border: 1px solid #dee2e6;
+}
+
+.ayur-btn-secondary:hover {
+  background: #e9ecef;
+  border-color: #adb5bd;
+  transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .ayur-quickview-modal-content {
+    padding: 16px;
+    max-width: 95vw;
+    max-height: 95vh;
+  }
+
+  .ayur-quickview-modal-main {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ayur-quickview-modal-image {
+    min-height: 300px;
+  }
+
+  .ayur-quickview-modal-img {
+    max-height: 300px;
+  }
+
+  .ayur-quickview-modal-nav {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+
+  .ayur-quickview-modal-thumbnails {
+    gap: 6px;
+  }
+
+  .ayur-quickview-modal-thumbnail {
+    width: 60px;
+    height: 45px;
+  }
+
+  .ayur-quickview-modal-info h3 {
+    font-size: 20px;
+  }
+
+  .ayur-quickview-modal-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ayur-btn {
+    width: 100%;
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ayur-quickview-modal-content {
+    padding: 12px;
+  }
+
+  .ayur-quickview-modal-image {
+    min-height: 250px;
+  }
+
+  .ayur-quickview-modal-img {
+    max-height: 250px;
+  }
+
+  .ayur-quickview-modal-info h3 {
+    font-size: 18px;
+  }
+}

@@ -1,0 +1,427 @@
+/* Enhanced Product Card Styles */
+
+/* Thumbnail styles */
+.ayur-tpro-thumbnails {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  gap: 5px;
+  z-index: 2;
+}
+
+.ayur-tpro-thumbnail {
+  width: 60px;
+  height: 40px;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  opacity: 0.7;
+}
+
+.ayur-tpro-thumbnail:hover,
+.ayur-tpro-thumbnail.active {
+  opacity: 1;
+  border-color: var(--ayur-primary-color);
+  transform: scale(1.05);
+}
+
+.ayur-tpro-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ayur-tpro-thumbnail-more {
+  width: 60px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ayur-tpro-thumbnail-more:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+/* Quick view overlay */
+.ayur-tpro-quickview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.ayur-tpro-box:hover .ayur-tpro-quickview {
+  opacity: 1;
+}
+
+.ayur-tpro-quickview span {
+  background: var(--ayur-primary-color);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.ayur-tpro-quickview:hover span {
+  background: var(--ayur-banheading-color);
+  transform: scale(1.05);
+}
+
+/* Product description */
+.ayur-tpro-description {
+  font-size: 14px;
+  color: var(--ayur-para-color);
+  line-height: 1.4;
+  margin: 8px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Product variants */
+.ayur-tpro-variants {
+  margin: 8px 0;
+}
+
+.ayur-tpro-variant-count {
+  font-size: 12px;
+  color: var(--ayur-text-color);
+  background: #f5f5f5;
+  padding: 4px 8px;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+/* Image Preview Modal */
+.ayur-image-preview-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.ayur-image-preview-content {
+  background: white;
+  border-radius: 12px;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.ayur-image-preview-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.ayur-image-preview-close:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: scale(1.1);
+}
+
+.ayur-image-preview-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 400px;
+}
+
+.ayur-image-preview-image {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.ayur-image-preview-img {
+  max-width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.ayur-image-preview-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 5;
+}
+
+.ayur-image-preview-nav:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.ayur-image-preview-prev {
+  left: 20px;
+}
+
+.ayur-image-preview-next {
+  right: 20px;
+}
+
+/* Thumbnail gallery in modal */
+.ayur-image-preview-thumbnails {
+  display: flex;
+  gap: 10px;
+  padding: 20px;
+  justify-content: center;
+  border-top: 1px solid #eee;
+  overflow-x: auto;
+}
+
+.ayur-image-preview-thumbnail {
+  width: 80px;
+  height: 60px;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+.ayur-image-preview-thumbnail:hover,
+.ayur-image-preview-thumbnail.active {
+  opacity: 1;
+  border-color: var(--ayur-primary-color);
+  transform: scale(1.05);
+}
+
+.ayur-image-preview-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Product info in modal */
+.ayur-image-preview-info {
+  padding: 20px;
+  border-top: 1px solid #eee;
+  background: #f9f9f9;
+}
+
+.ayur-image-preview-info h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ayur-banheading-color);
+  margin-bottom: 10px;
+}
+
+.ayur-image-preview-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.ayur-btn-secondary {
+  background: transparent !important;
+  border: 1px solid var(--ayur-primary-color) !important;
+  color: var(--ayur-primary-color) !important;
+}
+
+.ayur-btn-secondary:hover {
+  background: var(--ayur-primary-color) !important;
+  color: white !important;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .ayur-tpro-thumbnails {
+    bottom: 5px;
+    left: 5px;
+    right: 5px;
+    gap: 3px;
+  }
+
+  .ayur-tpro-thumbnail {
+    width: 50px;
+    height: 35px;
+  }
+
+  .ayur-tpro-thumbnail-more {
+    width: 50px;
+    height: 35px;
+    font-size: 10px;
+  }
+
+  .ayur-image-preview-content {
+    max-width: 95vw;
+    max-height: 95vh;
+  }
+
+  .ayur-image-preview-main {
+    min-height: 300px;
+  }
+
+  .ayur-image-preview-img {
+    max-height: 300px;
+  }
+
+  .ayur-image-preview-nav {
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+  }
+
+  .ayur-image-preview-prev {
+    left: 10px;
+  }
+
+  .ayur-image-preview-next {
+    right: 10px;
+  }
+
+  .ayur-image-preview-thumbnails {
+    padding: 15px;
+    gap: 8px;
+  }
+
+  .ayur-image-preview-thumbnail {
+    width: 60px;
+    height: 45px;
+  }
+
+  .ayur-image-preview-actions {
+    flex-direction: column;
+  }
+
+  .ayur-image-preview-actions .ayur-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .ayur-tpro-thumbnails {
+    display: none;
+  }
+
+  .ayur-image-preview-thumbnails {
+    display: none;
+  }
+
+  .ayur-image-preview-main {
+    min-height: 250px;
+  }
+
+  .ayur-image-preview-img {
+    max-height: 250px;
+  }
+}
+
+/* Animation for modal */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.ayur-image-preview-content {
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+/* Hover effects for product card */
+.ayur-tpro-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+}
+
+.ayur-tpro-box:hover .ayur-tpro-img > img {
+  transform: scale(1.05);
+}
+
+/* Loading state for images */
+.ayur-tpro-img img,
+.ayur-image-preview-img {
+  transition: opacity 0.3s ease;
+}
+
+.ayur-tpro-img img[loading],
+.ayur-image-preview-img[loading] {
+  opacity: 0.7;
+}
+
+/* Keyboard navigation support */
+.ayur-image-preview-nav:focus,
+.ayur-image-preview-close:focus {
+  outline: 2px solid var(--ayur-primary-color);
+  outline-offset: 2px;
+}
+
+/* Accessibility improvements */
+.ayur-tpro-quickview:focus {
+  opacity: 1;
+}
+
+.ayur-tpro-thumbnail:focus {
+  outline: 2px solid var(--ayur-primary-color);
+  outline-offset: 2px;
+}

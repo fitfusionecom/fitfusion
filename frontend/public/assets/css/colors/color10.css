@@ -1,0 +1,9 @@
+:root {
+    --pureayurveda-primary: #048591;
+}
+.pa-why, .pa-counter, .pa-tesimonial, .pa-why-pure, .pa-team-home {
+    background: rgba(4, 133, 145, 0.1);
+}
+.pa-banner-three:after, .pa-banner-three-text:after {
+    background: rgb(255 255 255 / 10%);
+}

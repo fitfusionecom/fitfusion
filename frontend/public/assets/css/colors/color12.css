@@ -1,0 +1,18 @@
+:root {
+    --pureayurveda-primary: #d58669;
+}
+.pa-why, .pa-counter, .pa-tesimonial, .pa-why-pure, .pa-team-home {
+    background: #fbf3f0;
+}
+.pa-why-img img {
+    filter: grayscale(1);
+}
+.pa-banner-three:after, .pa-banner-three-text:after {
+    background: rgb(255 255 255 / 10%);
+}
+.pa-heading img {
+    filter: grayscale(1);
+}
+.pa-banner {
+    background-image: url(https://via.placeholder.com/1920x785);
+}
