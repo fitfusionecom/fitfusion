@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: [
+    remotePatterns: [
       "localhost",
       "127.0.0.1",
       "dummyimage.com",

@@ -11,35 +11,35 @@ type Props = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-export async function generateStaticParams() {
-  try {
-    // Only use "in" as the country code
-    const countryCode = "in";
+// export async function generateStaticParams() {
+//   try {
+//     // Only use "in" as the country code
+//     const countryCode = "in";
 
-    const products = await listProducts({
-      countryCode,
-      queryParams: { fields: "handle" },
-    }).then(({ response }) => response.products);
+//     const products = await listProducts({
+//       countryCode,
+//       queryParams: { fields: "handle" },
+//     }).then(({ response }) => response.products);
 
-    if (!products) {
-      return [];
-    }
+//     if (!products) {
+//       return [];
+//     }
 
-    return products
-      .filter((product) => product.handle)
-      .map((product) => ({
-        countryCode,
-        handle: product.handle,
-      }));
-  } catch (error) {
-    console.error(
-      `Failed to generate static paths for product pages: ${
-        error instanceof Error ? error.message : "Unknown error"
-      }.`
-    );
-    return [];
-  }
-}
+//     return products
+//       .filter((product) => product.handle)
+//       .map((product) => ({
+//         countryCode,
+//         handle: product.handle,
+//       }));
+//   } catch (error) {
+//     console.error(
+//       `Failed to generate static paths for product pages: ${
+//         error instanceof Error ? error.message : "Unknown error"
+//       }.`
+//     );
+//     return [];
+//   }
+// }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const countryCode = "in";
