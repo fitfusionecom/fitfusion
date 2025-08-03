@@ -56,7 +56,7 @@ export default function Footer() {
                   <Image
                     src="/fitfusion.JPG"
                     alt="logo"
-                    width={150}
+                    width={110}
                     height={50}
                   />
                 </div>

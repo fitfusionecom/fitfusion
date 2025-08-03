@@ -39,7 +39,7 @@ export default function Header() {
                 <Image
                   src="/fitfusion.JPG"
                   alt="Logo"
-                  width={150}
+                  width={110}
                   height={50}
                 />
               </Link>

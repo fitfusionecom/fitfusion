@@ -12,7 +12,6 @@ export default function PrimaryLayout({
     <ReactQueryProvider>
       <NuqsProvider>
         <Header />
-        <br />
         {children}
         <Footer />
       </NuqsProvider>

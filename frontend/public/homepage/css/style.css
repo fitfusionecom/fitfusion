@@ -581,7 +581,7 @@ li.ayur-has-menu a svg {
   height: 320px;
   max-height: 100%;
   background-color: var(--ayur-primary-color);
-  z-index: -1;
+  /* z-index: -1; */
   border-radius: 210px;
 }
 .swiper-button-next:after,
