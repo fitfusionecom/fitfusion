@@ -2,11 +2,26 @@
 const nextConfig = {
   images: {
     remotePatterns: [
-      "localhost",
-      "127.0.0.1",
-      "dummyimage.com",
-      "reliablecreations.s3.eu-north-1.amazonaws.com",
-      "fitfusion.fullstackartists.com",
+      {
+        protocol: "http",
+        hostname: "localhost",
+      },
+      {
+        protocol: "http",
+        hostname: "127.0.0.1",
+      },
+      {
+        protocol: "https",
+        hostname: "dummyimage.com",
+      },
+      {
+        protocol: "https",
+        hostname: "reliablecreations.s3.eu-north-1.amazonaws.com",
+      },
+      {
+        protocol: "https",
+        hostname: "fitfusion.fullstackartists.com",
+      },
     ],
   },
 };
