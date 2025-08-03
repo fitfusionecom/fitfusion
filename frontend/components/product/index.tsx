@@ -22,6 +22,7 @@ import "swiper/css/navigation";
 
 import "react-quill/dist/quill.snow.css";
 import { Input } from "@medusajs/ui";
+import OptionSelect from "./option-select";
 
 type ProductDetailsProps = {
   product: HttpTypes.StoreProduct;
@@ -43,8 +44,105 @@ const ProductDetails = ({
   region,
   countryCode,
 }: ProductDetailsProps) => {
+  const [quantity, setQuantity] = useState(1);
   const [activeImage, setActiveImage] = useState(0);
-  const productImages = product.images.map((image) => image.url);
+  const [options, setOptions] = useState<Record<string, string | undefined>>(
+    {}
+  );
+  const [isAdding, setIsAdding] = useState(false);
+
+  const setOptionValue = (optionId: string, value: string) => {
+    setOptions((prev) => ({
+      ...prev,
+      [optionId]: value,
+    }));
+  };
+
+  //check if the selected options produce a valid variant
+  const isValidVariant = useMemo(() => {
+    return product.variants?.some((v) => {
+      const variantOptions = optionsAsKeymap(v.options);
+      return isEqual(variantOptions, options);
+    });
+  }, [product.variants, options]);
+
+  const selectedVariant = useMemo(() => {
+    if (!product.variants || product.variants.length === 0) {
+      return;
+    }
+    const fVariant = product.variants.find((v) => {
+      const variantOptions = optionsAsKeymap(v.options);
+      return isEqual(variantOptions, options);
+    });
+    return fVariant;
+  }, [product.variants, options]);
+
+  // Product images - in a real app, these would be actual product images
+  const productImages = product?.images
+    ? product?.images?.map((img) => img.url)
+    : [];
+
+  //console.log(product, "product...............")
+  const incrementQuantity = () => {
+    // max quantity is 10
+    if (quantity < 100) {
+      setQuantity(quantity + 1);
+    }
+  };
+  const decrementQuantity = () => setQuantity(quantity > 1 ? quantity - 1 : 1);
+  const inStock = useMemo(() => {
+    // If we don't manage inventory, we can always add to cart
+    if (selectedVariant && !selectedVariant.manage_inventory) {
+      return true;
+    }
+    if (selectedVariant?.allow_backorder) {
+      return true;
+    }
+    if (
+      selectedVariant?.inventory_quantity &&
+      (selectedVariant?.inventory_quantity || 0) > 0
+    ) {
+      return true;
+    }
+
+    // If there is inventory available, we can add to cart
+    if (
+      // @ts-ignore
+      selectedVariant?.inventory &&
+      // @ts-ignore
+      (selectedVariant?.inventory_items.length || 0) > 0
+    ) {
+      return true;
+    }
+
+    // Otherwise, we can't add to cart
+    return false;
+  }, [selectedVariant]);
+
+  const handleAddToCart = async () => {
+    if (!selectedVariant?.id) return null;
+    if (quantity > 100) {
+      alert("Maximum Quantity 100");
+      return;
+    }
+    setIsAdding(true);
+    await addToCart({
+      variantId: selectedVariant.id,
+      quantity,
+      countryCode,
+    });
+    toast.success("Item added to cart");
+    setIsAdding(false);
+  };
+
+  useEffect(() => {
+    if (product.variants?.length === 1) {
+      const variantOptions = product.variants[0].options?.at(0);
+      if (variantOptions !== null) {
+        setOptionValue(variantOptions?.option_id, variantOptions?.value);
+      }
+    }
+  }, [product.variants]);
 
   return (
     <>
@@ -190,25 +288,70 @@ const ProductDetails = ({
                     />
                   </div>
                 </div>
+
+                <div>
+                  {(product.variants?.length ?? 0) > 1 && (
+                    <div className="space-y-3 pt-2">
+                      <h3 className="font-medium">Select Variant</h3>
+                      {(product.variants?.length ?? 0) > 1 && (
+                        <div className="flex flex-col gap-y-4">
+                          {(product.options || []).map((option) => {
+                            return (
+                              <div key={option.id}>
+                                <OptionSelect
+                                  option={option}
+                                  current={options[option.id]}
+                                  updateOption={setOptionValue}
+                                  title={option.title ?? ""}
+                                  data-testid="product-options"
+                                  disabled={isAdding}
+                                />
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+
                 <div className="ayur-shopsin-quantity">
                   <input
                     type="number"
                     className="form-control"
-                    defaultValue={1}
                     min={1}
-                    max={3}
+                    max={10}
+                    value={quantity}
+                    onChange={(event) => {
+                      if (!isNaN(parseInt(event.target.value))) {
+                        setQuantity(parseInt(event.target.value));
+                      }
+                    }}
                   />
-                  <button className="shop-add">
+                  <button className="shop-add" onClick={incrementQuantity}>
                     <span />
                   </button>
-                  <button className="shop-sub">
+                  <button className="shop-sub" onClick={decrementQuantity}>
                     <span />
                   </button>
                 </div>
                 <div className="ayur-shopsin-btn">
-                  <a href="cart.html" className="ayur-btn">
-                    Add To Cart
-                  </a>
+                  <button
+                    className="ayur-btn"
+                    onClick={handleAddToCart}
+                    disabled={
+                      !inStock ||
+                      !selectedVariant ||
+                      isAdding ||
+                      !isValidVariant
+                    }
+                  >
+                    {!selectedVariant && !options
+                      ? "Select variant"
+                      : !inStock || !isValidVariant
+                      ? "Out of stock"
+                      : "Add to cart"}
+                  </button>
                 </div>
               </div>
             </div>
