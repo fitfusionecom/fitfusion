@@ -6,6 +6,7 @@ const nextConfig = {
       "127.0.0.1",
       "dummyimage.com",
       "reliablecreations.s3.eu-north-1.amazonaws.com",
+      "fitfusion.fullstackartists.com",
     ],
   },
 };
