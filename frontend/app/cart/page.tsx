@@ -13,7 +13,7 @@ export default async function Cart() {
   const cart = await retrieveCart();
   const customer = await retrieveCustomer();
 
-  if (!cart) {
+  if (!cart || cart.items.length === 0) {
     return (
       <div>
         <EmptyCartMessage />
