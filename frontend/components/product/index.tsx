@@ -23,6 +23,7 @@ import "swiper/css/navigation";
 import "react-quill/dist/quill.snow.css";
 import { Input } from "@medusajs/ui";
 import OptionSelect from "./option-select";
+import ProductPrice from "./product-price";
 
 type ProductDetailsProps = {
   product: HttpTypes.StoreProduct;
@@ -265,9 +266,7 @@ const ProductDetails = ({
             <div className="col-lg-6 col-md-6 col-sm-12">
               <div className="ayur-shopsin-details">
                 <div className="ayur-tpro-price">
-                  <p>
-                    <del>$100</del>$50
-                  </p>
+                  <ProductPrice product={product} variant={selectedVariant} />
                 </div>
                 <div className="ayur-shopsin-heaing">
                   <h3>{product.title}</h3>
