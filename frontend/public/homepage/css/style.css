@@ -539,8 +539,10 @@ li.ayur-has-menu a svg {
 }
 .ayur-banner-slider-sec {
   padding: 7px 0 0;
-  margin: 0 auto -230px;
+  /* margin: 0 auto -230px; */
+  margin: 0 auto;
   max-width: 1030px;
+  height: 100%;
 }
 .ayur-banner-heading {
   max-width: 750px;

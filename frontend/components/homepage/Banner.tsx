@@ -2,58 +2,61 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+
+const slides = [
+  { id: 1, image: "/assets/images/ban-head-Image.png", alt: "headerimage" },
+  { id: 2, image: "/assets/images/ban-head-Image.png", alt: "headerimage" },
+  { id: 3, image: "/assets/images/ban-head-Image.png", alt: "headerimage" },
+  { id: 4, image: "/assets/images/ban-head-Image.png", alt: "headerimage" },
+  { id: 5, image: "/assets/images/ban-head-Image.png", alt: "headerimage" },
+];
 
 export default function Banner() {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const swiperRef = useRef(null);
+  const [windowWidth, setWindowWidth] = useState(1200); // default fallback
 
-  const slides = [
-    {
-      id: 1,
-      image: "/assets/images/ban-head-Image.png",
-      alt: "headerimage",
-    },
-    {
-      id: 2,
-      image: "/assets/images/ban-head-Image.png",
-      alt: "headerimage",
-    },
-    {
-      id: 3,
-      image: "/assets/images/ban-head-Image.png",
-      alt: "headerimage",
-    },
-    {
-      id: 4,
-      image: "/assets/images/ban-head-Image.png",
-      alt: "headerimage",
-    },
-    {
-      id: 5,
-      image: "/assets/images/ban-head-Image.png",
-      alt: "headerimage",
-    },
-  ];
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-  };
-
-  // Auto-play functionality
   useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 5000); // Change slide every 5 seconds
+    if (typeof window !== "undefined") {
+      setWindowWidth(window.innerWidth);
+      window.addEventListener("resize", () =>
+        setWindowWidth(window.innerWidth)
+      );
+    }
+  }, []);
 
-    return () => clearInterval(interval);
-  }, [currentSlide]);
+  const getSlideStyle = (index) => {
+    const isActive = index === activeIndex;
+    return {
+      transform: `scale(${isActive ? 1 : 0.75})`,
+      opacity: isActive ? 1 : 0.5,
+      zIndex: isActive ? 2 : 1,
+      transition: "transform 0.3s ease, opacity 0.3s ease",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    };
+  };
+
+  const getImageSize = () => {
+    if (windowWidth < 640) return { width: 180, height: 180 };
+    if (windowWidth < 1024) return { width: 240, height: 240 };
+    return { width: 300, height: 300 };
+  };
 
   return (
-    <div className="ayur-banner-section">
+    <div
+      className="ayur-banner-section"
+      style={{
+        position: "relative",
+        paddingBottom: "50px",
+      }}
+    >
       <div className="container">
         <div className="row">
           <div className="col-lg-12 col-md-12 col-sm-12">
@@ -76,115 +79,83 @@ export default function Banner() {
           <div className="col-lg-12">
             <div className="ayur-banner-slider-sec z-50 relative">
               <div className="ayur-banner-slider">
-                <div
-                  className="swiper-wrapper"
-                  style={{ position: "relative", overflow: "hidden" }}
-                >
-                  {slides.map((slide, index) => (
-                    <div
-                      key={slide.id}
-                      className="swiper-slide"
-                      style={{
-                        display: index === currentSlide ? "block" : "none",
-                        transition: "opacity 0.5s ease-in-out",
-                      }}
-                    >
-                      <div className="ayur-ban-slide d-flex justify-content-center items-center">
-                        <Image
-                          src={slide.image}
-                          alt={slide.alt}
-                          width={600}
-                          height={454}
-                          className=" object-cover"
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div
-                  className="swiper-button-prev"
-                  onClick={prevSlide}
-                  style={{ cursor: "pointer" }}
-                >
-                  <svg
-                    width="46"
-                    height="22"
-                    viewBox="0 0 46 22"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M0.520424 9.74414L0.522022 9.74245L9.79254 0.51664C10.4871 -0.174498 11.6104 -0.171926 12.3017 0.522671C12.9929 1.21718 12.9903 2.34051 12.2958 3.03174L6.07152 9.22581H43.6452C44.6251 9.22581 45.4194 10.0201 45.4194 11C45.4194 11.9799 44.6251 12.7742 43.6452 12.7742H6.07161L12.2957 18.9683C12.9902 19.6595 12.9928 20.7828 12.3016 21.4773C11.6103 22.172 10.4869 22.1744 9.79245 21.4834L0.521931 12.2575L0.520336 12.2559C-0.17453 11.5623 -0.17231 10.4354 0.520424 9.74414Z"
-                      fill="#F6F1ED"
-                    />
-                  </svg>
-                </div>
-                <div
-                  className="swiper-button-next"
-                  onClick={nextSlide}
-                  style={{ cursor: "pointer" }}
-                >
-                  <svg
-                    width="46"
-                    height="22"
-                    viewBox="0 0 46 22"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M44.899 9.74414L44.8974 9.74245L35.6269 0.51664C34.9324 -0.174498 33.8091 -0.171926 33.1177 0.522671C32.4265 1.21718 32.4292 2.34051 33.1237 3.03174L39.3479 9.22581H1.77419C0.794307 9.22581 0 10.0201 0 11C0 11.9799 0.794307 12.7742 1.77419 12.7742H39.3478L33.1238 18.9683C32.4293 19.6595 32.4266 20.7828 33.1178 21.4773C33.8091 22.172 34.9326 22.1744 35.627 21.4834L44.8975 12.2575L44.8991 12.2559C45.594 11.5623 45.5917 10.4354 44.899 9.74414Z"
-                      fill="white"
-                    />
-                  </svg>
-                </div>
-                {/* Slide indicators */}
-                <div
-                  className="swiper-pagination"
+                {/* Left Button */}
+                <button
+                  onClick={() => swiperRef.current?.slidePrev()}
                   style={{
                     position: "absolute",
-                    bottom: "20px",
-                    left: "50%",
-                    transform: "translateX(-50%)",
-                    display: "flex",
-                    gap: "10px",
+                    top: "55%",
+                    left: 0,
+                    transform: "translateY(-50%)",
+                    background: "#fff",
+                    border: "1px solid #ddd",
+                    borderRadius: "50%",
+                    width: "40px",
+                    height: "40px",
+                    cursor: "pointer",
+                    zIndex: 5,
                   }}
                 >
-                  {slides.map((_, index) => (
-                    <div
-                      key={index}
-                      onClick={() => setCurrentSlide(index)}
-                      style={{
-                        width: "12px",
-                        height: "12px",
-                        borderRadius: "50%",
-                        backgroundColor:
-                          index === currentSlide
-                            ? "#fff"
-                            : "rgba(255,255,255,0.5)",
-                        cursor: "pointer",
-                        transition: "background-color 0.3s ease",
-                      }}
-                    />
-                  ))}
-                </div>
+                  &#8592;
+                </button>
+
+                {/* Right Button */}
+                <button
+                  onClick={() => swiperRef.current?.slideNext()}
+                  style={{
+                    position: "absolute",
+                    top: "55%",
+                    right: 0,
+                    transform: "translateY(-50%)",
+                    background: "#fff",
+                    border: "1px solid #ddd",
+                    borderRadius: "50%",
+                    width: "40px",
+                    height: "40px",
+                    cursor: "pointer",
+                    zIndex: 5,
+                  }}
+                >
+                  &#8594;
+                </button>
+
+                <Swiper
+                  loop={true}
+                  centeredSlides={true}
+                  spaceBetween={20}
+                  slidesPerView={1.2}
+                  onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+                  onSwiper={(swiper) => {
+                    swiperRef.current = swiper;
+                    setActiveIndex(swiper.realIndex);
+                  }}
+                  breakpoints={{
+                    640: { slidesPerView: 2 },
+                    1024: { slidesPerView: 3 },
+                  }}
+                  modules={[Navigation]}
+                >
+                  {slides.map((slide, index) => {
+                    const { width, height } = getImageSize();
+                    return (
+                      <SwiperSlide key={slide.id}>
+                        <div style={getSlideStyle(index)}>
+                          <Image
+                            src={slide.image}
+                            alt={slide.alt}
+                            width={width}
+                            height={height}
+                            style={{ borderRadius: "16px" }}
+                          />
+                        </div>
+                      </SwiperSlide>
+                    );
+                  })}
+                </Swiper>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className="ayur-ban-leaf">
-        <Image
-          src="/assets/images/ban-leafleft.png"
-          alt="leaf-image"
-          width={200}
-          height={300}
-        />
-        <Image
-          src="/assets/images/ban-leafright.png"
-          alt="leaf-image"
-          width={200}
-          height={300}
-        />
       </div>
     </div>
   );
