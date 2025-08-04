@@ -7,7 +7,7 @@ import { HttpTypes } from "@medusajs/types";
 import { useEffect, useState } from "react";
 import ProductCard from "../blocks/product-card";
 import { useInfiniteQuery, useQuery } from "react-query";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 // Simple loading skeleton for product cards
@@ -118,13 +118,16 @@ const fetchProducts = async ({
   }
 };
 
-const ShopTemplate = () => {
+const ShopTemplate = ({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) => {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const q = searchParams.get("q") || "";
-  const minPrice = searchParams.get("minPrice") || "0";
-  const maxPrice = searchParams.get("maxPrice") || "50000";
-  const category_handle = searchParams.get("category_handle") || "";
+  const q = (searchParams.q as string) || "";
+  const minPrice = (searchParams.minPrice as string) || "0";
+  const maxPrice = (searchParams.maxPrice as string) || "50000";
+  const category_handle = (searchParams.category_handle as string) || "";
 
   const [priceRange, setPriceRange] = useState([
     minPrice ? Number(minPrice) : 0,
@@ -202,12 +205,22 @@ const ShopTemplate = () => {
     key: string,
     value: string | number | boolean | string[]
   ) => {
-    const params = new URLSearchParams(searchParams.toString());
+    const params = new URLSearchParams();
+
+    // Add current search params
+    Object.entries(searchParams).forEach(([k, v]) => {
+      if (v !== undefined) {
+        params.set(k, Array.isArray(v) ? v.join(",") : String(v));
+      }
+    });
+
+    // Update the specific key
     if (Array.isArray(value)) {
       params.set(key, value.join(","));
     } else {
       params.set(key, String(value));
     }
+
     router.push(`?${params.toString()}`, { scroll: false });
   };
 
@@ -280,6 +293,7 @@ const ShopTemplate = () => {
                   updateQueryParams={updateQueryParams}
                   priceRange={priceRange}
                   setPriceRange={setPriceRange}
+                  searchParams={searchParams}
                 />
               </div>
 

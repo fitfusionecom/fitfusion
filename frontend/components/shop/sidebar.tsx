@@ -1,17 +1,17 @@
 import { HttpTypes } from "@medusajs/types";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 
 const SearchBar = ({
   updateQueryParams,
+  searchParams,
 }: {
   updateQueryParams: (
     key: string,
     value: string | number | boolean | string[]
   ) => void;
+  searchParams: { [key: string]: string | string[] | undefined };
 }) => {
-  const searchParams = useSearchParams();
-  const currentQuery = searchParams.get("q") || "";
+  const currentQuery = (searchParams.q as string) || "";
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     updateQueryParams("q", e.target.value);
@@ -37,6 +37,7 @@ const ShopSidebar = ({
   updateQueryParams,
   priceRange,
   setPriceRange,
+  searchParams,
 }: {
   categories: HttpTypes.StoreProductCategory[];
   updateQueryParams: (
@@ -45,10 +46,10 @@ const ShopSidebar = ({
   ) => void;
   priceRange: [number, number];
   setPriceRange: (range: [number, number]) => void;
+  searchParams: { [key: string]: string | string[] | undefined };
 }) => {
-  const searchParams = useSearchParams();
-  const currentMinPrice = searchParams.get("minPrice") || "";
-  const currentMaxPrice = searchParams.get("maxPrice") || "";
+  const currentMinPrice = (searchParams.minPrice as string) || "";
+  const currentMaxPrice = (searchParams.maxPrice as string) || "";
 
   const handleMinPriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = Number(e.target.value) || 0;
@@ -62,7 +63,10 @@ const ShopSidebar = ({
 
   return (
     <div className="ayur-shop-sidebar">
-      <SearchBar updateQueryParams={updateQueryParams} />
+      <SearchBar
+        updateQueryParams={updateQueryParams}
+        searchParams={searchParams}
+      />
       <div className="ayur-widget ayur-shop-categories">
         <h3>Categories</h3>
 
