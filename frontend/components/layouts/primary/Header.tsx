@@ -49,9 +49,9 @@ export default function Header() {
           <div className="col-lg-10 col-md-8 col-sm-7 col-6">
             <div className="ayur-navmenu-wrapper">
               <div
-                className={
-                  "ayur-nav-menu d-flex justify-content-center align-items-center"
-                }
+                className={`ayur-nav-menu d-lg-flex justify-content-center align-items-center ${
+                  isMenuOpen ? "d-block" : "d-none"
+                }`}
               >
                 <ul className="mb-0">
                   <li className="active">
@@ -64,11 +64,9 @@ export default function Header() {
                     <Link href="/contact">Contact</Link>
                   </li>
                   {!customer && (
-                    <>
-                      <li>
-                        <Link href="/login">Login</Link>
-                      </li>
-                    </>
+                    <li>
+                      <Link href="/login">Login</Link>
+                    </li>
                   )}
                 </ul>
               </div>
@@ -140,12 +138,80 @@ export default function Header() {
                   )}
                 </div>
               </div>
-              <div className="ayur-toggle-btn" onClick={toggleMenu}>
+              <div className="ayur-toggle-btn d-lg-none" onClick={toggleMenu}>
                 <span></span>
                 <span></span>
                 <span></span>
               </div>
             </div>
+            {/* Mobile Menu */}
+            {isMenuOpen && (
+              <div
+                className="d-lg-none mt-3 p-3 rounded shadow"
+                style={{ backgroundColor: "#f8f9fa" }}
+              >
+                <ul className="list-unstyled mb-0">
+                  <li className="mb-2">
+                    <Link
+                      href="/"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="text-dark text-decoration-none fw-medium"
+                    >
+                      Home
+                    </Link>
+                  </li>
+                  <li className="mb-2">
+                    <Link
+                      href="/shop"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="text-dark text-decoration-none fw-medium"
+                    >
+                      Shop
+                    </Link>
+                  </li>
+                  <li className="mb-2">
+                    <Link
+                      href="/contact"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="text-dark text-decoration-none fw-medium"
+                    >
+                      Contact
+                    </Link>
+                  </li>
+                  {!customer && (
+                    <li className="mb-2">
+                      <Link
+                        href="/login"
+                        onClick={() => setIsMenuOpen(false)}
+                        className="text-dark text-decoration-none fw-medium"
+                      >
+                        Login
+                      </Link>
+                    </li>
+                  )}
+                  {customer && (
+                    <li className="mb-2">
+                      <Link
+                        href="/profile"
+                        onClick={() => setIsMenuOpen(false)}
+                        className="text-dark text-decoration-none fw-medium"
+                      >
+                        Profile
+                      </Link>
+                    </li>
+                  )}
+                  <li className="mb-2">
+                    <Link
+                      href="/cart"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="text-dark text-decoration-none fw-medium hover:text-[]"
+                    >
+                      Cart
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            )}
           </div>
         </div>
       </div>
