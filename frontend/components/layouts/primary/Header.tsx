@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { retrieveCustomer } from "@/lib/data/customer";
+import { fitfusionConfig } from "@/lib/fitfusion-config";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -37,8 +38,8 @@ export default function Header() {
             <div className="ayur-menu-logo">
               <Link href="/">
                 <Image
-                  src="/fitfusion.JPG"
-                  alt="Logo"
+                  src={fitfusionConfig.brand.logo}
+                  alt={fitfusionConfig.brand.logoAlt}
                   width={110}
                   height={50}
                 />

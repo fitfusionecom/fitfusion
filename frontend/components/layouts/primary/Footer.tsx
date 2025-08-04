@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { fitfusionConfig } from "@/lib/fitfusion-config";
 
 const recentBlogs = [
   {
@@ -22,52 +23,31 @@ export default function Footer() {
   return (
     <div className="ayur-footer-section">
       <div className="container">
-        {/* <div className="ayur-sign-sec">
-          <div className="row align-items-center">
-            <div className="col-lg-4 col-md-4 col-sm-12">
-              <div className="ayur-sign-head">
-                <h3>Sign Up To Get Updates & News About Us..</h3>
-              </div>
-            </div>
-            <div className="col-lg-8 col-md-8 col-sm-12">
-              <form method="" className="ayur-subscribe-sec">
-                <div className="ayur-form-input">
-                  <input
-                    type="email"
-                    className="form-control"
-                    placeholder="Enter Your Email..."
-                    name="email"
-                  />
-                </div>
-                <div className="ayur-form-btn">
-                  <a href="javascript:void(0)" className="ayur-btn">
-                    Subscribe
-                  </a>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div> */}
         <div className="ayur-footer-sec">
           <div className="row">
             <div className="col-lg-4 col-md-6 col-sm-6">
               <div className="ayur-footer-logosec">
                 <div className="ayur-footer-logo">
                   <Image
-                    src="/fitfusion.JPG"
-                    alt="logo"
+                    src={fitfusionConfig.brand.logo}
+                    alt={fitfusionConfig.brand.logoAlt}
                     width={110}
                     height={50}
                   />
                 </div>
-                <p>
-                  Amet minim mollit non deserunt ullamco est sit Velit officia
-                  consequat duis enim velit mollit. sunt nostrud amet. Excepteur
-                  sint occaecat.
-                </p>
+                <p>{fitfusionConfig.brand.tagline}</p>
                 <ul className="ayur-social-link">
                   <li>
-                    <a href="javascript:void(0)">
+                    {/* facebook  */}
+                    <a
+                      href={
+                        fitfusionConfig.social?.facebook ||
+                        "https://facebook.com"
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Facebook"
+                    >
                       <svg
                         width="11"
                         height="20"
@@ -83,7 +63,15 @@ export default function Footer() {
                     </a>
                   </li>
                   <li>
-                    <a href="javascript:void(0)">
+                    {/* Twitter  */}
+                    <a
+                      href={
+                        fitfusionConfig.social?.twitter || "https://twitter.com"
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Twitter"
+                    >
                       <svg
                         width="20"
                         height="20"
@@ -98,24 +86,17 @@ export default function Footer() {
                       </svg>
                     </a>
                   </li>
+                  {/* Instagram  */}
                   <li>
-                    <a href="javascript:void(0)">
-                      <svg
-                        width="17"
-                        height="20"
-                        viewBox="0 0 17 20"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M8.89667 0C3.41417 0.000833333 0.5 3.51333 0.5 7.34333C0.5 9.11917 1.4925 11.335 3.08167 12.0375C3.535 12.2417 3.475 11.9925 3.865 10.5008C3.88295 10.4406 3.88454 10.3766 3.8696 10.3156C3.85466 10.2545 3.82374 10.1985 3.78 10.1533C1.50833 7.52583 3.33667 2.12417 8.5725 2.12417C16.15 2.12417 14.7342 12.6092 9.89083 12.6092C8.6425 12.6092 7.7125 11.6292 8.00667 10.4167C8.36333 8.9725 9.06167 7.42 9.06167 6.37917C9.06167 3.75583 5.15333 4.145 5.15333 7.62083C5.15333 8.695 5.53333 9.42 5.53333 9.42C5.53333 9.42 4.27583 14.5 4.0425 15.4492C3.6475 17.0558 4.09583 19.6567 4.135 19.8808C4.15917 20.0042 4.2975 20.0433 4.375 19.9417C4.49917 19.7792 6.01917 17.6108 6.445 16.0433C6.6 15.4725 7.23583 13.1558 7.23583 13.1558C7.655 13.9125 8.86333 14.5458 10.1508 14.5458C13.9808 14.5458 16.7492 11.1792 16.7492 7.00167C16.7358 2.99667 13.3083 0 8.89667 0Z"
-                          fill="#E4D4CF"
-                        />
-                      </svg>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0)">
+                    <a
+                      href={
+                        fitfusionConfig.social?.instagram ||
+                        "https://instagram.com"
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Instagram"
+                    >
                       <svg
                         width="21"
                         height="20"
@@ -146,19 +127,16 @@ export default function Footer() {
                 <h4>Useful Links</h4>
                 <ul className="ayur-links">
                   <li>
-                    <a href="javascript:void(0)">Shipping Options</a>
+                    <Link href="/terms">Terms of Service</Link>
                   </li>
                   <li>
-                    <Link href="/wishlist">My Wishlist</Link>
+                    <Link href="/privacy">Privacy Policy</Link>
+                  </li>
+                  <li>
+                    <Link href="/return-policy">Return Policy</Link>
                   </li>
                   <li>
                     <Link href="/profile">My Account</Link>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0)">Return Policy</a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0)">Shopping FAQss</a>
                   </li>
                 </ul>
               </div>
@@ -171,31 +149,28 @@ export default function Footer() {
                     <Image
                       src="/assets/images/location.png"
                       alt="location"
-                      width={20}
+                      width={15}
                       height={20}
                     />
-                    <p>
-                      4517 Washington Ave. <br />
-                      Manchester, Kentucky 39495
-                    </p>
+                    <p>{fitfusionConfig.contact.address.fullAddress}</p>
                   </li>
                   <li className="ayur-contact-box">
                     <Image
                       src="/assets/images/mobile.png"
                       alt="mobile"
-                      width={20}
+                      width={15}
                       height={20}
                     />
-                    <p>(208) 555-0112</p>
+                    <p>{fitfusionConfig.contact.phone}</p>
                   </li>
                   <li className="ayur-contact-box">
                     <Image
                       src="/assets/images/email.png"
                       alt="email"
-                      width={20}
-                      height={20}
+                      width={15}
+                      height={15}
                     />
-                    <p>example@gmail.com</p>
+                    <p>{fitfusionConfig.contact.supportEmail}</p>
                   </li>
                 </ul>
               </div>
