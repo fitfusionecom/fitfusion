@@ -6,7 +6,7 @@ import { HttpTypes } from "@medusajs/types";
 // import { Check, Minus, Plus } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
-import { toast } from "sonner";
+import { toast } from "react-toastify";
 // import OptionSelect from "../components/product-actions/option-select";
 // import Divider from "@modules/common/components/divider";
 import { isEqual } from "lodash";
@@ -350,7 +350,7 @@ const ProductDetails = ({
                       ? "Select variant"
                       : !inStock || !isValidVariant
                       ? "Out of stock"
-                      : "Add to cart"}
+                      : `Add to cart ${isAdding ? "..." : ""}`}
                   </button>
                 </div>
               </div>

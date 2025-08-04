@@ -117,7 +117,7 @@ export default function ProductCard({
             }}
           >
             <Link
-              href={`/product/${product.id}`}
+              href={`/product/${product.handle}`}
               style={{ textDecoration: "none" }}
             >
               {product.title}
