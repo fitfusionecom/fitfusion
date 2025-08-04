@@ -1,12 +1,11 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-const DynamicShopTemplate = dynamic(() => import("@/components/shop"), {
-  ssr: false,
-  loading: () => <div></div>,
-});
-
+import ShopTemplate from "@/components/shop";
+import { Suspense } from "react";
 export default function Shop() {
-  return <DynamicShopTemplate />;
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ShopTemplate />
+    </Suspense>
+  );
 }
