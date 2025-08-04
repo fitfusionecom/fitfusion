@@ -28,7 +28,7 @@ export default async function Checkout() {
                   <h2>Checkout</h2>
                   <div className="ayur-bread-list">
                     <span>
-                      <a href="index.html">Home</a>
+                      <a href="/">Home</a>
                     </span>
                     <span className="ayur-active-page">Checkout</span>
                   </div>

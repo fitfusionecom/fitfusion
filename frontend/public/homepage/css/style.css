@@ -1652,12 +1652,31 @@ ul.ayur-links li a:hover::before {
 /* Inner-page section css start */
 .ayur-bread-section {
   position: relative;
+  width: 100%;
   background-image: url("/assets/images/bread-bg.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   padding: 170px 0 100px;
 }
+
+/* Tablet adjustments */
+@media (max-width: 768px) {
+  .ayur-bread-section {
+    padding: 100px 0 60px;
+    margin-top: 60px; /* 👈 Push section down below navbar */
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  .ayur-bread-section {
+    padding: 60px 0 40px;
+    margin-top: 60px; /* 👈 Adjust this value to match your navbar height */
+  }
+}
+
+
 
 .ayur-bread-section::before {
   content: "";

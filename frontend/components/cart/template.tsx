@@ -21,7 +21,7 @@ const CartTemplate = ({
                   <h2>Cart</h2>
                   <div className="ayur-bread-list">
                     <span>
-                      <a href="index.html">Home</a>
+                      <a href="/">Home</a>
                     </span>
                     <span className="ayur-active-page">Cart</span>
                   </div>
