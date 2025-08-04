@@ -56,7 +56,17 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
         />
       </td>
       <td>
-        <h6>{item.product_title}</h6>
+        <h6
+          style={{
+            display: "-webkit-box",
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: "vertical",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+          }}
+        >
+          {item.product_title}
+        </h6>
       </td>
       <td>
         <LineItemUnitPrice
