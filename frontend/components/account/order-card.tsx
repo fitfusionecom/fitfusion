@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { FaChevronRight } from "react-icons/fa";
 
 interface OrderCardProps {
   order: any;
@@ -72,10 +73,7 @@ export default function OrderCard({ order }: OrderCardProps) {
               </span>
             </div>
             <div className="col-md-2 text-end">
-              <i
-                className="fa fa-chevron-right"
-                style={{ color: "#cd8973" }}
-              ></i>
+              <FaChevronRight style={{ color: "#cd8973" }} />
             </div>
           </div>
         </div>

@@ -3,6 +3,13 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { signout } from "@/lib/data/customer";
+import {
+  FaHome,
+  FaUser,
+  FaMapMarkerAlt,
+  FaShoppingBag,
+  FaSignOutAlt,
+} from "react-icons/fa";
 
 interface AccountNavProps {
   customer: any;
@@ -23,25 +30,25 @@ export default function AccountNav({ customer }: AccountNavProps) {
     {
       href: "/account",
       label: "Overview",
-      icon: "fa fa-home",
+      icon: <FaHome style={{ width: "20px", height: "20px" }} />,
       testId: "overview-link",
     },
     {
       href: "/account/profile",
       label: "Profile",
-      icon: "fa fa-user",
+      icon: <FaUser style={{ width: "20px", height: "20px" }} />,
       testId: "profile-link",
     },
     {
       href: "/account/addresses",
       label: "Addresses",
-      icon: "fa fa-map-marker-alt",
+      icon: <FaMapMarkerAlt style={{ width: "20px", height: "20px" }} />,
       testId: "addresses-link",
     },
     {
       href: "/account/orders",
       label: "Orders",
-      icon: "fa fa-shopping-bag",
+      icon: <FaShoppingBag style={{ width: "20px", height: "20px" }} />,
       testId: "orders-link",
     },
   ];
@@ -83,7 +90,7 @@ export default function AccountNav({ customer }: AccountNavProps) {
                   }}
                   data-testid={item.testId}
                 >
-                  <i className={item.icon} style={{ width: "20px" }}></i>
+                  {item.icon}
                   <span>{item.label}</span>
                 </Link>
               ))}
@@ -101,7 +108,7 @@ export default function AccountNav({ customer }: AccountNavProps) {
                 onClick={handleLogout}
                 data-testid="logout-button"
               >
-                <i className="fa fa-sign-out-alt" style={{ width: "20px" }}></i>
+                <FaSignOutAlt style={{ width: "20px", height: "20px" }} />
                 <span>Log out</span>
               </button>
             </div>
@@ -144,7 +151,7 @@ export default function AccountNav({ customer }: AccountNavProps) {
                   }}
                   data-testid={item.testId}
                 >
-                  <i className={item.icon} style={{ width: "20px" }}></i>
+                  {item.icon}
                   <span>{item.label}</span>
                 </Link>
               ))}
@@ -166,7 +173,7 @@ export default function AccountNav({ customer }: AccountNavProps) {
                 onClick={handleLogout}
                 data-testid="logout-button"
               >
-                <i className="fa fa-sign-out-alt" style={{ width: "20px" }}></i>
+                <FaSignOutAlt style={{ width: "20px", height: "20px" }} />
                 <span>Log out</span>
               </button>
             </div>

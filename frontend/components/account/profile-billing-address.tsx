@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { addCustomerAddress } from "@/lib/data/customer";
+import { FaPlus, FaSpinner, FaMapMarkerAlt } from "react-icons/fa";
 
 interface ProfileBillingAddressProps {
   customer: any;
@@ -103,7 +104,7 @@ export default function ProfileBillingAddress({
               borderRadius: "0.5rem",
             }}
           >
-            <i className="fa fa-plus me-2"></i>
+            <FaPlus className="me-2" />
             Add Address
           </button>
         )}
@@ -236,7 +237,7 @@ export default function ProfileBillingAddress({
             >
               {isLoading ? (
                 <>
-                  <i className="fa fa-spinner fa-spin me-2"></i>
+                  <FaSpinner className="fa-spin me-2" />
                   Saving...
                 </>
               ) : (
@@ -294,10 +295,11 @@ export default function ProfileBillingAddress({
               </div>
             ) : (
               <div className="text-center py-3">
-                <i
-                  className="fa fa-map-marker-alt fa-2x mb-2"
+                <FaMapMarkerAlt
+                  size={48}
+                  className="mb-2"
                   style={{ color: "#ccc" }}
-                ></i>
+                />
                 <p className="text-muted mb-0">No billing address added yet</p>
               </div>
             )}

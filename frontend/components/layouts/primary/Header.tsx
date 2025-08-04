@@ -98,7 +98,7 @@ export default function Header() {
                   {!isLoading && (
                     <>
                       {customer ? (
-                        <Link href="/profile">
+                        <Link href="/account">
                           <span className="icon">
                             <svg
                               width="15"

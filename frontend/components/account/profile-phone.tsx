@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { updateCustomer } from "@/lib/data/customer";
+import { FaEdit, FaSpinner } from "react-icons/fa";
 
 interface ProfilePhoneProps {
   customer: any;
@@ -60,7 +61,7 @@ export default function ProfilePhone({ customer }: ProfilePhoneProps) {
               borderRadius: "0.5rem",
             }}
           >
-            <i className="fa fa-edit me-2"></i>
+            <FaEdit className="me-2" />
             Edit
           </button>
         )}
@@ -109,7 +110,7 @@ export default function ProfilePhone({ customer }: ProfilePhoneProps) {
             >
               {isLoading ? (
                 <>
-                  <i className="fa fa-spinner fa-spin me-2"></i>
+                  <FaSpinner className="fa-spin me-2" />
                   Saving...
                 </>
               ) : (

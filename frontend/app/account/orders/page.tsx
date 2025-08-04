@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { listOrders } from "@/lib/data/orders";
 import OrderCard from "@/components/account/order-card";
+import { FaShoppingBag } from "react-icons/fa";
 
 export default function OrdersPage() {
   const [orders, setOrders] = useState<any[]>([]);
@@ -62,10 +63,7 @@ export default function OrdersPage() {
             style={{ borderRadius: "1rem", border: "none" }}
           >
             <div className="card-body text-center py-5">
-              <i
-                className="fa fa-shopping-bag fa-3x mb-3"
-                style={{ color: "#ccc" }}
-              ></i>
+              <FaShoppingBag size={48} className="mb-3" style={{ color: "#ccc" }} />
               <h5 className="text-muted">No orders found</h5>
               <p className="text-muted mb-0">
                 Start shopping to see your orders here
