@@ -49,7 +49,7 @@ export default function Header() {
             <div className="ayur-navmenu-wrapper">
               <div
                 className={
-                  "ayur-nav-menu border d-flex justify-content-center align-items-center"
+                  "ayur-nav-menu d-flex justify-content-center align-items-center"
                 }
               >
                 <ul className="mb-0">
