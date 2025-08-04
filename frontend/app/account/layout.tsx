@@ -43,7 +43,7 @@ export default function AccountLayout({ children }: AccountLayoutProps) {
 
   if (!customer) {
     return (
-      <div className="container py-5">
+      <div className="container py-5 mt-5">
         <div className="row justify-content-center">
           <div className="col-md-6 text-center">
             <div className="card shadow-sm">
@@ -57,12 +57,24 @@ export default function AccountLayout({ children }: AccountLayoutProps) {
                 <p className="text-muted mb-4">
                   You need to be logged in to access your account.
                 </p>
-                <Link href="/login" className="btn btn-primary me-3">
+                <Link
+                  href="/login"
+                  className="btn me-3"
+                  style={{
+                    color: "#cd8973",
+                    fontWeight: 700,
+                    fontSize: "1.1rem",
+                    padding: "10px 20px",
+                    border: "1px solid #cd8973",
+                    borderRadius: "6px",
+                  }}
+                >
                   Login
                 </Link>
-                <Link href="/signup" className="btn btn-outline-primary">
+
+                {/* <Link href="/signup" className="btn btn-outline-primary">
                   Sign Up
-                </Link>
+                </Link> */}
               </div>
             </div>
           </div>
