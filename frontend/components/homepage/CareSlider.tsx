@@ -8,60 +8,54 @@ import { HttpTypes } from "@medusajs/types";
 import "swiper/css";
 import "swiper/css/navigation";
 
-const careCategories = [
-  { name: "Eye Care", image: "/assets/images/categories/care-img1.png" },
-  { name: "Hair Care", image: "/assets/images/categories/care-img1.png" },
-  { name: "Skin Care", image: "/assets/images/categories/care-img1.png" },
-  { name: "Men's Health", image: "/assets/images/categories/care-img1.png" },
-  { name: "Women's Health", image: "/assets/images/categories/care-img1.png" },
-  { name: "Memory Health", image: "/assets/images/categories/care-img1.png" },
-  { name: "Beauty", image: "/assets/images/categories/care-img1.png" },
-  { name: "Brain Health", image: "/assets/images/categories/care-img1.png" },
-  { name: "Eye Care", image: "/assets/images/categories/care-img1.png" },
-  { name: "Hair Care", image: "/assets/images/categories/care-img1.png" },
-];
-
 interface CareSliderProps {
   categories: HttpTypes.StoreProductCategory[];
 }
 
 export default function CareSlider({ categories }: CareSliderProps) {
   const swiperRef = useRef<HTMLDivElement>(null);
+  const swiperInstanceRef = useRef<any>(null);
 
   useEffect(() => {
-    // Dynamically import Swiper only on client
-    let swiperInstance: any;
+    let isMounted = true;
     let Swiper: any;
-    if (typeof window !== "undefined" && swiperRef.current) {
-      import("swiper").then((mod) => {
-        Swiper = mod.default;
-        swiperInstance = new Swiper(
-          swiperRef.current!.querySelector(".swiper"),
-          {
-            slidesPerView: 5,
-            spaceBetween: 20,
-            loop: true,
-            navigation: {
-              nextEl: swiperRef.current!.querySelector(".swiper-button-next"),
-              prevEl: swiperRef.current!.querySelector(".swiper-button-prev"),
-            },
-            breakpoints: {
-              320: { slidesPerView: 2 },
-              480: { slidesPerView: 3 },
-              768: { slidesPerView: 4 },
-              1024: { slidesPerView: 5 },
-            },
-          }
-        );
-      });
 
-      // Cleanup
-      return () => {
-        if (swiperInstance && swiperInstance.destroy) {
-          swiperInstance.destroy(true, true);
+    async function initSwiper() {
+      if (typeof window !== "undefined" && swiperRef.current) {
+        const mod = await import("swiper");
+        Swiper = mod.default;
+        if (!swiperInstanceRef.current) {
+          swiperInstanceRef.current = new Swiper(
+            swiperRef.current.querySelector(".swiper"),
+            {
+              slidesPerView: 5,
+              spaceBetween: 20,
+              loop: true,
+              navigation: {
+                nextEl: swiperRef.current.querySelector(".swiper-button-next"),
+                prevEl: swiperRef.current.querySelector(".swiper-button-prev"),
+              },
+              breakpoints: {
+                320: { slidesPerView: 2 },
+                480: { slidesPerView: 3 },
+                768: { slidesPerView: 4 },
+                1024: { slidesPerView: 5 },
+              },
+            }
+          );
         }
-      };
+      }
     }
+
+    initSwiper();
+
+    return () => {
+      isMounted = false;
+      if (swiperInstanceRef.current && swiperInstanceRef.current.destroy) {
+        swiperInstanceRef.current.destroy(true, true);
+        swiperInstanceRef.current = null;
+      }
+    };
   }, []);
 
   return (
@@ -71,15 +65,17 @@ export default function CareSlider({ categories }: CareSliderProps) {
           <div className="swiper ayur-care-slider">
             <div className="swiper-wrapper">
               {categories.map((category, index) => (
-                <div key={index} className="swiper-slide">
+                <div key={category.id || index} className="swiper-slide">
                   <div className="ayur-careslide-box">
                     <div className="ayur-careslider-img">
                       <Image
                         src={
-                          (category.metadata?.image_url as string) ||
-                          "/assets/images/categories/care-img1.png"
+                          typeof category.metadata?.image_url === "string" &&
+                          category.metadata?.image_url
+                            ? category.metadata.image_url
+                            : "/assets/images/categories/care-img1.png"
                         }
-                        alt={category.name}
+                        alt={category.name || category.handle}
                         width={140}
                         height={180}
                       />
@@ -90,7 +86,12 @@ export default function CareSlider({ categories }: CareSliderProps) {
               ))}
             </div>
           </div>
-          <div className="swiper-button-prev">
+          <div
+            className="swiper-button-prev"
+            tabIndex={0}
+            role="button"
+            aria-label="Previous slide"
+          >
             <svg
               width="40"
               height="40"
@@ -104,7 +105,12 @@ export default function CareSlider({ categories }: CareSliderProps) {
               />
             </svg>
           </div>
-          <div className="swiper-button-next">
+          <div
+            className="swiper-button-next"
+            tabIndex={0}
+            role="button"
+            aria-label="Next slide"
+          >
             <svg
               width="40"
               height="40"

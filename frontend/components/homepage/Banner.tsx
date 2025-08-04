@@ -54,7 +54,7 @@ export default function Banner() {
       className="ayur-banner-section"
       style={{
         position: "relative",
-        paddingBottom: "50px",
+        // paddingBottom: "50px",
       }}
     >
       <div className="container">

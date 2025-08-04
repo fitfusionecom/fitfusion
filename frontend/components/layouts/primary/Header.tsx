@@ -47,60 +47,18 @@ export default function Header() {
           </div>
           <div className="col-lg-10 col-md-8 col-sm-7 col-6">
             <div className="ayur-navmenu-wrapper">
-              <div className={`ayur-nav-menu ${isMenuOpen ? "active" : ""}`}>
-                <ul>
+              <div
+                className={
+                  "ayur-nav-menu border d-flex justify-content-center align-items-center"
+                }
+              >
+                <ul className="mb-0">
                   <li className="active">
                     <Link href="/">Home</Link>
                   </li>
-                  {/* <li>
-                    <Link href="/about">About</Link>
-                  </li> */}
                   <li>
                     <Link href="/shop">Shop</Link>
                   </li>
-
-                  {/* <li>
-                    <Link href="/services">Services</Link>
-                  </li> */}
-                  {/* <li>
-                    <Link href="/blog">Blog</Link>
-                  </li> */}
-                  {/* <li className="ayur-has-menu">
-                    <a href="javascript:void(0)">
-                      Pages
-                      <svg
-                        version="1.1"
-                        x="0"
-                        y="0"
-                        viewBox="0 0 491.996 491.996"
-                        style={{ enableBackground: "new 0 0 512 512" }}
-                      >
-                        <g>
-                          <path
-                            d="m484.132 124.986-16.116-16.228c-5.072-5.068-11.82-7.86-19.032-7.86-7.208 0-13.964 2.792-19.036 7.86l-183.84 183.848L62.056 108.554c-5.064-5.068-11.82-7.856-19.028-7.856s-13.968 2.788-19.036 7.856l-16.12 16.128c-10.496 10.488-10.496 27.572 0 38.06l219.136 219.924c5.064 5.064 11.812 8.632 19.084 8.632h.084c7.212 0 13.96-3.572 19.024-8.632l218.932-219.328c5.072-5.064 7.856-12.016 7.864-19.224 0-7.212-2.792-14.068-7.864-19.128z"
-                            opacity="1"
-                          />
-                        </g>
-                      </svg>
-                    </a>
-                    <ul className="ayur-submenu">
-                      <li>
-                        <Link href="/blog-single">Blog Single</Link>
-                      </li>
-                      <li>
-                        <Link href="/shop-single">Shop Single</Link>
-                      </li>
-                      <li>
-                        <Link href="/cart">Cart</Link>
-                      </li>
-                      <li>
-                        <Link href="/checkout">Checkout</Link>
-                      </li>
-                      <li>
-                        <Link href="/profile">Profile</Link>
-                      </li>
-                    </ul>
-                  </li> */}
                   <li>
                     <Link href="/contact">Contact</Link>
                   </li>
@@ -114,24 +72,6 @@ export default function Header() {
                 </ul>
               </div>
               <div className="ayur-nav-icons">
-                {/* <div className="ayur-nav-like">
-                  <Link href="/wishlist">
-                    <span className="icon">
-                      <svg
-                        width="21"
-                        height="17"
-                        viewBox="0 0 21 17"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M14.6647 0C12.9947 0 11.5308 0.744645 10.4311 2.15348C10.2912 2.33306 10.16 2.51925 10.0379 2.7114C9.91579 2.51925 9.78456 2.33306 9.64463 2.15348C8.54497 0.744645 7.08101 0 5.41104 0C2.25633 0 0 2.64149 0 5.81114C0 9.43548 2.97046 12.8513 9.63153 16.8865C9.75642 16.9622 9.89715 17 10.0379 17C10.1786 17 10.3193 16.9622 10.4442 16.8866C17.1053 12.8513 20.0757 9.43552 20.0757 5.81118C20.0757 2.64318 17.8213 0 14.6647 0ZM16.4353 10.3241C15.0486 11.8714 12.953 13.5007 10.0379 15.2969C7.12277 13.5007 5.02717 11.8714 3.64041 10.3241C2.24617 8.7684 1.56842 7.2922 1.56842 5.81118C1.56842 3.52898 3.11072 1.56842 5.41104 1.56842C6.58249 1.56842 7.58134 2.07776 8.37986 3.08233C9.01836 3.88572 9.28738 4.71529 9.28927 4.72121C9.33905 4.88083 9.43853 5.02035 9.57321 5.11943C9.7079 5.2185 9.87072 5.27194 10.0379 5.27194C10.2051 5.27194 10.3679 5.2185 10.5026 5.11943C10.6373 5.02035 10.7368 4.88083 10.7866 4.72121C10.789 4.71329 11.05 3.90959 11.6675 3.11848C12.4703 2.08992 13.4787 1.56838 14.6647 1.56838C16.9675 1.56838 18.5073 3.53082 18.5073 5.81114C18.5073 7.29216 17.8296 8.76836 16.4353 10.3241Z"
-                          fill="#222222"
-                        />
-                      </svg>
-                    </span>
-                  </Link>
-                </div> */}
                 <div className="ayur-nav-product">
                   <Link href="/cart">
                     <span className="icon">

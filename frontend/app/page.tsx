@@ -22,7 +22,7 @@ export default async function Home() {
   return (
     <>
       <Banner />
-      <CareSlider categories={categories} />
+      {/* <CareSlider categories={categories} /> */}
       <TopProducts products={top_products} />
       <About />
       <Achievement />
