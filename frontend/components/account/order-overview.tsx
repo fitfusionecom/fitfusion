@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { FaBox, FaArrowLeft, FaShoppingCart, FaStar } from "react-icons/fa";
 
 interface OrderOverviewProps {
   order: any;
@@ -133,10 +134,7 @@ export default function OrderOverview({ order }: OrderOverviewProps) {
                             justifyContent: "center",
                           }}
                         >
-                          <i
-                            className="fa fa-box fa-2x"
-                            style={{ color: "#cd8973" }}
-                          ></i>
+                          <FaBox size={32} style={{ color: "#cd8973" }} />
                         </div>
                       </div>
                       <div className="flex-grow-1">
@@ -159,10 +157,7 @@ export default function OrderOverview({ order }: OrderOverviewProps) {
                 </div>
               ) : (
                 <div className="text-center py-4">
-                  <i
-                    className="fa fa-box fa-3x mb-3"
-                    style={{ color: "#ccc" }}
-                  ></i>
+                  <FaBox size={48} className="mb-3" style={{ color: "#ccc" }} />
                   <p className="text-muted">No items found</p>
                 </div>
               )}
@@ -313,7 +308,7 @@ export default function OrderOverview({ order }: OrderOverviewProps) {
                     borderRadius: "0.75rem",
                   }}
                 >
-                  <i className="fa fa-arrow-left me-2"></i>
+                  <FaArrowLeft className="me-2" />
                   Back to Orders
                 </Link>
                 <Link
@@ -325,7 +320,7 @@ export default function OrderOverview({ order }: OrderOverviewProps) {
                     borderRadius: "0.75rem",
                   }}
                 >
-                  <i className="fa fa-shopping-cart me-2"></i>
+                  <FaShoppingCart className="me-2" />
                   Continue Shopping
                 </Link>
                 {order.status === "delivered" && (
@@ -337,7 +332,7 @@ export default function OrderOverview({ order }: OrderOverviewProps) {
                       borderRadius: "0.75rem",
                     }}
                   >
-                    <i className="fa fa-star me-2"></i>
+                    <FaStar className="me-2" />
                     Write Review
                   </button>
                 )}

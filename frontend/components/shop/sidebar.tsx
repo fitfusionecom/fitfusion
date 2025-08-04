@@ -1,5 +1,6 @@
 import { HttpTypes } from "@medusajs/types";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 const SearchBar = ({
   updateQueryParams,
@@ -9,9 +10,8 @@ const SearchBar = ({
     value: string | number | boolean | string[]
   ) => void;
 }) => {
-  const handleSearch = (e: React.ChangeEvent<HTMLButtonElement>) => {
-    updateQueryParams("q", e.target.value);
-  };
+  const searchParams = useSearchParams();
+  const currentQuery = searchParams.get("q") || "";
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     updateQueryParams("q", e.target.value);
@@ -24,12 +24,10 @@ const SearchBar = ({
           type="text"
           className="form-control"
           placeholder="Search Here..."
+          value={currentQuery}
           onChange={handleChange}
         />
       </div>
-      <button className="ayur-btn" onClick={handleSearch as any}>
-        search
-      </button>
     </div>
   );
 };
@@ -37,13 +35,31 @@ const SearchBar = ({
 const ShopSidebar = ({
   categories,
   updateQueryParams,
+  priceRange,
+  setPriceRange,
 }: {
   categories: HttpTypes.StoreProductCategory[];
   updateQueryParams: (
     key: string,
     value: string | number | boolean | string[]
   ) => void;
+  priceRange: [number, number];
+  setPriceRange: (range: [number, number]) => void;
 }) => {
+  const searchParams = useSearchParams();
+  const currentMinPrice = searchParams.get("minPrice") || "";
+  const currentMaxPrice = searchParams.get("maxPrice") || "";
+
+  const handleMinPriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = Number(e.target.value) || 0;
+    setPriceRange([value, priceRange[1]]);
+  };
+
+  const handleMaxPriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = Number(e.target.value) || 5000;
+    setPriceRange([priceRange[0], value]);
+  };
+
   return (
     <div className="ayur-shop-sidebar">
       <SearchBar updateQueryParams={updateQueryParams} />
@@ -51,15 +67,31 @@ const ShopSidebar = ({
         <h3>Categories</h3>
 
         <ul>
+          <li>
+            <a
+              onClick={() => updateQueryParams("category_handle", "")}
+              style={{
+                cursor: "pointer",
+              }}
+              className="d-flex align-items-center justify-content-between gap-2"
+            >
+              All
+            </a>
+          </li>
           {categories.map((category) => (
             <li key={category.id}>
-              <Link
-                href={`/shop?category_handle=${category.handle}`}
+              <a
+                onClick={() =>
+                  updateQueryParams("category_handle", category.handle)
+                }
+                style={{
+                  cursor: "pointer",
+                }}
                 className="d-flex align-items-center justify-content-between gap-2"
               >
                 {category.name}
-                <img src="assets/images/right-arrow.png" alt="arrow" />
-              </Link>
+                <img src="/assets/images/right-arrow.png" alt="arrow" />
+              </a>
             </li>
           ))}
         </ul>
@@ -77,18 +109,8 @@ const ShopSidebar = ({
               min={0}
               className="form-control"
               style={{ width: 80 }}
-              value={
-                typeof window !== "undefined"
-                  ? new URLSearchParams(window.location.search).get(
-                      "minPrice"
-                    ) || ""
-                  : ""
-              }
-              onChange={(e) => {
-                const params = new URLSearchParams(window.location.search);
-                params.set("minPrice", e.target.value);
-                window.location.search = params.toString();
-              }}
+              value={currentMinPrice}
+              onChange={handleMinPriceChange}
             />
           </div>
           <div
@@ -108,18 +130,8 @@ const ShopSidebar = ({
               min={0}
               className="form-control"
               style={{ width: 80 }}
-              value={
-                typeof window !== "undefined"
-                  ? new URLSearchParams(window.location.search).get(
-                      "maxPrice"
-                    ) || ""
-                  : ""
-              }
-              onChange={(e) => {
-                const params = new URLSearchParams(window.location.search);
-                params.set("maxPrice", e.target.value);
-                window.location.search = params.toString();
-              }}
+              value={currentMaxPrice}
+              onChange={handleMaxPriceChange}
             />
           </div>
         </div>

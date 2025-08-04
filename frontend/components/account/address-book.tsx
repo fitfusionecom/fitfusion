@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { addCustomerAddress, deleteCustomerAddress } from "@/lib/data/customer";
 import AddressCard from "./address-card";
+import { FaPlus, FaSpinner, FaMapMarkerAlt } from "react-icons/fa";
 
 interface AddressBookProps {
   customer: any;
@@ -106,7 +107,7 @@ export default function AddressBook({ customer }: AddressBookProps) {
               borderRadius: "0.75rem",
             }}
           >
-            <i className="fa fa-plus me-2"></i>
+            <FaPlus className="me-2" />
             Add New Address
           </button>
         )}
@@ -249,7 +250,7 @@ export default function AddressBook({ customer }: AddressBookProps) {
                 >
                   {isLoading ? (
                     <>
-                      <i className="fa fa-spinner fa-spin me-2"></i>
+                      <FaSpinner className="fa-spin me-2" />
                       Adding...
                     </>
                   ) : (
@@ -290,10 +291,7 @@ export default function AddressBook({ customer }: AddressBookProps) {
             style={{ borderRadius: "1rem", border: "none" }}
           >
             <div className="card-body text-center py-5">
-              <i
-                className="fa fa-map-marker-alt fa-3x mb-3"
-                style={{ color: "#ccc" }}
-              ></i>
+              <FaMapMarkerAlt size={48} className="mb-3" style={{ color: "#ccc" }} />
               <h5 className="text-muted">No addresses found</h5>
               <p className="text-muted mb-0">
                 Add your first address to get started

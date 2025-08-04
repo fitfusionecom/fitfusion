@@ -4,6 +4,14 @@ import { useEffect, useState } from "react";
 import { retrieveCustomer } from "@/lib/data/customer";
 import { listOrders } from "@/lib/data/orders";
 import Link from "next/link";
+import {
+  FaUserCircle,
+  FaMapMarkerAlt,
+  FaShoppingBag,
+  FaChevronRight,
+  FaUser,
+  FaShoppingCart,
+} from "react-icons/fa";
 
 export default function AccountOverview() {
   const [customer, setCustomer] = useState<any>(null);
@@ -64,7 +72,7 @@ export default function AccountOverview() {
   };
 
   return (
-    <div className="account-overview">
+    <div className="account-overview mt-5">
       {/* Header */}
       <div className="d-none d-md-block mb-4">
         <div className="d-flex justify-content-between align-items-center">
@@ -91,10 +99,7 @@ export default function AccountOverview() {
           >
             <div className="card-body text-center">
               <div className="mb-3">
-                <i
-                  className="fa fa-user-circle fa-3x"
-                  style={{ color: "#cd8973" }}
-                ></i>
+                <FaUserCircle size={48} color="#cd8973" />
               </div>
               <h3
                 className="mb-2"
@@ -113,10 +118,7 @@ export default function AccountOverview() {
           >
             <div className="card-body text-center">
               <div className="mb-3">
-                <i
-                  className="fa fa-map-marker-alt fa-3x"
-                  style={{ color: "#cd8973" }}
-                ></i>
+                <FaMapMarkerAlt size={48} color="#cd8973" />
               </div>
               <h3
                 className="mb-2"
@@ -136,7 +138,7 @@ export default function AccountOverview() {
           <h4 className="mb-0" style={{ color: "#cd8973", fontWeight: 700 }}>
             Recent Orders
           </h4>
-          <i className="fa fa-shopping-bag" style={{ color: "#cd8973" }}></i>
+          <FaShoppingBag color="#cd8973" />
         </div>
 
         {orders && orders.length > 0 ? (
@@ -178,10 +180,7 @@ export default function AccountOverview() {
                           </span>
                         </div>
                         <div className="col-md-3 text-end">
-                          <i
-                            className="fa fa-chevron-right"
-                            style={{ color: "#cd8973" }}
-                          ></i>
+                          <FaChevronRight color="#cd8973" />
                         </div>
                       </div>
                     </div>
@@ -196,10 +195,7 @@ export default function AccountOverview() {
             style={{ borderRadius: "1rem", border: "none" }}
           >
             <div className="card-body text-center py-5">
-              <i
-                className="fa fa-shopping-bag fa-3x mb-3"
-                style={{ color: "#ccc" }}
-              ></i>
+              <FaShoppingBag size={48} className="mb-3" color="#ccc" />
               <h5 className="text-muted">No recent orders</h5>
               <p className="text-muted mb-0">
                 Start shopping to see your orders here
@@ -223,10 +219,7 @@ export default function AccountOverview() {
                   style={{ borderRadius: "1rem", border: "none" }}
                 >
                   <div className="card-body text-center">
-                    <i
-                      className="fa fa-user fa-2x mb-3"
-                      style={{ color: "#cd8973" }}
-                    ></i>
+                    <FaUser size={32} className="mb-3" color="#cd8973" />
                     <h6 className="mb-2">Update Profile</h6>
                     <p className="text-muted small mb-0">
                       Edit your personal information
@@ -242,10 +235,11 @@ export default function AccountOverview() {
                   style={{ borderRadius: "1rem", border: "none" }}
                 >
                   <div className="card-body text-center">
-                    <i
-                      className="fa fa-map-marker-alt fa-2x mb-3"
-                      style={{ color: "#cd8973" }}
-                    ></i>
+                    <FaMapMarkerAlt
+                      size={32}
+                      className="mb-3"
+                      color="#cd8973"
+                    />
                     <h6 className="mb-2">Manage Addresses</h6>
                     <p className="text-muted small mb-0">
                       Add or edit your addresses
@@ -261,10 +255,11 @@ export default function AccountOverview() {
                   style={{ borderRadius: "1rem", border: "none" }}
                 >
                   <div className="card-body text-center">
-                    <i
-                      className="fa fa-shopping-cart fa-2x mb-3"
-                      style={{ color: "#cd8973" }}
-                    ></i>
+                    <FaShoppingCart
+                      size={32}
+                      className="mb-3"
+                      color="#cd8973"
+                    />
                     <h6 className="mb-2">Start Shopping</h6>
                     <p className="text-muted small mb-0">Browse our products</p>
                   </div>

@@ -3,6 +3,20 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import {
+  FaCheck,
+  FaEnvelope,
+  FaCog,
+  FaShippingFast,
+  FaPhone,
+  FaList,
+  FaShoppingCart,
+  FaHeadset,
+  FaClock,
+  FaTruck,
+  FaUndo,
+  FaShieldAlt,
+} from "react-icons/fa";
 
 export default function OrderConfirmedPage() {
   const params = useParams();
@@ -58,7 +72,7 @@ export default function OrderConfirmedPage() {
               background: "#28a745",
             }}
           >
-            <i className="fa fa-check fa-3x text-white"></i>
+            <FaCheck size={48} className="text-white" />
           </div>
         </div>
         <h1 className="mb-3" style={{ color: "#cd8973", fontWeight: 700 }}>
@@ -106,10 +120,7 @@ export default function OrderConfirmedPage() {
                         background: "#f6f1ed",
                       }}
                     >
-                      <i
-                        className="fa fa-envelope fa-lg"
-                        style={{ color: "#cd8973" }}
-                      ></i>
+                      <FaEnvelope size={20} style={{ color: "#cd8973" }} />
                     </div>
                     <div>
                       <h6 className="mb-2">Confirmation Email</h6>
@@ -131,10 +142,7 @@ export default function OrderConfirmedPage() {
                         background: "#f6f1ed",
                       }}
                     >
-                      <i
-                        className="fa fa-cog fa-lg"
-                        style={{ color: "#cd8973" }}
-                      ></i>
+                      <FaCog size={20} style={{ color: "#cd8973" }} />
                     </div>
                     <div>
                       <h6 className="mb-2">Order Processing</h6>
@@ -156,10 +164,7 @@ export default function OrderConfirmedPage() {
                         background: "#f6f1ed",
                       }}
                     >
-                      <i
-                        className="fa fa-shipping-fast fa-lg"
-                        style={{ color: "#cd8973" }}
-                      ></i>
+                      <FaShippingFast size={20} style={{ color: "#cd8973" }} />
                     </div>
                     <div>
                       <h6 className="mb-2">Shipping Updates</h6>
@@ -180,10 +185,7 @@ export default function OrderConfirmedPage() {
                         background: "#f6f1ed",
                       }}
                     >
-                      <i
-                        className="fa fa-phone fa-lg"
-                        style={{ color: "#cd8973" }}
-                      ></i>
+                      <FaPhone size={20} style={{ color: "#cd8973" }} />
                     </div>
                     <div>
                       <h6 className="mb-2">Need Help?</h6>
@@ -218,7 +220,7 @@ export default function OrderConfirmedPage() {
                     minWidth: "150px",
                   }}
                 >
-                  <i className="fa fa-list me-2"></i>
+                  <FaList className="me-2" />
                   View Orders
                 </Link>
 
@@ -232,7 +234,7 @@ export default function OrderConfirmedPage() {
                     minWidth: "150px",
                   }}
                 >
-                  <i className="fa fa-shopping-cart me-2"></i>
+                  <FaShoppingCart className="me-2" />
                   Continue Shopping
                 </Link>
 
@@ -244,7 +246,7 @@ export default function OrderConfirmedPage() {
                     minWidth: "150px",
                   }}
                 >
-                  <i className="fa fa-headset me-2"></i>
+                  <FaHeadset className="me-2" />
                   Get Help
                 </Link>
               </div>
@@ -271,10 +273,7 @@ export default function OrderConfirmedPage() {
               <div className="row">
                 <div className="col-md-6 mb-3">
                   <div className="d-flex align-items-center mb-2">
-                    <i
-                      className="fa fa-clock me-2"
-                      style={{ color: "#cd8973" }}
-                    ></i>
+                    <FaClock className="me-2" style={{ color: "#cd8973" }} />
                     <strong>Processing Time</strong>
                   </div>
                   <p className="text-muted small mb-0">
@@ -284,10 +283,7 @@ export default function OrderConfirmedPage() {
 
                 <div className="col-md-6 mb-3">
                   <div className="d-flex align-items-center mb-2">
-                    <i
-                      className="fa fa-truck me-2"
-                      style={{ color: "#cd8973" }}
-                    ></i>
+                    <FaTruck className="me-2" style={{ color: "#cd8973" }} />
                     <strong>Shipping</strong>
                   </div>
                   <p className="text-muted small mb-0">
@@ -298,10 +294,7 @@ export default function OrderConfirmedPage() {
 
                 <div className="col-md-6 mb-3">
                   <div className="d-flex align-items-center mb-2">
-                    <i
-                      className="fa fa-undo me-2"
-                      style={{ color: "#cd8973" }}
-                    ></i>
+                    <FaUndo className="me-2" style={{ color: "#cd8973" }} />
                     <strong>Returns</strong>
                   </div>
                   <p className="text-muted small mb-0">
@@ -311,10 +304,7 @@ export default function OrderConfirmedPage() {
 
                 <div className="col-md-6 mb-3">
                   <div className="d-flex align-items-center mb-2">
-                    <i
-                      className="fa fa-shield-alt me-2"
-                      style={{ color: "#cd8973" }}
-                    ></i>
+                    <FaShieldAlt className="me-2" style={{ color: "#cd8973" }} />
                     <strong>Secure Payment</strong>
                   </div>
                   <p className="text-muted small mb-0">

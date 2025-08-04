@@ -10,12 +10,12 @@ import { filterProducts } from "@/lib/data/products";
 import { listCategories } from "@/lib/data/categories";
 
 export default async function Home() {
-  const categories = await listCategories();
+  // const categories = await listCategories();
   const top_products = await filterProducts({
     q: "",
     minPrice: "0",
     maxPrice: "10000",
-    category_handle: "all",
+    category_handle: "top",
     pageParam: 1,
   });
 

@@ -1,5 +1,7 @@
 "use client";
 
+import { FaTrash } from "react-icons/fa";
+
 interface AddressCardProps {
   address: any;
   onDelete: () => void;
@@ -56,7 +58,7 @@ export default function AddressCard({ address, onDelete }: AddressCardProps) {
             style={{ borderRadius: "0.5rem" }}
             title="Delete address"
           >
-            <i className="fa fa-trash"></i>
+            <FaTrash />
           </button>
         </div>
 

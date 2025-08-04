@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import OrderOverview from "@/components/account/order-overview";
+import { FaExclamationTriangle, FaArrowLeft } from "react-icons/fa";
 
 export default function OrderDetailPage() {
   const params = useParams();
@@ -58,10 +59,11 @@ export default function OrderDetailPage() {
           style={{ borderRadius: "1rem", border: "none" }}
         >
           <div className="card-body py-5">
-            <i
-              className="fa fa-exclamation-triangle fa-3x mb-3"
+            <FaExclamationTriangle
+              size={48}
+              className="mb-3"
               style={{ color: "#cd8973" }}
-            ></i>
+            />
             <h4 className="text-muted mb-3">Order Not Found</h4>
             <p className="text-muted mb-4">
               {error ||
@@ -76,7 +78,7 @@ export default function OrderDetailPage() {
                 borderRadius: "0.75rem",
               }}
             >
-              <i className="fa fa-arrow-left me-2"></i>
+              <FaArrowLeft className="me-2" />
               Back to Orders
             </Link>
           </div>
@@ -107,7 +109,7 @@ export default function OrderDetailPage() {
               borderRadius: "0.75rem",
             }}
           >
-            <i className="fa fa-arrow-left me-2"></i>
+            <FaArrowLeft className="me-2" />
             Back to Orders
           </Link>
         </div>

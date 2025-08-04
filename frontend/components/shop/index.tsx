@@ -1,16 +1,14 @@
 "use client";
 
-import { getRegion } from "@/lib/data/regions";
 import { sdk } from "@/lib/config";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import { useInfiniteQuery, useQuery } from "react-query";
-import ProductCard from "../blocks/product-card";
-import { Sidebar } from "lucide-react";
 import ShopSidebar from "./sidebar";
-import { HttpTypes } from "@medusajs/types";
 import ShopNotFound from "./not-found";
-import { listCategories } from "@/lib/data/categories";
+import { HttpTypes } from "@medusajs/types";
+import { useEffect, useState } from "react";
+import ProductCard from "../blocks/product-card";
+import { useInfiniteQuery, useQuery } from "react-query";
+import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
 
 // Simple loading skeleton for product cards
 const ProductCardSkeleton = () => (
@@ -87,31 +85,52 @@ const fetchProducts = async ({
   category_handle: string;
   pageParam: number;
 }) => {
-  const region = await getRegion("in");
-  const response = await sdk.client.fetch<any>(
-    `/store/search?region_id=${
-      region?.id
-    }&currency_code=inr&q=${q}&price_min=${minPrice}&price_max=${maxPrice}&category_handle=${category_handle}&offset=${
-      (pageParam - 1) * 20
-    }`,
-    {
-      cache: "no-cache",
+  try {
+    // Get region data
+    const regionsResponse = await sdk.client.fetch<{
+      regions: HttpTypes.StoreRegion[];
+    }>("/store/regions");
+
+    const region =
+      regionsResponse.regions?.find((r) =>
+        r.countries?.some((c) => c.iso_2 === "in")
+      ) || regionsResponse.regions?.[0];
+
+    if (!region) {
+      throw new Error("No region found");
     }
-  );
-  return response?.result?.products as any;
+
+    const response = await sdk.client.fetch<any>(
+      `/store/search?region_id=${region.id}&currency_code=${
+        region.currency_code || "inr"
+      }&q=${q}&price_min=${minPrice}&price_max=${maxPrice}&category_handle=${category_handle}&offset=${
+        (pageParam - 1) * 20
+      }`,
+      {
+        cache: "no-cache",
+      }
+    );
+
+    return response?.result?.products || [];
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    return [];
+  }
 };
 
 const ShopTemplate = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const q = searchParams.get("q") || "";
-  const minPrice = searchParams.get("minPrice") || "";
-  const maxPrice = searchParams.get("maxPrice") || "";
+  const minPrice = searchParams.get("minPrice") || "0";
+  const maxPrice = searchParams.get("maxPrice") || "50000";
   const category_handle = searchParams.get("category_handle") || "";
+
   const [priceRange, setPriceRange] = useState([
     minPrice ? Number(minPrice) : 0,
-    maxPrice ? Number(maxPrice) : 5000,
+    maxPrice ? Number(maxPrice) : 50000,
   ]) as any;
+
   const [openSections, setOpenSections] = useState({
     availability: true,
     price: true,
@@ -127,37 +146,55 @@ const ShopTemplate = () => {
     }));
   };
 
-  const { data: categories, isLoading: isCategoriesLoading } = useQuery({
+  const {
+    data: categories,
+    isLoading: isCategoriesLoading,
+    error: categoriesError,
+  } = useQuery({
     queryKey: ["categories"],
-    queryFn: () =>
-      sdk.client
-        .fetch<{ product_categories: HttpTypes.StoreProductCategory[] }>(
-          "/store/product-categories",
-          {
-            query: {
-              fields:
-                "*category_children, *parent_category, *parent_category.parent_category",
-            },
-            cache: "no-store",
-          }
-        )
-        .then(({ product_categories }) => product_categories),
+    queryFn: async () => {
+      try {
+        const response = await sdk.client.fetch<{
+          product_categories: HttpTypes.StoreProductCategory[];
+        }>("/store/product-categories", {
+          query: {
+            fields:
+              "*category_children, *parent_category, *parent_category.parent_category",
+          },
+          cache: "no-store",
+        });
+        return response.product_categories || [];
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+        return [];
+      }
+    },
+    staleTime: 5 * 60 * 1000, // 5 minutes
   });
 
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
-    useInfiniteQuery({
-      queryKey: ["productData", q, minPrice, maxPrice, category_handle],
-      queryFn: ({ pageParam = 1 }) =>
-        fetchProducts({
-          q,
-          minPrice,
-          maxPrice,
-          category_handle: category_handle || "",
-          pageParam,
-        }),
-      getNextPageParam: (lastPage: any, allPages: any) =>
-        lastPage && lastPage.length ? allPages.length + 1 : undefined,
-    });
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isLoading,
+    error: productsError,
+    refetch,
+  } = useInfiniteQuery({
+    queryKey: ["productData", q, minPrice, maxPrice, category_handle],
+    queryFn: ({ pageParam = 1 }) =>
+      fetchProducts({
+        q,
+        minPrice,
+        maxPrice,
+        category_handle: category_handle || "",
+        pageParam,
+      }),
+    getNextPageParam: (lastPage: any, allPages: any) =>
+      lastPage && lastPage.length > 0 ? allPages.length + 1 : undefined,
+    staleTime: 2 * 60 * 1000, // 2 minutes
+    retry: 2,
+  });
 
   const products = data?.pages.flat() || [];
 
@@ -177,9 +214,38 @@ const ShopTemplate = () => {
   useEffect(() => {
     updateQueryParams("minPrice", priceRange[0]);
   }, [priceRange[0]]);
+
   useEffect(() => {
     updateQueryParams("maxPrice", priceRange[1]);
   }, [priceRange[1]]);
+
+  // Handle errors
+  if (productsError) {
+    return (
+      <div style={{ textAlign: "center", padding: "60px 20px" }}>
+        <h2>Error loading products</h2>
+        <p style={{ color: "#666", marginBottom: "20px" }}>
+          {productsError instanceof Error
+            ? productsError.message
+            : "Failed to load products"}
+        </p>
+        <button
+          onClick={() => refetch()}
+          style={{
+            background: "#007bff",
+            color: "white",
+            border: "none",
+            padding: "10px 20px",
+            borderRadius: "5px",
+            cursor: "pointer",
+          }}
+        >
+          Try again
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div>
       <>
@@ -193,7 +259,7 @@ const ShopTemplate = () => {
                     <h2>Shop</h2>
                     <div className="ayur-bread-list">
                       <span>
-                        <a href="index.html">Home</a>
+                        <Link href="/">Home</Link>
                       </span>
                       <span className="ayur-active-page">Shop</span>
                     </div>
@@ -212,6 +278,8 @@ const ShopTemplate = () => {
                 <ShopSidebar
                   categories={categories || []}
                   updateQueryParams={updateQueryParams}
+                  priceRange={priceRange}
+                  setPriceRange={setPriceRange}
                 />
               </div>
 
@@ -226,14 +294,37 @@ const ShopTemplate = () => {
                     ) : products.length === 0 ? (
                       <ShopNotFound />
                     ) : (
-                      products.map((product) => (
-                        <div
-                          key={product.id}
-                          className="col-lg-4 col-md-6 col-sm-6"
-                        >
-                          <ProductCard product={product} />
-                        </div>
-                      ))
+                      <>
+                        {products.map((product) => (
+                          <div
+                            key={product.id}
+                            className="col-lg-4 col-md-6 col-sm-6"
+                          >
+                            <ProductCard product={product} />
+                          </div>
+                        ))}
+
+                        {/* Load more button */}
+                        {hasNextPage && (
+                          <div className="col-12 text-center mt-4">
+                            <button
+                              onClick={() => fetchNextPage()}
+                              disabled={isFetchingNextPage}
+                              className="ayur-btn"
+                              style={{
+                                background: isFetchingNextPage
+                                  ? "#ccc"
+                                  : "#007bff",
+                                cursor: isFetchingNextPage
+                                  ? "not-allowed"
+                                  : "pointer",
+                              }}
+                            >
+                              {isFetchingNextPage ? "Loading..." : "Load More"}
+                            </button>
+                          </div>
+                        )}
+                      </>
                     )}
                   </div>
                 </div>
@@ -241,8 +332,8 @@ const ShopTemplate = () => {
             </div>
           </div>
           <div className="ayur-bgshape ayur-trenpro-bgshape ayur-shopsin-bg">
-            <img src="assets/images/bg-shape1.png" alt="img" />
-            <img src="assets/images/bg-leaf1.png" alt="img" />
+            <img src="/assets/images/bg-shape1.png" alt="img" />
+            <img src="/assets/images/bg-leaf1.png" alt="img" />
           </div>
         </div>
         {/*----------- Shop single page Section end ---------*/}

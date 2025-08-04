@@ -76,8 +76,8 @@ export default function AccountLayout({ children }: AccountLayoutProps) {
       className="account-layout"
       style={{ minHeight: "100vh", background: "#f6f1ed" }}
     >
-      <div className="container py-5">
-        <div className="row">
+      <div className="container py-5 ">
+        <div className="row pt-5">
           {/* Sidebar Navigation */}
           <div className="col-lg-3 col-md-4 mb-4">
             <AccountNav customer={customer} />
