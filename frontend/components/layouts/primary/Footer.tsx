@@ -203,7 +203,7 @@ export default function Footer() {
         <div className="row">
           <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div className="ayur-copyright-para">
-              <p>Copyright © 2024. All Right Reserved. Pure Ayurveda</p>
+              <p>Copyright © 2024. All Right Reserved. FitFusion Ayurveda</p>
             </div>
           </div>
         </div>
