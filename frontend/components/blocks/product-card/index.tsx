@@ -9,6 +9,7 @@ import AddToCartButton from "@/components/blocks/addtocart";
 import { getProductPrice } from "@/lib/util/get-product-price";
 import QuickViewModal from "./quick-view-modal";
 import ProductImage from "./thumbnail";
+import { toast } from "react-toastify";
 
 interface ProductCardProps {
   product: HttpTypes.StoreProduct;
@@ -51,6 +52,10 @@ export default function ProductCard({
   const handleImageChange = useCallback((index: number) => {
     setSelectedImageIndex(index);
   }, []);
+
+  const onSuccess = useCallback(() => {
+    toast.success("Product added to cart successfully");
+  }, [product.title]);
 
   return (
     <>
@@ -142,7 +147,11 @@ export default function ProductCard({
           )}
 
           <div className="ayur-tpro-btn">
-            <AddToCartButton product={product} disabled={false} />
+            <AddToCartButton
+              product={product}
+              disabled={false}
+              onSuccess={onSuccess}
+            />
           </div>
         </div>
       </div>

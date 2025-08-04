@@ -7,6 +7,7 @@ import { HttpTypes } from "@medusajs/types";
 import PreviewPrice from "@/components/blocks/price";
 import AddToCartButton from "@/components/blocks/addtocart";
 import "./quick-view-modal.css";
+import { toast } from "react-toastify";
 
 interface QuickViewModalProps {
   product: HttpTypes.StoreProduct;
@@ -44,6 +45,10 @@ export default function QuickViewModal({
         : selectedImageIndex - 1
     );
   }, [selectedImageIndex, productImages.length, onImageChange]);
+
+  const onSuccess = useCallback(() => {
+    toast.success("Product added to cart successfully");
+  }, []);
 
   if (!isOpen) return null;
 
@@ -112,7 +117,11 @@ export default function QuickViewModal({
             {cheapestPrice && <PreviewPrice price={cheapestPrice} />}
           </div>
           <div className="ayur-quickview-modal-actions">
-            <AddToCartButton product={product} disabled={false} />
+            <AddToCartButton
+              product={product}
+              disabled={false}
+              onSuccess={onSuccess}
+            />
             <Link
               href={`/product/${product.id}`}
               className="ayur-btn ayur-btn-secondary"
