@@ -29,7 +29,7 @@ export default async function Home() {
       <TopProducts products={top_products} />
       <WhySection />
       <Testimonials />
-      <Team />
+      {/* <Team /> */}
     </>
   );
 }

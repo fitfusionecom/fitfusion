@@ -5,27 +5,31 @@ import Image from "next/image";
 const achievements = [
   {
     icon: "/assets/images/achieve-icon1.png",
-    number: 25,
-    text: "Years Experience",
-    suffix: "",
+    number: 10,
+    text: "Years of Excellence",
+    suffix: "+",
+    alt: "Years of Excellence Icon",
   },
   {
     icon: "/assets/images/achieve-icon2.png",
-    number: 60,
+    number: 5000,
     text: "Happy Customers",
     suffix: "+",
+    alt: "Happy Customers Icon",
   },
   {
     icon: "/assets/images/achieve-icon3.png",
-    number: 800,
-    text: "Our Products",
+    number: 100,
+    text: "Natural Products",
     suffix: "+",
+    alt: "Natural Products Icon",
   },
   {
     icon: "/assets/images/achieve-icon4.png",
     number: 100,
     text: "Product Purity",
     suffix: "%",
+    alt: "Product Purity Icon",
   },
 ];
 
@@ -36,8 +40,14 @@ export default function Achievement() {
         <div className="row align-items-center">
           <div className="col-lg-4 col-md-12 col-sm-12">
             <div className="ayur-heading-wrap ayur-heading-left">
-              <h5>Our Recent Achievements</h5>
-              <h3>Benefit From Choosing The Best</h3>
+              <h5>Why Choose FitFusion?</h5>
+              <h3>Empowering Wellness with Ayurveda</h3>
+              <p>
+                At FitFusion, we are dedicated to delivering authentic Ayurvedic
+                solutions that nurture your body, mind, and soul. Our commitment
+                to quality and customer satisfaction has helped us achieve
+                remarkable milestones.
+              </p>
             </div>
           </div>
           <div className="col-lg-8 col-md-12 col-sm-12">
@@ -47,7 +57,7 @@ export default function Achievement() {
                   <div className="ayur-achieve-icon">
                     <Image
                       src={achievement.icon}
-                      alt="achievement icon"
+                      alt={achievement.alt}
                       width={60}
                       height={60}
                     />
@@ -55,7 +65,6 @@ export default function Achievement() {
                   <div className="ayur-achieve-text">
                     <h2 className="ayur-counting" data-to={achievement.number}>
                       {achievement.number}
-                      {achievement.suffix}
                     </h2>
                     <p>{achievement.text}</p>
                   </div>

@@ -7,31 +7,35 @@ import { useState } from "react";
 const whyFeatures = [
   {
     icon: "/assets/images/why-icon1.png",
-    title: "100 % Organic",
-    description: "Duis aute irure dolor in reprehenderit in voluptate velit",
+    title: "100% Natural Ingredients",
+    description:
+      "We use only pure, natural, and time-tested Ayurvedic ingredients to ensure the highest quality and effectiveness.",
   },
   {
     icon: "/assets/images/why-icon2.png",
-    title: "Best Quality",
-    description: "Duis aute irure dolor in reprehenderit in voluptate velit",
+    title: "Authentic Ayurveda",
+    description:
+      "Our products are rooted in the ancient wisdom of Ayurveda, crafted to balance mind, body, and spirit.",
   },
   {
     icon: "/assets/images/why-icon3.png",
-    title: "Hygienic Product",
-    description: "Duis aute irure dolor in reprehenderit in voluptate velit",
+    title: "Quality Assurance",
+    description:
+      "Every product undergoes rigorous quality checks to guarantee safety, purity, and customer satisfaction.",
   },
   {
     icon: "/assets/images/why-icon4.png",
-    title: "Health Care",
-    description: "Duis aute irure dolor in reprehenderit in voluptate velit",
+    title: "Holistic Wellness",
+    description:
+      "We empower you to achieve total well-being with holistic solutions for body, mind, and soul.",
   },
 ];
 
 const benefits = [
-  "Quis nostrud was exercitation.",
-  "Quis nostrud was exercitation.",
-  "Quis nostrud was exercitation.",
-  "Quis nostrud was exercitation.",
+  "Holistic approach to health and wellness.",
+  "Crafted with natural, time-tested remedies.",
+  "Commitment to quality and customer satisfaction.",
+  "Empowering you to thrive, not just survive.",
 ];
 
 export default function WhySection() {
@@ -51,8 +55,8 @@ export default function WhySection() {
         <div className="row">
           <div className="col-lg-12 col-md-12 col-sm-12">
             <div className="ayur-heading-wrap ayur-why-head">
-              <h5>Best For You</h5>
-              <h3>Why Pure Ayurveda</h3>
+              <h5>Why Choose FitFusion?</h5>
+              <h3>Empowering Wellness with Ayurveda</h3>
             </div>
           </div>
         </div>
@@ -65,8 +69,8 @@ export default function WhySection() {
                     <Image
                       src={feature.icon}
                       alt={feature.title}
-                      width={60}
-                      height={60}
+                      width={30}
+                      height={30}
                     />
                   </div>
                   <div className="ayur-why-boxtext">
@@ -79,14 +83,12 @@ export default function WhySection() {
           </div>
           <div className="col-lg-6 col-md-12 col-sm-12">
             <div className="ayur-why-textheading">
-              <h3>Solve Your Problem with The Power of Nature</h3>
+              <h3>Discover the Natural Way to Optimal Health and Harmony</h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit,it's sed
-                do eiusmod tempor incididunt ut labore et dolore was a magna
-                aliqua.Ut enim ad minim veniam,quis nostrud exercitation that is
-                ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                aute irure dolor in to reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur.
+                At FitFusion, we are dedicated to delivering authentic Ayurvedic
+                solutions that nurture your body, mind, and soul. Our mission is
+                to empower you to achieve total well-being by balancing mind,
+                body, and spirit with natural, time-tested remedies and rituals.
               </p>
               <ul>
                 {benefits.map((benefit, index) => (
@@ -97,15 +99,13 @@ export default function WhySection() {
                       width={20}
                       height={20}
                     />
-                    <p>{benefit}</p>
+                    <p className="m-0">{benefit}</p>
                   </li>
                 ))}
               </ul>
               <p>
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur.
+                Experience the FitFusion difference—where ancient wisdom meets
+                modern wellness, and your journey to holistic health begins.
               </p>
               <div className="ayur-why-btn">
                 <Link href="/services" className="ayur-btn">
@@ -114,11 +114,11 @@ export default function WhySection() {
               </div>
             </div>
           </div>
-          <div className="col-lg-12 col-md-12 col-sm-12">
+          {/* <div className="col-lg-12 col-md-12 col-sm-12">
             <div className="ayur-video-section">
               <div className="ayur-video-img">
                 <Image
-                  src="https://dummyimage.com/1146x380/"
+                  src="/assets/images/ban-head-Image.png"
                   alt="video thumbnail"
                   width={1146}
                   height={380}
@@ -155,7 +155,7 @@ export default function WhySection() {
                 )}
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="ayur-bgshape ayur-why-bgshape">

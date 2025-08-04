@@ -62,12 +62,15 @@ export default function Banner() {
           <div className="col-lg-12 col-md-12 col-sm-12">
             <div className="ayur-banner-heading">
               <h1>
-                We Are Here To Give You The Best <span>Herb Products</span>
+                FitFusion - Ayurvedic Products <span>For You</span>
               </h1>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud.
+                Complete Ayurvedic Rituals to empower the Body, Mind & Soul for
+                Total Well-Being. <br />
+                <span>
+                  Ayurveda is a holistic approach to health and wellness that
+                  focuses on the balance of mind, body, and spirit.
+                </span>
               </p>
               <Link href="/shop" className="ayur-btn">
                 Shop Now
