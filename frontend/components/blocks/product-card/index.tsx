@@ -101,8 +101,22 @@ export default function ProductCard({
         </div>
 
         <div className="ayur-tpro-text">
-          <h3 className="line-clamp-2">
-            <Link href={`/product/${product.id}`}>{product.title}</Link>
+          <h3
+            style={{
+              display: "-webkit-box",
+              WebkitLineClamp: 2,
+              WebkitBoxOrient: "vertical",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "normal",
+            }}
+          >
+            <Link
+              href={`/product/${product.id}`}
+              style={{ textDecoration: "none" }}
+            >
+              {product.title}
+            </Link>
           </h3>
 
           {/* Product description preview */}
