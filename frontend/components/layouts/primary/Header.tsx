@@ -91,7 +91,7 @@ export default function Header() {
                         />
                       </svg>
                     </span>
-                    <span className="ayur-nav-provalue">2</span>
+                    {/* <span className="ayur-nav-provalue">2</span> */}
                   </Link>
                 </div>
                 <div className="ayur-nav-user">

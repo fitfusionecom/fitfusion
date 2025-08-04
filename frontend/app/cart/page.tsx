@@ -23,3 +23,5 @@ export default async function Cart() {
 
   return <CartTemplate cart={cart} customer={customer} />;
 }
+
+export const dynamic = "force-dynamic";
