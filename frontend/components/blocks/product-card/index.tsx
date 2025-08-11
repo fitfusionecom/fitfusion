@@ -1,172 +1,124 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { HttpTypes } from "@medusajs/types";
-import PreviewPrice from "@/components/blocks/price";
 import AddToCartButton from "@/components/blocks/addtocart";
 import { getProductPrice } from "@/lib/util/get-product-price";
-import QuickViewModal from "./quick-view-modal";
 import ProductImage from "./thumbnail";
 import { toast } from "react-toastify";
-import { useCart } from "@/hooks/useCart";
+import "./product-card.css";
+import PreviewPrice from "../price";
 
 interface ProductCardProps {
   product: HttpTypes.StoreProduct;
-  showQuickView?: boolean;
 }
 
-export default function ProductCard({
-  product,
-  showQuickView = true,
-}: ProductCardProps) {
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-  const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
+export default function ProductCard({ product }: ProductCardProps) {
+  const [selectedVariant, setSelectedVariant] = useState(0);
 
   const { cheapestPrice } = getProductPrice({
     product,
   });
 
-  // Get all product images including thumbnail
-  const productImages = [
-    product.thumbnail,
-    ...(product.images?.map((img) => img.url) || []),
-  ].filter(Boolean);
+  // Get product variants for volume options
+  const variants = product.variants || [];
+  const hasVariants = variants.length > 1;
 
-  const initialImage = product.thumbnail || product.images?.[0]?.url;
+  // Calculate discount percentage if there's an original price
+  const discountPercentage =
+    cheapestPrice?.original_price_number &&
+    cheapestPrice?.calculated_price_number
+      ? Math.round(
+          ((cheapestPrice.original_price_number -
+            cheapestPrice.calculated_price_number) /
+            cheapestPrice.original_price_number) *
+            100
+        )
+      : 0;
 
-  const handleImageClick = useCallback(() => {
-    if (showQuickView) {
-      setIsQuickViewOpen(true);
+  // Get product benefits/description (using tags or description)
+  const getProductBenefits = () => {
+    if (product.tags && product.tags.length > 0) {
+      return product.tags.slice(0, 3).join(" | ");
     }
-  }, [showQuickView]);
+    if (product.description) {
+      return product.description.length > 60
+        ? `${product.description.substring(0, 60)}...`
+        : product.description;
+    }
+    return "100% Natural | Ayurvedic | Premium Quality";
+  };
 
-  const handleThumbnailClick = useCallback((index: number) => {
-    setSelectedImageIndex(index);
-  }, []);
-
-  const closeQuickView = useCallback(() => {
-    setIsQuickViewOpen(false);
-  }, []);
-
-  const handleImageChange = useCallback((index: number) => {
-    setSelectedImageIndex(index);
-  }, []);
-
-  const onSuccess = useCallback(() => {
+  const onSuccess = () => {
     toast.success("Product added to cart successfully");
-  }, [product.title]);
+  };
 
   return (
-    <>
-      <div className="ayur-tpro-box">
-        <div className="ayur-tpro-img">
-          <ProductImage
-            thumbnail={product.thumbnail}
-            images={product.images}
-            size="medium"
-            isFeatured={false}
-            className="cursor-pointer"
-            onClick={handleImageClick}
-          />
+    <div className="product-card">
+      {/* Product Image Section */}
+      <div className="product-card-image">
+        <ProductImage
+          thumbnail={product.thumbnail}
+          images={product.images}
+          size="medium"
+          isFeatured={false}
+          className="product-image"
+        />
 
-          {/* Image thumbnails */}
-          {productImages.length > 1 && (
-            <div className="ayur-tpro-thumbnails">
-              {productImages.slice(0, 4).map((image, index) => (
-                <div
-                  key={index}
-                  className={`ayur-tpro-thumbnail ${
-                    selectedImageIndex === index ? "active" : ""
-                  }`}
-                  onClick={() => handleThumbnailClick(index)}
-                >
-                  <Image
-                    src={image}
-                    alt={`${product.title} thumbnail ${index + 1}`}
-                    width={60}
-                    height={40}
-                  />
-                </div>
-              ))}
-              {productImages.length > 4 && (
-                <div className="ayur-tpro-thumbnail-more">
-                  <span>+{productImages.length - 4}</span>
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* Quick view overlay */}
-          {showQuickView && (
-            <div className="ayur-tpro-quickview" onClick={handleImageClick}>
-              <span>Quick View</span>
-            </div>
-          )}
-        </div>
-
-        <div className="ayur-tpro-text">
-          <h3
-            style={{
-              display: "-webkit-box",
-              WebkitLineClamp: 2,
-              WebkitBoxOrient: "vertical",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              whiteSpace: "normal",
-            }}
-          >
-            <Link
-              href={`/product/${product.handle}`}
-              style={{ textDecoration: "none" }}
-            >
-              {product.title}
-            </Link>
-          </h3>
-
-          {/* Product description preview */}
-          {product.description && (
-            <p className="ayur-tpro-description">
-              {product.description.length > 80
-                ? `${product.description.substring(0, 80)}...`
-                : product.description}
-            </p>
-          )}
-
-          <div className="ayur-tpro-price">
-            {cheapestPrice && <PreviewPrice price={cheapestPrice} />}
-          </div>
-
-          {/* Product variants if available */}
-          {product.variants && product.variants.length > 1 && (
-            <div className="ayur-tpro-variants">
-              <span className="ayur-tpro-variant-count">
-                {product.variants.length} variants available
-              </span>
-            </div>
-          )}
-
-          <div className="ayur-tpro-btn">
-            <AddToCartButton
-              product={product}
-              disabled={false}
-              onSuccess={onSuccess}
-            />
-          </div>
-        </div>
+        {/* Save Badge */}
+        {discountPercentage > 0 && (
+          <div className="save-badge">Save {discountPercentage}%</div>
+        )}
       </div>
 
-      {/* Quick View Modal */}
-      <QuickViewModal
-        product={product}
-        isOpen={isQuickViewOpen}
-        onClose={closeQuickView}
-        selectedImageIndex={selectedImageIndex}
-        onImageChange={handleImageChange}
-        productImages={productImages}
-        cheapestPrice={cheapestPrice}
-      />
-    </>
+      {/* Product Information Section */}
+      <div className="product-card-info">
+        {/* Rating */}
+        {/* <div className="product-rating">
+          <span className="star">★</span>
+          <span className="rating-text">4.6 (13 reviews)</span>
+        </div> */}
+
+        {/* Product Title */}
+        <h3 className="product-title text-center">
+          <Link href={`/product/${product.handle}`}>{product.title}</Link>
+        </h3>
+
+        {/* Product Benefits */}
+        <p className="product-benefits text-center">{getProductBenefits()}</p>
+
+        {/* Volume Options */}
+        {hasVariants && (
+          <div className="volume-options">
+            {variants.slice(0, 2).map((variant, index) => (
+              <button
+                key={variant.id}
+                className={`volume-option ${
+                  selectedVariant === index ? "active" : ""
+                }`}
+                onClick={() => setSelectedVariant(index)}
+              >
+                {variant.title || `${variant.weight || "Standard"}ml`}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Pricing */}
+        <div className="product-pricing d-flex justify-content-center">
+          <PreviewPrice price={cheapestPrice} />
+        </div>
+
+        {/* Add to Cart Button */}
+        <div className="add-to-cart-section">
+          <AddToCartButton
+            product={product}
+            disabled={false}
+            onSuccess={onSuccess}
+          />
+        </div>
+      </div>
+    </div>
   );
 }

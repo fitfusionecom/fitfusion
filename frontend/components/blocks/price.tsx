@@ -1,4 +1,3 @@
-import { Text, clx } from "@medusajs/ui";
 //@ts-ignore
 import { VariantPrice } from "types/global";
 
@@ -14,28 +13,23 @@ export default function PreviewPrice({
   }
 
   return (
-    <>
-      <Text
-        className={clx(
-          "md:text-lg text-xs font-semibold !text-gray-400",
-          {
-            "text-ui-fg-interactive----": price.price_type === "sale",
-          },
-          className
-        )}
+    <div className={`d-flex align-items-center gap-2 ${className || ""}`}>
+      <span
+        className={`fw-semibold ${
+          price.price_type === "sale" ? "text-danger" : "text-secondary"
+        } fs-6`}
         data-testid="price"
       >
         {price.calculated_price}
-      </Text>
-
+      </span>
       {price.price_type === "sale" && (
-        <Text
-          className="line-through text-gray-400 text-xs md:text-md"
+        <span
+          className="text-muted text-decoration-line-through fs-6"
           data-testid="original-price"
         >
           {price.original_price}
-        </Text>
+        </span>
       )}
-    </>
+    </div>
   );
 }

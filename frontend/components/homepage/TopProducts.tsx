@@ -4,66 +4,16 @@ import Image from "next/image";
 import Link from "next/link";
 import ProductCard from "@/components/blocks/product-card";
 import { HttpTypes } from "@medusajs/types";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
-const topProducts = [
-  {
-    id: "1",
-    title: "Black Organic Tea",
-    image: "https://dummyimage.com/356x244/",
-    originalPrice: 100,
-    salePrice: 50,
-    rating: 4.5,
-    badge: "sale" as const,
-    badgeText: "Sale",
-  },
-  {
-    id: "2",
-    title: "Loose Leaf Tea",
-    image: "https://dummyimage.com/356x244/",
-    originalPrice: 100,
-    salePrice: 50,
-    rating: 4.5,
-    badge: "off" as const,
-    badgeText: "30% Off",
-  },
-  {
-    id: "3",
-    title: "Oolong Tea",
-    image: "https://dummyimage.com/356x244/",
-    originalPrice: 100,
-    salePrice: 50,
-    rating: 4.5,
-    badge: "star" as const,
-  },
-  {
-    id: "4",
-    title: "Black Organic Tea",
-    image: "https://dummyimage.com/356x244/",
-    originalPrice: 100,
-    salePrice: 50,
-    rating: 4.5,
-    badge: "star" as const,
-  },
-  {
-    id: "5",
-    title: "Green Tea",
-    image: "https://dummyimage.com/356x244/",
-    originalPrice: 100,
-    salePrice: 50,
-    rating: 4.5,
-    badge: "star" as const,
-  },
-  {
-    id: "6",
-    title: "Sencha Tea",
-    image: "https://dummyimage.com/356x244/",
-    originalPrice: 100,
-    salePrice: 50,
-    rating: 4.5,
-    badge: "trending" as const,
-    badgeText: "Trending",
-  },
-];
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+// Import component styles
+import "./TopProducts.css";
 
 interface TopProductsProps {
   products: HttpTypes.StoreProduct[];
@@ -73,27 +23,65 @@ export default function TopProducts({ products }: TopProductsProps) {
   return (
     <div className="ayur-bgcover ayur-topproduct-sec">
       <div className="container">
-        <div className="row">
-          <div className="col-lg-12 col-md-12 col-sm-12">
-            <div className="ayur-heading-wrap">
-              <h5>Medicine</h5>
-              <h3>Our Top Products</h3>
+        <div className="row align-items-center mb-5">
+          <div className="col-lg-8 col-md-8 col-sm-12">
+            <div className="explore-ayurveda-header">
+              <h2 className="explore-ayurveda-title">Explore Ayurveda</h2>
+              <div className="explore-ayurveda-line"></div>
             </div>
+          </div>
+          <div className="col-lg-4 col-md-4 col-sm-12 text-end">
+            <Link href="/blog" className="pa-btn explore-view-all-btn">
+              View All
+            </Link>
           </div>
         </div>
-        <div className="row">
-          {products.map((product) => (
-            <div key={product.id} className="col-lg-4 col-md-6 col-sm-6">
-              <ProductCard product={product} />
-            </div>
-          ))}
-          <div className="col-lg-12 col-md-12 col-sm-12">
-            <div className="ayur-tpro-viewbtn">
-              <Link href="/shop" className="ayur-btn">
-                View More
-              </Link>
-            </div>
-          </div>
+
+        {/* Swiper Carousel */}
+        <div className="top-products-carousel">
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            spaceBetween={20}
+            slidesPerView={1}
+            navigation={{
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            }}
+            pagination={{
+              clickable: true,
+              dynamicBullets: true,
+            }}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+            }}
+            loop={true}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 3,
+                spaceBetween: 30,
+              },
+              1024: {
+                slidesPerView: 4,
+                spaceBetween: 30,
+              },
+            }}
+            className="top-products-swiper"
+          >
+            {products.map((product) => (
+              <SwiperSlide key={product.id}>
+                <ProductCard product={product} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+          {/* Custom Navigation Buttons */}
+          <div className="swiper-button-prev swiper-button-custom"></div>
+          <div className="swiper-button-next swiper-button-custom"></div>
         </div>
       </div>
       <div className="ayur-bgshape ayur-tpro-bgshape">
