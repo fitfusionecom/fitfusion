@@ -4,6 +4,7 @@ import { HttpTypes } from "@medusajs/types";
 // import { Button } from "@medusajs/ui";
 import { isEqual } from "lodash";
 import React, { useEffect, useMemo, useState } from "react";
+import { useCartContext } from "@/lib/context/cart-context";
 
 type CartButtonProps = {
   product: HttpTypes.StoreProduct;
@@ -33,6 +34,9 @@ const AddToCartButton = ({
 
   const [isAdding, setIsAdding] = useState(false);
   const [showVariantSelector, setShowVariantSelector] = useState(false);
+  
+  // Use cart context for global state management
+  const { openCartPopover, triggerCartRefresh } = useCartContext();
 
   // If there is only 1 variant, preselect the options
   useEffect(() => {
@@ -113,6 +117,10 @@ const AddToCartButton = ({
         variantId: selectedVariant.id,
         quantity: 1,
       });
+
+      // Open cart popover and trigger refresh
+      openCartPopover();
+      triggerCartRefresh();
 
       if (onSuccess) {
         onSuccess();

@@ -24,6 +24,7 @@ import "react-quill/dist/quill.snow.css";
 import { Input } from "@medusajs/ui";
 import OptionSelect from "./option-select";
 import ProductPrice from "./product-price";
+import { useCartContext } from "@/lib/context/cart-context";
 
 type ProductDetailsProps = {
   product: HttpTypes.StoreProduct;
@@ -51,6 +52,9 @@ const ProductDetails = ({
     {}
   );
   const [isAdding, setIsAdding] = useState(false);
+
+  // Use cart context for global state management
+  const { openCartPopover, triggerCartRefresh } = useCartContext();
 
   const setOptionValue = (optionId: string, value: string) => {
     setOptions((prev) => ({
@@ -132,6 +136,11 @@ const ProductDetails = ({
       quantity,
       countryCode,
     });
+
+    // Open cart popover and trigger refresh
+    openCartPopover();
+    triggerCartRefresh();
+
     toast.success("Product added to cart successfully");
     setIsAdding(false);
   };

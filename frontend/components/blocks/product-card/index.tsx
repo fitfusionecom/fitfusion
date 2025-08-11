@@ -10,6 +10,7 @@ import { getProductPrice } from "@/lib/util/get-product-price";
 import QuickViewModal from "./quick-view-modal";
 import ProductImage from "./thumbnail";
 import { toast } from "react-toastify";
+import { useCart } from "@/hooks/useCart";
 
 interface ProductCardProps {
   product: HttpTypes.StoreProduct;
