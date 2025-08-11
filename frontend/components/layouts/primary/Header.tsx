@@ -17,11 +17,11 @@ export default function Header() {
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+    setIsMenuOpen((prev) => !prev);
   };
 
   const toggleSearchModal = () => {
-    setIsSearchModalOpen(!isSearchModalOpen);
+    setIsSearchModalOpen((prev) => !prev);
   };
 
   useEffect(() => {

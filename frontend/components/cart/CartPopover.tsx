@@ -13,6 +13,7 @@ import { useCartContext } from "@/lib/context/cart-context";
 import LineItemUnitPrice from "./line-item-unit-price";
 import { convertToLocale } from "@/lib/util/money";
 import { deleteLineItem, updateLineItem } from "@/lib/data/cart";
+import { useIsMobile } from "@/lib/hooks/use-mobile";
 
 interface CartPopoverProps {
   isOpen: boolean;
@@ -28,6 +29,7 @@ export default function CartPopover({
   const router = useRouter();
   const popoverRef = useRef<HTMLDivElement>(null);
   const [updatingItems, setUpdatingItems] = useState<Set<string>>(new Set());
+  const isMobile = useIsMobile();
 
   // Use the custom cart hook
   // const { updateLineItem } = useCart();
@@ -217,6 +219,19 @@ export default function CartPopover({
   return (
     <div className="cart-popover-overlay">
       <div className="cart-popover" ref={popoverRef}>
+        {/* Mobile Header with Close Button */}
+        {isMobile && (
+          <div className="popover-header-mobile">
+            <div className="cart-title-mobile">
+              <BiCart className="cart-icon" />
+              <span>Cart ({itemCount || 0})</span>
+            </div>
+            <button className="close-btn-mobile" onClick={onClose}>
+              <BiX />
+            </button>
+          </div>
+        )}
+
         {/* Cart Content */}
         <div className="popover-content">
           {isLoading ? (
