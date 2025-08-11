@@ -17,16 +17,20 @@ import "./TopProducts.css";
 
 interface TopProductsProps {
   products: HttpTypes.StoreProduct[];
+  title?: string;
 }
 
-export default function TopProducts({ products }: TopProductsProps) {
+export default function TopProducts({
+  products,
+  title = "Explore Ayurveda",
+}: TopProductsProps) {
   return (
     <div className="ayur-bgcover ayur-topproduct-sec">
       <div className="container">
         <div className="row align-items-center mb-3">
           <div className="col-lg-8 col-md-8 col-sm-12">
             <div className="explore-ayurveda-header">
-              <h2 className="explore-ayurveda-title">Explore Ayurveda</h2>
+              <h2 className="explore-ayurveda-title">{title}</h2>
               <div className="explore-ayurveda-line"></div>
             </div>
           </div>

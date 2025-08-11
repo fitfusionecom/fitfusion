@@ -21,12 +21,38 @@ export default async function Home() {
     pageParam: 1,
   });
 
+  // const new_launch_products = await filterProducts({
+  //   q: "",
+  //   minPrice: "0",
+  //   maxPrice: "10000",
+  //   category_handle: "new-launch",
+  //   pageParam: 1,
+  // });
+
+  // const new_arrival_products = await filterProducts({
+  //   q: "",
+  //   minPrice: "0",
+  //   maxPrice: "10000",
+  //   category_handle: "new-arrival",
+  //   pageParam: 1,
+  // });
+
+  // const best_sellers_products = await filterProducts({
+  //   q: "",
+  //   minPrice: "0",
+  //   maxPrice: "10000",
+  //   category_handle: "best-sellers",
+  //   pageParam: 1,
+  // });
+
   return (
     <>
       <Banner />
       {/* <CareSlider categories={categories} /> */}
-      <TopProducts products={top_products} />
+      <TopProducts products={top_products} title="New Launch" />
+      <TopProducts products={top_products} title="New Arrival" />
       <About />
+      <TopProducts products={top_products} title="Best Sellers" />
       <Achievement />
       {/* <WhySection /> */}
       <Testimonials />
