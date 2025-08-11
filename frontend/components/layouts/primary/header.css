@@ -247,10 +247,12 @@
 
 /* Mobile Toggle Button */
 .ayur-toggle-btn {
-  display: none;
+  display: flex;
   flex-direction: column;
   cursor: pointer;
   padding: 8px;
+  align-items: center;
+  justify-content: center;
 }
 
 .ayur-toggle-btn span {
@@ -311,8 +313,13 @@
     padding: 10px 0;
   }
 
+  .top-bar .container {
+    padding: 0 20px;
+  }
+
   .ayur-nav-icons {
-    justify-content: center;
+    justify-content: flex-end;
+    gap: 8px;
   }
 
   .separator {
@@ -321,5 +328,57 @@
 
   .cart-text {
     display: none;
+  }
+
+  /* Mobile layout adjustments */
+  .ayur-toggle-btn {
+    padding: 6px;
+  }
+
+  .ayur-toggle-btn span {
+    width: 22px;
+    height: 2.5px;
+  }
+
+  .ayur-nav-search,
+  .ayur-nav-usear,
+  .ayur-nav-product {
+    margin-right: 8px;
+  }
+
+  .ayur-nav-search button,
+  .ayur-nav-usear a,
+  .ayur-nav-product a {
+    padding: 6px;
+  }
+
+  .icon svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 575px) {
+  .top-bar .container {
+    padding: 0 15px;
+  }
+
+  .ayur-nav-icons {
+    gap: 6px;
+  }
+
+  .ayur-nav-search,
+  .ayur-nav-usear,
+  .ayur-nav-product {
+    margin-right: 6px;
+  }
+
+  .ayur-toggle-btn {
+    padding: 5px;
+  }
+
+  .ayur-toggle-btn span {
+    width: 20px;
+    height: 2px;
   }
 }

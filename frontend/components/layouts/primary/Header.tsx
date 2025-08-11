@@ -67,8 +67,21 @@ export default function Header() {
         <div className="top-bar">
           <div className="container">
             <div className="row align-items-center g-12">
+              {/* Hamburger Toggle for Mobile - First on Mobile */}
+              <div className="col-2 col-md-1 col-lg-0 d-flex d-lg-none align-items-center">
+                <div
+                  className="ayur-toggle-btn"
+                  onClick={toggleMenu}
+                  style={{ cursor: "pointer" }}
+                >
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+
               {/* Logo */}
-              <div className="col-6 col-md-3 col-lg-2 d-flex align-items-center">
+              <div className="col-4 col-md-3 col-lg-2 d-flex align-items-center">
                 <div className="ayur-menu-logo">
                   <Link href="/">
                     <Image
@@ -88,7 +101,7 @@ export default function Header() {
               </div>
 
               {/* User Actions */}
-              <div className="col-6 col-md-3 col-lg-2 d-flex justify-content-end align-items-center">
+              <div className="col-6 col-md-8 col-lg-2 d-flex justify-content-end align-items-center">
                 <div className="ayur-nav-icons d-flex align-items-center">
                   {/* Search Icon - Mobile Only */}
                   <div className="ayur-nav-search me-2 d-md-none">
@@ -123,7 +136,7 @@ export default function Header() {
                   </div>
 
                   {/* User Icon */}
-                  <div className="ayur-nav-usear me-2">
+                  <div className="ayur-nav-usear me-2-">
                     {!isLoading && (
                       <>
                         {customer ? (
@@ -174,17 +187,6 @@ export default function Header() {
                   {/* Cart Icon */}
                   <div className="ayur-nav-product me-2">
                     <CartTrigger />
-                  </div>
-
-                  {/* Hamburger Toggle for Mobile */}
-                  <div
-                    className="ayur-toggle-btn d-inline-flex d-lg-none ms-2"
-                    onClick={toggleMenu}
-                    style={{ cursor: "pointer" }}
-                  >
-                    <span></span>
-                    <span></span>
-                    <span></span>
                   </div>
                 </div>
               </div>
