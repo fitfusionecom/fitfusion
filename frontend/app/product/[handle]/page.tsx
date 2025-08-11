@@ -5,6 +5,7 @@ import { Metadata } from "next";
 import ProductDetails from "@/components/product";
 import RelatedProducts from "@/components/product/related";
 import { Suspense } from "react";
+import ProductAccordion from "@/components/product/product-accordion";
 
 type Props = {
   params: Promise<{ handle: string }>;
@@ -99,15 +100,8 @@ export default async function Product(props: Props) {
         region={region}
         countryCode={country_code}
       />
-      <br />
-      <br />
-      <br />
       <Suspense fallback={<div>Loading...</div>}>
-        <RelatedProducts
-          product={pricedProduct}
-          countryCode={country_code}
-          // relatedProducts={relatedProducts}
-        />
+        <ProductAccordion product={pricedProduct} countryCode={country_code} />
       </Suspense>
     </>
   );

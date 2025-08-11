@@ -21,7 +21,7 @@ export default function ProductAccordion({
   product,
   countryCode,
 }: ProductAccordionProps) {
-  const [openSections, setOpenSections] = useState<string[]>(["description"]);
+  const [openSections, setOpenSections] = useState<string[]>([]);
 
   const toggleSection = (sectionId: string) => {
     setOpenSections((prev) =>

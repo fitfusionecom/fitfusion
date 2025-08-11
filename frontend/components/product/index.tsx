@@ -223,6 +223,20 @@ const ProductDetails = ({
                 <div className="ayur-shopsin-heaing">
                   <h3>{product.title}</h3>
                 </div>
+                {/* Product Description Section */}
+                <div className="product-description  mb-3">
+                  {product.description ? (
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: product.description as any,
+                      }}
+                    />
+                  ) : (
+                    <p className="text-muted">
+                      No description available for this product.
+                    </p>
+                  )}
+                </div>
                 <div className="ayur-tpro-price">
                   <ProductPrice product={product} variant={selectedVariant} />
                 </div>
