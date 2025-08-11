@@ -1,0 +1,380 @@
+/* About Section Styles */
+.about-section {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e8f5e8 100%);
+  position: relative;
+  padding: 50px 0;
+}
+
+/* Header Styles */
+.about-header {
+  position: relative;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.about-title {
+  color: #2d5016; /* Dark green */
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  margin-top: 20px;
+  text-transform: capitalize;
+}
+
+.about-line {
+  width: 80px;
+  height: 3px;
+  background: #d4af37; /* Golden line */
+  margin: 0 auto 20px;
+}
+
+/* Image Section */
+.about-image-wrapper {
+  position: relative;
+}
+
+.about-main-image {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.about-main-image:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.about-main-image img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.about-main-image:hover img {
+  transform: scale(1.05);
+}
+
+.about-image-overlay {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(212, 175, 55, 0.9);
+  color: #fff;
+  padding: 15px 20px;
+  border-radius: 50px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.about-image-overlay:hover {
+  background: rgba(212, 175, 55, 1);
+  transform: scale(1.05);
+}
+
+.overlay-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.overlay-icon {
+  font-size: 16px;
+}
+
+/* Achievement Cards */
+.achievement-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.achievement-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.achievement-card:hover {
+  transform: translateX(10px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+  border-color: #d4af37;
+}
+
+.achievement-icon {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #d4af37, #f4d03f);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.achievement-content {
+  flex: 1;
+}
+
+.achievement-number {
+  color: #2d5016;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 5px 0;
+  line-height: 1;
+}
+
+.achievement-label {
+  color: #333;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 5px 0;
+}
+
+.achievement-description {
+  color: #666;
+  font-size: 12px;
+  margin: 0;
+}
+
+/* Content Section */
+.about-content {
+  padding: 20px 0;
+}
+
+.about-subtitle {
+  color: #d4af37;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.about-heading {
+  color: #2d5016;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  line-height: 1.3;
+}
+
+.about-description {
+  color: #555;
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+/* Features List */
+.about-features {
+  margin: 30px 0;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+  padding: 15px 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+}
+
+.feature-icon {
+  color: #d4af37;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.feature-item span {
+  color: #333;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* Action Buttons */
+.about-actions {
+  display: flex;
+  gap: 20px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.about-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 30px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  min-width: 160px;
+  justify-content: center;
+}
+
+.primary-btn {
+  background: #556b2f;
+  color: #fff;
+  border-color: #556b2f;
+}
+
+.primary-btn:hover {
+  background: #6b8e23;
+  border-color: #6b8e23;
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(107, 142, 35, 0.3);
+  text-decoration: none;
+}
+
+.secondary-btn {
+  background: transparent;
+  color: #556b2f;
+  border-color: #556b2f;
+}
+
+.secondary-btn:hover {
+  background: #556b2f;
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(107, 142, 35, 0.3);
+  text-decoration: none;
+}
+
+/* Decorative Elements */
+.about-decorative {
+  position: relative;
+  height: 200px;
+  margin-top: 50px;
+}
+
+.decorative-shape {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  opacity: 0.1;
+  z-index: -1;
+}
+
+.decorative-leaf {
+  position: absolute;
+  bottom: 50px;
+  right: 0;
+  opacity: 0.1;
+  z-index: -1;
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+  .about-title {
+    font-size: 32px;
+  }
+
+  .about-heading {
+    font-size: 28px;
+  }
+
+  .achievement-cards {
+    margin-top: 20px;
+  }
+
+  .about-actions {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .about-section {
+    padding: 60px 0;
+  }
+
+  .about-title {
+    font-size: 28px;
+  }
+
+  .about-heading {
+    font-size: 24px;
+  }
+
+  .about-line {
+    width: 60px;
+    height: 2px;
+  }
+
+  .achievement-card {
+    padding: 15px;
+  }
+
+  .achievement-number {
+    font-size: 20px;
+  }
+
+  .achievement-label {
+    font-size: 14px;
+  }
+
+  .about-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-btn {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 575px) {
+  .about-title {
+    font-size: 24px;
+  }
+
+  .about-heading {
+    font-size: 20px;
+  }
+
+  .about-description {
+    font-size: 14px;
+  }
+
+  .achievement-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .achievement-icon {
+    margin-bottom: 10px;
+  }
+
+  .feature-item {
+    padding: 12px 15px;
+  }
+
+  .feature-item span {
+    font-size: 14px;
+  }
+}

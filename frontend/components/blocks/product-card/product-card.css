@@ -181,8 +181,8 @@
 
 .add-to-cart-section .ayur-btn {
   width: 100%;
-  background: #28a745;
-  color: white;
+  background: #005441 !important;
+  color: white !important;
   border: none;
   padding: 12px 20px;
   border-radius: 8px;
@@ -195,9 +195,10 @@
 }
 
 .add-to-cart-section .ayur-btn:hover {
-  background: #218838;
+  background: #004033 !important;
+  color: white !important;
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 84, 65, 0.3);
 }
 
 .add-to-cart-section .ayur-btn:disabled {
@@ -213,44 +214,44 @@
     padding: 15px;
     min-height: 160px;
   }
-  
+
   .product-image {
     max-height: 140px;
   }
-  
+
   .product-card-info {
     padding: 15px;
     gap: 10px;
   }
-  
+
   .product-title {
     font-size: 15px;
     min-height: 40px;
   }
-  
+
   .product-benefits {
     font-size: 12px;
     min-height: 32px;
   }
-  
+
   .volume-options {
     gap: 6px;
   }
-  
+
   .volume-option {
     padding: 6px 12px;
     font-size: 12px;
     min-width: 70px;
   }
-  
+
   .current-price {
     font-size: 18px;
   }
-  
+
   .original-price {
     font-size: 14px;
   }
-  
+
   .add-to-cart-section .ayur-btn {
     padding: 10px 16px;
     font-size: 13px;
@@ -262,44 +263,44 @@
     padding: 12px;
     min-height: 140px;
   }
-  
+
   .product-image {
     max-height: 120px;
   }
-  
+
   .product-card-info {
     padding: 12px;
     gap: 8px;
   }
-  
+
   .product-title {
     font-size: 14px;
     min-height: 36px;
   }
-  
+
   .product-benefits {
     font-size: 11px;
     min-height: 28px;
   }
-  
+
   .volume-options {
     flex-direction: column;
     gap: 4px;
   }
-  
+
   .volume-option {
     width: 100%;
     text-align: center;
   }
-  
+
   .current-price {
     font-size: 16px;
   }
-  
+
   .original-price {
     font-size: 13px;
   }
-  
+
   .add-to-cart-section .ayur-btn {
     padding: 8px 14px;
     font-size: 12px;

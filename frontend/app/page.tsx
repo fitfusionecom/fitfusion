@@ -28,8 +28,7 @@ export default async function Home() {
       <TopProducts products={top_products} />
       <About />
       <Achievement />
-      <TopProducts products={top_products} />
-      <WhySection />
+      {/* <WhySection /> */}
       <Testimonials />
       <DoctorsConsultation />
       <ExploreAyurveda />

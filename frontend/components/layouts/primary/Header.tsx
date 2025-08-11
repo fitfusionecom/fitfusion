@@ -1,14 +1,14 @@
 "use client";
 
-import Image from "next/image";
+import "./header.css";
 import Link from "next/link";
+import Image from "next/image";
+import SearchBar from "./SearchBar";
+import CategoryBar from "./CategoryBar";
 import { useState, useEffect } from "react";
 import { retrieveCustomer } from "@/lib/data/customer";
 import { fitfusionConfig } from "@/lib/fitfusion-config";
-import SearchBar from "./SearchBar";
-import CategoryBar from "./CategoryBar";
 import CartTrigger from "@/components/cart/CartTrigger";
-import "./header.css";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -193,7 +193,7 @@ export default function Header() {
         </div>
 
         {/* Category Bar - Desktop Only */}
-        <div className="d-none d-md-block">
+        <div className="d-none d-lg-block">
           <CategoryBar />
         </div>
       </div>

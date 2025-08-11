@@ -41,7 +41,7 @@ export default function SearchBar({
     <>
       <div className="search-container">
         <div
-          className="search-form"
+          className="search-form border rounded-3 overflow-hidden"
           onClick={handleSearchBarClick}
           style={{ cursor: "pointer" }}
         >

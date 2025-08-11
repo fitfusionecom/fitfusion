@@ -23,7 +23,7 @@ export default function TopProducts({ products }: TopProductsProps) {
   return (
     <div className="ayur-bgcover ayur-topproduct-sec">
       <div className="container">
-        <div className="row align-items-center mb-5">
+        <div className="row align-items-center mb-3">
           <div className="col-lg-8 col-md-8 col-sm-12">
             <div className="explore-ayurveda-header">
               <h2 className="explore-ayurveda-title">Explore Ayurveda</h2>
@@ -31,7 +31,11 @@ export default function TopProducts({ products }: TopProductsProps) {
             </div>
           </div>
           <div className="col-lg-4 col-md-4 col-sm-12 text-end">
-            <Link href="/blog" className="pa-btn explore-view-all-btn">
+            <Link
+              href="/blog"
+              className="pa-btn explore-view-all-btn"
+              style={{ backgroundColor: "#90b644", borderColor: "#90b644" }}
+            >
               View All
             </Link>
           </div>
@@ -47,16 +51,16 @@ export default function TopProducts({ products }: TopProductsProps) {
               nextEl: ".swiper-button-next",
               prevEl: ".swiper-button-prev",
             }}
-            pagination={{
-              clickable: true,
-              dynamicBullets: true,
-            }}
             autoplay={{
               delay: 3000,
               disableOnInteraction: false,
             }}
             loop={true}
             breakpoints={{
+              480: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
               640: {
                 slidesPerView: 2,
                 spaceBetween: 20,

@@ -11,8 +11,6 @@ import {
 import { getAllBlogPosts } from "@/lib/data/blog";
 import "./ExploreAyurveda.css";
 
-
-
 const serviceFeatures = [
   {
     icon: FaShippingFast,
@@ -35,12 +33,12 @@ const serviceFeatures = [
 
 export default function ExploreAyurveda() {
   const blogPosts = getAllBlogPosts().slice(0, 2); // Get first 2 blog posts
-  
+
   return (
     <section className="explore-ayurveda-section spacer-top spacer-bottom">
       <div className="container">
         {/* Header Section */}
-        <div className="row align-items-center mb-5">
+        <div className="row align-items-center mb-3 mt-4">
           <div className="col-lg-8 col-md-8 col-sm-12">
             <div className="explore-ayurveda-header">
               <h2 className="explore-ayurveda-title">Explore Ayurveda</h2>
