@@ -1,0 +1,619 @@
+/* Doctors Consultation Section Styles */
+.doctors-consultation-section {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e8f5e8 100%);
+  position: relative;
+  padding: 80px 0;
+}
+
+/* Header Styles */
+.doctors-consultation-header {
+  position: relative;
+}
+
+.doctors-consultation-title {
+  color: #2d5016; /* Dark green */
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  margin-top: 20px;
+  text-transform: capitalize;
+}
+
+.doctors-consultation-line {
+  width: 80px;
+  height: 3px;
+  background: #d4af37; /* Golden line */
+  margin-bottom: 20px;
+}
+
+/* Swiper Carousel Styles */
+.doctors-carousel-wrapper {
+  position: relative;
+  margin: 40px 0;
+}
+
+.doctors-swiper {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.doctor-profile-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.doctor-profile-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  border-color: #d4af37;
+}
+
+/* Swiper Navigation Buttons */
+.swiper-button-prev,
+.swiper-button-next {
+  width: 60px;
+  height: 60px;
+  background: #fff;
+  border: 3px solid #d4af37;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.swiper-button-prev {
+  left: -30px;
+}
+
+.swiper-button-next {
+  right: -30px;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  background: #d4af37;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 12px 35px rgba(212, 175, 55, 0.4);
+  border-color: #2d5016;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  display: none;
+}
+
+.swiper-button-prev svg,
+.swiper-button-next svg {
+  font-size: 24px;
+  color: #2d5016;
+  transition: color 0.3s ease;
+}
+
+.swiper-button-prev:hover svg,
+.swiper-button-next:hover svg {
+  color: #fff;
+}
+
+/* Swiper Pagination */
+.swiper-pagination {
+  position: relative;
+  margin-top: 30px;
+}
+
+.swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background: #d4af37;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+  background: #2d5016;
+  transform: scale(1.2);
+}
+
+.swiper-pagination-bullet:hover {
+  opacity: 0.8;
+  transform: scale(1.1);
+}
+
+/* Doctor Image Section */
+.doctor-image-section {
+  position: relative;
+  text-align: center;
+}
+
+.doctor-main-image {
+  margin-bottom: 20px;
+}
+
+.doctor-main-image img {
+  border-radius: 15px;
+  border: 3px solid #2d5016;
+  transition: transform 0.3s ease;
+  box-shadow: 0 5px 15px rgba(45, 80, 22, 0.2);
+}
+
+.doctor-profile-card:hover .doctor-main-image img {
+  transform: scale(1.05);
+}
+
+.doctor-side-images {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.doctor-side-image img {
+  border-radius: 10px;
+  border: 2px solid #d4af37;
+  transition: transform 0.3s ease;
+  opacity: 0.8;
+}
+
+.doctor-side-image:hover img {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+/* Doctor Content */
+.doctor-content {
+  padding-left: 20px;
+}
+
+.doctor-name {
+  color: #2d5016;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-transform: capitalize;
+}
+
+.doctor-details {
+  margin-bottom: 25px;
+}
+
+.detail-item {
+  display: flex;
+  margin-bottom: 12px;
+  align-items: center;
+  gap: 10px;
+}
+
+.detail-item strong {
+  color: #2d5016;
+  font-weight: 600;
+  min-width: 120px;
+  font-size: 14px;
+}
+
+.detail-item span {
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.doctor-description {
+  color: #666;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  text-align: justify;
+}
+
+/* Consultation Button */
+.consultation-btn {
+  background: #25d366; /* WhatsApp green */
+  color: #fff;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-transform: capitalize;
+}
+
+.consultation-btn:hover {
+  background: #128c7e;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+}
+
+.consultation-btn svg {
+  font-size: 18px;
+}
+
+/* Main Consultation Button */
+.main-consultation-btn {
+  background: #556b2f;
+  color: #fff;
+  padding: 15px 40px;
+  border: none;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-transform: capitalize;
+  box-shadow: 0 5px 15px rgba(85, 107, 47, 0.3);
+}
+
+.main-consultation-btn:hover {
+  background: #6b8e23;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(107, 142, 35, 0.4);
+}
+
+.main-consultation-btn svg {
+  font-size: 20px;
+  color: #25d366;
+}
+
+/* Benefits Section */
+.benefits-section {
+  margin-top: 60px;
+}
+
+.benefits-swiper {
+  position: relative;
+  padding: 20px 0;
+}
+
+.benefits-swiper .swiper-slide {
+  height: auto;
+  display: flex;
+}
+
+.benefit-item {
+  width: 100%;
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px 15px;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+  height: 180px;
+  border: 1px solid #e8f5e8;
+  margin: 0 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.benefit-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: #d4af37;
+}
+
+.benefit-icon {
+  margin-bottom: 15px;
+  flex-shrink: 0;
+}
+
+.benefit-icon svg {
+  width: 35px;
+  height: 35px;
+  color: #2d5016;
+  transition: transform 0.3s ease;
+}
+
+.benefit-item:hover .benefit-icon svg {
+  transform: scale(1.1);
+  color: #d4af37;
+}
+
+.benefit-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.benefit-title {
+  color: #2d5016;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.benefit-description {
+  color: #666;
+  font-size: 13px;
+  line-height: 1.4;
+  margin: 0;
+  flex: 1;
+}
+
+/* Benefits Swiper Navigation Buttons */
+.benefits-swiper-button-prev,
+.benefits-swiper-button-next {
+  width: 50px;
+  height: 50px;
+  background: #fff;
+  border: 2px solid #d4af37;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.benefits-swiper-button-prev {
+  left: -25px;
+}
+
+.benefits-swiper-button-next {
+  right: -25px;
+}
+
+.benefits-swiper-button-prev:hover,
+.benefits-swiper-button-next:hover {
+  background: #d4af37;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+  border-color: #2d5016;
+}
+
+.benefits-swiper-button-prev::after,
+.benefits-swiper-button-next::after {
+  display: none;
+}
+
+.benefits-swiper-button-prev svg,
+.benefits-swiper-button-next svg {
+  font-size: 20px;
+  color: #2d5016;
+  transition: color 0.3s ease;
+}
+
+.benefits-swiper-button-prev:hover svg,
+.benefits-swiper-button-next:hover svg {
+  color: #fff;
+}
+
+/* Benefits Swiper Pagination */
+.benefits-swiper-pagination {
+  position: relative;
+  margin-top: 30px;
+}
+
+.benefits-swiper-pagination .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: #d4af37;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+.benefits-swiper-pagination .swiper-pagination-bullet-active {
+  opacity: 1;
+  background: #2d5016;
+  transform: scale(1.2);
+}
+
+.benefits-swiper-pagination .swiper-pagination-bullet:hover {
+  opacity: 0.8;
+  transform: scale(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+  .doctors-consultation-title {
+    font-size: 30px;
+  }
+
+  .doctor-profile-card {
+    padding: 30px;
+  }
+
+  .doctor-name {
+    font-size: 24px;
+  }
+
+  .detail-item strong {
+    min-width: 100px;
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    width: 55px;
+    height: 55px;
+  }
+
+  .swiper-button-prev {
+    left: -27px;
+  }
+
+  .swiper-button-next {
+    right: -27px;
+  }
+
+  .benefits-swiper-button-prev,
+  .benefits-swiper-button-next {
+    width: 45px;
+    height: 45px;
+  }
+
+  .benefits-swiper-button-prev {
+    left: -22px;
+  }
+
+  .benefits-swiper-button-next {
+    right: -22px;
+  }
+}
+
+@media (max-width: 767px) {
+  .doctors-consultation-title {
+    font-size: 26px;
+    text-align: center;
+  }
+
+  .doctors-consultation-line {
+    margin: 0 auto 20px;
+  }
+
+  .doctor-profile-card {
+    padding: 25px 20px;
+    margin: 10px;
+  }
+
+  .doctor-content {
+    padding-left: 0;
+    padding-top: 20px;
+    text-align: center;
+  }
+
+  .doctor-name {
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .detail-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 5px;
+  }
+
+  .detail-item strong {
+    min-width: auto;
+  }
+
+  .doctor-description {
+    text-align: center;
+  }
+
+  .consultation-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .benefit-item {
+    padding: 18px 12px;
+    margin: 0 3px;
+    height: 160px;
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    width: 50px;
+    height: 50px;
+  }
+
+  .swiper-button-prev {
+    left: -25px;
+  }
+
+  .swiper-button-next {
+    right: -25px;
+  }
+
+  .benefits-swiper-button-prev,
+  .benefits-swiper-button-next {
+    width: 40px;
+    height: 40px;
+  }
+
+  .benefits-swiper-button-prev {
+    left: -20px;
+  }
+
+  .benefits-swiper-button-next {
+    right: -20px;
+  }
+}
+
+@media (max-width: 575px) {
+  .doctors-consultation-title {
+    font-size: 24px;
+  }
+
+  .doctor-profile-card {
+    padding: 20px 15px;
+  }
+
+  .doctor-name {
+    font-size: 20px;
+  }
+
+  .doctor-description {
+    font-size: 14px;
+  }
+
+  .benefit-title {
+    font-size: 15px;
+  }
+
+  .benefit-description {
+    font-size: 12px;
+  }
+
+  .main-consultation-btn {
+    padding: 12px 30px;
+    font-size: 16px;
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    width: 45px;
+    height: 45px;
+  }
+
+  .swiper-button-prev {
+    left: -22px;
+  }
+
+  .swiper-button-next {
+    right: -22px;
+  }
+
+  .benefits-swiper-button-prev,
+  .benefits-swiper-button-next {
+    width: 35px;
+    height: 35px;
+  }
+
+  .benefits-swiper-button-prev {
+    left: -17px;
+  }
+
+  .benefits-swiper-button-next {
+    right: -17px;
+  }
+
+  .benefit-item {
+    padding: 15px 10px;
+    height: 140px;
+  }
+}

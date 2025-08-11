@@ -9,6 +9,7 @@ import Testimonials from "@/components/homepage/Testimonials";
 import ExploreAyurveda from "@/components/homepage/ExploreAyurveda";
 import { filterProducts } from "@/lib/data/products";
 import { listCategories } from "@/lib/data/categories";
+import DoctorsConsultation from "@/components/homepage/DoctorsConsultation";
 
 export default async function Home() {
   // const categories = await listCategories();
@@ -30,6 +31,7 @@ export default async function Home() {
       <TopProducts products={top_products} />
       <WhySection />
       <Testimonials />
+      <DoctorsConsultation />
       <ExploreAyurveda />
 
       {/* <Team /> */}
