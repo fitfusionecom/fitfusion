@@ -66,7 +66,7 @@ export default function Header() {
         {/* Top Bar */}
         <div className="top-bar">
           <div className="container">
-            <div className="row align-items-center g-1">
+            <div className="row align-items-center g-12">
               {/* Logo */}
               <div className="col-6 col-md-3 col-lg-2 d-flex align-items-center">
                 <div className="ayur-menu-logo">

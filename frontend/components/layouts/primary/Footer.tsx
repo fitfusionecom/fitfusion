@@ -25,7 +25,7 @@ export default function Footer() {
     <footer
       className="ayur-footer-section"
       style={{
-        backgroundColor: "#fefefe",
+        backgroundColor: "#faf6e9",
         color: "#333",
         borderTop: "2px solid #e0e0e0",
       }}
@@ -125,6 +125,7 @@ export default function Footer() {
                     fontSize: "14px",
                     textTransform: "uppercase",
                     letterSpacing: "0.5px",
+                    color: "#92400e",
                   }}
                 >
                   Popular Categories
@@ -174,6 +175,7 @@ export default function Footer() {
                     fontSize: "14px",
                     textTransform: "uppercase",
                     letterSpacing: "0.5px",
+                    color: "#92400e",
                   }}
                 >
                   Popular Products
@@ -223,6 +225,7 @@ export default function Footer() {
                     fontSize: "14px",
                     textTransform: "uppercase",
                     letterSpacing: "0.5px",
+                    color: "#92400e",
                   }}
                 >
                   Quick Links
@@ -269,6 +272,7 @@ export default function Footer() {
                     fontSize: "14px",
                     textTransform: "uppercase",
                     letterSpacing: "0.5px",
+                    color: "#92400e",
                   }}
                 >
                   Follow Us
