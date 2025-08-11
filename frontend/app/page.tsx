@@ -6,6 +6,7 @@ import CareSlider from "@/components/homepage/CareSlider";
 import Achievement from "@/components/homepage/Achievement";
 import TopProducts from "@/components/homepage/TopProducts";
 import Testimonials from "@/components/homepage/Testimonials";
+import ExploreAyurveda from "@/components/homepage/ExploreAyurveda";
 import { filterProducts } from "@/lib/data/products";
 import { listCategories } from "@/lib/data/categories";
 
@@ -29,6 +30,8 @@ export default async function Home() {
       <TopProducts products={top_products} />
       <WhySection />
       <Testimonials />
+      <ExploreAyurveda />
+
       {/* <Team /> */}
     </>
   );

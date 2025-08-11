@@ -1492,7 +1492,7 @@ a.likeproduct img.like {
   overflow: hidden;
 }
 .ayur-sign-sec {
-  padding: 0 0 42px;
+  padding: 0 0 30px;
   border-bottom: 1px solid rgb(255 255 255 / 10%);
 }
 .ayur-subscribe-sec {
@@ -1675,8 +1675,6 @@ ul.ayur-links li a:hover::before {
     margin-top: 60px; /* 👈 Adjust this value to match your navbar height */
   }
 }
-
-
 
 .ayur-bread-section::before {
   content: "";

@@ -24,7 +24,11 @@ export default function Footer() {
   return (
     <footer
       className="ayur-footer-section"
-      style={{ backgroundColor: "#fefefe", color: "#333" }}
+      style={{
+        backgroundColor: "#fefefe",
+        color: "#333",
+        borderTop: "2px solid #e0e0e0",
+      }}
     >
       {/* Main Footer Content */}
       <div className="container">
