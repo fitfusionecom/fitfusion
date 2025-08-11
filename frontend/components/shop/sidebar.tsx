@@ -20,14 +20,43 @@ const SearchBar = ({
   };
 
   return (
-    <div className="ayur-widget ayur-shop-search">
+    <div
+      className="ayur-widget ayur-shop-search"
+      style={{
+        background: "#fff",
+        borderRadius: "12px",
+        padding: "24px",
+        marginBottom: "24px",
+        border: "1px solid #e8f5e8",
+        boxShadow: "0 4px 12px rgba(144, 182, 68, 0.08)",
+      }}
+    >
+      <h3
+        style={{
+          color: "#222222",
+          fontSize: "1.4rem",
+          fontWeight: "600",
+          marginBottom: "16px",
+          fontFamily: "Archivo, sans-serif",
+        }}
+      >
+        Search Products
+      </h3>
       <div className="ayur-form-input">
         <input
           type="text"
           className="form-control"
-          placeholder="Search Here..."
+          placeholder="Search for products..."
           value={currentQuery}
           onChange={handleChange}
+          style={{
+            border: "2px solid #e8f5e8",
+            borderRadius: "8px",
+            padding: "12px 16px",
+            fontSize: "1rem",
+            transition: "all 0.3s ease",
+            background: "#f0f8f0",
+          }}
         />
       </div>
     </div>
@@ -68,107 +97,271 @@ const ShopSidebar = ({
 
   return (
     <div className="ayur-shop-sidebar">
-      {/* <SearchBar updateQueryParams={updateQueryParams} /> */}
       <SearchBar
         updateQueryParams={updateQueryParams}
         searchParams={searchParams}
       />
-      <div className="ayur-widget ayur-shop-categories">
-        <h3>Categories</h3>
 
-        {/* Categories */}
-        <div className="ayur-widget ayur-shop-categories">
-          <div className="d-flex justify-content-between align-items-center mb-2">
-            <h3 className="mb-0">Categories</h3>
-            <button
-              className="btn btn-sm btn-outline-secondary"
-              onClick={() => setShowCategories(!showCategories)}
-            >
-              {showCategories ? "−" : "+"}
-            </button>
-          </div>
-
-          {showCategories && (
-            <ul className="list-unstyled">
-              <li>
-                <a
-                  onClick={() => updateQueryParams("category_handle", "")}
-                  style={{ cursor: "pointer" }}
-                  className="d-flex align-items-center justify-content-between gap-2"
-                >
-                  All
-                </a>
-              </li>
-              {categories.map((category) => (
-                <li key={category.id}>
-                  <a
-                    onClick={() =>
-                      updateQueryParams("category_handle", category.handle)
-                    }
-                    style={{ cursor: "pointer" }}
-                    className="d-flex align-items-center justify-content-between gap-2"
-                  >
-                    {category.name}
-                    <img src="/assets/images/right-arrow.png" alt="arrow" />
-                  </a>
-                </li>
-              ))}
-            </ul>
-          )}
+      {/* Categories Widget */}
+      <div
+        className="ayur-widget ayur-shop-categories"
+        style={{
+          background: "#fff",
+          borderRadius: "12px",
+          padding: "24px",
+          marginBottom: "24px",
+          border: "1px solid #e8f5e8",
+          boxShadow: "0 4px 12px rgba(144, 182, 68, 0.08)",
+        }}
+      >
+        <div className="d-flex justify-content-between align-items-center mb-3">
+          <h3
+            style={{
+              color: "#222222",
+              fontSize: "1.4rem",
+              fontWeight: "600",
+              margin: "0",
+              fontFamily: "Archivo, sans-serif",
+            }}
+          >
+            Categories
+          </h3>
+          <button
+            onClick={() => setShowCategories(!showCategories)}
+            style={{
+              background: "transparent",
+              border: "2px solid #90b644",
+              color: "#90b644",
+              borderRadius: "6px",
+              width: "32px",
+              height: "32px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              fontSize: "1.2rem",
+              fontWeight: "bold",
+              transition: "all 0.3s ease",
+            }}
+          >
+            {showCategories ? "−" : "+"}
+          </button>
         </div>
 
-        {/* Price Range */}
-        <div className="ayur-widget ayur-shop-tpro mt-4">
-          <div className="d-flex justify-content-between align-items-center mb-2">
-            <h3 className="mb-0">Price Range</h3>
-            <button
-              className="btn btn-sm btn-outline-secondary"
-              onClick={() => setShowPriceRange(!showPriceRange)}
-            >
-              {showPriceRange ? "−" : "+"}
-            </button>
-          </div>
-
-          {showPriceRange && (
-            <div className="ayur-sidepro-wrap" style={{ padding: "16px 0" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                <label htmlFor="minPrice" style={{ minWidth: 60 }}>
-                  Min:
-                </label>
-                <input
-                  id="minPrice"
-                  type="number"
-                  min={0}
-                  className="form-control"
-                  style={{ width: 80 }}
-                  value={currentMinPrice}
-                  onChange={handleMinPriceChange}
-                />
-              </div>
-              <div
+        {showCategories && (
+          <ul style={{ listStyle: "none", padding: "0", margin: "0" }}>
+            <li style={{ marginBottom: "12px" }}>
+              <a
+                onClick={() => updateQueryParams("category_handle", "")}
                 style={{
+                  cursor: "pointer",
                   display: "flex",
                   alignItems: "center",
-                  gap: 8,
-                  marginTop: 12,
+                  justifyContent: "space-between",
+                  padding: "12px 16px",
+                  borderRadius: "8px",
+                  background: "#f0f8f0",
+                  color: "#222222",
+                  textDecoration: "none",
+                  transition: "all 0.3s ease",
+                  border: "1px solid transparent",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "#e8f5e8";
+                  e.currentTarget.style.borderColor = "#90b644";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "#f0f8f0";
+                  e.currentTarget.style.borderColor = "transparent";
                 }}
               >
-                <label htmlFor="maxPrice" style={{ minWidth: 60 }}>
-                  Max:
-                </label>
-                <input
-                  id="maxPrice"
-                  type="number"
-                  min={0}
-                  className="form-control"
-                  style={{ width: 80 }}
-                  value={currentMaxPrice}
-                  onChange={handleMaxPriceChange}
-                />
-              </div>
-            </div>
-          )}
+                <span style={{ fontWeight: "500" }}>All Categories</span>
+                <span style={{ color: "#90b644", fontSize: "0.9rem" }}>→</span>
+              </a>
+            </li>
+            {categories.map((category) => (
+              <li key={category.id} style={{ marginBottom: "12px" }}>
+                <a
+                  onClick={() =>
+                    updateQueryParams("category_handle", category.handle)
+                  }
+                  style={{
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    padding: "12px 16px",
+                    borderRadius: "8px",
+                    background: "#f0f8f0",
+                    color: "#222222",
+                    textDecoration: "none",
+                    transition: "all 0.3s ease",
+                    border: "1px solid transparent",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = "#e8f5e8";
+                    e.currentTarget.style.borderColor = "#90b644";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "#f0f8f0";
+                    e.currentTarget.style.borderColor = "transparent";
+                  }}
+                >
+                  <span style={{ fontWeight: "500" }}>{category.name}</span>
+                  <span style={{ color: "#90b644", fontSize: "0.9rem" }}>
+                    →
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      {/* Price Range Widget */}
+      <div
+        className="ayur-widget ayur-shop-tpro"
+        style={{
+          background: "#fff",
+          borderRadius: "12px",
+          padding: "24px",
+          marginBottom: "24px",
+          border: "1px solid #e8f5e8",
+          boxShadow: "0 4px 12px rgba(144, 182, 68, 0.08)",
+        }}
+      >
+        <div className="d-flex justify-content-between align-items-center mb-3">
+          <h3
+            style={{
+              color: "#222222",
+              fontSize: "1.4rem",
+              fontWeight: "600",
+              margin: "0",
+              fontFamily: "Archivo, sans-serif",
+            }}
+          >
+            Price Range
+          </h3>
+          <button
+            onClick={() => setShowPriceRange(!showPriceRange)}
+            style={{
+              background: "transparent",
+              border: "2px solid #90b644",
+              color: "#90b644",
+              borderRadius: "6px",
+              width: "32px",
+              height: "32px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              fontSize: "1.2rem",
+              fontWeight: "bold",
+              transition: "all 0.3s ease",
+            }}
+          >
+            {showPriceRange ? "−" : "+"}
+          </button>
         </div>
+
+        {showPriceRange && (
+          <div style={{ padding: "16px 0" }}>
+            <div style={{ marginBottom: "16px" }}>
+              <label
+                htmlFor="minPrice"
+                style={{
+                  display: "block",
+                  color: "#797979",
+                  fontSize: "0.9rem",
+                  fontWeight: "500",
+                  marginBottom: "8px",
+                }}
+              >
+                Minimum Price (₹)
+              </label>
+              <input
+                id="minPrice"
+                type="number"
+                min={0}
+                className="form-control"
+                value={currentMinPrice}
+                onChange={handleMinPriceChange}
+                style={{
+                  border: "2px solid #e8f5e8",
+                  borderRadius: "8px",
+                  padding: "10px 12px",
+                  fontSize: "1rem",
+                  transition: "all 0.3s ease",
+                  background: "#f0f8f0",
+                  width: "100%",
+                }}
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="maxPrice"
+                style={{
+                  display: "block",
+                  color: "#797979",
+                  fontSize: "0.9rem",
+                  fontWeight: "500",
+                  marginBottom: "8px",
+                }}
+              >
+                Maximum Price (₹)
+              </label>
+              <input
+                id="maxPrice"
+                type="number"
+                min={0}
+                className="form-control"
+                value={currentMaxPrice}
+                onChange={handleMaxPriceChange}
+                style={{
+                  border: "2px solid #e8f5e8",
+                  borderRadius: "8px",
+                  padding: "10px 12px",
+                  fontSize: "1rem",
+                  transition: "all 0.3s ease",
+                  background: "#f0f8f0",
+                  width: "100%",
+                }}
+              />
+            </div>
+
+            {/* Price Range Display */}
+            <div
+              style={{
+                marginTop: "20px",
+                padding: "16px",
+                background: "#f0f8f0",
+                borderRadius: "8px",
+                border: "1px solid #e8f5e8",
+              }}
+            >
+              <p
+                style={{
+                  color: "#797979",
+                  fontSize: "0.9rem",
+                  margin: "0 0 8px 0",
+                  fontWeight: "500",
+                }}
+              >
+                Current Range:
+              </p>
+              <p
+                style={{
+                  color: "#90b644",
+                  fontSize: "1.1rem",
+                  margin: "0",
+                  fontWeight: "600",
+                }}
+              >
+                ₹{priceRange[0]} - ₹{priceRange[1]}
+              </p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

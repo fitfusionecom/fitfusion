@@ -15,25 +15,26 @@ const ProductCardSkeleton = () => (
   <div className="col-lg-4 col-md-6 col-sm-6">
     <div
       style={{
-        background: "#f3f3f3",
-        borderRadius: "8px",
+        background: "#f6f1ed",
+        borderRadius: "12px",
         minHeight: "320px",
         marginBottom: "24px",
         padding: "16px",
         display: "flex",
         flexDirection: "column",
         gap: "12px",
-        boxShadow: "0 1px 4px rgba(0,0,0,0.04)",
+        boxShadow: "0 4px 12px rgba(144, 182, 68, 0.1)",
         animation: "pulse 1.5s infinite",
+        border: "1px solid #e8f5e8",
       }}
       className="ayur-skeleton-card"
     >
       <div
-        style={{ background: "#e0e0e0", height: "180px", borderRadius: "6px" }}
+        style={{ background: "#d6cdca", height: "180px", borderRadius: "8px" }}
       />
       <div
         style={{
-          background: "#e0e0e0",
+          background: "#d6cdca",
           height: "20px",
           width: "70%",
           borderRadius: "4px",
@@ -41,7 +42,7 @@ const ProductCardSkeleton = () => (
       />
       <div
         style={{
-          background: "#e0e0e0",
+          background: "#d6cdca",
           height: "16px",
           width: "50%",
           borderRadius: "4px",
@@ -49,7 +50,7 @@ const ProductCardSkeleton = () => (
       />
       <div
         style={{
-          background: "#e0e0e0",
+          background: "#d6cdca",
           height: "16px",
           width: "40%",
           borderRadius: "4px",
@@ -235,123 +236,302 @@ const ShopTemplate = ({
   // Handle errors
   if (productsError) {
     return (
-      <div style={{ textAlign: "center", padding: "60px 20px" }}>
-        <h2>Error loading products</h2>
-        <p style={{ color: "#666", marginBottom: "20px" }}>
-          {productsError instanceof Error
-            ? productsError.message
-            : "Failed to load products"}
-        </p>
-        <button
-          onClick={() => refetch()}
-          style={{
-            background: "#007bff",
-            color: "white",
-            border: "none",
-            padding: "10px 20px",
-            borderRadius: "5px",
-            cursor: "pointer",
-          }}
-        >
-          Try again
-        </button>
+      <div
+        className="ayur-bgcover ayur-error-section"
+        style={{ textAlign: "center", padding: "80px 20px" }}
+      >
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-lg-6 col-md-8 col-sm-12">
+              <div className="ayur-error-content">
+                <h2
+                  style={{
+                    color: "#90b644",
+                    marginBottom: "20px",
+                    fontSize: "2.5rem",
+                  }}
+                >
+                  Oops! Something went wrong
+                </h2>
+                <p
+                  style={{
+                    color: "#797979",
+                    marginBottom: "30px",
+                    fontSize: "1.1rem",
+                  }}
+                >
+                  {productsError instanceof Error
+                    ? productsError.message
+                    : "Failed to load products"}
+                </p>
+                <button
+                  onClick={() => refetch()}
+                  className="ayur-btn"
+                  style={{
+                    background: "#90b644",
+                    borderColor: "#90b644",
+                    color: "white",
+                    border: "none",
+                    padding: "12px 30px",
+                    borderRadius: "8px",
+                    cursor: "pointer",
+                    fontSize: "1rem",
+                    fontWeight: "500",
+                    transition: "all 0.3s ease",
+                  }}
+                >
+                  Try Again
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
 
   return (
     <div>
-      <>
-        {/*----------- Breadcrumb Section start ---------*/}
-        <div className="ayur-bread-section">
-          <div className="ayur-breadcrumb-wrapper">
-            <div className="container">
-              <div className="row">
-                <div className="col-lg-12 col-md-12 col-sm-12">
-                  <div className="ayur-bread-content">
-                    <h2>Shop</h2>
-                    <div className="ayur-bread-list">
-                      <span>
-                        <Link href="/">Home</Link>
-                      </span>
-                      <span className="ayur-active-page">Shop</span>
-                    </div>
-                  </div>
-                </div>
+      {/*----------- Shop Header Section ---------*/}
+      <div
+        className="ayur-bgcover ayur-shop-header-sec"
+        style={{
+          background: "linear-gradient(135deg, #f0f8f0 0%, #fff 100%)",
+          padding: "60px 0 40px",
+          position: "relative",
+        }}
+      >
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-lg-8 col-md-10 col-sm-12 text-center">
+              <div className="ayur-shop-header">
+                <h1
+                  className="ayur-shop-title"
+                  style={{
+                    color: "#222222",
+                    fontSize: "3rem",
+                    fontWeight: "600",
+                    marginBottom: "20px",
+                    fontFamily: "Archivo, sans-serif",
+                  }}
+                >
+                  Discover Natural Wellness
+                </h1>
+                <div
+                  className="ayur-shop-line"
+                  style={{
+                    width: "80px",
+                    height: "4px",
+                    background: "#90b644",
+                    margin: "0 auto 20px",
+                    borderRadius: "2px",
+                  }}
+                ></div>
+                <p
+                  className="ayur-shop-subtitle"
+                  style={{
+                    color: "#797979",
+                    fontSize: "1.2rem",
+                    marginBottom: "0",
+                    fontFamily: "Inter, sans-serif",
+                  }}
+                >
+                  Explore our curated collection of authentic Ayurvedic products
+                </p>
               </div>
             </div>
           </div>
         </div>
-        {/*----------- Breadcrumb Section end ---------*/}
-        {/*----------- Shop single page Section start ---------*/}
-        <div className="ayur-bgcover ayur-shopsin-sec">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-4 col-md-6 col-sm-12">
-                <ShopSidebar
-                  categories={categories || []}
-                  updateQueryParams={updateQueryParams}
-                  priceRange={priceRange}
-                  setPriceRange={setPriceRange}
-                  searchParams={searchParams}
-                />
-              </div>
+        <div
+          className="ayur-bgshape ayur-shop-header-bgshape"
+          style={{
+            position: "absolute",
+            top: "20px",
+            right: "20px",
+            opacity: "0.1",
+          }}
+        >
+          <img
+            src="/assets/images/bg-leaf1.png"
+            alt="leaf"
+            style={{ width: "80px", height: "80px" }}
+          />
+        </div>
+      </div>
 
-              <div className="col-lg-8 col-md-6 col-sm-12">
-                {/* Loading skeleton for products */}
-                <div className="ayur-shopsin-products">
-                  <div className="row">
-                    {isLoading ? (
-                      Array.from({ length: 6 }).map((_, idx) => (
-                        <ProductCardSkeleton key={idx} />
-                      ))
-                    ) : products.length === 0 ? (
+      {/*----------- Shop Main Section ---------*/}
+      <div
+        className="ayur-bgcover ayur-shopsin-sec"
+        style={{
+          background: "#fdffff",
+          padding: "60px 0",
+          position: "relative",
+        }}
+      >
+        <div className="container">
+          <div className="row">
+            {/* Sidebar */}
+            <div className="col-lg-3 col-md-4 col-sm-12 mb-4">
+              <ShopSidebar
+                categories={categories || []}
+                updateQueryParams={updateQueryParams}
+                priceRange={priceRange}
+                setPriceRange={setPriceRange}
+                searchParams={searchParams}
+              />
+            </div>
+
+            {/* Products Grid */}
+            <div className="col-lg-9 col-md-8 col-sm-12">
+              <div className="ayur-shopsin-products">
+                {/* Results Header */}
+                <div
+                  className="ayur-products-header mb-4"
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    padding: "20px 0",
+                    borderBottom: "2px solid #e8f5e8",
+                  }}
+                >
+                  <div className="ayur-products-title">
+                    <h3
+                      style={{
+                        color: "#222222",
+                        fontSize: "1.8rem",
+                        fontWeight: "600",
+                        margin: "0",
+                        fontFamily: "Archivo, sans-serif",
+                      }}
+                    >
+                      {q ? `Search Results for "${q}"` : "All Products"}
+                    </h3>
+                    <p
+                      style={{
+                        color: "#797979",
+                        margin: "8px 0 0",
+                        fontSize: "1rem",
+                      }}
+                    >
+                      {products.length} products found
+                    </p>
+                  </div>
+                  {q && (
+                    <button
+                      onClick={() => updateQueryParams("q", "")}
+                      className="ayur-btn"
+                      style={{
+                        background: "transparent",
+                        border: "2px solid #90b644",
+                        color: "#90b644",
+                        padding: "8px 20px",
+                        borderRadius: "6px",
+                        cursor: "pointer",
+                        fontSize: "0.9rem",
+                        fontWeight: "500",
+                        transition: "all 0.3s ease",
+                      }}
+                    >
+                      Clear Search
+                    </button>
+                  )}
+                </div>
+
+                {/* Products Grid */}
+                <div className="row">
+                  {isLoading ? (
+                    Array.from({ length: 6 }).map((_, idx) => (
+                      <ProductCardSkeleton key={idx} />
+                    ))
+                  ) : products.length === 0 ? (
+                    <div className="col-12">
                       <ShopNotFound />
-                    ) : (
-                      <>
-                        {products.map((product) => (
-                          <div
-                            key={product.id}
-                            className="col-lg-4 col-md-6 col-sm-6"
-                          >
-                            <ProductCard product={product} />
-                          </div>
-                        ))}
+                    </div>
+                  ) : (
+                    <>
+                      {products.map((product) => (
+                        <div
+                          key={product.id}
+                          className="col-lg-4 col-md-6 col-sm-6 mb-4"
+                        >
+                          <ProductCard product={product} />
+                        </div>
+                      ))}
 
-                        {/* Load more button */}
-                        {hasNextPage && (
-                          <div className="col-12 text-center mt-4">
-                            <button
-                              onClick={() => fetchNextPage()}
-                              disabled={isFetchingNextPage}
-                              className="ayur-btn"
-                              style={{
-                                background: isFetchingNextPage
-                                  ? "#ccc"
-                                  : "#007bff",
-                                cursor: isFetchingNextPage
-                                  ? "not-allowed"
-                                  : "pointer",
-                              }}
-                            >
-                              {isFetchingNextPage ? "Loading..." : "Load More"}
-                            </button>
-                          </div>
-                        )}
-                      </>
-                    )}
-                  </div>
+                      {/* Load more button */}
+                      {hasNextPage && (
+                        <div className="col-12 text-center mt-5">
+                          <button
+                            onClick={() => fetchNextPage()}
+                            disabled={isFetchingNextPage}
+                            className="ayur-btn"
+                            style={{
+                              background: isFetchingNextPage
+                                ? "#d6cdca"
+                                : "#90b644",
+                              borderColor: isFetchingNextPage
+                                ? "#d6cdca"
+                                : "#90b644",
+                              color: "white",
+                              border: "none",
+                              padding: "15px 40px",
+                              borderRadius: "8px",
+                              cursor: isFetchingNextPage
+                                ? "not-allowed"
+                                : "pointer",
+                              fontSize: "1.1rem",
+                              fontWeight: "500",
+                              transition: "all 0.3s ease",
+                              boxShadow: "0 4px 12px rgba(144, 182, 68, 0.3)",
+                            }}
+                          >
+                            {isFetchingNextPage
+                              ? "Loading..."
+                              : "Load More Products"}
+                          </button>
+                        </div>
+                      )}
+                    </>
+                  )}
                 </div>
               </div>
             </div>
           </div>
-          <div className="ayur-bgshape ayur-trenpro-bgshape ayur-shopsin-bg">
-            <img src="/assets/images/bg-shape1.png" alt="img" />
-            <img src="/assets/images/bg-leaf1.png" alt="img" />
-          </div>
         </div>
-        {/*----------- Shop single page Section end ---------*/}
-      </>
+
+        {/* Background Shapes */}
+        <div
+          className="ayur-bgshape ayur-trenpro-bgshape ayur-shopsin-bg"
+          style={{
+            position: "absolute",
+            bottom: "20px",
+            left: "20px",
+            opacity: "0.1",
+          }}
+        >
+          <img
+            src="/assets/images/bg-shape1.png"
+            alt="shape"
+            style={{ width: "120px", height: "120px" }}
+          />
+        </div>
+        <div
+          className="ayur-bgshape ayur-shopsin-bg"
+          style={{
+            position: "absolute",
+            top: "40px",
+            right: "40px",
+            opacity: "0.08",
+          }}
+        >
+          <img
+            src="/assets/images/bg-leaf1.png"
+            alt="leaf"
+            style={{ width: "100px", height: "100px" }}
+          />
+        </div>
+      </div>
     </div>
   );
 };
