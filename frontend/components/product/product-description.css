@@ -1,0 +1,369 @@
+/* Product Description Styles */
+/* This file styles the dynamically appended HTML content in product descriptions */
+
+.product-description {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+/* Base paragraph styles */
+.product-description p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #4a5568;
+}
+
+.product-description p:last-child {
+  margin-bottom: 0;
+}
+
+/* Headings within product description */
+.product-description h1,
+.product-description h2,
+.product-description h3,
+.product-description h4,
+.product-description h5,
+.product-description h6 {
+  color: #2d3748;
+  font-weight: 600;
+  margin: 1.5rem 0 1rem 0;
+  line-height: 1.3;
+}
+
+.product-description h1 {
+  font-size: 1.75rem;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 0.5rem;
+}
+
+.product-description h2 {
+  font-size: 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 0.25rem;
+}
+
+.product-description h3 {
+  font-size: 1.25rem;
+}
+
+.product-description h4 {
+  font-size: 1.125rem;
+}
+
+.product-description h5,
+.product-description h6 {
+  font-size: 1rem;
+}
+
+/* Lists */
+.product-description ul,
+.product-description ol {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.product-description li {
+  margin-bottom: 0.5rem;
+  color: #4a5568;
+}
+
+.product-description ul li {
+  list-style-type: disc;
+}
+
+.product-description ol li {
+  list-style-type: decimal;
+}
+
+.product-description ul ul,
+.product-description ol ol {
+  margin: 0.5rem 0;
+}
+
+.product-description ul ul li {
+  list-style-type: circle;
+}
+
+.product-description ol ol li {
+  list-style-type: lower-alpha;
+}
+
+/* Links */
+.product-description a {
+  color: #3182ce;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.product-description a:hover {
+  color: #2c5aa0;
+  border-bottom-color: #2c5aa0;
+}
+
+.product-description a:focus {
+  outline: 2px solid #3182ce;
+  outline-offset: 2px;
+}
+
+/* Strong and emphasis */
+.product-description strong,
+.product-description b {
+  font-weight: 700;
+  color: #2d3748;
+}
+
+.product-description em,
+.product-description i {
+  font-style: italic;
+  color: #4a5568;
+}
+
+/* Blockquotes */
+.product-description blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.5rem;
+  border-left: 4px solid #3182ce;
+  background-color: #f7fafc;
+  font-style: italic;
+  color: #4a5568;
+}
+
+.product-description blockquote p {
+  margin: 0;
+}
+
+/* Code and pre */
+.product-description code {
+  background-color: #f7fafc;
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+  font-size: 0.875rem;
+  color: #e53e3e;
+  border: 1px solid #e2e8f0;
+}
+
+.product-description pre {
+  background-color: #2d3748;
+  color: #e2e8f0;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.product-description pre code {
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  color: inherit;
+}
+
+/* Tables */
+.product-description table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.875rem;
+}
+
+.product-description th,
+.product-description td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.product-description th {
+  background-color: #f7fafc;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.product-description tr:hover {
+  background-color: #f7fafc;
+}
+
+/* Images */
+.product-description img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.product-description img:hover {
+  transform: scale(1.02);
+  transition: transform 0.2s ease;
+}
+
+/* Horizontal rule */
+.product-description hr {
+  border: none;
+  border-top: 1px solid #e2e8f0;
+  margin: 2rem 0;
+}
+
+/* Definition lists */
+.product-description dl {
+  margin: 1rem 0;
+}
+
+.product-description dt {
+  font-weight: 600;
+  color: #2d3748;
+  margin-top: 1rem;
+}
+
+.product-description dd {
+  margin-left: 1rem;
+  color: #4a5568;
+  margin-bottom: 0.5rem;
+}
+
+/* Mark and highlight */
+.product-description mark {
+  background-color: #fef5e7;
+  color: #c05621;
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.125rem;
+}
+
+/* Small text */
+.product-description small {
+  font-size: 0.875rem;
+  color: #718096;
+}
+
+/* Subscript and superscript */
+.product-description sub,
+.product-description sup {
+  font-size: 0.75rem;
+  line-height: 0;
+}
+
+.product-description sub {
+  vertical-align: sub;
+}
+
+.product-description sup {
+  vertical-align: super;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .product-description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .product-description h1 {
+    font-size: 1.5rem;
+  }
+
+  .product-description h2 {
+    font-size: 1.25rem;
+  }
+
+  .product-description h3 {
+    font-size: 1.125rem;
+  }
+
+  .product-description ul,
+  .product-description ol {
+    padding-left: 1rem;
+  }
+
+  .product-description blockquote {
+    padding: 0.75rem 1rem;
+    margin: 1rem 0;
+  }
+
+  .product-description pre {
+    padding: 0.75rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .product-description {
+    color: #e2e8f0;
+  }
+
+  .product-description p {
+    color: #cbd5e0;
+  }
+
+  .product-description h1,
+  .product-description h2,
+  .product-description h3,
+  .product-description h4,
+  .product-description h5,
+  .product-description h6 {
+    color: #f7fafc;
+  }
+
+  .product-description strong,
+  .product-description b {
+    color: #f7fafc;
+  }
+
+  .product-description li {
+    color: #cbd5e0;
+  }
+
+  .product-description blockquote {
+    background-color: #2d3748;
+    color: #cbd5e0;
+  }
+
+  .product-description code {
+    background-color: #2d3748;
+    border-color: #4a5568;
+  }
+
+  .product-description th {
+    background-color: #2d3748;
+    color: #f7fafc;
+  }
+
+  .product-description tr:hover {
+    background-color: #2d3748;
+  }
+}
+
+/* Print styles */
+@media print {
+  .product-description {
+    color: #000;
+    line-height: 1.4;
+  }
+
+  .product-description a {
+    color: #000;
+    text-decoration: underline;
+  }
+
+  .product-description img {
+    max-width: 100%;
+    page-break-inside: avoid;
+  }
+
+  .product-description h1,
+  .product-description h2,
+  .product-description h3,
+  .product-description h4,
+  .product-description h5,
+  .product-description h6 {
+    page-break-after: avoid;
+  }
+}

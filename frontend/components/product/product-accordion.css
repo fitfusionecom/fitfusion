@@ -1,0 +1,196 @@
+.ayur-product-accordion {
+  padding: 20px 0;
+}
+
+.ayur-product-accordion .accordion {
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  background: #f8f9fa;
+}
+
+.ayur-product-accordion .accordion-item {
+  border: none;
+  border-bottom: 1px solid #e9ecef;
+  background: #fff;
+}
+
+.ayur-product-accordion .accordion-item:last-child {
+  border-bottom: none;
+}
+
+.ayur-product-accordion .accordion-header {
+  margin: 0;
+}
+
+.ayur-product-accordion .accordion-button {
+  background: #fff;
+  border: none;
+  padding: 20px 25px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  text-align: left;
+  box-shadow: none;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.ayur-product-accordion .accordion-button:hover {
+  background: #f8f9fa;
+  color: #cd8973;
+}
+
+.ayur-product-accordion .accordion-button:not(.collapsed) {
+  background: #cd8973;
+  color: #fff;
+  box-shadow: none;
+}
+
+.ayur-product-accordion .accordion-button:not(.collapsed):hover {
+  background: #b87a5f;
+  color: #fff;
+}
+
+.ayur-product-accordion .accordion-button:focus {
+  box-shadow: none;
+  border: none;
+}
+
+.ayur-product-accordion .accordion-button::after {
+  display: none;
+}
+
+.ayur-product-accordion .accordion-body {
+  padding: 25px;
+  background: #fff;
+  border-top: 1px solid #e9ecef;
+}
+
+.ayur-product-accordion .ayur-product-desc {
+  line-height: 1.8;
+  color: #666;
+}
+
+.ayur-product-accordion .ayur-product-desc p {
+  margin-bottom: 15px;
+}
+
+.ayur-product-accordion .ayur-product-info h5 {
+  color: #cd8973;
+  font-weight: 600;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.ayur-product-accordion .ayur-product-info ul li {
+  margin-bottom: 8px;
+  color: #666;
+  line-height: 1.6;
+}
+
+.ayur-product-accordion .ayur-product-info ul li strong {
+  color: #333;
+  font-weight: 600;
+}
+
+.ayur-product-accordion .ayur-product-info .badge {
+  font-size: 0.75rem;
+  padding: 0.375rem 0.75rem;
+}
+
+.ayur-product-accordion .ayur-product-info .table {
+  margin-bottom: 0;
+}
+
+.ayur-product-accordion .ayur-product-info .table th {
+  background-color: #f8f9fa;
+  border-color: #dee2e6;
+  font-weight: 600;
+  color: #495057;
+}
+
+.ayur-product-accordion .ayur-product-info .table td {
+  vertical-align: middle;
+  border-color: #dee2e6;
+}
+
+.ayur-product-accordion
+  .ayur-product-info
+  .table-striped
+  > tbody
+  > tr:nth-of-type(odd)
+  > td {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.ayur-product-accordion .related-products-section {
+  margin-top: 20px;
+}
+
+.related-products-inline {
+  padding: 20px 0;
+}
+
+.related-products-inline .spinner-border {
+  color: #cd8973;
+}
+
+.related-products-inline .text-muted {
+  color: #6c757d !important;
+}
+
+.related-products-inline .ayur-btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background: #cd8973;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.related-products-inline .ayur-btn:hover {
+  background: #b87a5f;
+  color: #fff;
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .ayur-product-accordion {
+    padding: 40px 0;
+  }
+
+  .ayur-product-accordion .accordion-button {
+    padding: 15px 20px;
+    font-size: 16px;
+  }
+
+  .ayur-product-accordion .accordion-body {
+    padding: 20px;
+  }
+
+  .ayur-product-accordion .ayur-product-info .row > div {
+    margin-bottom: 20px;
+  }
+}
+
+/* Animation for smooth transitions */
+.ayur-product-accordion .accordion-collapse {
+  transition: all 0.3s ease;
+}
+
+.ayur-product-accordion .accordion-button svg {
+  transition: transform 0.3s ease;
+}
+
+.ayur-product-accordion .accordion-button.collapsed .lucide-chevron-down {
+  transform: rotate(0deg);
+}
+
+.ayur-product-accordion .accordion-button:not(.collapsed) .lucide-chevron-up {
+  transform: rotate(0deg);
+}

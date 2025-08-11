@@ -15,12 +15,10 @@ import { isEqual } from "lodash";
 import Link from "next/link";
 import Head from "next/head";
 // import { WEBSITE } from "brand.config";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
+import ProductImageCarousel from "./product-image-carousel";
 
 import "react-quill/dist/quill.snow.css";
+import "./product-description.css";
 import { Input } from "@medusajs/ui";
 import OptionSelect from "./option-select";
 import ProductPrice from "./product-price";
@@ -47,7 +45,6 @@ const ProductDetails = ({
   countryCode,
 }: ProductDetailsProps) => {
   const [quantity, setQuantity] = useState(1);
-  const [activeImage, setActiveImage] = useState(0);
   const [options, setOptions] = useState<Record<string, string | undefined>>(
     {}
   );
@@ -163,7 +160,7 @@ const ProductDetails = ({
         {/* Open Graph */}
         <meta property="og:title" content={product.title} />
         <meta property="og:description" content={product.description || ""} />
-        <meta property="og:image" content={productImages[activeImage]} />
+        <meta property="og:image" content={productImages[0]} />
         {/* <meta
           property="og:url"
           content={`${WEBSITE}/in/products/${product.handle}`}
@@ -175,33 +172,10 @@ const ProductDetails = ({
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={product.title} />
         <meta name="twitter:description" content={product.description || ""} />
-        <meta name="twitter:image" content={productImages[activeImage]} />
+        <meta name="twitter:image" content={productImages[0]} />
       </Head>
 
       {/*----------- Header Section End ---------*/}
-      {/*----------- Breadcrumb Section start ---------*/}
-      <div className="ayur-bread-section">
-        <div className="ayur-breadcrumb-wrapper">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-12 col-md-12 col-sm-12">
-                <div className="ayur-bread-content">
-                  <h2>Product Page</h2>
-                  <div className="ayur-bread-list">
-                    <span>
-                      <a href="index.html">Home</a>
-                    </span>
-                    <span className="">
-                      <a href="shop.html">Shop</a>
-                    </span>
-                    <span className="ayur-active-page">Product Page</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       {/*----------- Breadcrumb Section end ---------*/}
       {/*----------- Shop single page Section start ---------*/}
       <div className="ayur-bgcover ayur-shopsin-section">
@@ -209,94 +183,49 @@ const ProductDetails = ({
           <div className="row align-items-center">
             <div className="col-lg-6 col-md-6 col-sm-12">
               <div className="w-full h-full">
-                <div className="position-relative ratio ratio-1x1 w-100 rounded bg-white border">
-                  <Image
-                    src={productImages[activeImage] || "/placeholder.svg"}
-                    alt="Duck Climb Stairs Toy"
-                    fill
-                    className="object-fit-contain w-100 h-100"
-                    priority
-                  />
-                </div>
-                <Swiper
-                  slidesPerView={4}
-                  spaceBetween={8}
-                  breakpoints={{
-                    320: {
-                      slidesPerView: 4,
-                      spaceBetween: 4,
-                    },
-                    700: {
-                      slidesPerView: 6,
-                      spaceBetween: 8,
-                    },
-                    1024: {
-                      slidesPerView: 6,
-                      spaceBetween: 8,
-                    },
-                  }}
-                  className="ayur-shopsin-img mt-2"
-                  modules={[Navigation]}
-                >
-                  {productImages.map((image, index) => (
-                    <SwiperSlide
-                      key={index}
-                      className="d-flex align-items-center justify-content-center"
-                    >
-                      <button
-                        className={`position-relative overflow-hidden rounded border ${
-                          activeImage === index
-                            ? "border-dark"
-                            : "border-secondary"
-                        } p-0`}
-                        style={{ width: "64px", height: "64px" }}
-                        onClick={() => setActiveImage(index)}
-                      >
-                        <Image
-                          src={image || "/placeholder.svg"}
-                          alt={`Product view ${index + 1}`}
-                          fill
-                          className="object-fit-cover w-100 h-100"
-                        />
-                        {index === 0 && (
-                          <div
-                            className="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center text-center"
-                            style={{ fontSize: "8px", lineHeight: "1.1" }}
-                          >
-                            {index + 1}
-                          </div>
-                        )}
-                      </button>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
+                <ProductImageCarousel
+                  images={productImages}
+                  productTitle={product.title}
+                />
               </div>
             </div>
             <div className="col-lg-6 col-md-6 col-sm-12">
               <div className="ayur-shopsin-details">
+                <nav aria-label="breadcrumb" className="mb-3">
+                  <ol
+                    className="breadcrumb bg-transparent p-0 m-0"
+                    style={{ fontSize: "0.95rem" }}
+                  >
+                    <li className="breadcrumb-item">
+                      <Link
+                        href="/"
+                        className="text-decoration-none text-muted"
+                      >
+                        Home
+                      </Link>
+                    </li>
+                    <li className="breadcrumb-item">
+                      <Link
+                        href="/shop"
+                        className="text-decoration-none text-muted"
+                      >
+                        Product
+                      </Link>
+                    </li>
+                    <li
+                      className="breadcrumb-item active text-dark"
+                      aria-current="page"
+                    >
+                      {product.title}
+                    </li>
+                  </ol>
+                </nav>
+                <div className="ayur-shopsin-heaing">
+                  <h3>{product.title}</h3>
+                </div>
                 <div className="ayur-tpro-price">
                   <ProductPrice product={product} variant={selectedVariant} />
                 </div>
-                <div className="ayur-shopsin-heaing">
-                  <h3>{product.title}</h3>
-                  <h6>{product.subtitle}</h6>
-                  {/* <div className="ayur-tpro-star">
-                    <img src="assets/images/star-icon.png" alt="star" />
-                    <img src="assets/images/star-icon.png" alt="star" />
-                    <img src="assets/images/star-icon.png" alt="star" />
-                    <img src="assets/images/star-icon.png" alt="star" />
-                    <img src="assets/images/star-icon.png" alt="star" />
-                    <p>(2 Customer Reviews)</p>
-                  </div> */}
-                  <div className="product-description mb-3">
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: product.description as any,
-                      }}
-                    />
-                  </div>
-                </div>
-
                 <div>
                   {(product.variants?.length ?? 0) > 1 && (
                     <div className="space-y-3 pt-2">
@@ -322,44 +251,64 @@ const ProductDetails = ({
                     </div>
                   )}
                 </div>
-
-                <div className="ayur-shopsin-quantity">
-                  <input
-                    type="number"
-                    className="form-control"
-                    min={1}
-                    max={10}
-                    value={quantity}
-                    onChange={(event) => {
-                      if (!isNaN(parseInt(event.target.value))) {
-                        setQuantity(parseInt(event.target.value));
-                      }
+                <div className="d-flex align-items-center gap-3">
+                  <div
+                    className="input-group border"
+                    style={{
+                      width: "100px",
+                      overflow: "hidden",
+                      borderRadius: "1rem",
                     }}
-                  />
-                  <button className="shop-add" onClick={incrementQuantity}>
-                    <span />
-                  </button>
-                  <button className="shop-sub" onClick={decrementQuantity}>
-                    <span />
-                  </button>
-                </div>
-                <div className="ayur-shopsin-btn">
-                  <button
-                    className="ayur-btn"
-                    onClick={handleAddToCart}
-                    disabled={
-                      !inStock ||
-                      !selectedVariant ||
-                      isAdding ||
-                      !isValidVariant
-                    }
                   >
-                    {!selectedVariant && !options
-                      ? "Select variant"
-                      : !inStock || !isValidVariant
-                      ? "Out of stock"
-                      : `Add to cart ${isAdding ? "..." : ""}`}
-                  </button>
+                    <button
+                      className="btn btn-outline-secondary border-0"
+                      type="button"
+                      onClick={decrementQuantity}
+                      disabled={quantity <= 1}
+                    >
+                      -
+                    </button>
+                    <input
+                      type="number"
+                      className="form-control text-center"
+                      min={1}
+                      max={10}
+                      value={quantity}
+                      onChange={(event) => {
+                        const val = parseInt(event.target.value);
+                        if (!isNaN(val) && val >= 1 && val <= 10) {
+                          setQuantity(val);
+                        }
+                      }}
+                      style={{ maxWidth: "50px" }}
+                    />
+                    <button
+                      className="btn btn-outline-secondary border-0"
+                      type="button"
+                      onClick={incrementQuantity}
+                      disabled={quantity >= 10}
+                    >
+                      +
+                    </button>
+                  </div>
+                  <div>
+                    <button
+                      className="ayur-btn btn btn-primary"
+                      onClick={handleAddToCart}
+                      disabled={
+                        !inStock ||
+                        !selectedVariant ||
+                        isAdding ||
+                        !isValidVariant
+                      }
+                    >
+                      {!selectedVariant && !options
+                        ? "Select variant"
+                        : !inStock || !isValidVariant
+                        ? "Out of stock"
+                        : `Add to cart${isAdding ? "..." : ""}`}
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
