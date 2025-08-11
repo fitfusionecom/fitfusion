@@ -13,59 +13,60 @@ interface CategoryBarProps {
   categories?: Category[];
 }
 
+// All category and subcategory hrefs now point to /shop
 const defaultCategories: Category[] = [
   {
     name: "Gym & Energy",
-    href: "/category/gym-energy",
+    href: "/shop",
     subcategories: [
-      { name: "Pre-Workout", href: "/category/pre-workout" },
-      { name: "Post-Workout", href: "/category/post-workout" },
-      { name: "Energy Boosters", href: "/category/energy-boosters" },
+      { name: "Pre-Workout", href: "/shop" },
+      { name: "Post-Workout", href: "/shop" },
+      { name: "Energy Boosters", href: "/shop" },
     ],
   },
   {
     name: "Weight, Sugar & Stress",
-    href: "/category/weight-sugar-stress",
+    href: "/shop",
     subcategories: [
-      { name: "Weight Management", href: "/category/weight-management" },
-      { name: "Sugar Control", href: "/category/sugar-control" },
-      { name: "Stress Relief", href: "/category/stress-relief" },
+      { name: "Weight Management", href: "/shop" },
+      { name: "Sugar Control", href: "/shop" },
+      { name: "Stress Relief", href: "/shop" },
     ],
   },
   {
     name: "Liver & Gut",
-    href: "/category/liver-gut",
+    href: "/shop",
     subcategories: [
-      { name: "Liver Health", href: "/category/liver-health" },
-      { name: "Digestive Health", href: "/category/digestive-health" },
-      { name: "Detox Products", href: "/category/detox" },
+      { name: "Liver Health", href: "/shop" },
+      { name: "Digestive Health", href: "/shop" },
+      { name: "Detox Products", href: "/shop" },
     ],
   },
   {
     name: "Immunity",
-    href: "/category/immunity",
+    href: "/shop",
     subcategories: [
-      { name: "Immune Boosters", href: "/category/immune-boosters" },
-      { name: "Vitamin C", href: "/category/vitamin-c" },
-      { name: "Herbal Immunity", href: "/category/herbal-immunity" },
+      { name: "Immune Boosters", href: "/shop" },
+      { name: "Vitamin C", href: "/shop" },
+      { name: "Herbal Immunity", href: "/shop" },
     ],
   },
   {
     name: "Hair, Skin & Oral Care",
-    href: "/category/hair-skin-oral",
+    href: "/shop",
     subcategories: [
-      { name: "Hair Care", href: "/category/hair-care" },
-      { name: "Skin Care", href: "/category/skin-care" },
-      { name: "Oral Care", href: "/category/oral-care" },
+      { name: "Hair Care", href: "/shop" },
+      { name: "Skin Care", href: "/shop" },
+      { name: "Oral Care", href: "/shop" },
     ],
   },
   {
     name: "Superfoods & Juices",
-    href: "/category/superfoods-juices",
+    href: "/shop",
     subcategories: [
-      { name: "Superfoods", href: "/category/superfoods" },
-      { name: "Fresh Juices", href: "/category/fresh-juices" },
-      { name: "Health Drinks", href: "/category/health-drinks" },
+      { name: "Superfoods", href: "/shop" },
+      { name: "Fresh Juices", href: "/shop" },
+      { name: "Health Drinks", href: "/shop" },
     ],
   },
 ];
