@@ -18,12 +18,12 @@ export const fitfusionConfig = {
     phone: "+91 98765 43210",
     whatsapp: "+91 98765 43210",
     address: {
-      street: "123 Ayurveda Street",
-      city: "Mumbai",
-      state: "Maharashtra",
-      pincode: "400001",
+      street: "Amaria, Pilibhit, Uttar Pradesh - 262121",
+      city: "Pilibhit",
+      state: "Uttar Pradesh",
+      pincode: "262121",
       country: "India",
-      fullAddress: "123 Ayurveda Street, Mumbai, Maharashtra 400001, India"
+      fullAddress: "Amaria, Pilibhit, Uttar Pradesh - 262121 India."
     },
     officeHours: "Monday - Saturday: 9:00 AM - 7:00 PM",
     workingDays: "Monday to Saturday",
@@ -34,7 +34,7 @@ export const fitfusionConfig = {
   social: {
     facebook: "https://facebook.com/fitfusion",
     twitter: "https://twitter.com/fitfusion",
-   instagram: "https://instagram.com/fitfusion",
+    instagram: "https://instagram.com/fitfusion",
     youtube: "https://youtube.com/fitfusion",
     linkedin: "https://linkedin.com/company/fitfusion",
   },
