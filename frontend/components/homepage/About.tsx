@@ -6,34 +6,6 @@ import { FaLeaf, FaHeart, FaStar, FaArrowRight } from "react-icons/fa";
 import "./About.css";
 
 export default function About() {
-  const achievements = [
-    {
-      icon: FaLeaf,
-      number: "10+",
-      label: "Years of Excellence",
-      description: "Decades of Ayurvedic wisdom",
-    },
-    {
-      icon: FaHeart,
-      number: "50K+",
-      label: "Happy Customers",
-      description: "Trusted by families nationwide",
-    },
-    {
-      icon: FaStar,
-      number: "4.8",
-      label: "Customer Rating",
-      description: "Consistently excellent service",
-    },
-  ];
-
-  const features = [
-    "100% Natural Ingredients",
-    "Traditional Ayurvedic Formulations",
-    "Expert Consultation Available",
-    "Quality Assured Products",
-  ];
-
   return (
     <section className="about-section spacer-top spacer-bottom">
       <div className="container">
@@ -69,22 +41,15 @@ export default function About() {
               <h4 className="about-heading">with Ancient Ayurvedic Wisdom</h4>
 
               <p className="about-description">
-                At FitFusion, we believe in a holistic approach to health and
-                wellness, rooted in the ancient wisdom of Ayurveda. Our mission
-                is to empower you to achieve total well-being by balancing mind,
-                body, and spirit with natural, time-tested remedies and rituals.
-              </p>
-
-              <p className="about-description">
-                Discover the natural way to optimal health and harmony—because
-                you deserve to thrive, not just survive. Our expert team
-                combines traditional knowledge with modern understanding to
-                provide you with the best of both worlds.
+                We don’t just sell products we promote a lifestyle of health and
+                balance. At Fit Fusion Ayurveda, our mission is to help people
+                reconnect with nature, even in today’s fast paced life, and
+                achieve long term wellness the natural way.
               </p>
 
               <div className="about-actions">
-                <Link href="/contact" className="about-btn primary-btn">
-                  Contact Us
+                <Link href="/about-us" className="about-btn primary-btn">
+                  About Us
                   <FaArrowRight />
                 </Link>
               </div>
