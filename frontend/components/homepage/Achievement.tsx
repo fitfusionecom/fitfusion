@@ -15,13 +15,21 @@ import Link from "next/link";
 
 const achievements = [
   {
-    icon: FaLeaf,
-    number: 10,
-    text: "Years of Excellence",
-    suffix: "+",
-    description: "Decades of Ayurvedic wisdom",
-    color: "#d4af37",
+    icon: FaAward,
+    number: 100,
+    text: "Product Purity",
+    suffix: "%",
+    description: "Quality guaranteed",
+    color: "#e67e22",
   },
+  // {
+  //   icon: FaLeaf,
+  //   number: 10,
+  //   text: "Years of Excellence",
+  //   suffix: "+",
+  //   description: "Decades of Ayurvedic wisdom",
+  //   color: "#d4af37",
+  // },
   {
     icon: FaUsers,
     number: 50000,
