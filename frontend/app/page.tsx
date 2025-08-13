@@ -7,6 +7,7 @@ import Achievement from "@/components/homepage/Achievement";
 import TopProducts from "@/components/homepage/TopProducts";
 import Testimonials from "@/components/homepage/Testimonials";
 import ExploreAyurveda from "@/components/homepage/ExploreAyurveda";
+import Newsletter from "@/components/homepage/Newsletter";
 import { filterProducts } from "@/lib/data/products";
 import { listCategories } from "@/lib/data/categories";
 import DoctorsConsultation from "@/components/homepage/DoctorsConsultation";
@@ -58,6 +59,7 @@ export default async function Home() {
       <Testimonials />
       <DoctorsConsultation />
       <ExploreAyurveda />
+      <Newsletter />
 
       {/* <Team /> */}
     </>

@@ -38,30 +38,30 @@ const achievements = [
     description: "Pure and authentic formulations",
     color: "#2d5016",
   },
-  {
-    icon: FaAward,
-    number: 100,
-    text: "Product Purity",
-    suffix: "%",
-    description: "Quality guaranteed",
-    color: "#e67e22",
-  },
-  {
-    icon: FaStar,
-    number: 4.8,
-    text: "Customer Rating",
-    suffix: "",
-    description: "Consistently excellent",
-    color: "#f39c12",
-  },
-  {
-    icon: FaHeart,
-    number: 99,
-    text: "Satisfaction Rate",
-    suffix: "%",
-    description: "Customer happiness",
-    color: "#e74c3c",
-  },
+  // {
+  //   icon: FaAward,
+  //   number: 100,
+  //   text: "Product Purity",
+  //   suffix: "%",
+  //   description: "Quality guaranteed",
+  //   color: "#e67e22",
+  // },
+  // {
+  //   icon: FaStar,
+  //   number: 4.8,
+  //   text: "Customer Rating",
+  //   suffix: "",
+  //   description: "Consistently excellent",
+  //   color: "#f39c12",
+  // },
+  // {
+  //   icon: FaHeart,
+  //   number: 99,
+  //   text: "Satisfaction Rate",
+  //   suffix: "%",
+  //   description: "Customer happiness",
+  //   color: "#e74c3c",
+  // },
 ];
 
 export default function Achievement() {
@@ -124,7 +124,9 @@ export default function Achievement() {
         <div className="row mb-5">
           <div className="col-12 text-center">
             <div className="achievement-header">
-              <h2 className="achievement-title">Why Choose FitFusion?</h2>
+              <h2 className="achievement-title">
+                Why Choose FitFusion Ayurveda?
+              </h2>
               <div className="achievement-subtitle">
                 Empowering Wellness with Ayurveda
               </div>

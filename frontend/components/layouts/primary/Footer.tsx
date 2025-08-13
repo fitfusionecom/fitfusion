@@ -134,14 +134,14 @@ export default function Footer() {
                   {[
                     "Vigor & Vitality",
                     "Men Health",
-                    "Ayurvedic Juices",
-                    "Chyawanprash",
-                    "Hair Care",
+                    // "Ayurvedic Juices",
+                    // "Chyawanprash",
+                    // "Hair Care",
                     "Immunity Boosters",
                     "Digestion Care",
-                    "Skin Care",
-                    "Pain Management",
-                    "Liver Care",
+                    // "Skin Care",
+                    // "Pain Management",
+                    // "Liver Care",
                     "All Collections",
                   ].map((category, index) => (
                     <li key={index} className="mb-2">
@@ -184,14 +184,14 @@ export default function Footer() {
                   {[
                     "Ashwagandha Capsules",
                     "Shilajit Resin",
-                    "Chyawanprash",
-                    "Hair Growth Oil",
-                    "Liver Care Tablets",
-                    "Immunity Boosters",
+                    // "Chyawanprash",
+                    // "Hair Growth Oil",
+                    // "Liver Care Tablets",
+                    // "Immunity Boosters",
                     "Digestive Supplements",
-                    "Skin Care Creams",
-                    "Pain Relief Oils",
-                    "Honey Products",
+                    // "Skin Care Creams",
+                    // "Pain Relief Oils",
+                    // "Honey Products",
                     "View All Products",
                   ].map((product, index) => (
                     <li key={index} className="mb-2">
@@ -241,7 +241,7 @@ export default function Footer() {
                     { name: "Terms of Service", href: "/terms" },
                     { name: "Refund Policy", href: "/refund" },
                     { name: "Blog", href: "/blog" },
-                    { name: "Sitemap", href: "/sitemap" },
+                    // { name: "Sitemap", href: "/sitemap" },
                   ].map((link, index) => (
                     <li key={index} className="mb-2">
                       <Link

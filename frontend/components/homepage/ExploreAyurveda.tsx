@@ -52,6 +52,35 @@ export default function ExploreAyurveda() {
           </div>
         </div>
 
+        {/* Service Information Section */}
+        <div className="row">
+          {serviceFeatures.map((feature, index) => (
+            <div key={index} className="col-lg-4 col-md-4 col-sm-12 mb-4">
+              <div className="explore-service-feature">
+                <div className="explore-service-icon">
+                  <feature.icon />
+                </div>
+                <div className="explore-service-content">
+                  <h4 className="explore-service-title">{feature.title}</h4>
+                  {feature.subtitle && (
+                    <p className="explore-service-subtitle">
+                      {feature.subtitle}
+                    </p>
+                  )}
+                  {feature.buttonText && (
+                    <Link
+                      href={feature.buttonLink}
+                      className="pa-btn explore-contact-btn"
+                    >
+                      {feature.buttonText}
+                    </Link>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
         {/* Articles Cards Section */}
         <div className="row mb-5">
           {blogPosts.map((post) => (
@@ -88,35 +117,6 @@ export default function ExploreAyurveda() {
                       </Link>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Service Information Section */}
-        <div className="row">
-          {serviceFeatures.map((feature, index) => (
-            <div key={index} className="col-lg-4 col-md-4 col-sm-12 mb-4">
-              <div className="explore-service-feature">
-                <div className="explore-service-icon">
-                  <feature.icon />
-                </div>
-                <div className="explore-service-content">
-                  <h4 className="explore-service-title">{feature.title}</h4>
-                  {feature.subtitle && (
-                    <p className="explore-service-subtitle">
-                      {feature.subtitle}
-                    </p>
-                  )}
-                  {feature.buttonText && (
-                    <Link
-                      href={feature.buttonLink}
-                      className="pa-btn explore-contact-btn"
-                    >
-                      {feature.buttonText}
-                    </Link>
-                  )}
                 </div>
               </div>
             </div>

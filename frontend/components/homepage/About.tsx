@@ -59,12 +59,6 @@ export default function About() {
                   height={348}
                   className="img-fluid"
                 />
-                <div className="about-image-overlay">
-                  <div className="overlay-content">
-                    <FaLeaf className="overlay-icon" />
-                    <span>Natural Healing</span>
-                  </div>
-                </div>
               </div>
             </div>
           </div>

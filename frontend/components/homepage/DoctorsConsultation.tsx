@@ -159,10 +159,10 @@ export default function DoctorsConsultation() {
   };
 
   return (
-    <section className="doctors-consultation-section spacer-top spacer-bottom">
+    <section className="doctors-consultation-section spacer-top-- spacer-bottom--">
       <div className="container">
         {/* Header Section */}
-        <div className="row align-items-center mb-5">
+        <div className="row align-items-center">
           <div className="col-12">
             <div className="doctors-consultation-header">
               <h2 className="doctors-consultation-title">
