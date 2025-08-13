@@ -278,6 +278,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
                 outline: "none",
                 transition: "all 0.2s ease",
                 backgroundColor: "#f9fafb",
+                color: "black",
               }}
               onFocus={(e) => {
                 e.target.style.borderColor = "#3b82f6";
