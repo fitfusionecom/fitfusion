@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import "./Banner.css";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 
 const slides = [
   {
@@ -103,7 +104,7 @@ export default function Banner() {
         onClick={goToPrevious}
         aria-label="Previous slide"
       >
-        <span>&#8249;</span>
+        <FaAngleLeft />
       </button>
 
       <button
@@ -111,7 +112,7 @@ export default function Banner() {
         onClick={goToNext}
         aria-label="Next slide"
       >
-        <span>&#8250;</span>
+        <FaAngleRight />
       </button>
 
       {/* Dots Indicator */}

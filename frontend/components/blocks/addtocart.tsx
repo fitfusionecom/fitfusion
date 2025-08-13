@@ -157,7 +157,7 @@ const AddToCartButton = ({
 
   const buttonClass = useMemo(() => {
     const baseClass =
-      "ayur-btn w-full d-flex justify-content-center align-items-center gap-2";
+      "add-to-cart-btn w-full d-flex justify-content-center align-items-center gap-2";
     if (variant === "compact") {
       return `${baseClass} ayur-btn-compact`;
     } else if (variant === "modal") {
@@ -232,9 +232,7 @@ const AddToCartButton = ({
         ) : !inStock || !isValidVariant ? (
           "Out of stock"
         ) : (
-          <>
-            <p className="mb-0">Add to Cart</p>
-          </>
+          <>Add to Cart</>
         )}
 
         {isAdding && "..."}

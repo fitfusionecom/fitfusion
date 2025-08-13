@@ -50,13 +50,13 @@ export default async function Home() {
     <>
       <Banner />
       {/* <CareSlider categories={categories} /> */}
-      <TopProducts products={top_products} title="New Launch" />
+      <TopProducts products={top_products} title="Best Selling" />
       <TopProducts products={top_products} title="New Arrival" />
       <About />
-      <TopProducts products={top_products} title="Best Sellers" />
+      <TopProducts products={top_products} title="Deals" />
       <Achievement />
       {/* <WhySection /> */}
-      <Testimonials />
+      {/* <Testimonials /> */}
       <DoctorsConsultation />
       <ExploreAyurveda />
       <Newsletter />

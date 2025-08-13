@@ -226,57 +226,7 @@
   opacity: 0.8;
 }
 
-/* Swiper Navigation */
-.swiper-button-prev,
-.swiper-button-next {
-  width: 45px;
-  height: 45px;
-  background: #fff;
-  border: 2px solid #d4af37;
-  border-radius: 50%;
-  transition: all 0.3s ease;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.swiper-button-prev {
-  left: -22px;
-}
-
-.swiper-button-next {
-  right: -22px;
-}
-
-.swiper-button-prev:hover,
-.swiper-button-next:hover {
-  background: #d4af37;
-  transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
-}
-
-.swiper-button-prev:hover svg,
-.swiper-button-next:hover svg {
-  color: #fff;
-}
-
-.swiper-button-prev svg,
-.swiper-button-next svg {
-  color: #d4af37;
-  font-size: 16px;
-  transition: color 0.3s ease;
-}
-
-.swiper-button-prev::after,
-.swiper-button-next::after {
-  display: none;
-}
+/* Swiper Navigation - styles are now handled globally in swiper-custom.css */
 
 /* Swiper Pagination */
 .swiper-pagination {
@@ -349,19 +299,7 @@
     font-size: 15px;
   }
 
-  .swiper-button-prev,
-  .swiper-button-next {
-    width: 40px;
-    height: 40px;
-  }
-
-  .swiper-button-prev {
-    left: -18px;
-  }
-
-  .swiper-button-next {
-    right: -18px;
-  }
+  /* Swiper button styles are now handled globally in swiper-custom.css */
 }
 
 @media (max-width: 767px) {
@@ -413,10 +351,7 @@
     font-size: 16px;
   }
 
-  .swiper-button-prev,
-  .swiper-button-next {
-    display: none;
-  }
+  /* Swiper button styles are now handled globally in swiper-custom.css */
 
   .testimonials-cta {
     padding: 25px 15px;

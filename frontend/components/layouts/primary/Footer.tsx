@@ -25,9 +25,8 @@ export default function Footer() {
     <footer
       className="ayur-footer-section"
       style={{
-        backgroundColor: "#faf6e9",
-        color: "#333",
-        borderTop: "2px solid #e0e0e0",
+        backgroundColor: "#FFF5EC",
+        color: "black",
       }}
     >
       {/* Main Footer Content */}
@@ -39,7 +38,7 @@ export default function Footer() {
               <div className="ayur-footer-logosec">
                 <div className="ayur-footer-logo mb-3">
                   <Image
-                    src={fitfusionConfig.brand.logo}
+                    src={fitfusionConfig.brand.transparentLogo}
                     alt={fitfusionConfig.brand.logoAlt}
                     width={120}
                     height={50}
@@ -57,7 +56,7 @@ export default function Footer() {
                   <div className="d-flex align-items-start gap-2 mb-3">
                     <span
                       style={{
-                        color: "#e67e22",
+                        color: "black",
                         minWidth: 18,
                         display: "flex",
                         alignItems: "center",
@@ -73,7 +72,7 @@ export default function Footer() {
                   <div className="d-flex align-items-center gap-2 mb-3">
                     <span
                       style={{
-                        color: "#e67e22",
+                        color: "black",
                         minWidth: 18,
                         display: "flex",
                         alignItems: "center",
@@ -88,7 +87,7 @@ export default function Footer() {
                   <div className="d-flex align-items-start gap-2 mb-3">
                     <span
                       style={{
-                        color: "#e67e22",
+                        color: "black",
                         minWidth: 18,
                         display: "flex",
                         alignItems: "center",
@@ -125,7 +124,7 @@ export default function Footer() {
                     fontSize: "14px",
                     textTransform: "uppercase",
                     letterSpacing: "0.5px",
-                    color: "#92400e",
+                    color: "black",
                   }}
                 >
                   Popular Categories
@@ -134,14 +133,14 @@ export default function Footer() {
                   {[
                     "Vigor & Vitality",
                     "Men Health",
-                    // "Ayurvedic Juices",
-                    // "Chyawanprash",
-                    // "Hair Care",
+                    "Ayurvedic Juices",
+                    "Chyawanprash",
+                    "Hair Care",
                     "Immunity Boosters",
                     "Digestion Care",
-                    // "Skin Care",
-                    // "Pain Management",
-                    // "Liver Care",
+                    "Skin Care",
+                    "Pain Management",
+                    "Liver Care",
                     "All Collections",
                   ].map((category, index) => (
                     <li key={index} className="mb-2">
@@ -175,7 +174,7 @@ export default function Footer() {
                     fontSize: "14px",
                     textTransform: "uppercase",
                     letterSpacing: "0.5px",
-                    color: "#92400e",
+                    color: "black",
                   }}
                 >
                   Popular Products
@@ -184,14 +183,14 @@ export default function Footer() {
                   {[
                     "Ashwagandha Capsules",
                     "Shilajit Resin",
-                    // "Chyawanprash",
-                    // "Hair Growth Oil",
-                    // "Liver Care Tablets",
-                    // "Immunity Boosters",
+                    "Chyawanprash",
+                    "Hair Growth Oil",
+                    "Liver Care Tablets",
+                    "Immunity Boosters",
                     "Digestive Supplements",
-                    // "Skin Care Creams",
-                    // "Pain Relief Oils",
-                    // "Honey Products",
+                    "Skin Care Creams",
+                    "Pain Relief Oils",
+                    "Honey Products",
                     "View All Products",
                   ].map((product, index) => (
                     <li key={index} className="mb-2">
@@ -225,7 +224,7 @@ export default function Footer() {
                     fontSize: "14px",
                     textTransform: "uppercase",
                     letterSpacing: "0.5px",
-                    color: "#92400e",
+                    color: "black",
                   }}
                 >
                   Quick Links
@@ -272,7 +271,7 @@ export default function Footer() {
                     fontSize: "14px",
                     textTransform: "uppercase",
                     letterSpacing: "0.5px",
-                    color: "#92400e",
+                    color: "black",
                   }}
                 >
                   Follow Us
@@ -284,25 +283,14 @@ export default function Footer() {
                       name: "Facebook",
                       href: fitfusionConfig.social?.facebook,
                       icon: "facebook",
-                      color: "#3b5998",
+                      color: "black",
                     },
-                    {
-                      name: "Twitter",
-                      href: fitfusionConfig.social?.twitter,
-                      icon: "twitter",
-                      color: "#1da1f2",
-                    },
+
                     {
                       name: "Instagram",
                       href: fitfusionConfig.social?.instagram,
                       icon: "instagram",
-                      color: "#e1306c",
-                    },
-                    {
-                      name: "YouTube",
-                      href: fitfusionConfig.social?.youtube,
-                      icon: "youtube",
-                      color: "#ff0000",
+                      color: "black",
                     },
                   ]
                     .filter((social) => !!social.href)
@@ -316,7 +304,7 @@ export default function Footer() {
                         style={{
                           width: "36px",
                           height: "36px",
-                          backgroundColor: "#f8f9fa",
+                          backgroundColor: "#FFF5EC",
                           borderRadius: "50%",
                           color: social.color,
                           fontSize: "16px",
@@ -349,48 +337,11 @@ export default function Footer() {
             </div>
           </div>
         </div>
-
-        {/* Payment Methods - Hidden for now */}
-        {/* <div className="border-top pt-4 pb-3">
-          <div className="text-center">
-            <h5 className="fw-semibold mb-3" style={{ fontSize: "14px" }}>
-              We Accept
-            </h5>
-            <div className="d-flex flex-wrap justify-content-center gap-2">
-              {[
-                { name: "UPI", color: "#8b5cf6" },
-                { name: "PhonePe", color: "#a855f7" },
-                { name: "Amazon Pay", color: "#f97316" },
-                { name: "MobiKwik", color: "#2563eb" },
-                { name: "VISA", color: "#1d4ed8" },
-                { name: "AMEX", color: "#16a34a" },
-                { name: "Mastercard", color: "#dc2626" },
-                { name: "Net Banking", color: "#4b5563" },
-                { name: "Paytm", color: "#3b82f6" },
-              ].map((method, index) => (
-                <div
-                  key={index}
-                  className="text-white px-3 py-2 rounded"
-                  style={{
-                    backgroundColor: method.color,
-                    fontSize: "11px",
-                    fontWeight: "500",
-                    minWidth: "80px",
-                    textAlign: "center",
-                  }}
-                >
-                  {method.name}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div> */}
       </div>
-
       {/* Copyright Bar */}
       <div
         style={{
-          backgroundColor: "#92400e",
+          backgroundColor: "black",
           color: "white",
           padding: "16px 0",
         }}

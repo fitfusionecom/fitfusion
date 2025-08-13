@@ -66,8 +66,8 @@
 .product-rating {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
-  margin-bottom: 8px;
 }
 
 .star {
@@ -179,29 +179,29 @@
   padding-top: 12px;
 }
 
-.add-to-cart-section .ayur-btn {
+.add-to-cart-section .add-to-cart-btn {
   width: 100%;
-  background: #005441 !important;
+  background: black !important;
   color: white !important;
   border: none;
   padding: 12px 20px;
   border-radius: 8px;
   font-size: 14px;
-  font-weight: 600;
+  /* font-weight: 600; */
   text-transform: uppercase;
   letter-spacing: 0.5px;
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
-.add-to-cart-section .ayur-btn:hover {
-  background: #004033 !important;
-  color: white !important;
+.add-to-cart-section .add-to-cart-btn:hover {
+  background: #dcce91 !important;
+  color: black !important;
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(0, 84, 65, 0.3);
 }
 
-.add-to-cart-section .ayur-btn:disabled {
+.add-to-cart-section .add-to-cart-btn:disabled {
   background: #6c757d;
   cursor: not-allowed;
   transform: none;
@@ -252,7 +252,7 @@
     font-size: 14px;
   }
 
-  .add-to-cart-section .ayur-btn {
+  .add-to-cart-section .add-to-cart-btn {
     padding: 10px 16px;
     font-size: 13px;
   }
@@ -301,7 +301,7 @@
     font-size: 13px;
   }
 
-  .add-to-cart-section .ayur-btn {
+  .add-to-cart-section .add-to-cart-btn {
     padding: 8px 14px;
     font-size: 12px;
   }

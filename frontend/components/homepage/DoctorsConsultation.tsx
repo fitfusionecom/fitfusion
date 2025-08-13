@@ -65,54 +65,6 @@ const doctors: Doctor[] = [
       "Dr. Rajesh Kumar specializes in digestive health, respiratory disorders, joint pain management, and stress-related conditions. With over 5 years of experience, he has helped 5,000+ patients achieve optimal health through traditional Ayurvedic methods.",
     patients: "5,000+",
   },
-  {
-    id: 3,
-    name: "Dr. Priya Sharma",
-    image: "/assets/images/carousel/dr.webp",
-    specialization: [
-      "Women's Health",
-      "Hormonal Balance",
-      "Skin Care",
-      "Weight Management",
-    ],
-    experience: "3+ Years",
-    languages: ["Hindi", "English", "Gujarati"],
-    description:
-      "Dr. Priya Sharma focuses on women's health, hormonal balance, skin care, and weight management. Her holistic approach has benefited 4,000+ patients, combining traditional wisdom with modern understanding of health.",
-    patients: "4,000+",
-  },
-  {
-    id: 4,
-    name: "Dr. Amit Patel",
-    image: "/assets/images/carousel/dr.webp",
-    specialization: [
-      "Cardiac Health",
-      "Diabetes",
-      "Hypertension",
-      "Lifestyle Medicine",
-    ],
-    experience: "8+ Years",
-    languages: ["Hindi", "English", "Marathi"],
-    description:
-      "Dr. Amit Patel is a senior Ayurvedic physician specializing in cardiac health, diabetes management, hypertension, and lifestyle medicine. With 8+ years of experience, he has successfully treated 7,000+ patients.",
-    patients: "7,000+",
-  },
-  {
-    id: 5,
-    name: "Dr. Meera Singh",
-    image: "/assets/images/carousel/dr.webp",
-    specialization: [
-      "Pediatric Care",
-      "Immunity",
-      "Growth & Development",
-      "Nutrition",
-    ],
-    experience: "4+ Years",
-    languages: ["Hindi", "English", "Punjabi"],
-    description:
-      "Dr. Meera Singh specializes in pediatric care, immunity building, growth & development, and nutrition. Her gentle approach has made her a favorite among parents, helping 2,500+ children achieve better health.",
-    patients: "2,500+",
-  },
 ];
 
 const benefits = [
@@ -121,11 +73,7 @@ const benefits = [
     title: "Expert Ayurveda Doctors",
     description: "Qualified and experienced practitioners",
   },
-  {
-    icon: FaLeaf,
-    title: "110+ Years of Zandu Ayurveda Legacy",
-    description: "Trusted traditional wisdom",
-  },
+
   {
     icon: FaHeart,
     title: "FREE Consultations",
@@ -192,7 +140,7 @@ export default function DoctorsConsultation() {
               disableOnInteraction: false,
             }}
             loop={true}
-            className="doctors-swiper"
+            className="doctors-swiper doctors-consultation"
           >
             {doctors.map((doctor) => (
               <SwiperSlide key={doctor.id}>
@@ -255,12 +203,8 @@ export default function DoctorsConsultation() {
             ))}
 
             {/* Custom Navigation Buttons */}
-            <div className="swiper-button-prev">
-              <FaChevronLeft />
-            </div>
-            <div className="swiper-button-next">
-              <FaChevronRight />
-            </div>
+            <div className="swiper-button-prev"></div>
+            <div className="swiper-button-next"></div>
 
             {/* Custom Pagination */}
             <div className="swiper-pagination"></div>

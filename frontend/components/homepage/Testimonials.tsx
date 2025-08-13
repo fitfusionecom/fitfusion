@@ -111,7 +111,7 @@ export default function Testimonials() {
             spaceBetween={20}
             slidesPerView={1}
             loop={true}
-            className="testimonials-swiper"
+            className="testimonials-swiper testimonials-section"
           >
             {testimonials.map((testimonial) => (
               <SwiperSlide key={testimonial.id}>

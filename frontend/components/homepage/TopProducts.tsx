@@ -35,25 +35,21 @@ export default function TopProducts({
             </div>
           </div>
           <div className="col-lg-4 col-md-4 col-sm-12 text-end">
-            <Link
-              href="/blog"
-              className="pa-btn explore-view-all-btn"
-              style={{ backgroundColor: "#90b644", borderColor: "#90b644" }}
-            >
+            <Link href="/blog" className="explore-view-all-btn">
               View All
             </Link>
           </div>
         </div>
 
         {/* Swiper Carousel */}
-        <div className="top-products-carousel">
+        <div className="top-products-carousel top-products-section">
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
             spaceBetween={20}
             slidesPerView={1}
             navigation={{
-              nextEl: ".swiper-button-next",
-              prevEl: ".swiper-button-prev",
+              nextEl: ".top-products-swiper .swiper-button-next",
+              prevEl: ".top-products-swiper .swiper-button-prev",
             }}
             autoplay={{
               delay: 3000,
@@ -61,6 +57,10 @@ export default function TopProducts({
             }}
             loop={true}
             breakpoints={{
+              320: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
               480: {
                 slidesPerView: 2,
                 spaceBetween: 20,

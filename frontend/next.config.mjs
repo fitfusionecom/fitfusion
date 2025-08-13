@@ -22,6 +22,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "fitfusion.fullstackartists.com",
       },
+      {
+        protocol: "https",
+        hostname: "fitfusion-alpha.vercel.app",
+      },
     ],
   },
 };

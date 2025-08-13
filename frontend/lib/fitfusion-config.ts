@@ -5,6 +5,7 @@ export const fitfusionConfig = {
     shortName: "FitFusion",
     tagline: "The Natural Way To Achieving Balance And Optimal Health",
     logo: "/fitfusion.JPG",
+    transparentLogo: "/tlogo.png",
     logoAlt: "FitFusion Ayurveda Logo",
     website: "https://fitfusion.com",
     foundedYear: "2020",
@@ -27,15 +28,15 @@ export const fitfusionConfig = {
     },
     officeHours: "Monday - Saturday: 9:00 AM - 7:00 PM",
     workingDays: "Monday to Saturday",
-    workingHours: "9:00 AM to 7:00 PM",
+    workingHours: "9:00 AM to 6:00 PM",
   },
 
   // Social Media
   social: {
-    facebook: "https://facebook.com/fitfusion",
-    twitter: "https://twitter.com/fitfusion",
-    instagram: "https://instagram.com/fitfusion",
-    youtube: "https://youtube.com/fitfusion",
+    facebook: "https://www.facebook.com/share/19XvaiGe25/?mibextid=wwXIfr",
+    // twitter: "https://twitter.com/fitfusion",
+    instagram: "https://www.instagram.com/fitfusionayurveda?igsh=MTZ6bWd0MXJ6MzJncg%3D%3D&utm_source=qr",
+    // youtube: "https://youtube.com/fitfusion",
     linkedin: "https://linkedin.com/company/fitfusion",
   },
 

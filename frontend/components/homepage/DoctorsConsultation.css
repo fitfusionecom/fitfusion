@@ -1,6 +1,8 @@
 /* Doctors Consultation Section Styles */
 .doctors-consultation-section {
-  background: linear-gradient(135deg, #f8f9fa 0%, #e8f5e8 100%);
+  /* background: linear-gradient(135deg, #f8f9fa 0%, #e8f5e8 100%);
+   */
+  background-color: white;
   position: relative;
   padding: 40px 0;
 }
@@ -54,58 +56,7 @@
   border-color: #d4af37;
 }
 
-/* Swiper Navigation Buttons */
-.swiper-button-prev,
-.swiper-button-next {
-  width: 60px;
-  height: 60px;
-  background: #fff;
-  border: 3px solid #d4af37;
-  border-radius: 50%;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.swiper-button-prev {
-  left: -30px;
-}
-
-.swiper-button-next {
-  right: -30px;
-}
-
-.swiper-button-prev:hover,
-.swiper-button-next:hover {
-  background: #d4af37;
-  transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 12px 35px rgba(212, 175, 55, 0.4);
-  border-color: #2d5016;
-}
-
-.swiper-button-prev::after,
-.swiper-button-next::after {
-  display: none;
-}
-
-.swiper-button-prev svg,
-.swiper-button-next svg {
-  font-size: 24px;
-  color: #2d5016;
-  transition: color 0.3s ease;
-}
-
-.swiper-button-prev:hover svg,
-.swiper-button-next:hover svg {
-  color: #fff;
-}
+/* Swiper Navigation Buttons - styles are now handled globally in swiper-custom.css */
 
 /* Swiper Pagination */
 .swiper-pagination {
@@ -349,58 +300,7 @@
   flex: 1;
 }
 
-/* Benefits Swiper Navigation Buttons */
-.benefits-swiper-button-prev,
-.benefits-swiper-button-next {
-  width: 50px;
-  height: 50px;
-  background: #fff;
-  border: 2px solid #d4af37;
-  border-radius: 50%;
-  transition: all 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.benefits-swiper-button-prev {
-  left: -25px;
-}
-
-.benefits-swiper-button-next {
-  right: -25px;
-}
-
-.benefits-swiper-button-prev:hover,
-.benefits-swiper-button-next:hover {
-  background: #d4af37;
-  transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
-  border-color: #2d5016;
-}
-
-.benefits-swiper-button-prev::after,
-.benefits-swiper-button-next::after {
-  display: none;
-}
-
-.benefits-swiper-button-prev svg,
-.benefits-swiper-button-next svg {
-  font-size: 20px;
-  color: #2d5016;
-  transition: color 0.3s ease;
-}
-
-.benefits-swiper-button-prev:hover svg,
-.benefits-swiper-button-next:hover svg {
-  color: #fff;
-}
+/* Benefits Swiper Navigation Buttons - styles are now handled globally in swiper-custom.css */
 
 /* Benefits Swiper Pagination */
 .benefits-swiper-pagination {
@@ -445,33 +345,7 @@
     min-width: 100px;
   }
 
-  .swiper-button-prev,
-  .swiper-button-next {
-    width: 55px;
-    height: 55px;
-  }
-
-  .swiper-button-prev {
-    left: -27px;
-  }
-
-  .swiper-button-next {
-    right: -27px;
-  }
-
-  .benefits-swiper-button-prev,
-  .benefits-swiper-button-next {
-    width: 45px;
-    height: 45px;
-  }
-
-  .benefits-swiper-button-prev {
-    left: -22px;
-  }
-
-  .benefits-swiper-button-next {
-    right: -22px;
-  }
+  /* Swiper button styles are now handled globally in swiper-custom.css */
 }
 
 @media (max-width: 767px) {
@@ -525,33 +399,7 @@
     height: 160px;
   }
 
-  .swiper-button-prev,
-  .swiper-button-next {
-    width: 50px;
-    height: 50px;
-  }
-
-  .swiper-button-prev {
-    left: -25px;
-  }
-
-  .swiper-button-next {
-    right: -25px;
-  }
-
-  .benefits-swiper-button-prev,
-  .benefits-swiper-button-next {
-    width: 40px;
-    height: 40px;
-  }
-
-  .benefits-swiper-button-prev {
-    left: -20px;
-  }
-
-  .benefits-swiper-button-next {
-    right: -20px;
-  }
+  /* Swiper button styles are now handled globally in swiper-custom.css */
 }
 
 @media (max-width: 575px) {
@@ -584,33 +432,7 @@
     font-size: 16px;
   }
 
-  .swiper-button-prev,
-  .swiper-button-next {
-    width: 45px;
-    height: 45px;
-  }
-
-  .swiper-button-prev {
-    left: -22px;
-  }
-
-  .swiper-button-next {
-    right: -22px;
-  }
-
-  .benefits-swiper-button-prev,
-  .benefits-swiper-button-next {
-    width: 35px;
-    height: 35px;
-  }
-
-  .benefits-swiper-button-prev {
-    left: -17px;
-  }
-
-  .benefits-swiper-button-next {
-    right: -17px;
-  }
+  /* Swiper button styles are now handled globally in swiper-custom.css */
 
   .benefit-item {
     padding: 15px 10px;

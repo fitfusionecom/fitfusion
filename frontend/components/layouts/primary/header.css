@@ -56,18 +56,18 @@
   padding: 12px 16px;
   border: none;
   border-radius: 4px 0 0 4px;
-  background: #faf6e9;
+  background: #fff5ec;
   font-size: 14px;
   outline: none;
 }
 
 .search-input::placeholder {
-  color: #666;
+  color: black;
 }
 
 .search-button {
   padding: 12px 16px;
-  background: #2d5a27;
+  background: black;
   border: none;
   border-radius: 0 4px 4px 0;
   cursor: pointer;
@@ -75,10 +75,6 @@
   align-items: center;
   justify-content: center;
   transition: background-color 0.3s ease;
-}
-
-.search-button:hover {
-  background: #1e3d1a;
 }
 
 /* User Actions */

@@ -1,0 +1,294 @@
+/* Global Swiper Navigation Button Overrides */
+/* This file ensures all Swiper carousel navigation buttons are properly circular and consistent */
+
+/* Override default Swiper button styles with higher specificity */
+.swiper .swiper-button-next,
+.swiper .swiper-button-prev,
+.swiper-button-next,
+.swiper-button-prev {
+  /* Reset default Swiper styles */
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 50px !important;
+  height: 50px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  /* Circular design */
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 2px solid #d4af37 !important;
+  border-radius: 50% !important;
+
+  /* Centering content */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  /* Typography and colors */
+  color: #d4af37 !important;
+  font-size: 18px !important;
+  font-weight: bold !important;
+
+  /* Effects */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+  z-index: 10 !important;
+
+  /* Remove default Swiper arrow */
+  background-image: none !important;
+}
+
+/* Position buttons */
+.swiper .swiper-button-prev,
+.swiper-button-prev {
+  left: 15px !important;
+  right: auto !important;
+}
+
+.swiper .swiper-button-next,
+.swiper-button-next {
+  right: 15px !important;
+  left: auto !important;
+}
+
+/* Ensure buttons are visible and properly positioned in all carousel types */
+.testimonials-section .swiper .swiper-button-prev,
+.testimonials-section .swiper-button-prev {
+  left: -22px !important;
+}
+
+.testimonials-section .swiper .swiper-button-next,
+.testimonials-section .swiper-button-next {
+  right: -22px !important;
+}
+
+.doctors-consultation .swiper .swiper-button-prev,
+.doctors-consultation .swiper-button-prev {
+  left: 15px !important;
+}
+
+.doctors-consultation .swiper .swiper-button-next,
+.doctors-consultation .swiper-button-next {
+  right: 15px !important;
+}
+
+.top-products-section .swiper .swiper-button-prev,
+.top-products-section .swiper-button-prev {
+  left: 0 !important;
+}
+
+.top-products-section .swiper .swiper-button-next,
+.top-products-section .swiper-button-next {
+  right: 0 !important;
+}
+
+.product-testimonials .swiper .swiper-button-prev,
+.product-testimonials .swiper-button-prev {
+  left: 15px !important;
+}
+
+.product-testimonials .swiper .swiper-button-next,
+.product-testimonials .swiper-button-next {
+  right: 15px !important;
+}
+
+/* Hover effects */
+.swiper .swiper-button-next:hover,
+.swiper .swiper-button-prev:hover,
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background: #d4af37 !important;
+  color: #fff !important;
+  transform: translateY(-50%) scale(1.1) !important;
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4) !important;
+  border-color: #2d5016 !important;
+}
+
+/* Disabled state */
+.swiper .swiper-button-next.swiper-button-disabled,
+.swiper .swiper-button-prev.swiper-button-disabled,
+.swiper-button-next.swiper-button-disabled,
+.swiper-button-prev.swiper-button-disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+}
+
+/* Remove default Swiper arrow pseudo-elements */
+.swiper .swiper-button-next::after,
+.swiper .swiper-button-prev::after,
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  display: none !important;
+}
+
+/* Custom arrow icons using CSS */
+.swiper .swiper-button-next::before,
+.swiper .swiper-button-prev::before,
+.swiper-button-next::before,
+.swiper-button-prev::before {
+  content: "" !important;
+  width: 12px !important;
+  height: 12px !important;
+  border: 2px solid currentColor !important;
+  border-top: none !important;
+  border-right: none !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Left arrow (previous) */
+.swiper .swiper-button-prev::before,
+.swiper-button-prev::before {
+  transform: rotate(45deg) !important;
+  margin-left: 4px !important;
+}
+
+/* Right arrow (next) */
+.swiper .swiper-button-next::before,
+.swiper-button-next::before {
+  transform: rotate(225deg) !important;
+  margin-right: 4px !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .swiper .swiper-button-next,
+  .swiper .swiper-button-prev,
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 45px !important;
+    height: 45px !important;
+  }
+
+  .swiper .swiper-button-next,
+  .swiper-button-next {
+    right: 10px !important;
+  }
+
+  .swiper .swiper-button-prev,
+  .swiper-button-prev {
+    left: 10px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .swiper .swiper-button-next,
+  .swiper .swiper-button-prev,
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .swiper .swiper-button-next,
+  .swiper-button-next {
+    right: 8px !important;
+  }
+
+  .swiper .swiper-button-prev,
+  .swiper-button-prev {
+    left: 8px !important;
+  }
+}
+
+/* Special case for product image carousel */
+.product-image-carousel .swiper .swiper-button-next,
+.product-image-carousel .swiper .swiper-button-prev {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: #333 !important;
+  color: #333 !important;
+  width: 40px !important;
+  height: 40px !important;
+}
+
+.product-image-carousel .swiper .swiper-button-next:hover,
+.product-image-carousel .swiper .swiper-button-prev:hover {
+  background: rgba(255, 255, 255, 1) !important;
+  border-color: #333 !important;
+  color: #333 !important;
+}
+
+/* Special case for testimonials */
+.testimonials-section .swiper .swiper-button-next,
+.testimonials-section .swiper .swiper-button-prev {
+  background: #fff !important;
+  border-color: #d4af37 !important;
+  color: #d4af37 !important;
+  width: 45px !important;
+  height: 45px !important;
+}
+
+.testimonials-section .swiper .swiper-button-next:hover,
+.testimonials-section .swiper .swiper-button-prev:hover {
+  background: #d4af37 !important;
+  color: #fff !important;
+}
+
+/* Special case for doctors consultation */
+.doctors-consultation .swiper .swiper-button-next,
+.doctors-consultation .swiper .swiper-button-prev {
+  background: #fff !important;
+  border-color: #d4af37 !important;
+  color: #2d5016 !important;
+  width: 60px !important;
+  height: 60px !important;
+}
+
+.doctors-consultation .swiper .swiper-button-next:hover,
+.doctors-consultation .swiper .swiper-button-prev:hover {
+  background: #d4af37 !important;
+  color: #fff !important;
+}
+
+/* Special case for top products */
+.top-products-section .swiper .swiper-button-next,
+.top-products-section .swiper .swiper-button-prev {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: #333 !important;
+  color: #333 !important;
+  width: 40px !important;
+  height: 40px !important;
+}
+
+.top-products-section .swiper .swiper-button-next:hover,
+.top-products-section .swiper .swiper-button-prev:hover {
+  background: rgba(255, 255, 255, 1) !important;
+  border-color: #333 !important;
+  color: #333 !important;
+}
+
+/* Special case for care slider */
+.care-slider .swiper .swiper-button-next,
+.care-slider .swiper .swiper-button-prev {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: #cd8973 !important;
+  color: #cd8973 !important;
+  width: 40px !important;
+  height: 40px !important;
+}
+
+.care-slider .swiper .swiper-button-next:hover,
+.care-slider .swiper .swiper-button-prev:hover {
+  background: #cd8973 !important;
+  border-color: #cd8973 !important;
+  color: #fff !important;
+}
+
+/* Special case for product testimonials */
+.product-testimonials .swiper .swiper-button-next,
+.product-testimonials .swiper .swiper-button-prev {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: #cd8973 !important;
+  color: #cd8973 !important;
+  width: 40px !important;
+  height: 40px !important;
+}
+
+.product-testimonials .swiper .swiper-button-next:hover,
+.product-testimonials .swiper .swiper-button-prev:hover {
+  background: #cd8973 !important;
+  border-color: #cd8973 !important;
+  color: #fff !important;
+}

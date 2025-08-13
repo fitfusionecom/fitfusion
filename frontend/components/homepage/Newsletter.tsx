@@ -22,7 +22,7 @@ export default function Newsletter() {
         <div className="newsletter-wrapper">
           <div className="newsletter-content">
             <div className="newsletter-text">
-              <h2>Subscribe to FitFusion Care</h2>
+              <h2>Subscribe to Fit Fusion Ayurveda</h2>
               <p>
                 Find out all about our latest offers, new products, and guide to
                 Ayurveda via FitFusion newsletters

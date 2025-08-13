@@ -10,7 +10,7 @@
 }
 
 .explore-ayurveda-title {
-  color: #2d5016; /* Dark green */
+  color: black; /* Dark green */
   font-size: 36px;
   font-weight: 600;
   margin-bottom: 15px;
@@ -26,8 +26,8 @@
 }
 
 .explore-view-all-btn {
-  background: #556b2f; /* Dark olive green */
-  color: #fff;
+  background: #dcce91; /* Dark olive green */
+  color: #000000;
   padding: 0px 20px;
   min-width: 140px;
   height: 50px;
@@ -41,11 +41,12 @@
   transition: all 0.3s ease;
   display: inline-block;
   text-decoration: none;
+  border: 2px solid #dcce91;
 }
 
 .explore-view-all-btn:hover {
-  background: #6b8e23;
-  color: #fff;
+  background: black;
+  color: white;
   text-decoration: none;
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(107, 142, 35, 0.3);
@@ -144,7 +145,7 @@
 .explore-service-icon svg {
   width: 40px;
   height: 40px;
-  color: #2d5016; /* Dark green */
+  color: #d4af37; /* Dark green */
   transition: transform 0.3s ease;
 }
 
@@ -154,14 +155,14 @@
 }
 
 .explore-service-title {
-  color: #111111;
+  color: white;
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 8px;
 }
 
 .explore-service-subtitle {
-  color: #666;
+  color: white;
   font-size: 14px;
   margin-bottom: 15px;
   line-height: 1.4;

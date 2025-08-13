@@ -529,7 +529,7 @@ const ProductDetails = ({
               </div>
             </div>
           </div>
-          <div className="ayur-testimonial-section">
+          <div className="ayur-testimonial-section product-testimonials">
             <div className="swiper ayur-testimonial-slider">
               <div className="swiper-wrapper">
                 <div className="swiper-slide">

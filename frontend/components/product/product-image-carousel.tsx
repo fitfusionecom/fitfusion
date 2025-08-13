@@ -50,38 +50,7 @@ const carouselStyles = `
     border-color: #fff;
   }
   
-  .swiper-button-prev,
-  .swiper-button-next {
-    color: #333;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    margin-top: -20px;
-    transition: all 0.3s ease;
-    z-index: 20;
-    cursor: pointer;
-  }
-  
-  .swiper-button-prev:hover,
-  .swiper-button-next:hover {
-    background: rgba(255, 255, 255, 1);
-    transform: scale(1.1);
-  }
-  
-  .swiper-button-prev::after,
-  .swiper-button-next::after {
-    font-size: 18px;
-    font-weight: bold;
-  }
-  
-  .swiper-button-prev {
-    left: 10px;
-  }
-  
-  .swiper-button-next {
-    right: 10px;
-  }
+  /* Swiper button styles are now handled globally in swiper-custom.css */
 
   .enlarge-float-btn {
     position: absolute;
@@ -173,7 +142,7 @@ const ProductImageCarousel = ({
         }}
         thumbs={{ swiper: thumbsSwiper }}
         modules={[Navigation, Thumbs, Pagination]}
-        className="h-100"
+        className="h-100 product-image-carousel"
         onSlideChange={(swiper) => setActiveImage(swiper.activeIndex)}
       >
         {images.map((image, index) => (

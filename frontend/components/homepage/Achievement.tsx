@@ -32,7 +32,7 @@ const achievements = [
   // },
   {
     icon: FaUsers,
-    number: 50000,
+    number: 1000,
     text: "Happy Customers",
     suffix: "+",
     description: "Trusted by families nationwide",
@@ -40,7 +40,7 @@ const achievements = [
   },
   {
     icon: FaShieldAlt,
-    number: 100,
+    number: 50,
     text: "Natural Products",
     suffix: "+",
     description: "Pure and authentic formulations",
@@ -133,17 +133,22 @@ export default function Achievement() {
           <div className="col-12 text-center">
             <div className="achievement-header">
               <h2 className="achievement-title">
-                Why Choose FitFusion Ayurveda?
+                Why Choose Fit Fusion Ayurveda?
               </h2>
-              <div className="achievement-subtitle">
+              {/* <div className="achievement-subtitle">
                 Empowering Wellness with Ayurveda
-              </div>
+              </div> */}
               <div className="achievement-line"></div>
-              <p className="achievement-description">
-                At FitFusion, we are dedicated to delivering authentic Ayurvedic
-                solutions that nurture your body, mind, and soul. Our commitment
-                to quality and customer satisfaction has helped us achieve
-                remarkable milestones.
+              <p
+                className="achievement-description"
+                style={{
+                  color: "white",
+                }}
+              >
+                At Fit Fusion Ayurveda, we are dedicated to delivering authentic
+                Ayurvedic solutions that nurture your body, mind, and soul. Our
+                commitment to quality and customer satisfaction has helped us
+                achieve remarkable milestones.
               </p>
             </div>
           </div>
@@ -180,7 +185,7 @@ export default function Achievement() {
         </div>
 
         {/* Bottom CTA Section */}
-        <div className="row mt-5">
+        {/* <div className="row mt-5">
           <div className="col-12 text-center">
             <div className="achievement-cta">
               <div className="cta-content">
@@ -197,7 +202,7 @@ export default function Achievement() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* Background Decorative Elements */}

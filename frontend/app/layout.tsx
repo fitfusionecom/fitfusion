@@ -42,6 +42,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <link rel="stylesheet" href="/homepage/css/animate.css" />
         <link rel="stylesheet" href="/homepage/css/magnific-popup.css" />
         <link rel="stylesheet" href="/assets/css/login-form.css" />
+        <link rel="stylesheet" href="/assets/css/swiper-custom.css" />
 
         {/* Google Fonts - Updated to include all fonts used in the project */}
         <link

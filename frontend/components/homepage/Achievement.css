@@ -1,6 +1,8 @@
 /* Achievement Section Styles - Completely Different from About */
 .achievement-section {
-  background: linear-gradient(135deg, #1a1a1a 0%, #2d5016 50%, #1a1a1a 100%);
+  /* background: linear-gradient(135deg, #1a1a1a 0%, #2d5016 50%, #1a1a1a 100%); */
+  /* background: #f6e1b4; */
+  background: black;
   position: relative;
   padding: 40px 0; /* Reduced from 60px */
   color: #fff;
@@ -15,7 +17,7 @@
 }
 
 .achievement-title {
-  color: #fff;
+  color: #d4af37;
   font-size: 42px;
   font-weight: 700;
   margin-bottom: 10px; /* Reduced from 15px */

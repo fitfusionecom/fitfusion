@@ -59,10 +59,10 @@ export default function CareSlider({ categories }: CareSliderProps) {
   }, []);
 
   return (
-    <div className="ayur-care-slider-wrapper" ref={swiperRef}>
-      <div className="container-fluid">
-        <div className="ayur-care-slider-sec">
-          <div className="swiper ayur-care-slider">
+            <div className="ayur-care-slider-wrapper care-slider" ref={swiperRef}>
+          <div className="container-fluid">
+            <div className="ayur-care-slider-sec">
+              <div className="swiper ayur-care-slider">
             <div className="swiper-wrapper">
               {categories.map((category, index) => (
                 <div key={category.id || index} className="swiper-slide">
