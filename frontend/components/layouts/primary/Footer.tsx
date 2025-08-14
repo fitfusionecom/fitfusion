@@ -2,7 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { fitfusionConfig } from "@/lib/fitfusion-config";
+import FooterSection from "./FooterSection";
 import {
   FaFacebookF,
   FaTwitter,
@@ -21,6 +23,23 @@ const socialIconMap: Record<string, React.ReactNode> = {
 };
 
 export default function Footer() {
+  const [openSections, setOpenSections] = useState<{
+    categories: boolean;
+    products: boolean;
+    links: boolean;
+  }>({
+    categories: false,
+    products: false,
+    links: false,
+  });
+
+  const toggleSection = (section: keyof typeof openSections) => {
+    setOpenSections((prev) => ({
+      ...prev,
+      [section]: !prev[section],
+    }));
+  };
+
   return (
     <footer
       className="ayur-footer-section"
@@ -116,154 +135,65 @@ export default function Footer() {
             </div>
 
             {/* Popular Categories */}
-            <div className="col-6 col-sm-6 col-lg-2 mb-4">
-              <div className="ayur-footer-box">
-                <h4
-                  className="fw-semibold mb-3"
-                  style={{
-                    fontSize: "14px",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.5px",
-                    color: "black",
-                  }}
-                >
-                  Popular Categories
-                </h4>
-                <ul className="ayur-links list-unstyled">
-                  {[
-                    "Vigor & Vitality",
-                    "Men Health",
-                    "Ayurvedic Juices",
-                    "Chyawanprash",
-                    "Hair Care",
-                    "Immunity Boosters",
-                    "Digestion Care",
-                    "Skin Care",
-                    "Pain Management",
-                    "Liver Care",
-                    "All Collections",
-                  ].map((category, index) => (
-                    <li key={index} className="mb-2">
-                      <Link
-                        href={`/shop?category=${category
-                          .toLowerCase()
-                          .replace(/\s+/g, "-")}`}
-                        className="text-muted text-decoration-none"
-                        style={{ fontSize: "13px", transition: "color 0.2s" }}
-                        onMouseEnter={(e) =>
-                          (e.currentTarget.style.color = "#e67e22")
-                        }
-                        onMouseLeave={(e) =>
-                          (e.currentTarget.style.color = "#6c757d")
-                        }
-                      >
-                        {category}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            <div className="col-12 col-sm-6 col-lg-2 mb-4">
+              <FooterSection
+                title="Popular Categories"
+                items={[
+                  "Lifestyle & Habit Control",
+                  "Vigor & Vitality",
+                  "Men Health",
+                  "Immunity Boosters",
+                  "Digestion Care",
+                  "All Collections",
+                ]}
+                isOpen={openSections.categories}
+                onToggle={() => toggleSection("categories")}
+                linkType="category"
+              />
             </div>
 
             {/* Popular Products */}
-            <div className="col-6 col-sm-6 col-lg-2 mb-4">
-              <div className="ayur-footer-box">
-                <h4
-                  className="fw-semibold mb-3"
-                  style={{
-                    fontSize: "14px",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.5px",
-                    color: "black",
-                  }}
-                >
-                  Popular Products
-                </h4>
-                <ul className="ayur-links list-unstyled">
-                  {[
-                    "Ashwagandha Capsules",
-                    "Shilajit Resin",
-                    "Chyawanprash",
-                    "Hair Growth Oil",
-                    "Liver Care Tablets",
-                    "Immunity Boosters",
-                    "Digestive Supplements",
-                    "Skin Care Creams",
-                    "Pain Relief Oils",
-                    "Honey Products",
-                    "View All Products",
-                  ].map((product, index) => (
-                    <li key={index} className="mb-2">
-                      <Link
-                        href={`/shop?search=${product
-                          .toLowerCase()
-                          .replace(/\s+/g, "-")}`}
-                        className="text-muted text-decoration-none"
-                        style={{ fontSize: "13px", transition: "color 0.2s" }}
-                        onMouseEnter={(e) =>
-                          (e.currentTarget.style.color = "#e67e22")
-                        }
-                        onMouseLeave={(e) =>
-                          (e.currentTarget.style.color = "#6c757d")
-                        }
-                      >
-                        {product}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            <div className="col-12 col-sm-6 col-lg-2 mb-4">
+              <FooterSection
+                title="Popular Products"
+                items={[
+                  "Massage Oil",
+                  "Men's Health Kit",
+                  "Josh Power Capsule",
+                  "Sugar Medic",
+                  "Ashwagandha Capsules",
+                  "Shilajit Resin",
+                  "Digestive Supplements",
+                  "View All Products",
+                ]}
+                isOpen={openSections.products}
+                onToggle={() => toggleSection("products")}
+                linkType="product"
+              />
             </div>
 
             {/* Quick Links */}
-            <div className="col-6 col-sm-6 col-lg-2 mb-4">
-              <div className="ayur-footer-box">
-                <h4
-                  className="fw-semibold mb-3"
-                  style={{
-                    fontSize: "14px",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.5px",
-                    color: "black",
-                  }}
-                >
-                  Quick Links
-                </h4>
-                <ul className="ayur-links list-unstyled">
-                  {[
-                    { name: "About Us", href: "/about" },
-                    { name: "Contact Us", href: "/contact" },
-                    { name: "Return Policy", href: "/return-policy" },
-                    { name: "Privacy Policy", href: "/privacy" },
-                    { name: "FAQs", href: "/faqs" },
-                    { name: "Shipping Policy", href: "/shipping" },
-                    { name: "Terms of Service", href: "/terms" },
-                    { name: "Refund Policy", href: "/refund" },
-                    { name: "Blog", href: "/blog" },
-                    // { name: "Sitemap", href: "/sitemap" },
-                  ].map((link, index) => (
-                    <li key={index} className="mb-2">
-                      <Link
-                        href={link.href}
-                        className="text-muted text-decoration-none"
-                        style={{ fontSize: "13px", transition: "color 0.2s" }}
-                        onMouseEnter={(e) =>
-                          (e.currentTarget.style.color = "#e67e22")
-                        }
-                        onMouseLeave={(e) =>
-                          (e.currentTarget.style.color = "#6c757d")
-                        }
-                      >
-                        {link.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            <div className="col-12 col-sm-6 col-lg-2 mb-4">
+              <FooterSection
+                title="Quick Links"
+                items={[
+                  { name: "About Us", href: "/about" },
+                  { name: "Contact Us", href: "/contact" },
+                  { name: "Return & Refund Policy", href: "/return-policy" },
+                  { name: "Privacy Policy", href: "/privacy" },
+                  { name: "FAQs", href: "/faqs" },
+                  { name: "Shipping Policy", href: "/shipping" },
+                  { name: "Terms & Conditions", href: "/terms" },
+                  { name: "Blog", href: "/blog" },
+                ]}
+                isOpen={openSections.links}
+                onToggle={() => toggleSection("links")}
+                linkType="custom"
+              />
             </div>
 
             {/* Social Media Only */}
-            <div className="col-6 col-sm-6 col-lg-2 mb-4">
+            <div className="col-12 col-sm-6 col-lg-2 mb-4">
               <div className="ayur-footer-box">
                 <h4
                   className="fw-semibold mb-3"
