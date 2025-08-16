@@ -232,7 +232,7 @@ export default function Footer() {
                   Follow Us
                 </h4>
                 {/* Social Media Icons */}
-                <div className="d-flex flex-wrap gap-2">
+                <div className="d-flex flex-wrap gap-2 mb-4">
                   {[
                     {
                       name: "Facebook",
@@ -287,6 +287,80 @@ export default function Footer() {
                         </span>
                       </a>
                     ))}
+                </div>
+
+                {/* Payment Methods Section */}
+                <div className="ayur-footer-box">
+                  <h4
+                    className="fw-semibold mb-3"
+                    style={{
+                      fontSize: "14px",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.5px",
+                      color: "black",
+                    }}
+                  >
+                    We Accept
+                  </h4>
+                  <div className="d-flex flex-wrap gap-2">
+                    {[
+                      { name: "Visa", src: "/assets/images/footer/visa.webp" },
+                      {
+                        name: "American Express",
+                        src: "/assets/images/footer/amex.png",
+                      },
+                      {
+                        name: "Paytm",
+                        src: "/assets/images/footer/paytm.avif",
+                      },
+                      {
+                        name: "PhonePe",
+                        src: "/assets/images/footer/phone-pe.webp",
+                      },
+                      {
+                        name: "UPI",
+                        src: "/assets/images/footer/upi-icon.webp",
+                      },
+                      {
+                        name: "Net Banking",
+                        src: "/assets/images/footer/net_banking.webp",
+                      },
+                      {
+                        name: "Airtel Payment Bank",
+                        src: "/assets/images/footer/airtel-payment-bank.avif",
+                      },
+                      {
+                        name: "M-Payment",
+                        src: "/assets/images/footer/m-payment.webp",
+                      },
+                    ].map((payment, index) => (
+                      <div
+                        key={index}
+                        className="d-flex align-items-center justify-content-center"
+                        style={{
+                          width: "50px",
+                          height: "32px",
+                          backgroundColor: "white",
+                          borderRadius: "4px",
+                          padding: "3px",
+                          border: "1px solid #e0e0e0",
+                        }}
+                        title={payment.name}
+                      >
+                        <Image
+                          src={payment.src}
+                          alt={payment.name}
+                          width={44}
+                          height={26}
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "contain",
+                          }}
+                        />
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
