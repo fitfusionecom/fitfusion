@@ -1,4 +1,8 @@
-# Banner Component
+# Homepage Components
+
+This directory contains various components used on the FitFusion homepage.
+
+## Banner Component
 
 A simple, responsive image carousel banner component built with React and Next.js, similar to Deodap Zandu Care style.
 
@@ -119,3 +123,90 @@ Custom CSS is available in `Banner.css` for:
 - CSS transitions use GPU acceleration
 - Minimal JavaScript for smooth performance
 - Reduced motion support for accessibility
+
+---
+
+## VideoGallery Component
+
+A modern, responsive video gallery component that displays videos in an Instagram reel-like carousel format.
+
+### Features
+
+- **Carousel Display**: Shows 5 videos at a time with navigation arrows
+- **Instagram Reel Style**: Videos have a 3:4 aspect ratio similar to Instagram reels
+- **Interactive Elements**:
+  - Play button overlay on hover
+  - View count display
+  - Click to open modal
+- **Modal Popup**:
+  - Full-screen video player
+  - Play/pause controls
+  - Left/right navigation between videos
+  - Share functionality
+  - Video details display
+
+### Usage
+
+```tsx
+import VideoGallery from "@/components/homepage/VideoGallery";
+import { getVideos } from "@/lib/data/video";
+
+export default async function Home() {
+  const videos = await getVideos();
+
+  return (
+    <div>
+      <VideoGallery videos={videos} />
+    </div>
+  );
+}
+```
+
+### Video Data Structure
+
+```typescript
+interface Video {
+  id: string;
+  url: string;
+  product_id: string;
+  title?: string;
+  description?: string;
+  thumbnail?: string;
+  views?: number;
+  duration?: number;
+}
+```
+
+### Styling
+
+The component uses CSS modules with:
+
+- Responsive design for mobile, tablet, and desktop
+- Smooth animations and transitions
+- Modern gradient backgrounds
+- Hover effects and interactive states
+
+### Backend Integration
+
+To use real video data from the backend:
+
+1. Ensure the video module is properly configured
+2. Run the database migrations to add the new fields
+3. Uncomment the `getVideos()` call in the homepage
+4. Remove the mock data import
+
+### Sample Videos
+
+The component includes sample videos from Google's sample video collection for testing purposes. Replace these with your actual video URLs in production.
+
+### Responsive Breakpoints
+
+- **Desktop**: 5 videos visible, full navigation
+- **Tablet**: 4 videos visible, adjusted spacing
+- **Mobile**: 3 videos visible, compact layout
+
+### Browser Support
+
+- Modern browsers with ES6+ support
+- Video element support required
+- Web Share API for sharing (with clipboard fallback)

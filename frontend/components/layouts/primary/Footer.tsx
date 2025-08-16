@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { fitfusionConfig } from "@/lib/fitfusion-config";
 import FooterSection from "./FooterSection";
+import FooterMobile from "./FooterMobile";
 import {
   FaFacebookF,
   FaTwitter,
@@ -23,6 +23,7 @@ const socialIconMap: Record<string, React.ReactNode> = {
 };
 
 export default function Footer() {
+  const [isMobile, setIsMobile] = useState(false);
   const [openSections, setOpenSections] = useState<{
     categories: boolean;
     products: boolean;
@@ -33,6 +34,21 @@ export default function Footer() {
     links: false,
   });
 
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 768); // 768px is the breakpoint for md screens
+    };
+
+    // Check on mount
+    checkScreenSize();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", checkScreenSize);
+
+    // Cleanup
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
+
   const toggleSection = (section: keyof typeof openSections) => {
     setOpenSections((prev) => ({
       ...prev,
@@ -40,6 +56,12 @@ export default function Footer() {
     }));
   };
 
+  // Render mobile footer for small screens
+  if (isMobile) {
+    return <FooterMobile />;
+  }
+
+  // Render desktop footer for medium and large screens
   return (
     <footer
       className="ayur-footer-section"
@@ -179,7 +201,10 @@ export default function Footer() {
                 items={[
                   { name: "About Us", href: "/about" },
                   { name: "Contact Us", href: "/contact" },
-                  { name: "Return & Refund Policy", href: "/return-policy" },
+                  {
+                    name: "Cancellation & Refund Policy",
+                    href: "/return-policy",
+                  },
                   { name: "Privacy Policy", href: "/privacy" },
                   { name: "FAQs", href: "/faqs" },
                   { name: "Shipping Policy", href: "/shipping" },

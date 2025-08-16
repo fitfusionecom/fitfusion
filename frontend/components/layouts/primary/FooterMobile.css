@@ -1,0 +1,82 @@
+/* Mobile Footer Styles */
+.ayur-footer-section .ayur-footer-sec {
+  padding: 1rem 0;
+}
+
+/* Accordion Section Headers */
+.ayur-footer-section .accordion-header {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.ayur-footer-section .accordion-header:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.ayur-footer-section .accordion-header:active {
+  transform: scale(0.98);
+}
+
+/* Accordion Content */
+.ayur-footer-section .accordion-content {
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 0 0 8px 8px;
+  margin-top: -1px;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Social Media Icons */
+.ayur-footer-section .social-icon {
+  transition: all 0.3s ease;
+}
+
+.ayur-footer-section .social-icon:hover {
+  transform: scale(1.1);
+}
+
+/* Mobile-specific spacing */
+@media (max-width: 767px) {
+  .ayur-footer-section .ayur-footer-sec {
+    padding: 0.75rem 0;
+  }
+
+  .ayur-footer-section .accordion-header {
+    padding: 0.75rem 1rem;
+  }
+
+  .ayur-footer-section .accordion-content {
+    padding: 1rem;
+  }
+
+  .ayur-footer-section .social-icon {
+    width: 40px !important;
+    height: 40px !important;
+    font-size: 16px !important;
+  }
+}
+
+/* Touch-friendly interactions */
+@media (hover: none) and (pointer: coarse) {
+  .ayur-footer-section .accordion-header {
+    min-height: 48px;
+  }
+
+  .ayur-footer-section .social-icon {
+    min-height: 48px;
+  }
+}

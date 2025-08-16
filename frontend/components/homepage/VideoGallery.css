@@ -1,0 +1,432 @@
+.video-gallery-section {
+  padding: 80px 0;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.video-gallery-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+      circle at 20% 80%,
+      rgba(99, 102, 241, 0.05) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(139, 92, 246, 0.05) 0%,
+      transparent 50%
+    );
+  pointer-events: none;
+}
+
+.video-gallery-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-header p {
+  font-size: 1.1rem;
+  color: #64748b;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.video-carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 0;
+}
+
+/* Swiper Styles */
+.video-swiper {
+  width: 100%;
+  padding: 20px 0;
+  overflow: visible;
+}
+
+.video-swiper .swiper-slide {
+  height: auto;
+  display: flex;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.video-swiper .swiper-slide-active {
+  transform: scale(1.02);
+}
+
+.video-swiper .swiper-slide-prev,
+.video-swiper .swiper-slide-next {
+  opacity: 0.8;
+}
+
+.video-swiper .swiper-pagination {
+  bottom: -30px;
+  margin-top: 20px;
+}
+
+.video-swiper .swiper-pagination-bullet {
+  background: #cbd5e1;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+  width: 8px;
+  height: 8px;
+  margin: 0 4px;
+}
+
+.video-swiper .swiper-pagination-bullet-active {
+  background: #6366f1;
+  opacity: 1;
+  transform: scale(1.2);
+  width: 24px;
+  border-radius: 4px;
+}
+
+.video-swiper .swiper-pagination-bullet:hover {
+  background: #8b5cf6;
+  opacity: 0.8;
+}
+
+/* Hide default Swiper navigation arrows */
+.video-swiper .swiper-button-next,
+.video-swiper .swiper-button-prev {
+  display: none;
+}
+
+/* Hide default modal Swiper navigation and pagination */
+.modal-video-swiper .swiper-button-next,
+.modal-video-swiper .swiper-button-prev,
+.modal-video-swiper .swiper-pagination {
+  display: none !important;
+}
+
+.carousel-nav-btn {
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.carousel-nav-btn:hover:not(:disabled) {
+  background: white;
+  transform: translateY(-50%) scale(1.15);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+.carousel-nav-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.carousel-nav-btn svg {
+  color: #6366f1;
+  width: 24px;
+  height: 24px;
+  transition: all 0.3s ease;
+}
+
+.carousel-nav-btn:hover:not(:disabled) svg {
+  color: #4f46e5;
+}
+
+.prev-btn {
+  left: -28px;
+}
+
+.next-btn {
+  right: -28px;
+}
+
+/* Remove old video-carousel styles as we're using Swiper now */
+
+.video-card {
+  flex: 0 0 220px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 20px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  border: 2px solid transparent;
+}
+
+.video-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+.video-thumbnail {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+}
+
+.video-thumbnail .video-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #000;
+  border-radius: 20px 20px 0 0;
+  /* Ensure videos maintain aspect ratio */
+  aspect-ratio: 3/4;
+  filter: brightness(0.9);
+}
+
+/* Fallback for videos that don't load */
+.video-thumbnail .video-preview:not([src]) {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Video loading and error states */
+.video-thumbnail .video-preview[data-loading="true"] {
+  background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Ensure videos are properly styled */
+.video-thumbnail .video-preview::-webkit-media-controls {
+  display: none !important;
+}
+
+.video-thumbnail .video-preview::-webkit-media-controls-panel {
+  display: none !important;
+}
+
+.video-thumbnail .video-preview::-webkit-media-controls-play-button {
+  display: none !important;
+}
+
+.video-thumbnail .video-preview::-webkit-media-controls-start-playback-button {
+  display: none !important;
+}
+
+.video-card:hover .video-thumbnail .video-preview {
+  transform: scale(1.08);
+  filter: brightness(1.1);
+}
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(2px);
+}
+
+.video-card:hover .video-overlay {
+  opacity: 1;
+}
+
+.video-card:hover .play-icon {
+  transform: scale(1.1);
+  box-shadow: 0 12px 32px rgba(99, 102, 241, 0.6);
+}
+
+.play-icon {
+  width: 70px;
+  height: 70px;
+  color: white;
+  background: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.95),
+    rgba(139, 92, 246, 0.95)
+  );
+  border-radius: 50%;
+  padding: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+  transition: all 0.3s ease;
+}
+
+.video-info {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+}
+
+.views-count {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 25px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.video-title {
+  padding: 20px;
+  background: linear-gradient(135deg, #ffffff, #f8fafc);
+  border-top: 1px solid #e2e8f0;
+}
+
+.video-title h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+  line-height: 1.4;
+  text-align: center;
+}
+
+/* Modal styles are now in VideoModal.css */
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .video-gallery-section {
+    padding: 60px 0;
+  }
+
+  .section-header h2 {
+    font-size: 2rem;
+  }
+
+  .video-card {
+    flex: 0 0 180px;
+  }
+
+  .video-thumbnail {
+    height: 260px;
+  }
+
+  .carousel-nav-btn {
+    width: 48px;
+    height: 48px;
+  }
+
+  .carousel-nav-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .prev-btn {
+    left: -24px;
+  }
+
+  .next-btn {
+    right: -24px;
+  }
+
+  .play-icon {
+    width: 60px;
+    height: 60px;
+    padding: 14px;
+  }
+
+  /* Modal responsive styles are now in VideoModal.css */
+}
+
+@media (max-width: 480px) {
+  .video-card {
+    flex: 0 0 150px;
+  }
+
+  .video-thumbnail {
+    height: 220px;
+  }
+
+  .carousel-nav-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .carousel-nav-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .prev-btn {
+    left: -22px;
+  }
+
+  .next-btn {
+    right: -22px;
+  }
+
+  .play-icon {
+    width: 50px;
+    height: 50px;
+    padding: 12px;
+  }
+
+  .section-header h2 {
+    font-size: 1.75rem;
+  }
+
+  .section-header p {
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,94 @@
+/* Google Reviews Section Styles */
+.google-reviews-section {
+  background-color: #f8f9fa;
+  padding: 60px 0;
+}
+
+.google-reviews-section .card {
+  transition: all 0.3s ease;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.google-reviews-section .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.google-reviews-section .card-body {
+  padding: 1.5rem;
+}
+
+.google-reviews-section .text-warning {
+  color: #ffc107 !important;
+}
+
+.google-reviews-section .text-muted {
+  color: #6c757d !important;
+}
+
+.google-reviews-section .text-dark {
+  color: #343a40 !important;
+}
+
+/* Navigation Arrows */
+.google-reviews-section .btn-link {
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.google-reviews-section .btn-link:hover {
+  color: #007bff !important;
+  transform: scale(1.1);
+}
+
+/* Dots Indicator */
+.google-reviews-section .btn-sm.rounded-circle {
+  transition: all 0.3s ease;
+}
+
+.google-reviews-section .btn-sm.rounded-circle:hover {
+  transform: scale(1.2);
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+  .google-reviews-section {
+    padding: 40px 0;
+  }
+  
+  .google-reviews-section .card {
+    min-width: 280px !important;
+    max-width: 320px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .google-reviews-section {
+    padding: 30px 0;
+  }
+  
+  .google-reviews-section .card {
+    min-width: 250px !important;
+    max-width: 300px !important;
+  }
+  
+  .google-reviews-section .card-body {
+    padding: 1rem;
+  }
+  
+  .google-reviews-section h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .google-reviews-section .d-flex.gap-3 {
+    gap: 0.5rem !important;
+  }
+  
+  .google-reviews-section .card {
+    min-width: 220px !important;
+    max-width: 280px !important;
+  }
+}

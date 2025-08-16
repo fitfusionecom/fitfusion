@@ -22,7 +22,7 @@ export default function FooterSection({
     if (typeof item === "object") {
       return item.href;
     }
-    
+
     const itemName = item;
     switch (linkType) {
       case "category":
@@ -75,12 +75,8 @@ export default function FooterSection({
               href={generateHref(item)}
               className="text-muted text-decoration-none"
               style={{ fontSize: "13px", transition: "color 0.2s" }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.color = "#e67e22")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.color = "#6c757d")
-              }
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#e67e22")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "#6c757d")}
             >
               {getItemName(item)}
             </Link>
