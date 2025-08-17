@@ -57,7 +57,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <div className="product-card">
       {/* Product Image Section */}
-      <div className="product-card-image">
+      <div>
         <ProductImage
           thumbnail={product.thumbnail}
           images={product.images}
@@ -81,7 +81,16 @@ export default function ProductCard({ product }: ProductCardProps) {
         </div>
 
         {/* Product Title */}
-        <h3 className="product-title text-center">
+        <h3
+          className="product-title text-center"
+          style={{
+            display: "-webkit-box",
+            WebkitLineClamp: 1,
+            WebkitBoxOrient: "vertical",
+            overflow: "hidden",
+            minHeight: "unset",
+          }}
+        >
           <Link href={`/product/${product.handle}`}>{product.title}</Link>
         </h3>
 
