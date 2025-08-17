@@ -16,57 +16,52 @@ interface CategoryBarProps {
 // All category and subcategory hrefs now point to /shop
 const defaultCategories: Category[] = [
   {
-    name: "Gym & Energy",
+    name: "Men’s Health & Wellness",
     href: "/shop",
     subcategories: [
-      { name: "Pre-Workout", href: "/shop" },
-      { name: "Post-Workout", href: "/shop" },
-      { name: "Energy Boosters", href: "/shop" },
+      { name: "Sexual Wellness", href: "/shop" },
+      { name: "Stamina & Energy Boosters", href: "/shop" },
+      { name: "Muscle Growth & Strength", href: "/shop" },
     ],
   },
   {
-    name: "Weight, Sugar & Stress",
+    name: "Immunity & Vitality",
     href: "/shop",
     subcategories: [
-      { name: "Weight Management", href: "/shop" },
-      { name: "Sugar Control", href: "/shop" },
-      { name: "Stress Relief", href: "/shop" },
+      { name: "Immune System Boosters", href: "/shop" },
+      { name: "General Wellness", href: "/shop" },
     ],
   },
   {
-    name: "Liver & Gut",
+    name: "Lifestyle & Habit Control",
     href: "/shop",
     subcategories: [
-      { name: "Liver Health", href: "/shop" },
-      { name: "Digestive Health", href: "/shop" },
-      { name: "Detox Products", href: "/shop" },
+      { name: "Detox & De-addiction", href: "/shop" },
+      { name: "Stress & Anxiety Relief", href: "/shop" },
+      { name: "Sleep Support (Sleep-O-Fit)", href: "/shop" },
     ],
   },
   {
-    name: "Immunity",
+    name: "Metabolic & Chronic Care",
     href: "/shop",
-    subcategories: [
-      { name: "Immune Boosters", href: "/shop" },
-      { name: "Vitamin C", href: "/shop" },
-      { name: "Herbal Immunity", href: "/shop" },
-    ],
+    subcategories: [{ name: "Diabetes Care", href: "/shop" }],
   },
   {
-    name: "Hair, Skin & Oral Care",
+    name: "Digestive Health",
     href: "/shop",
-    subcategories: [
-      { name: "Hair Care", href: "/shop" },
-      { name: "Skin Care", href: "/shop" },
-      { name: "Oral Care", href: "/shop" },
-    ],
+    subcategories: [{ name: "Digestion Support", href: "/shop" }],
   },
   {
-    name: "Superfoods & Juices",
+    name: "Ashwagandha",
+    href: "/shop",
+    subcategories: [{ name: "Ashwagandha Capsules", href: "/shop" }],
+  },
+  {
+    name: "Shilajit",
     href: "/shop",
     subcategories: [
-      { name: "Superfoods", href: "/shop" },
-      { name: "Fresh Juices", href: "/shop" },
-      { name: "Health Drinks", href: "/shop" },
+      { name: "Pure Shilajit Resin", href: "/shop" },
+      { name: "Shilajit Capsules", href: "/shop" },
     ],
   },
 ];
@@ -98,13 +93,7 @@ export default function CategoryBar({
                 tabIndex={0}
                 style={{ position: "relative" }}
               >
-                <Link
-                  href={category.href}
-                  className="category-link"
-                  style={{
-                    fontSize: "1rem", // 16px, base size for category title
-                  }}
-                >
+                <Link href={category.href} className="category-link">
                   {category.name}
                   {category.subcategories && (
                     <svg
@@ -158,7 +147,6 @@ export default function CategoryBar({
                           key={subcategory.name}
                           className="subcategory-item"
                           style={{
-                            padding: "0.1rem 0.2rem", // Reduced padding for less gap
                             whiteSpace: "nowrap",
                             display: "flex",
                             alignItems: "center",
@@ -178,10 +166,16 @@ export default function CategoryBar({
                               justifyContent: "space-between",
                               textDecoration: "none",
                               color: "inherit",
-                              fontSize: "0.95rem", // 15.2px, slightly smaller than category title
+                              fontSize: "12px",
                             }}
                           >
-                            <span>{subcategory.name}</span>
+                            <span
+                              style={{
+                                fontSize: "12px",
+                              }}
+                            >
+                              {subcategory.name}
+                            </span>
                             {/* Right Arrow */}
                             <svg
                               width="14"
