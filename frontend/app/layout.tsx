@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import { ReactNode } from "react";
 import PrimaryLayout from "@/components/layouts/primary";
+import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

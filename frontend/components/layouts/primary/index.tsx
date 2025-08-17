@@ -1,5 +1,6 @@
 import Header from "./Header";
 import Footer from "./Footer";
+import Offer from "./Offer";
 import ReactQueryProvider from "@/lib/ReactQueryProvider";
 import NuqsProvider from "@/lib/NuqsProvider";
 import { CartProvider } from "@/lib/context/cart-context";
@@ -15,6 +16,7 @@ export default function PrimaryLayout({
     <ReactQueryProvider>
       <NuqsProvider>
         <CartProvider>
+          <Offer />
           <Header />
           {children}
           <Footer />

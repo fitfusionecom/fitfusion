@@ -55,7 +55,7 @@ export default function Header() {
       <div
         style={{
           position: "fixed",
-          top: 0,
+          top: "36px", // Account for Offer banner height
           left: 0,
           right: 0,
           zIndex: 1050,

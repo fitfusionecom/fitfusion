@@ -1,0 +1,16 @@
+/* Global styles for Offer banner spacing */
+body {
+  padding-top: 156px; /* 36px (Offer) + 120px (Header) */
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-top: 112px; /* 32px (Offer mobile) + 80px (Header mobile) */
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding-top: 108px; /* 28px (Offer small mobile) + 80px (Header mobile) */
+  }
+}
