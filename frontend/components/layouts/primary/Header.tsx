@@ -200,13 +200,6 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Spacer to prevent content from being hidden behind the fixed header */}
-      <div
-        style={{
-          height: `clamp(${HEADER_HEIGHT_MOBILE}px, 8vh, ${HEADER_HEIGHT_DESKTOP}px)`,
-        }}
-      />
-
       {/* Mobile Search Modal */}
       {isSearchModalOpen && (
         <div

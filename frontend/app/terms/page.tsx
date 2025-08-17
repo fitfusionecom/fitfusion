@@ -1,23 +1,18 @@
 import { fitfusionConfig } from "@/lib/fitfusion-config";
 
 export const metadata = {
-  title: `Terms of Service - ${fitfusionConfig.brand.name}`,
-  description: `Terms of Service for ${fitfusionConfig.brand.name}. Read our terms and conditions for using our services and products.`,
+  title: `Terms & Conditions - ${fitfusionConfig.brand.name}`,
+  description: `Terms & Conditions for ${fitfusionConfig.brand.name}. Read our terms and conditions for using our services and products.`,
 };
 
 export default function TermsPage() {
   return (
     <div
-      className="ayur-bgcover "
+      className="ayur-bgcover"
       style={{
         background: "whitesmoke",
       }}
     >
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
       <div className="container">
         {/* Terms Content */}
         <div className="pa-about-content spacer-top spacer-bottom">
@@ -27,158 +22,186 @@ export default function TermsPage() {
                 <h5 className="text-uppercase text-center">
                   Legal Information
                 </h5>
-                <h1 className="text-center ">Terms of Service</h1>
+                <h1 className="text-center ">Terms & Conditions</h1>
                 <p className="text-center">
                   Last updated: {fitfusionConfig.legal.termsLastUpdated}
                 </p>
               </div>
 
               <div className="pa-about-text">
-                <h3>1. Acceptance of Terms</h3>
                 <p>
-                  By accessing and using {fitfusionConfig.brand.name} website
-                  and services, you accept and agree to be bound by the terms
-                  and provision of this agreement. If you do not agree to abide
-                  by the above, please do not use this service.
+                  Welcome to Fit Fusion Ayurveda ("we," "our," "us"). By
+                  accessing and using our website fitfusionayurveda.com, you
+                  agree to be bound by these Terms & Conditions. Please read
+                  them carefully before making any purchase.
                 </p>
 
-                <h3>2. Use License</h3>
-                <p>
-                  Permission is granted to temporarily download one copy of the
-                  materials (information or software) on{" "}
-                  {fitfusionConfig.brand.name} website for personal,
-                  non-commercial transitory viewing only. This is the grant of a
-                  license, not a transfer of title, and under this license you
-                  may not:
-                </p>
+                <h3>1. General</h3>
                 <ul>
-                  <li>Modify or copy the materials</li>
                   <li>
-                    Use the materials for any commercial purpose or for any
-                    public display (commercial or non-commercial)
+                    These Terms & Conditions govern your use of our website,
+                    products, and services.
                   </li>
                   <li>
-                    Attempt to decompile or reverse engineer any software
-                    contained on {fitfusionConfig.brand.name} website
+                    We may update these terms at any time without prior notice.
+                    The revised version will be posted on our website.
                   </li>
                   <li>
-                    Remove any copyright or other proprietary notations from the
-                    materials
-                  </li>
-                  <li>
-                    Transfer the materials to another person or "mirror" the
-                    materials on any other server
+                    Your continued use of our services constitutes acceptance of
+                    any changes.
                   </li>
                 </ul>
 
-                <h3>3. Disclaimer</h3>
-                <p>
-                  The materials on {fitfusionConfig.brand.name} website are
-                  provided on an 'as is' basis. {fitfusionConfig.brand.name}{" "}
-                  makes no warranties, expressed or implied, and hereby
-                  disclaims and negates all other warranties including without
-                  limitation, implied warranties or conditions of
-                  merchantability, fitness for a particular purpose, or
-                  non-infringement of intellectual property or other violation
-                  of rights.
-                </p>
+                <h3>2. Eligibility</h3>
+                <ul>
+                  <li>
+                    You must be at least 18 years old to place an order on our
+                    website.
+                  </li>
+                  <li>
+                    If you are under 18, you may use our services only with the
+                    involvement of a parent or legal guardian.
+                  </li>
+                </ul>
 
-                <h3>4. Limitations</h3>
-                <p>
-                  In no event shall {fitfusionConfig.brand.name} or its
-                  suppliers be liable for any damages (including, without
-                  limitation, damages for loss of data or profit, or due to
-                  business interruption) arising out of the use or inability to
-                  use the materials on {fitfusionConfig.brand.name} website,
-                  even if {fitfusionConfig.brand.name} or a{" "}
-                  {fitfusionConfig.brand.name} authorized representative has
-                  been notified orally or in writing of the possibility of such
-                  damage.
-                </p>
+                <h3>3. Products & Usage</h3>
+                <ul>
+                  <li>All our products are herbal and Ayurvedic in nature.</li>
+                  <li>
+                    They are not intended to diagnose, treat, cure, or prevent
+                    any disease.
+                  </li>
+                  <li>Results may vary from person to person.</li>
+                  <li>
+                    We advise consulting a qualified healthcare practitioner
+                    before starting any new supplement, especially if you are
+                    pregnant, nursing, or have a medical condition.
+                  </li>
+                </ul>
 
-                <h3>5. Accuracy of Materials</h3>
-                <p>
-                  The materials appearing on {fitfusionConfig.brand.name}{" "}
-                  website could include technical, typographical, or
-                  photographic errors. {fitfusionConfig.brand.name} does not
-                  warrant that any of the materials on its website are accurate,
-                  complete or current. {fitfusionConfig.brand.name} may make
-                  changes to the materials contained on its website at any time
-                  without notice.
-                </p>
+                <h3>4. Pricing & Payment</h3>
+                <ul>
+                  <li>
+                    All prices listed on the website are inclusive of applicable
+                    taxes.
+                  </li>
+                  <li>
+                    We reserve the right to change prices without prior notice.
+                  </li>
+                  <li>
+                    Payment must be made via approved methods: Credit/Debit
+                    Card, Net Banking, UPI, E-Wallets, or Cash on Delivery (COD
+                    where available).
+                  </li>
+                </ul>
 
-                <h3>6. Links</h3>
-                <p>
-                  {fitfusionConfig.brand.name} has not reviewed all of the sites
-                  linked to its website and is not responsible for the contents
-                  of any such linked site. The inclusion of any link does not
-                  imply endorsement by {fitfusionConfig.brand.name} of the site.
-                  Use of any such linked website is at the user's own risk.
-                </p>
+                <h3>5. Orders & Acceptance</h3>
+                <ul>
+                  <li>
+                    Placing an order does not guarantee acceptance. We reserve
+                    the right to refuse or cancel any order due to:
+                  </li>
+                  <ul>
+                    <li>Product unavailability</li>
+                    <li>Pricing errors</li>
+                    <li>Fraudulent activity or suspicious transactions</li>
+                  </ul>
+                  <li>
+                    Order confirmation will be sent via email/SMS after
+                    successful payment or COD verification.
+                  </li>
+                </ul>
 
-                <h3>7. Modifications</h3>
-                <p>
-                  {fitfusionConfig.brand.name} may revise these terms of service
-                  for its website at any time without notice. By using this
-                  website you are agreeing to be bound by the then current
-                  version of these Terms of Service.
-                </p>
+                <h3>6. Shipping & Delivery</h3>
+                <ul>
+                  <li>
+                    We deliver across Pan India via trusted courier partners.
+                  </li>
+                  <li>
+                    Estimated delivery time is generally 3–5 business days, but
+                    this may vary based on location.
+                  </li>
+                  <li>
+                    For detailed information, please refer to our Shipping
+                    Policy.
+                  </li>
+                </ul>
 
-                <h3>8. Governing Law</h3>
-                <p>
-                  These terms and conditions are governed by and construed in
-                  accordance with the laws of India and you irrevocably submit
-                  to the exclusive jurisdiction of the courts in that State or
-                  location.
-                </p>
+                <h3>7. Cancellations, Returns & Refunds</h3>
+                <ul>
+                  <li>
+                    Cancellations are accepted within 24 hours for online orders
+                    or before confirmation call for telephonic orders.
+                  </li>
+                  <li>
+                    Returns are not accepted for partially used products or for
+                    non-returnable items marked on the product page.
+                  </li>
+                  <li>
+                    Refunds are processed only for genuine medical reasons with
+                    proof, and the final decision rests with the seller.
+                  </li>
+                  <li>
+                    For more details, refer to our Cancellation & Refund Policy.
+                  </li>
+                </ul>
 
-                <h3>9. Contact Information</h3>
+                <h3>8. Limitation of Liability</h3>
+                <ul>
+                  <li>
+                    We are not liable for any indirect, incidental, or
+                    consequential damages resulting from the use or misuse of
+                    our products.
+                  </li>
+                  <li>
+                    You agree that your sole remedy for dissatisfaction is to
+                    discontinue using our products and services.
+                  </li>
+                </ul>
+
+                <h3>9. Intellectual Property</h3>
+                <ul>
+                  <li>
+                    All content on this website, including text, images, product
+                    descriptions, and logos, is the property of Fit Fusion
+                    Ayurveda and is protected under applicable copyright laws.
+                  </li>
+                  <li>
+                    You may not copy, reproduce, or distribute any content
+                    without our prior written consent.
+                  </li>
+                </ul>
+
+                <h3>10. Governing Law & Jurisdiction</h3>
+                <ul>
+                  <li>
+                    These Terms & Conditions shall be governed by the laws of
+                    India.
+                  </li>
+                  <li>
+                    Any disputes will be subject to the exclusive jurisdiction
+                    of the courts in Pilibhit, Uttar Pradesh.
+                  </li>
+                </ul>
+
+                <h3>11. Contact Us</h3>
                 <p>
-                  If you have any questions about these Terms of Service, please
-                  contact us at:
+                  For any questions regarding these Terms & Conditions, please
+                  contact:
                 </p>
                 <div className="pa-contact-info">
                   <p>
-                    <strong>Email:</strong>{" "}
-                    {fitfusionConfig.contact.supportEmail}
+                    <strong>Fit Fusion Ayurveda</strong>
+                  </p>
+                  <p>Amaria, Pilibhit, Uttar Pradesh - 262121, India</p>
+                  <p>
+                    <strong>Email:</strong> support@fitfusion.com
                   </p>
                   <p>
-                    <strong>Phone:</strong> {fitfusionConfig.contact.phone}
+                    <strong>Phone:</strong> +91 9876543210
                   </p>
                   <p>
-                    <strong>Address:</strong>{" "}
-                    {fitfusionConfig.contact.address.fullAddress}
-                  </p>
-                  <p>
-                    <strong>Business Hours:</strong>{" "}
-                    {fitfusionConfig.contact.officeHours}
-                  </p>
-                </div>
-
-                <h3>10. Company Information</h3>
-                <div className="pa-company-info">
-                  <p>
-                    <strong>Company Name:</strong> {fitfusionConfig.brand.name}
-                  </p>
-                  <p>
-                    <strong>Business Type:</strong>{" "}
-                    {fitfusionConfig.business.businessType}
-                  </p>
-                  <p>
-                    <strong>GST Number:</strong>{" "}
-                    {fitfusionConfig.business.gstNumber}
-                  </p>
-                  <p>
-                    <strong>PAN Number:</strong>{" "}
-                    {fitfusionConfig.business.panNumber}
-                  </p>
-                  <p>
-                    <strong>Registration Number:</strong>{" "}
-                    {fitfusionConfig.business.companyRegistration}
-                  </p>
-                  <p>
-                    <strong>Industry:</strong>{" "}
-                    {fitfusionConfig.business.industry}
+                    <strong>Website:</strong> fitfusionayurveda.com
                   </p>
                 </div>
               </div>
