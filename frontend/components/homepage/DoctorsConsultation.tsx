@@ -34,36 +34,38 @@ interface Doctor {
 const doctors: Doctor[] = [
   {
     id: 1,
-    name: "Dr. Pragati Panwar",
-    image: "/assets/images/carousel/dr.webp",
+    name: "Prof. (Dr.) Irshad Ahmad Khan “Bayarvi”",
+    image: "/assets/images/dr.jpg",
     specialization: [
-      "Gynecological",
-      "Stomach",
-      "Skin",
-      "Panchakarma",
-      "Lifestyle Issues",
+      "Unani & Ayurvedic Medicine",
+      "General Physician",
+      "Men’s Health",
+      "Lifestyle Disorders",
+      "Chronic Illness Management",
     ],
-    experience: "2+ Years",
+    experience: "25+ Years",
     languages: ["Hindi", "English"],
     description:
-      "Dr. Pragati Panwar is an experienced Ayurvedic practitioner with 2+ years of expertise in gynecological health, stomach disorders, skin care, Panchakarma therapy, and lifestyle-related issues. She has successfully consulted 3,000+ patients, providing personalized care in Hindi and English for overall well-being.",
-    patients: "3,000+",
+      "Prof. (Dr.) Irshad Ahmad Khan “Bayarvi” (B.U.M.S, M.A, Ph.D) is a highly experienced practitioner specializing in Unani & Ayurvedic Medicine, general health, men’s health, lifestyle disorders, and chronic illness management. With over 25 years of expertise, he has provided care to more than 20,000 patients, offering consultations in Hindi and English.",
+    patients: "20,000+",
   },
   {
     id: 2,
-    name: "Dr. Rajesh Kumar",
-    image: "/assets/images/carousel/dr.webp",
+    name: "Prof. (Dr.) Irshad Ahmad Khan “Bayarvi”",
+    image: "/assets/images/dr.jpg",
     specialization: [
-      "Digestive Health",
-      "Respiratory",
-      "Joint Pain",
-      "Stress Management",
+      "Unani & Ayurvedic Medicine",
+      "General Physician",
+      "Men’s Health",
+      "Chronic Diseases",
+      "Lifestyle Disorders",
+      "General Health",
     ],
-    experience: "5+ Years",
-    languages: ["Hindi", "English", "Sanskrit"],
+    experience: "25+ Years",
+    languages: ["Hindi", "English"],
     description:
-      "Dr. Rajesh Kumar specializes in digestive health, respiratory disorders, joint pain management, and stress-related conditions. With over 5 years of experience, he has helped 5,000+ patients achieve optimal health through traditional Ayurvedic methods.",
-    patients: "5,000+",
+      "Prof. (Dr.) Irshad Ahmad Khan “Bayarvi” is a highly respected Unani and Ayurvedic practitioner as well as an experienced General Physician. With over 25 years of clinical expertise, he has helped thousands of patients manage men’s health concerns, chronic diseases, lifestyle-related disorders, and general health issues. Combining ancient healing traditions with modern medical practices, Dr. Khan offers safe, natural, and personalized treatments, earning the trust of more than 20,000 patients across India.",
+    patients: "20,000+",
   },
 ];
 
@@ -186,7 +188,7 @@ export default function DoctorsConsultation() {
                           {doctor.description}
                         </p>
 
-                        <button
+                        {/* <button
                           onClick={() =>
                             handleWhatsAppConsultation(doctor.name)
                           }
@@ -194,7 +196,7 @@ export default function DoctorsConsultation() {
                         >
                           <FaWhatsapp />
                           Get Free Consultation
-                        </button>
+                        </button> */}
                       </div>
                     </div>
                   </div>
