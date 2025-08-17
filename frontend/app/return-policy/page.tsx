@@ -1,8 +1,8 @@
 import { fitfusionConfig } from "@/lib/fitfusion-config";
 
 export const metadata = {
-  title: `Return & Refund Policy - ${fitfusionConfig.brand.name}`,
-  description: `Return and Refund Policy for ${fitfusionConfig.brand.name}. Learn about our return process, refund policy, and customer satisfaction guarantee.`,
+  title: `Cancellation & Refund Policy - ${fitfusionConfig.brand.name}`,
+  description: `Cancellation and Refund Policy for ${fitfusionConfig.brand.name}. Learn about our cancellation process, refund policy, and customer satisfaction guarantee.`,
 };
 
 export default function ReturnPolicyPage() {
@@ -23,167 +23,97 @@ export default function ReturnPolicyPage() {
                 <h5 className="text-uppercase text-center">
                   Customer Satisfaction
                 </h5>
-                <h1 className="text-center">Return & Refund Policy</h1>
+                <h1 className="text-center">Cancellation & Refund Policy</h1>
                 <p className="text-center">
                   Last updated: {fitfusionConfig.legal.returnPolicyLastUpdated}
                 </p>
               </div>
 
               <div className="pa-about-text">
-                <h3>1. Return Window</h3>
                 <p>
-                  At {fitfusionConfig.brand.name}, we want you to be completely
-                  satisfied with your purchase. You have{" "}
-                  {fitfusionConfig.return.returnWindow} from the date of
-                  delivery to return your order for a full refund or exchange.
+                  At Fit Fusion Ayurveda, we strive to ensure your satisfaction
+                  with every purchase. Please read our Cancellation & Refund
+                  Policy carefully before placing an order.
                 </p>
 
-                <h3>2. Return Conditions</h3>
-                <p>
-                  To be eligible for a return, your item must meet the following
-                  conditions:
-                </p>
+                <h3>1. Cancellation Policy</h3>
                 <ul>
-                  {fitfusionConfig.return.returnConditions.map(
-                    (condition, index) => (
-                      <li key={index}>{condition}</li>
-                    )
-                  )}
+                  <li>
+                    <strong>Telephonic Orders</strong> – You may cancel your
+                    order before or during the confirmation call.
+                  </li>
+                  <li>
+                    <strong>Online Orders (COD or Prepaid)</strong> – You may
+                    cancel your order within 24 hours of placing it.
+                  </li>
+                  <li>
+                    Once an order has been shipped, it cannot be cancelled.
+                  </li>
                 </ul>
 
-                <h3>3. Non-Returnable Items</h3>
-                <p>The following items are not eligible for return:</p>
+                <h3>2. Return Policy</h3>
                 <ul>
-                  {fitfusionConfig.return.nonReturnableItems.map(
-                    (item, index) => (
-                      <li key={index}>{item}</li>
-                    )
-                  )}
+                  <li>
+                    <strong>No Partial Returns</strong> – Partially used
+                    products will not be accepted for return.
+                  </li>
+                  <li>
+                    <strong>Non-Returnable Items</strong> – Certain products are
+                    marked as non-returnable on the product page and will not be
+                    eligible for return under any circumstances.
+                  </li>
                 </ul>
 
-                <h3>4. How to Initiate a Return</h3>
-
-                <p>To start your return, please follow these steps:</p>
-                <ol>
+                <h3>3. Refund Policy</h3>
+                <ul>
                   <li>
-                    Contact our customer support team at{" "}
-                    {fitfusionConfig.contact.supportEmail} or call{" "}
-                    {fitfusionConfig.contact.phone}
-                  </li>
-                  <li>Provide your order number and reason for return</li>
-                  <li>
-                    Our team will review your request and provide return
-                    instructions
+                    Refunds will only be issued for genuine medical reasons and
+                    must be supported with valid proof.
                   </li>
                   <li>
-                    Package your item securely with all original packaging
+                    The seller retains the right to refuse any refund request at
+                    their discretion.
                   </li>
-                  <li>Ship the item back using the provided return label</li>
-                </ol>
+                  <li>
+                    Refund requests must be made within 7 days of the product
+                    delivery date.
+                  </li>
+                </ul>
 
-                <h3>5. Refund Process</h3>
-                <p>
-                  Once we receive and inspect your return, we will notify you of
-                  the approval or rejection of your refund. If approved, your
-                  refund will be processed within{" "}
-                  {fitfusionConfig.return.refundWindow}. The refund will be
-                  credited to your original payment method.
-                </p>
+                <h3>4. Refund Processing</h3>
+                <ul>
+                  <li>
+                    <strong>Cash on Delivery (COD) Orders</strong> – Refunds
+                    will be issued via mobile banking or digital wallets.
+                  </li>
+                  <li>
+                    <strong>Prepaid Orders</strong> – Refunds will be processed
+                    back to the original payment method used at the time of
+                    purchase.
+                  </li>
+                  <li>
+                    All eligible refunds will be processed within 7 days from
+                    the date of product delivery.
+                  </li>
+                </ul>
 
-                <h3>6. Shipping Costs</h3>
+                <h3>5. Contact for Cancellations & Refunds</h3>
                 <p>
-                  Return shipping costs are the responsibility of the customer
-                  unless the return is due to our error (wrong item shipped,
-                  defective product, etc.). In such cases, we will provide a
-                  prepaid return label.
-                </p>
-
-                <h3>7. Damaged or Defective Items</h3>
-                <p>
-                  If you receive a damaged or defective item, please contact us
-                  immediately. We will arrange for a replacement or refund at no
-                  additional cost to you. Please include photos of the damage
-                  when contacting us.
-                </p>
-
-                <h3>8. Exchanges</h3>
-                <p>
-                  We offer exchanges for items of equal value. If you wish to
-                  exchange for a different item, please contact our customer
-                  support team. Any price difference will be charged or refunded
-                  accordingly.
-                </p>
-
-                <h3>9. Partial Returns</h3>
-                <p>
-                  If you ordered multiple items and only want to return some of
-                  them, you can do so within the return window. The refund will
-                  be calculated based on the returned items only.
-                </p>
-
-                <h3>10. Gift Returns</h3>
-                <p>
-                  Gift purchases can be returned within the same return window.
-                  The refund will be issued to the original purchaser. Please
-                  include the gift receipt or order confirmation when returning
-                  gift items.
-                </p>
-
-                <h3>11. International Returns</h3>
-                <p>
-                  For international orders, return shipping costs and customs
-                  duties are the responsibility of the customer. Please ensure
-                  all customs documentation is properly completed for the return
-                  shipment.
-                </p>
-
-                <h3>12. Contact Information</h3>
-                <p>
-                  For any questions about our return policy or to initiate a
-                  return, please contact us:
+                  For any cancellation or refund-related queries, please contact
+                  our customer support team:
                 </p>
                 <div className="pa-contact-info">
                   <p>
-                    <strong>Email:</strong>{" "}
-                    {fitfusionConfig.contact.supportEmail}
+                    <strong>Fit Fusion Ayurveda</strong>
+                  </p>
+                  <p>Amaria, Pilibhit, Uttar Pradesh - 262121, India</p>
+                  <p>
+                    <strong>Email:</strong> support@fitfusion.com
                   </p>
                   <p>
-                    <strong>Phone:</strong> {fitfusionConfig.contact.phone}
-                  </p>
-                  <p>
-                    <strong>WhatsApp:</strong>{" "}
-                    {fitfusionConfig.contact.whatsapp}
-                  </p>
-                  <p>
-                    <strong>Address:</strong>{" "}
-                    {fitfusionConfig.contact.address.fullAddress}
-                  </p>
-                  <p>
-                    <strong>Business Hours:</strong>{" "}
-                    {fitfusionConfig.contact.officeHours}
-                  </p>
-                  <p>
-                    <strong>Response Time:</strong>{" "}
-                    {fitfusionConfig.support.responseTime}
+                    <strong>Website:</strong> fitfusionayurveda.com
                   </p>
                 </div>
-
-                <h3>13. Customer Satisfaction Guarantee</h3>
-                <p>
-                  At {fitfusionConfig.brand.name}, your satisfaction is our top
-                  priority. If you're not completely satisfied with your
-                  purchase for any reason, we're here to help. Our customer
-                  support team is available during business hours to assist you
-                  with any questions or concerns.
-                </p>
-
-                <h3>14. Policy Updates</h3>
-                <p>
-                  We may update this return policy from time to time. Any
-                  changes will be posted on this page with an updated "Last
-                  updated" date. We encourage you to review this policy
-                  periodically.
-                </p>
               </div>
             </div>
           </div>

@@ -28,149 +28,126 @@ export default function PrivacyPage() {
               </div>
 
               <div className="pa-about-text">
-                <h3>1. Information We Collect</h3>
+                <p>Welcome to Fit Fusion Ayurveda ("we," "our," "us").</p>
                 <p>
-                  {fitfusionConfig.brand.name} collects information that you
-                  provide directly to us, such as when you create an account,
-                  make a purchase, or contact us for support. This may include:
+                  We value your trust and are committed to protecting your
+                  privacy. This Privacy Policy explains how we collect, use, and
+                  safeguard your personal information when you visit or make a
+                  purchase from fitfusionayurveda.com ("Website").
                 </p>
+
+                <h3>1. Information We Collect</h3>
+                <p>We may collect the following types of information:</p>
                 <ul>
                   <li>
-                    Personal identification information (Name, email address,
-                    phone number, etc.)
+                    <strong>Personal Information:</strong> Name, phone number,
+                    email address, billing/shipping address, payment details.
                   </li>
-                  <li>Billing and shipping addresses</li>
-                  <li>Payment information</li>
-                  <li>Order history and preferences</li>
-                  <li>Communication preferences</li>
+                  <li>
+                    <strong>Non-Personal Information:</strong> Browser type,
+                    device details, IP address, and browsing behavior on our
+                    website.
+                  </li>
+                  <li>
+                    <strong>Health Information:</strong> If voluntarily shared
+                    during product inquiries or Ayurvedic consultations, to
+                    recommend suitable products.
+                  </li>
                 </ul>
 
                 <h3>2. How We Use Your Information</h3>
-                <p>We use the information we collect to:</p>
+                <p>We use the collected information to:</p>
                 <ul>
-                  <li>Process and fulfill your orders</li>
-                  <li>Provide customer support and respond to inquiries</li>
-                  <li>Send order confirmations and shipping updates</li>
-                  <li>Improve our products and services</li>
-                  <li>Send marketing communications (with your consent)</li>
-                  <li>Comply with legal obligations</li>
+                  <li>Process and deliver your orders.</li>
+                  <li>Provide customer support and respond to inquiries.</li>
+                  <li>
+                    Send order updates, promotional offers, and newsletters
+                    (only if you opt-in).
+                  </li>
+                  <li>Personalize your shopping experience.</li>
+                  <li>
+                    Improve our products, services, and website functionality.
+                  </li>
                 </ul>
 
-                <h3>3. Information Sharing</h3>
-                <p>
-                  We do not sell, trade, or otherwise transfer your personal
-                  information to third parties without your consent, except in
-                  the following circumstances:
-                </p>
+                <h3>3. Sharing Your Information</h3>
+                <p>We do not sell, rent, or trade your personal information.</p>
+                <p>We may share your details only with:</p>
                 <ul>
                   <li>
-                    To trusted third parties who assist us in operating our
-                    website, conducting our business, or servicing you
+                    <strong>Service Providers</strong> – Delivery partners,
+                    payment gateways, and IT service providers to process orders
+                    and transactions.
                   </li>
                   <li>
-                    To comply with legal requirements or protect our rights
+                    <strong>Legal Authorities</strong> – If required by law,
+                    regulation, or legal process.
                   </li>
-                  <li>In connection with a business transfer or merger</li>
                 </ul>
 
-                <h3>4. Data Security</h3>
+                <h3>4. Cookies & Tracking Technologies</h3>
                 <p>
-                  We implement appropriate security measures to protect your
-                  personal information against unauthorized access, alteration,
-                  disclosure, or destruction. These measures include:
+                  Our website uses cookies to enhance your browsing experience,
+                  remember your preferences, and analyze site traffic. You can
+                  disable cookies in your browser settings, but some features
+                  may not function properly.
                 </p>
-                <ul>
-                  <li>SSL encryption for data transmission</li>
-                  <li>Secure payment processing</li>
-                  <li>Regular security assessments</li>
-                  <li>Limited access to personal information</li>
-                </ul>
 
-                <h3>5. Cookies and Tracking Technologies</h3>
+                <h3>5. Data Security</h3>
                 <p>
-                  We use cookies and similar tracking technologies to enhance
-                  your browsing experience, analyze website traffic, and
-                  understand where our visitors are coming from. You can control
-                  cookie settings through your browser preferences.
+                  We implement strict technical and organizational measures to
+                  protect your personal data against unauthorized access, loss,
+                  or misuse. However, no method of transmission over the
+                  internet is 100% secure.
                 </p>
 
                 <h3>6. Your Rights</h3>
                 <p>You have the right to:</p>
                 <ul>
-                  <li>Access your personal information</li>
-                  <li>Correct inaccurate information</li>
-                  <li>Request deletion of your information</li>
-                  <li>Opt-out of marketing communications</li>
-                  <li>Withdraw consent for data processing</li>
+                  <li>
+                    Access and request a copy of your personal information.
+                  </li>
+                  <li>Request correction or deletion of your data.</li>
+                  <li>Withdraw consent for marketing communications.</li>
                 </ul>
-
-                <h3>7. Data Retention</h3>
                 <p>
-                  We retain your personal information for as long as necessary
-                  to fulfill the purposes outlined in this privacy policy,
-                  unless a longer retention period is required or permitted by
-                  law.
+                  To exercise these rights, contact us at support@fitfusion.com.
+                </p>
+
+                <h3>7. Third-Party Links</h3>
+                <p>
+                  Our website may contain links to third-party websites. We are
+                  not responsible for the privacy practices or content of these
+                  external sites.
                 </p>
 
                 <h3>8. Children's Privacy</h3>
                 <p>
-                  Our website is not intended for children under the age of 13.
-                  We do not knowingly collect personal information from children
-                  under 13. If you are a parent or guardian and believe your
-                  child has provided us with personal information, please
-                  contact us.
+                  Our products and services are not intended for individuals
+                  under the age of 18 without parental consent.
                 </p>
 
-                <h3>9. International Data Transfers</h3>
+                <h3>9. Updates to This Privacy Policy</h3>
                 <p>
-                  Your information may be transferred to and processed in
-                  countries other than your own. We ensure that such transfers
-                  comply with applicable data protection laws.
+                  We may update this policy from time to time. Changes will be
+                  posted on this page with a revised Effective Date.
                 </p>
 
-                <h3>10. Changes to This Policy</h3>
+                <h3>10. Contact Us</h3>
                 <p>
-                  We may update this privacy policy from time to time. We will
-                  notify you of any changes by posting the new policy on this
-                  page and updating the "Last updated" date.
-                </p>
-
-                <h3>11. Contact Us</h3>
-                <p>
-                  If you have any questions about this privacy policy or our
-                  data practices, please contact us:
+                  If you have any questions about this Privacy Policy or how we
+                  handle your information, you can reach us at:
                 </p>
                 <div className="pa-contact-info">
                   <p>
-                    <strong>Email:</strong>{" "}
-                    {fitfusionConfig.contact.supportEmail}
+                    <strong>Fit Fusion Ayurveda</strong>
+                  </p>
+                  <p>Amaria, Pilibhit, Uttar Pradesh - 262121, India</p>
+                  <p>
+                    <strong>Email:</strong> support@fitfusion.com
                   </p>
                   <p>
-                    <strong>Phone:</strong> {fitfusionConfig.contact.phone}
-                  </p>
-                  <p>
-                    <strong>Address:</strong>{" "}
-                    {fitfusionConfig.contact.address.fullAddress}
-                  </p>
-                  <p>
-                    <strong>Business Hours:</strong>{" "}
-                    {fitfusionConfig.contact.officeHours}
-                  </p>
-                </div>
-
-                <h3>12. Data Protection Officer</h3>
-                <p>
-                  For any data protection related queries, you can contact our
-                  Data Protection Officer at:
-                </p>
-                <div className="pa-dpo-info">
-                  <p>
-                    <strong>Email:</strong> dpo@
-                    {fitfusionConfig.brand.website.replace("https://", "")}
-                  </p>
-                  <p>
-                    <strong>Response Time:</strong>{" "}
-                    {fitfusionConfig.support.responseTime}
+                    <strong>Website:</strong> fitfusionayurveda.com
                   </p>
                 </div>
               </div>

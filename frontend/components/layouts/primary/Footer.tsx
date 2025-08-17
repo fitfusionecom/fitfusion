@@ -207,7 +207,7 @@ export default function Footer() {
                   },
                   { name: "Privacy Policy", href: "/privacy" },
                   { name: "FAQs", href: "/faqs" },
-                  { name: "Shipping Policy", href: "/shipping" },
+                  { name: "Shipping Policy", href: "/shipping-delivery" },
                   { name: "Terms & Conditions", href: "/terms" },
                   { name: "Blog", href: "/blog" },
                 ]}
