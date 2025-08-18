@@ -356,10 +356,6 @@ export default function FooterMobile() {
                 {[
                   { name: "Visa", src: "/assets/images/footer/visa.webp" },
                   {
-                    name: "American Express",
-                    src: "/assets/images/footer/amex.png",
-                  },
-                  {
                     name: "Paytm",
                     src: "/assets/images/footer/paytm.avif",
                   },
@@ -375,33 +371,21 @@ export default function FooterMobile() {
                     name: "Net Banking",
                     src: "/assets/images/footer/net_banking.webp",
                   },
-                  {
-                    name: "Airtel Payment Bank",
-                    src: "/assets/images/footer/airtel-payment-bank.avif",
-                  },
-                  {
-                    name: "M-Payment",
-                    src: "/assets/images/footer/m-payment.webp",
-                  },
                 ].map((payment, index) => (
                   <div
                     key={index}
                     className="d-flex align-items-center justify-content-center"
                     style={{
-                      width: "50px",
-                      height: "32px",
-                      backgroundColor: "white",
-                      borderRadius: "4px",
-                      padding: "3px",
-                      border: "1px solid #e0e0e0",
+                      width: "64px",
+                      height: "40px",
                     }}
                     title={payment.name}
                   >
                     <Image
                       src={payment.src}
                       alt={payment.name}
-                      width={44}
-                      height={26}
+                      width={56}
+                      height={32}
                       style={{
                         width: "100%",
                         height: "100%",
