@@ -166,12 +166,12 @@ export default function CategoryBar({
                               justifyContent: "space-between",
                               textDecoration: "none",
                               color: "inherit",
-                              fontSize: "12px",
+                              fontSize: "14px",
                             }}
                           >
                             <span
                               style={{
-                                fontSize: "12px",
+                                fontSize: "14px",
                               }}
                             >
                               {subcategory.name}
