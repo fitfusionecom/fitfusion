@@ -20,6 +20,20 @@ export default function Header() {
     setIsMenuOpen((prev) => !prev);
   };
 
+  // Add/remove body class to prevent scrolling when mobile menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add("mobile-menu-open");
+    } else {
+      document.body.classList.remove("mobile-menu-open");
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.classList.remove("mobile-menu-open");
+    };
+  }, [isMenuOpen]);
+
   const toggleSearchModal = () => {
     setIsSearchModalOpen((prev) => !prev);
   };
@@ -210,7 +224,7 @@ export default function Header() {
             right: 0,
             bottom: 0,
             backgroundColor: "rgba(0,0,0,0.5)",
-            zIndex: 1060,
+            zIndex: 1080,
             display: "flex",
             alignItems: "flex-start",
             justifyContent: "center",

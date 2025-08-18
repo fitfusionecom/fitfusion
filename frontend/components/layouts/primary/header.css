@@ -250,6 +250,8 @@
   padding: 8px;
   align-items: center;
   justify-content: center;
+  z-index: 1051;
+  position: relative;
 }
 
 .ayur-toggle-btn span {
@@ -263,28 +265,67 @@
 /* Mobile Menu Styles */
 .mobile-menu-backdrop {
   position: fixed;
-  top: 0;
+  top: 36px; /* Start below the offer banner */
   left: 0;
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(4px);
-  z-index: 1048;
+  z-index: 1070;
   animation: fadeIn 0.3s ease-out;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .mobile-menu-container {
   position: fixed;
-  top: 0;
+  top: 36px; /* Start below the offer banner */
   left: 0;
   width: 100%;
   max-width: 400px;
-  height: 100vh;
+  height: calc(100vh - 36px); /* Adjust height to account for offer banner */
   background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-  z-index: 1049;
+  z-index: 1071;
   overflow-y: auto;
   animation: slideInLeft 0.3s ease-out;
   box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Ensure mobile menu appears above offer banner on very small screens */
+@media (max-width: 480px) {
+  .mobile-menu-container {
+    max-width: 100%;
+    top: 28px; /* Small mobile offer banner height */
+    height: calc(100vh - 28px);
+    height: calc(100dvh - 28px); /* Use dynamic viewport height for mobile */
+  }
+
+  .mobile-menu-backdrop {
+    top: 28px; /* Small mobile offer banner height */
+    height: calc(100vh - 28px);
+    height: calc(100dvh - 28px);
+  }
+
+  /* Prevent body scroll when mobile menu is open */
+  body.mobile-menu-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+  }
+}
+
+/* Additional mobile menu improvements for modern devices */
+@media (max-width: 767px) {
+  .mobile-menu-container {
+    height: calc(100vh - 32px);
+    height: calc(100dvh - 32px);
+  }
+
+  .mobile-menu-backdrop {
+    height: calc(100vh - 32px);
+    height: calc(100dvh - 32px);
+  }
 }
 
 .mobile-menu-header {
@@ -315,6 +356,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .mobile-menu-close:hover {
@@ -363,6 +406,8 @@
   border-left: 3px solid transparent;
   position: relative;
   overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
 }
 
 .mobile-menu-link::before {
@@ -426,6 +471,8 @@
   text-align: left;
   cursor: pointer;
   font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
 }
 
 /* Animations */
@@ -463,15 +510,6 @@
     gap: 10px;
   }
 
-  /* .category-list {
-    flex-direction: column;
-    align-items: stretch;
-  } */
-
-  /* .category-item {
-    width: 100%;
-  } */
-
   .category-link {
     padding: 12px 20px;
     border-bottom: 1px solid #eee;
@@ -489,6 +527,7 @@
 
   .ayur-toggle-btn {
     display: flex;
+    z-index: 1051;
   }
 }
 
@@ -516,7 +555,9 @@
 
   /* Mobile layout adjustments */
   .ayur-toggle-btn {
-    padding: 6px;
+    padding: 8px;
+    min-width: 44px;
+    min-height: 44px;
   }
 
   .ayur-toggle-btn span {
@@ -533,7 +574,9 @@
   .ayur-nav-search button,
   .ayur-nav-usear a,
   .ayur-nav-product a {
-    padding: 6px;
+    padding: 8px;
+    min-width: 44px;
+    min-height: 44px;
   }
 
   .icon svg {
@@ -544,6 +587,12 @@
   /* Mobile menu adjustments */
   .mobile-menu-container {
     max-width: 100%;
+    top: 32px; /* Mobile offer banner height */
+    height: calc(100vh - 32px);
+  }
+
+  .mobile-menu-backdrop {
+    top: 32px; /* Mobile offer banner height */
   }
 
   .mobile-menu-header {
@@ -568,8 +617,9 @@
   }
 
   .mobile-menu-link {
-    padding: 14px 20px;
+    padding: 16px 20px;
     font-size: 15px;
+    min-height: 44px;
   }
 
   .mobile-menu-icon {
@@ -595,7 +645,9 @@
   }
 
   .ayur-toggle-btn {
-    padding: 5px;
+    padding: 8px;
+    min-width: 44px;
+    min-height: 44px;
   }
 
   .ayur-toggle-btn span {
@@ -604,8 +656,17 @@
   }
 
   /* Mobile menu adjustments for very small screens */
+  .mobile-menu-container {
+    top: 28px; /* Small mobile offer banner height */
+    height: calc(100vh - 28px);
+  }
+
+  .mobile-menu-backdrop {
+    top: 28px; /* Small mobile offer banner height */
+  }
+
   .mobile-menu-header {
-    padding: 14px 16px;
+    padding: 16px 16px;
   }
 
   .mobile-menu-title {
@@ -626,8 +687,9 @@
   }
 
   .mobile-menu-link {
-    padding: 12px 16px;
+    padding: 14px 16px;
     font-size: 14px;
+    min-height: 44px;
   }
 
   .mobile-menu-icon {
