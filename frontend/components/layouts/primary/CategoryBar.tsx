@@ -176,23 +176,6 @@ export default function CategoryBar({
                             >
                               {subcategory.name}
                             </span>
-                            {/* Right Arrow */}
-                            <svg
-                              width="14"
-                              height="14"
-                              viewBox="0 0 14 14"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                              style={{ marginLeft: 8, flexShrink: 0 }}
-                            >
-                              <path
-                                d="M5 3L9 7L5 11"
-                                stroke="currentColor"
-                                strokeWidth="1.5"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              />
-                            </svg>
                           </Link>
                         </li>
                       ))}
