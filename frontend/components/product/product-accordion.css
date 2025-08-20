@@ -42,7 +42,7 @@
 }
 
 .ayur-product-accordion .accordion-button:not(.collapsed) {
-  background: #cd8973;
+  background: black;
   color: #fff;
   box-shadow: none;
 }
