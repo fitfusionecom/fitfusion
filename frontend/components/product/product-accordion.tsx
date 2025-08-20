@@ -124,15 +124,6 @@ export default function ProductAccordion({
         </div>
       ),
     },
-    {
-      id: "related-products",
-      title: "Related Products",
-      content: (
-        <div className="related-products-section">
-          {/* <RelatedProductsInline product={product} countryCode={countryCode} /> */}
-        </div>
-      ),
-    },
   ];
 
   return (

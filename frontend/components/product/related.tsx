@@ -62,7 +62,7 @@ export default async function RelatedProducts({
           </div>
         </div>
         <div className="row">
-          {products.map((product) => (
+          {products.slice(0, 3).map((product) => (
             <div key={product.id} className="col-lg-4 col-md-6 col-sm-6">
               <ProductCard product={product} />
             </div>

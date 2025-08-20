@@ -102,6 +102,7 @@ export default async function Product(props: Props) {
       />
       <Suspense fallback={<div>Loading...</div>}>
         <ProductAccordion product={pricedProduct} countryCode={country_code} />
+        <RelatedProducts product={pricedProduct} countryCode={country_code} />
       </Suspense>
     </>
   );
