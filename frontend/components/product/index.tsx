@@ -469,6 +469,7 @@ const ProductDetails = ({
           </div>
         </div>
       </div>
+
       <div className="ayur-bgshape ayur-shopsin">
         <img src="/assets/images/bg-shape1.png" alt="img" />
       </div>

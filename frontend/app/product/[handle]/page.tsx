@@ -5,8 +5,9 @@ import { Metadata } from "next";
 import ProductDetails from "@/components/product";
 import RelatedProducts from "@/components/product/related";
 import { Suspense } from "react";
+import GoogleReviews from "@/components/homepage/GoogleReviews";
 import ProductAccordion from "@/components/product/product-accordion";
-
+import ProductReviews from "@/components/product/ProductReviews";
 type Props = {
   params: Promise<{ handle: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -102,7 +103,9 @@ export default async function Product(props: Props) {
       />
       <Suspense fallback={<div>Loading...</div>}>
         <ProductAccordion product={pricedProduct} countryCode={country_code} />
+        <ProductReviews productId={pricedProduct.id} />
         <RelatedProducts product={pricedProduct} countryCode={country_code} />
+        <GoogleReviews />
       </Suspense>
     </>
   );
