@@ -21,7 +21,7 @@ html {
   overflow-x: hidden;
 }
 :root {
-  --ayur-primary-color: #cd8973;
+  --ayur-primary-color: black;
   --ayur-white-color: #ffffff;
   --ayur-primary-light: #d6cdca;
   --ayur-banheading-color: #222222;
@@ -783,13 +783,13 @@ li.ayur-has-menu a svg {
   gap: 5px;
 }
 .ayur-tpro-price > p {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
-  color: var(--ayur-banheading-color);
+  color: #005441;
 }
 .ayur-tpro-price > p del {
   color: var(--ayur-text-color);
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
   font-family: "Inter", sans-serif;
   margin-right: 10px;
@@ -2410,7 +2410,7 @@ tr.ayur-cartsubtotal td {
   padding: 90px 0 0;
 }
 .ayur-shopsin-heaing h3 {
-  font-size: 32px;
+  font-size: 24px;
   font-weight: 700;
   color: var(--ayur-heading-color);
 }
