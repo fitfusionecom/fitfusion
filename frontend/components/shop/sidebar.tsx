@@ -97,126 +97,11 @@ const ShopSidebar = ({
 
   return (
     <div className="ayur-shop-sidebar">
-      <SearchBar
+      {/* <SearchBar
         updateQueryParams={updateQueryParams}
         searchParams={searchParams}
-      />
-
+      /> */}
       {/* Categories Widget */}
-      <div
-        className="ayur-widget ayur-shop-categories"
-        style={{
-          background: "#fff",
-          borderRadius: "12px",
-          padding: "24px",
-          marginBottom: "24px",
-          border: "1px solid #e8f5e8",
-          boxShadow: "0 4px 12px rgba(144, 182, 68, 0.08)",
-        }}
-      >
-        <div className="d-flex justify-content-between align-items-center mb-3">
-          <h3
-            style={{
-              color: "#222222",
-              fontSize: "1.4rem",
-              fontWeight: "600",
-              margin: "0",
-              fontFamily: "Archivo, sans-serif",
-            }}
-          >
-            Categories
-          </h3>
-          <button
-            onClick={() => setShowCategories(!showCategories)}
-            style={{
-              background: "transparent",
-              border: "2px solid #90b644",
-              color: "#90b644",
-              borderRadius: "6px",
-              width: "32px",
-              height: "32px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              cursor: "pointer",
-              fontSize: "1.2rem",
-              fontWeight: "bold",
-              transition: "all 0.3s ease",
-            }}
-          >
-            {showCategories ? "−" : "+"}
-          </button>
-        </div>
-
-        {showCategories && (
-          <ul style={{ listStyle: "none", padding: "0", margin: "0" }}>
-            <li style={{ marginBottom: "12px" }}>
-              <a
-                onClick={() => updateQueryParams("category_handle", "")}
-                style={{
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  padding: "12px 16px",
-                  borderRadius: "8px",
-                  background: "#f0f8f0",
-                  color: "#222222",
-                  textDecoration: "none",
-                  transition: "all 0.3s ease",
-                  border: "1px solid transparent",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "#e8f5e8";
-                  e.currentTarget.style.borderColor = "#90b644";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = "#f0f8f0";
-                  e.currentTarget.style.borderColor = "transparent";
-                }}
-              >
-                <span style={{ fontWeight: "500" }}>All Categories</span>
-                <span style={{ color: "#90b644", fontSize: "0.9rem" }}>→</span>
-              </a>
-            </li>
-            {categories.map((category) => (
-              <li key={category.id} style={{ marginBottom: "12px" }}>
-                <a
-                  onClick={() =>
-                    updateQueryParams("category_handle", category.handle)
-                  }
-                  style={{
-                    cursor: "pointer",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    padding: "12px 16px",
-                    borderRadius: "8px",
-                    background: "#f0f8f0",
-                    color: "#222222",
-                    textDecoration: "none",
-                    transition: "all 0.3s ease",
-                    border: "1px solid transparent",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = "#e8f5e8";
-                    e.currentTarget.style.borderColor = "#90b644";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = "#f0f8f0";
-                    e.currentTarget.style.borderColor = "transparent";
-                  }}
-                >
-                  <span style={{ fontWeight: "500" }}>{category.name}</span>
-                  <span style={{ color: "#90b644", fontSize: "0.9rem" }}>
-                    →
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
 
       {/* Price Range Widget */}
       <div
@@ -361,6 +246,121 @@ const ShopSidebar = ({
               </p>
             </div>
           </div>
+        )}
+      </div>
+
+      <div
+        className="ayur-widget ayur-shop-categories"
+        style={{
+          background: "#fff",
+          borderRadius: "12px",
+          padding: "24px",
+          marginBottom: "24px",
+          border: "1px solid #e8f5e8",
+          boxShadow: "0 4px 12px rgba(144, 182, 68, 0.08)",
+        }}
+      >
+        <div className="d-flex justify-content-between align-items-center mb-3">
+          <h3
+            style={{
+              color: "#222222",
+              fontSize: "1.4rem",
+              fontWeight: "600",
+              margin: "0",
+              fontFamily: "Archivo, sans-serif",
+            }}
+          >
+            Categories
+          </h3>
+          <button
+            onClick={() => setShowCategories(!showCategories)}
+            style={{
+              background: "transparent",
+              border: "2px solid #90b644",
+              color: "#90b644",
+              borderRadius: "6px",
+              width: "32px",
+              height: "32px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              fontSize: "1.2rem",
+              fontWeight: "bold",
+              transition: "all 0.3s ease",
+            }}
+          >
+            {showCategories ? "−" : "+"}
+          </button>
+        </div>
+
+        {showCategories && (
+          <ul style={{ listStyle: "none", padding: "0", margin: "0" }}>
+            <li style={{ marginBottom: "12px" }}>
+              <a
+                onClick={() => updateQueryParams("category_handle", "")}
+                style={{
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  padding: "12px 16px",
+                  borderRadius: "8px",
+                  background: "#f0f8f0",
+                  color: "#222222",
+                  textDecoration: "none",
+                  transition: "all 0.3s ease",
+                  border: "1px solid transparent",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "#e8f5e8";
+                  e.currentTarget.style.borderColor = "#90b644";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "#f0f8f0";
+                  e.currentTarget.style.borderColor = "transparent";
+                }}
+              >
+                <span style={{ fontWeight: "500" }}>All Categories</span>
+                <span style={{ color: "#90b644", fontSize: "0.9rem" }}>→</span>
+              </a>
+            </li>
+            {categories.map((category) => (
+              <li key={category.id} style={{ marginBottom: "12px" }}>
+                <a
+                  onClick={() =>
+                    updateQueryParams("category_handle", category.handle)
+                  }
+                  style={{
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    padding: "12px 16px",
+                    borderRadius: "8px",
+                    background: "#f0f8f0",
+                    color: "#222222",
+                    textDecoration: "none",
+                    transition: "all 0.3s ease",
+                    border: "1px solid transparent",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = "#e8f5e8";
+                    e.currentTarget.style.borderColor = "#90b644";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "#f0f8f0";
+                    e.currentTarget.style.borderColor = "transparent";
+                  }}
+                >
+                  <span style={{ fontWeight: "500" }}>{category.name}</span>
+                  <span style={{ color: "#90b644", fontSize: "0.9rem" }}>
+                    →
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
         )}
       </div>
     </div>

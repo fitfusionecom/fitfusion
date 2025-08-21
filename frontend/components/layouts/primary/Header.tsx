@@ -357,6 +357,31 @@ export default function Header() {
                   </li>
                   <li>
                     <Link
+                      href="/about-us"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="mobile-menu-link"
+                    >
+                      <span className="mobile-menu-icon">
+                        <svg
+                          width="20"
+                          height="20"
+                          viewBox="0 0 20 20"
+                          fill="none"
+                        >
+                          <path
+                            d="M10 0C4.5 0 0 4.5 0 10C0 15.5 4.5 20 10 20C15.5 20 20 15.5 20 10C20 4.5 15.5 0 10 0ZM10 18C5.6 18 2 14.4 2 10C2 5.6 5.6 2 10 2C14.4 2 18 5.6 18 10C18 14.4 14.4 18 10 18ZM10 6C8.3 6 7 7.3 7 9C7 10.7 8.3 12 10 12C11.7 12 13 10.7 13 9C13 7.3 11.7 6 10 6ZM10 10C9.4 10 9 9.6 9 9C9 8.4 9.4 8 10 8C10.6 8 11 8.4 11 9C11 9.6 10.6 10 10 10Z"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </span>
+                      <span>About Us</span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
                       href="/contact"
                       onClick={() => setIsMenuOpen(false)}
                       className="mobile-menu-link"

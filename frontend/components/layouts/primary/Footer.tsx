@@ -199,7 +199,7 @@ export default function Footer() {
               <FooterSection
                 title="Quick Links"
                 items={[
-                  { name: "About Us", href: "/about" },
+                  { name: "About Us", href: "/about-us" },
                   { name: "Contact Us", href: "/contact" },
                   {
                     name: "Cancellation & Refund Policy",

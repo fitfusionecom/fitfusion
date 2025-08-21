@@ -10,8 +10,10 @@ const Offer: React.FC = () => {
       }}
     >
       <div className="offer-content">
-        <span className="offer-code">#FITFA50</span>
-        <span className="offer-text">Apply this code and get 50% off</span>
+        <span style={{ color: "gold", fontWeight: "bold" }}>FITFA50</span>
+        <span className="offer-text">
+          Apply this code and get 50% off on your first order.
+        </span>
       </div>
     </div>
   );

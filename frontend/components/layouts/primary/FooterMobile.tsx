@@ -248,7 +248,7 @@ export default function FooterMobile() {
               <div className="p-3 accordion-content">
                 <ul className="list-unstyled mb-0">
                   {[
-                    { name: "About Us", href: "/about" },
+                    { name: "About Us", href: "/about-us" },
                     { name: "Contact Us", href: "/contact" },
                     {
                       name: "Cancellation & Refund Policy",

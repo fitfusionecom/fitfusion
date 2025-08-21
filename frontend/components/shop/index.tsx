@@ -294,54 +294,13 @@ const ShopTemplate = ({
     <div>
       {/*----------- Shop Header Section ---------*/}
       <div
-        className="ayur-bgcover ayur-shop-header-sec"
+        className="ayur-bgcover"
         style={{
           background: "linear-gradient(135deg, #f0f8f0 0%, #fff 100%)",
           padding: "60px 0 40px",
           position: "relative",
         }}
       >
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-lg-8 col-md-10 col-sm-12 text-center">
-              <div className="ayur-shop-header">
-                <h1
-                  className="ayur-shop-title"
-                  style={{
-                    color: "#222222",
-                    fontSize: "3rem",
-                    fontWeight: "600",
-                    marginBottom: "20px",
-                    fontFamily: "Archivo, sans-serif",
-                  }}
-                >
-                  Discover Natural Wellness
-                </h1>
-                <div
-                  className="ayur-shop-line"
-                  style={{
-                    width: "80px",
-                    height: "4px",
-                    background: "#90b644",
-                    margin: "0 auto 20px",
-                    borderRadius: "2px",
-                  }}
-                ></div>
-                <p
-                  className="ayur-shop-subtitle"
-                  style={{
-                    color: "#797979",
-                    fontSize: "1.2rem",
-                    marginBottom: "0",
-                    fontFamily: "Inter, sans-serif",
-                  }}
-                >
-                  Explore our curated collection of authentic Ayurvedic products
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
         <div
           className="ayur-bgshape ayur-shop-header-bgshape"
           style={{
@@ -371,7 +330,7 @@ const ShopTemplate = ({
         <div className="container">
           <div className="row">
             {/* Sidebar */}
-            <div className="col-lg-3 col-md-4 col-sm-12 mb-4">
+            {/* <div className="col-lg-3 col-md-4 col-sm-12 mb-4">
               <ShopSidebar
                 categories={categories || []}
                 updateQueryParams={updateQueryParams}
@@ -379,10 +338,10 @@ const ShopTemplate = ({
                 setPriceRange={setPriceRange}
                 searchParams={searchParams}
               />
-            </div>
+            </div> */}
 
             {/* Products Grid */}
-            <div className="col-lg-9 col-md-8 col-sm-12">
+            <div className="col-lg-12 col-md-12 col-sm-12">
               <div className="ayur-shopsin-products">
                 {/* Results Header */}
                 <div
