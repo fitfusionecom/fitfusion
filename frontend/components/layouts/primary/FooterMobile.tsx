@@ -316,7 +316,7 @@ export default function FooterMobile() {
                         width: "44px",
                         height: "44px",
                         backgroundColor: "#FFF5EC",
-                        borderRadius: "50%",
+                        borderRadius: "10%",
                         color: social.color,
                         fontSize: "18px",
                         border: `2px solid ${social.color}`,
