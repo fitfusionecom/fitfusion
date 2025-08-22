@@ -42,8 +42,6 @@ export default async function Home() {
       {/* <Testimonials /> */}
       <DoctorsConsultation />
       <ExploreAyurveda />
-      <Newsletter />
-
       {/* <Team /> */}
     </>
   );
