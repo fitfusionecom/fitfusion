@@ -8,12 +8,6 @@ export const metadata = {
 export default function ShippingDeliveryPage() {
   return (
     <div className="ayur-bgcover" style={{ background: "whitesmoke" }}>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
       <div className="container">
         {/* Shipping & Delivery Content */}
         <div className="pa-about-content spacer-top spacer-bottom">
@@ -37,7 +31,7 @@ export default function ShippingDeliveryPage() {
                   your orders.
                 </p>
 
-                <h3>1. Placing an Order</h3>
+                <h5>1. Placing an Order</h5>
                 <ul>
                   <li>
                     You can easily place your order on our official website:
@@ -50,25 +44,25 @@ export default function ShippingDeliveryPage() {
                   </li>
                 </ul>
 
-                <h3>2. Order Value Requirement</h3>
+                <h5>2. Order Value Requirement</h5>
                 <p>
                   There is no minimum purchase amount — you can order as little
                   or as much as you like.
                 </p>
 
-                <h3>3. Product Pricing</h3>
+                <h5>3. Product Pricing</h5>
                 <p>
                   All prices listed on our website are inclusive of all
                   applicable taxes, so there are no hidden charges at checkout.
                 </p>
 
-                <h3>4. Serviceable Locations</h3>
+                <h5>4. Serviceable Locations</h5>
                 <p>
                   We deliver across India through our trusted courier and
                   logistics partners.
                 </p>
 
-                <h3>5. Payment Methods</h3>
+                <h5>5. Payment Methods</h5>
                 <p>We offer secure and convenient payment options:</p>
                 <ul>
                   <li>Credit Card / Debit Card</li>
@@ -85,7 +79,7 @@ export default function ShippingDeliveryPage() {
                   area).
                 </p>
 
-                <h3>6. Order Confirmation & Updates</h3>
+                <h5>6. Order Confirmation & Updates</h5>
                 <p>
                   Once you place your order, you will receive a confirmation
                   message via email and/or SMS with your Order ID. When your
@@ -93,7 +87,7 @@ export default function ShippingDeliveryPage() {
                   can monitor its journey.
                 </p>
 
-                <h3>7. Tracking Your Order</h3>
+                <h5>7. Tracking Your Order</h5>
                 <p>You can track your shipment using:</p>
                 <ul>
                   <li>The Track Order page on our website</li>
@@ -103,20 +97,20 @@ export default function ShippingDeliveryPage() {
                   </li>
                 </ul>
 
-                <h3>8. Estimated Delivery Time</h3>
+                <h5>8. Estimated Delivery Time</h5>
                 <p>
                   Orders are usually delivered within 3–5 working days. Delivery
                   time may vary depending on your location and courier
                   availability.
                 </p>
 
-                <h3>9. Invoices</h3>
+                <h5>9. Invoices</h5>
                 <p>
                   Your invoice will be included with your delivery and sent to
                   your registered email ID.
                 </p>
 
-                <h3>10. Need Assistance?</h3>
+                <h5>10. Need Assistance?</h5>
                 <p>
                   If you have any questions about shipping or delivery, please
                   contact:

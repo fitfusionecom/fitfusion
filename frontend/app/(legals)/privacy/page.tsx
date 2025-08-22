@@ -8,12 +8,6 @@ export const metadata = {
 export default function PrivacyPage() {
   return (
     <div className="ayur-bgcover" style={{ background: "whitesmoke" }}>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
       <div className="container">
         {/* Privacy Content */}
         <div className="pa-about-content spacer-top spacer-bottom">
@@ -36,7 +30,7 @@ export default function PrivacyPage() {
                   purchase from fitfusionayurveda.com ("Website").
                 </p>
 
-                <h3>1. Information We Collect</h3>
+                <h5>1. Information We Collect</h5>
                 <p>We may collect the following types of information:</p>
                 <ul>
                   <li>
@@ -55,7 +49,7 @@ export default function PrivacyPage() {
                   </li>
                 </ul>
 
-                <h3>2. How We Use Your Information</h3>
+                <h5>2. How We Use Your Information</h5>
                 <p>We use the collected information to:</p>
                 <ul>
                   <li>Process and deliver your orders.</li>
@@ -70,7 +64,7 @@ export default function PrivacyPage() {
                   </li>
                 </ul>
 
-                <h3>3. Sharing Your Information</h3>
+                <h5>3. Sharing Your Information</h5>
                 <p>We do not sell, rent, or trade your personal information.</p>
                 <p>We may share your details only with:</p>
                 <ul>
@@ -85,7 +79,7 @@ export default function PrivacyPage() {
                   </li>
                 </ul>
 
-                <h3>4. Cookies & Tracking Technologies</h3>
+                <h5>4. Cookies & Tracking Technologies</h5>
                 <p>
                   Our website uses cookies to enhance your browsing experience,
                   remember your preferences, and analyze site traffic. You can
@@ -93,7 +87,7 @@ export default function PrivacyPage() {
                   may not function properly.
                 </p>
 
-                <h3>5. Data Security</h3>
+                <h5>5. Data Security</h5>
                 <p>
                   We implement strict technical and organizational measures to
                   protect your personal data against unauthorized access, loss,
@@ -101,7 +95,7 @@ export default function PrivacyPage() {
                   internet is 100% secure.
                 </p>
 
-                <h3>6. Your Rights</h3>
+                <h5>6. Your Rights</h5>
                 <p>You have the right to:</p>
                 <ul>
                   <li>
@@ -114,26 +108,26 @@ export default function PrivacyPage() {
                   To exercise these rights, contact us at support@fitfusion.com.
                 </p>
 
-                <h3>7. Third-Party Links</h3>
+                <h5>7. Third-Party Links</h5>
                 <p>
                   Our website may contain links to third-party websites. We are
                   not responsible for the privacy practices or content of these
                   external sites.
                 </p>
 
-                <h3>8. Children's Privacy</h3>
+                <h5>8. Children's Privacy</h5>
                 <p>
                   Our products and services are not intended for individuals
                   under the age of 18 without parental consent.
                 </p>
 
-                <h3>9. Updates to This Privacy Policy</h3>
+                <h5>9. Updates to This Privacy Policy</h5>
                 <p>
                   We may update this policy from time to time. Changes will be
                   posted on this page with a revised Effective Date.
                 </p>
 
-                <h3>10. Contact Us</h3>
+                <h5>10. Contact Us</h5>
                 <p>
                   If you have any questions about this Privacy Policy or how we
                   handle your information, you can reach us at:

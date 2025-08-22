@@ -8,12 +8,6 @@ export const metadata = {
 export default function ReturnPolicyPage() {
   return (
     <div className="ayur-bgcover" style={{ background: "whitesmoke" }}>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
       <div className="container">
         {/* Return Policy Content */}
         <div className="pa-about-content spacer-top spacer-bottom">
@@ -36,7 +30,7 @@ export default function ReturnPolicyPage() {
                   Policy carefully before placing an order.
                 </p>
 
-                <h3>1. Cancellation Policy</h3>
+                <h5>1. Cancellation Policy</h5>
                 <ul>
                   <li>
                     <strong>Telephonic Orders</strong> – You may cancel your
@@ -51,7 +45,7 @@ export default function ReturnPolicyPage() {
                   </li>
                 </ul>
 
-                <h3>2. Return Policy</h3>
+                <h5>2. Return Policy</h5>
                 <ul>
                   <li>
                     <strong>No Partial Returns</strong> – Partially used
@@ -64,7 +58,7 @@ export default function ReturnPolicyPage() {
                   </li>
                 </ul>
 
-                <h3>3. Refund Policy</h3>
+                <h5>3. Refund Policy</h5>
                 <ul>
                   <li>
                     Refunds will only be issued for genuine medical reasons and
@@ -80,7 +74,7 @@ export default function ReturnPolicyPage() {
                   </li>
                 </ul>
 
-                <h3>4. Refund Processing</h3>
+                <h5>4. Refund Processing</h5>
                 <ul>
                   <li>
                     <strong>Cash on Delivery (COD) Orders</strong> – Refunds
@@ -97,7 +91,7 @@ export default function ReturnPolicyPage() {
                   </li>
                 </ul>
 
-                <h3>5. Contact for Cancellations & Refunds</h3>
+                <h5>5. Contact for Cancellations & Refunds</h5>
                 <p>
                   For any cancellation or refund-related queries, please contact
                   our customer support team:

@@ -8,12 +8,6 @@ export const metadata = {
 export default function FAQsPage() {
   return (
     <div className="ayur-bgcover" style={{ background: "whitesmoke" }}>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
       <div className="container">
         {/* FAQ Content */}
         <div className="pa-about-content spacer-top spacer-bottom">
@@ -29,14 +23,14 @@ export default function FAQsPage() {
               </div>
 
               <div className="pa-about-text">
-                <h3>1. Are Fit Fusion Ayurveda products 100% natural?</h3>
+                <h5>1. Are Fit Fusion Ayurveda products 100% natural?</h5>
                 <p>
                   Yes. All our products are made from pure, authentic Ayurvedic
                   herbs sourced from trusted suppliers, with no harmful
                   chemicals or artificial additives.
                 </p>
 
-                <h3>2. Do your products have any side effects?</h3>
+                <h5>2. Do your products have any side effects?</h5>
                 <p>
                   No. When taken as per the recommended dosage, our herbal
                   formulations are safe and free from side effects. However, if
@@ -44,7 +38,7 @@ export default function FAQsPage() {
                   medication, we recommend consulting your doctor before use.
                 </p>
 
-                <h3>3. How long does it take to see results?</h3>
+                <h5>3. How long does it take to see results?</h5>
                 <p>
                   Ayurvedic remedies work naturally with your body, so results
                   may vary from person to person. Some customers notice benefits
@@ -52,46 +46,46 @@ export default function FAQsPage() {
                   of consistent use.
                 </p>
 
-                <h3>4. Can I take your supplements with other medicines?</h3>
+                <h5>4. Can I take your supplements with other medicines?</h5>
                 <p>
                   In most cases, yes. Our herbal products are safe and mild, but
                   it's always best to consult your healthcare provider if you
                   are on any prescription medication.
                 </p>
 
-                <h3>5. Are your products suitable for vegetarians?</h3>
+                <h5>5. Are your products suitable for vegetarians?</h5>
                 <p>
                   Yes. Most of our products are 100% vegetarian and plant-based.
                   Any exceptions will be clearly mentioned on the packaging.
                 </p>
 
-                <h3>6. Do you ship across India?</h3>
+                <h5>6. Do you ship across India?</h5>
                 <p>
                   Yes. We deliver to all major cities and towns in India.
                   Shipping charges and delivery times may vary based on
                   location.
                 </p>
 
-                <h3>7. How should I store the products?</h3>
+                <h5>7. How should I store the products?</h5>
                 <p>
                   Keep them in a cool, dry place away from direct sunlight. Make
                   sure the container is tightly closed after use.
                 </p>
 
-                <h3>8. Are these products safe for long-term use?</h3>
+                <h5>8. Are these products safe for long-term use?</h5>
                 <p>
                   Yes. Since they are herbal and chemical-free, they are safe
                   for long-term use, provided you follow the recommended dosage.
                 </p>
 
-                <h3>9. Do you offer any discounts or subscription plans?</h3>
+                <h5>9. Do you offer any discounts or subscription plans?</h5>
                 <p>
                   Yes. We often run special offers and bulk purchase discounts.
                   Keep an eye on our website or sign up for our newsletter to
                   stay updated.
                 </p>
 
-                <h3>10. Do you provide consultation services?</h3>
+                <h5>10. Do you provide consultation services?</h5>
                 <p>
                   Yes. We offer Ayurvedic health consultations to help you
                   choose the right products and wellness plan based on your
@@ -99,14 +93,14 @@ export default function FAQsPage() {
                   website.
                 </p>
 
-                <h3>11. How can I contact customer support?</h3>
+                <h5>11. How can I contact customer support?</h5>
                 <p>
                   You can reach us through our website's contact form or via
                   email. Our support team will respond within working (10 am to
                   8pm) hours.
                 </p>
 
-                <h3>12. Product-Specific Questions</h3>
+                <h5>12. Product-Specific Questions</h5>
                 <p>
                   For specific questions about individual products, please refer
                   to the product description pages or contact our customer
@@ -114,7 +108,7 @@ export default function FAQsPage() {
                   about your health and wellness journey.
                 </p>
 
-                <h3>13. Contact Information</h3>
+                <h5>13. Contact Information</h5>
                 <p>
                   For any additional questions or concerns, please contact us:
                 </p>
@@ -144,7 +138,7 @@ export default function FAQsPage() {
                   </p>
                 </div>
 
-                <h3>14. Additional Support</h3>
+                <h5>14. Additional Support</h5>
                 <p>
                   Our customer support team is dedicated to providing you with
                   the best possible service. If you don't find the answer to

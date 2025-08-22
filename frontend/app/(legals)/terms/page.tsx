@@ -36,7 +36,7 @@ export default function TermsPage() {
                   them carefully before making any purchase.
                 </p>
 
-                <h3>1. General</h3>
+                <h5>1. General</h5>
                 <ul>
                   <li>
                     These Terms & Conditions govern your use of our website,
@@ -52,7 +52,7 @@ export default function TermsPage() {
                   </li>
                 </ul>
 
-                <h3>2. Eligibility</h3>
+                <h5>2. Eligibility</h5>
                 <ul>
                   <li>
                     You must be at least 18 years old to place an order on our
@@ -64,7 +64,7 @@ export default function TermsPage() {
                   </li>
                 </ul>
 
-                <h3>3. Products & Usage</h3>
+                <h5>3. Products & Usage</h5>
                 <ul>
                   <li>All our products are herbal and Ayurvedic in nature.</li>
                   <li>
@@ -79,7 +79,7 @@ export default function TermsPage() {
                   </li>
                 </ul>
 
-                <h3>4. Pricing & Payment</h3>
+                <h5>4. Pricing & Payment</h5>
                 <ul>
                   <li>
                     All prices listed on the website are inclusive of applicable
@@ -95,7 +95,7 @@ export default function TermsPage() {
                   </li>
                 </ul>
 
-                <h3>5. Orders & Acceptance</h3>
+                <h5>5. Orders & Acceptance</h5>
                 <ul>
                   <li>
                     Placing an order does not guarantee acceptance. We reserve
@@ -112,7 +112,7 @@ export default function TermsPage() {
                   </li>
                 </ul>
 
-                <h3>6. Shipping & Delivery</h3>
+                <h5>6. Shipping & Delivery</h5>
                 <ul>
                   <li>
                     We deliver across Pan India via trusted courier partners.
@@ -127,7 +127,7 @@ export default function TermsPage() {
                   </li>
                 </ul>
 
-                <h3>7. Cancellations, Returns & Refunds</h3>
+                <h5>7. Cancellations, Returns & Refunds</h5>
                 <ul>
                   <li>
                     Cancellations are accepted within 24 hours for online orders
@@ -146,7 +146,7 @@ export default function TermsPage() {
                   </li>
                 </ul>
 
-                <h3>8. Limitation of Liability</h3>
+                <h5>8. Limitation of Liability</h5>
                 <ul>
                   <li>
                     We are not liable for any indirect, incidental, or
@@ -159,7 +159,7 @@ export default function TermsPage() {
                   </li>
                 </ul>
 
-                <h3>9. Intellectual Property</h3>
+                <h5>9. Intellectual Property</h5>
                 <ul>
                   <li>
                     All content on this website, including text, images, product
@@ -172,7 +172,7 @@ export default function TermsPage() {
                   </li>
                 </ul>
 
-                <h3>10. Governing Law & Jurisdiction</h3>
+                <h5>10. Governing Law & Jurisdiction</h5>
                 <ul>
                   <li>
                     These Terms & Conditions shall be governed by the laws of
@@ -184,7 +184,7 @@ export default function TermsPage() {
                   </li>
                 </ul>
 
-                <h3>11. Contact Us</h3>
+                <h5>11. Contact Us</h5>
                 <p>
                   For any questions regarding these Terms & Conditions, please
                   contact:
