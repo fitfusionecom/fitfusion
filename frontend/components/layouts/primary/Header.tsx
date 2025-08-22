@@ -4,20 +4,52 @@ import "./header.css";
 import Link from "next/link";
 import Image from "next/image";
 import SearchBar from "./SearchBar";
-import CategoryBar from "./CategoryBar";
+import CategoryBar, { defaultCategories } from "./CategoryBar";
 import { useState, useEffect } from "react";
 import { retrieveCustomer } from "@/lib/data/customer";
 import { fitfusionConfig } from "@/lib/fitfusion-config";
 import CartTrigger from "@/components/cart/CartTrigger";
+
+// Category interface from CategoryBar
+interface Category {
+  name: string;
+  href: string;
+  subcategories?: Category[];
+}
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [customer, setCustomer] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<Category | null>(
+    null
+  );
+  const [isSubcategoryView, setIsSubcategoryView] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
+    // Reset subcategory view when opening menu
+    if (!isMenuOpen) {
+      setIsSubcategoryView(false);
+      setSelectedCategory(null);
+    }
+  };
+
+  const handleCategoryClick = (category: Category) => {
+    if (category.subcategories && category.subcategories.length > 0) {
+      setSelectedCategory(category);
+      setIsSubcategoryView(true);
+    } else {
+      // If no subcategories, navigate directly
+      window.location.href = category.href;
+      setIsMenuOpen(false);
+    }
+  };
+
+  const handleBackToCategories = () => {
+    setIsSubcategoryView(false);
+    setSelectedCategory(null);
   };
 
   // Add/remove body class to prevent scrolling when mobile menu is open
@@ -258,175 +290,99 @@ export default function Header() {
 
           {/* Menu Container */}
           <div className="mobile-menu-container">
-            <div className="mobile-menu-header">
-              <h3 className="mobile-menu-title">Menu</h3>
-              <button
-                className="mobile-menu-close"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M18 6L6 18M6 6L18 18"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </button>
-            </div>
+            {/* Categories View */}
+            {!isSubcategoryView && (
+              <>
+                <div className="mobile-menu-header">
+                  <h3 className="mobile-menu-title">Categories</h3>
+                  <button
+                    className="mobile-menu-close"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path
+                        d="M18 6L6 18M6 6L18 18"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </button>
+                </div>
 
-            <nav className="mobile-menu-nav">
-              <div className="mobile-menu-section">
-                <h4 className="mobile-menu-section-title">Main</h4>
-                <ul className="mobile-menu-list">
-                  <li>
-                    <Link
-                      href="/"
-                      onClick={() => setIsMenuOpen(false)}
-                      className="mobile-menu-link"
-                    >
-                      <span className="mobile-menu-icon">
-                        <svg
-                          width="20"
-                          height="20"
-                          viewBox="0 0 20 20"
-                          fill="none"
-                        >
-                          <path
-                            d="M3 10L10 3L17 10L17 17H13V13H7V17H3V10Z"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </span>
-                      <span>Home</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/shop"
-                      onClick={() => setIsMenuOpen(false)}
-                      className="mobile-menu-link"
-                    >
-                      <span className="mobile-menu-icon">
-                        <svg
-                          width="20"
-                          height="20"
-                          viewBox="0 0 20 20"
-                          fill="none"
-                        >
-                          <path
-                            d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.7 15.3C4.3 15.7 4.6 16.5 5.1 16.5H17M17 13V17C17 17.6 16.6 18 16 18H8C7.4 18 7 17.6 7 17V13H17Z"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </span>
-                      <span>Shop</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/blog"
-                      onClick={() => setIsMenuOpen(false)}
-                      className="mobile-menu-link"
-                    >
-                      <span className="mobile-menu-icon">
-                        <svg
-                          width="20"
-                          height="20"
-                          viewBox="0 0 20 20"
-                          fill="none"
-                        >
-                          <path
-                            d="M4 19H20V5C20 3.9 19.1 3 18 3H6C4.9 3 4 3.9 4 5V19ZM4 21C2.9 21 2 20.1 2 19V5C2 3.9 2.9 3 4 3H6C4.9 3 4 3.9 4 5V21ZM6 7H18V17H6V7Z"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </span>
-                      <span>Blog</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/about-us"
-                      onClick={() => setIsMenuOpen(false)}
-                      className="mobile-menu-link"
-                    >
-                      <span className="mobile-menu-icon">
-                        <svg
-                          width="20"
-                          height="20"
-                          viewBox="0 0 20 20"
-                          fill="none"
-                        >
-                          <path
-                            d="M10 0C4.5 0 0 4.5 0 10C0 15.5 4.5 20 10 20C15.5 20 20 15.5 20 10C20 4.5 15.5 0 10 0ZM10 18C5.6 18 2 14.4 2 10C2 5.6 5.6 2 10 2C14.4 2 18 5.6 18 10C18 14.4 14.4 18 10 18ZM10 6C8.3 6 7 7.3 7 9C7 10.7 8.3 12 10 12C11.7 12 13 10.7 13 9C13 7.3 11.7 6 10 6ZM10 10C9.4 10 9 9.6 9 9C9 8.4 9.4 8 10 8C10.6 8 11 8.4 11 9C11 9.6 10.6 10 10 10Z"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </span>
-                      <span>About Us</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/contact"
-                      onClick={() => setIsMenuOpen(false)}
-                      className="mobile-menu-link"
-                    >
-                      <span className="mobile-menu-icon">
-                        <svg
-                          width="20"
-                          height="20"
-                          viewBox="0 0 20 20"
-                          fill="none"
-                        >
-                          <path
-                            d="M2 3H18C19.1 3 20 3.9 20 5V17C20 18.1 19.1 19 18 19H2C0.9 19 0 18.1 0 17V5C0 3.9 0.9 3 2 3ZM2 5V7L10 12L18 7V5H2ZM18 17V9L10 14L2 9V17H18Z"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </span>
-                      <span>Contact</span>
-                    </Link>
-                  </li>
-                </ul>
-              </div>
+                <nav className="mobile-menu-nav">
+                  <div className="mobile-menu-section">
+                    <ul className="mobile-menu-list">
+                      {defaultCategories.map((category) => (
+                        <li key={category.name}>
+                          <button
+                            onClick={() => handleCategoryClick(category)}
+                            className="mobile-menu-category-btn"
+                            style={{
+                              width: "100%",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "space-between",
+                              padding: "16px 24px",
+                              background: "none",
+                              border: "none",
+                              borderBottom: "1px solid #f0f0f0",
+                              cursor: "pointer",
+                              fontSize: "16px",
+                              color: "#333",
+                              textAlign: "left",
+                            }}
+                          >
+                            <span>{category.name}</span>
+                            {category.subcategories &&
+                              category.subcategories.length > 0 && (
+                                <svg
+                                  width="16"
+                                  height="16"
+                                  viewBox="0 0 16 16"
+                                  fill="none"
+                                  style={{ color: "#666" }}
+                                >
+                                  <path
+                                    d="M6 4L10 8L6 12"
+                                    stroke="currentColor"
+                                    strokeWidth="1.5"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                  />
+                                </svg>
+                              )}
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
-              <div className="mobile-menu-section">
-                <h4 className="mobile-menu-section-title">Account</h4>
-                <ul className="mobile-menu-list">
-                  {!customer ? (
-                    <li>
-                      <Link
-                        href="/login"
-                        onClick={() => setIsMenuOpen(false)}
-                        className="mobile-menu-link"
-                      >
-                        <span className="mobile-menu-icon">
+                  {/* Footer Section */}
+                  <div className="mobile-menu-footer">
+                    <div className="mobile-menu-section">
+                      <h4 className="mobile-menu-section-title">NEED HELP?</h4>
+                      <div className="mobile-menu-help-item">
+                        <span
+                          className="mobile-menu-help-icon"
+                          style={{ color: "#22c55e" }}
+                        >
                           <svg
-                            width="20"
-                            height="20"
-                            viewBox="0 0 20 20"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
                             fill="none"
                           >
                             <path
-                              d="M10 0C4.5 0 0 4.5 0 10C0 15.5 4.5 20 10 20C15.5 20 20 15.5 20 10C20 4.5 15.5 0 10 0ZM10 18C5.6 18 2 14.4 2 10C2 5.6 5.6 2 10 2C14.4 2 18 5.6 18 10C18 14.4 14.4 18 10 18ZM10 6C8.3 6 7 7.3 7 9C7 10.7 8.3 12 10 12C11.7 12 13 10.7 13 9C13 7.3 11.7 6 10 6ZM10 10C9.4 10 9 9.6 9 9C9 8.4 9.4 8 10 8C10.6 8 11 8.4 11 9C11 9.6 10.6 10 10 10Z"
+                              d="M3.5 2.5C3.5 1.67 4.17 1 5 1H11C11.83 1 12.5 1.67 12.5 2.5V13.5C12.5 14.33 11.83 15 11 15H5C4.17 15 3.5 14.33 3.5 13.5V2.5Z"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                            <path
+                              d="M6 4H10M6 6H10M6 8H8"
                               stroke="currentColor"
                               strokeWidth="1.5"
                               strokeLinecap="round"
@@ -434,121 +390,127 @@ export default function Header() {
                             />
                           </svg>
                         </span>
-                        <span>Login</span>
-                      </Link>
-                    </li>
-                  ) : (
-                    <>
-                      <li>
-                        <Link
-                          href="/account"
-                          onClick={() => setIsMenuOpen(false)}
-                          className="mobile-menu-link"
+                        <span>Call us {fitfusionConfig.contact.phone}</span>
+                      </div>
+                      <div className="mobile-menu-help-item">
+                        <span
+                          className="mobile-menu-help-icon"
+                          style={{ color: "#6b7280" }}
                         >
-                          <span className="mobile-menu-icon">
-                            <svg
-                              width="20"
-                              height="20"
-                              viewBox="0 0 20 20"
-                              fill="none"
-                            >
-                              <path
-                                d="M10 0C4.5 0 0 4.5 0 10C0 15.5 4.5 20 10 20C15.5 20 20 15.5 20 10C20 4.5 15.5 0 10 0ZM10 18C5.6 18 2 14.4 2 10C2 5.6 5.6 2 10 2C14.4 2 18 5.6 18 10C18 14.4 14.4 18 10 18ZM10 6C8.3 6 7 7.3 7 9C7 10.7 8.3 12 10 12C11.7 12 13 10.7 13 9C13 7.3 11.7 6 10 6ZM10 10C9.4 10 9 9.6 9 9C9 8.4 9.4 8 10 8C10.6 8 11 8.4 11 9C11 9.6 10.6 10 10 10Z"
-                                stroke="currentColor"
-                                strokeWidth="1.5"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              />
-                            </svg>
-                          </span>
-                          <span>My Account</span>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          href="/account/orders"
-                          onClick={() => setIsMenuOpen(false)}
-                          className="mobile-menu-link"
-                        >
-                          <span className="mobile-menu-icon">
-                            <svg
-                              width="20"
-                              height="20"
-                              viewBox="0 0 20 20"
-                              fill="none"
-                            >
-                              <path
-                                d="M16 2H4C2.9 2 2 2.9 2 4V18C2 19.1 2.9 20 4 20H16C17.1 20 18 19.1 18 18V4C18 2.9 17.1 2 16 2ZM16 18H4V4H16V18ZM6 6H14V8H6V6ZM6 10H14V12H6V10ZM6 14H10V16H6V14Z"
-                                stroke="currentColor"
-                                strokeWidth="1.5"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              />
-                            </svg>
-                          </span>
-                          <span>My Orders</span>
-                        </Link>
-                      </li>
-                    </>
-                  )}
-                </ul>
-              </div>
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                          >
+                            <path
+                              d="M2 3H14C15.1 3 16 3.9 16 5V13C16 14.1 15.1 15 14 15H2C0.9 15 0 14.1 0 13V5C0 3.9 0.9 3 2 3ZM2 5V7L8 11L14 7V5H2ZM14 13V9L8 13L2 9V13H14Z"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </span>
+                        <span>{fitfusionConfig.contact.supportEmail}</span>
+                      </div>
+                    </div>
+                  </div>
+                </nav>
+              </>
+            )}
 
-              <div className="mobile-menu-section">
-                <h4 className="mobile-menu-section-title">Quick Actions</h4>
-                <ul className="mobile-menu-list">
-                  <li>
-                    <Link
-                      href="/cart"
-                      onClick={() => setIsMenuOpen(false)}
-                      className="mobile-menu-link"
+            {/* Subcategories View */}
+            {isSubcategoryView && selectedCategory && (
+              <>
+                <div className="mobile-menu-header">
+                  <button
+                    className="mobile-menu-back-btn"
+                    onClick={handleBackToCategories}
+                    style={{
+                      background: "none",
+                      border: "none",
+                      display: "flex",
+                      alignItems: "center",
+                      cursor: "pointer",
+                      color: "white",
+                      fontSize: "14px",
+                    }}
+                  >
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      style={{ marginRight: "8px" }}
                     >
-                      <span className="mobile-menu-icon">
-                        <svg
-                          width="20"
-                          height="20"
-                          viewBox="0 0 20 20"
-                          fill="none"
-                        >
-                          <path
-                            d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.7 15.3C4.3 15.7 4.6 16.5 5.1 16.5H17M17 13V17C17 17.6 16.6 18 16 18H8C7.4 18 7 17.6 7 17V13H17Z"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </span>
-                      <span>View Cart</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <button
-                      onClick={toggleSearchModal}
-                      className="mobile-menu-link mobile-menu-button"
+                      <path
+                        d="M10 12L6 8L10 4"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                    Back
+                  </button>
+                  <button
+                    className="mobile-menu-close"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path
+                        d="M18 6L6 18M6 6L18 18"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </button>
+                </div>
+
+                <nav className="mobile-menu-nav">
+                  <div className="mobile-menu-section">
+                    <h4
+                      className="mobile-menu-section-title"
+                      style={{
+                        fontWeight: "bold",
+                        fontSize: "18px",
+                        marginBottom: "16px",
+                        color: "#333",
+                      }}
                     >
-                      <span className="mobile-menu-icon">
-                        <svg
-                          width="20"
-                          height="20"
-                          viewBox="0 0 20 20"
-                          fill="none"
-                        >
-                          <path
-                            d="M15.5 15.5L11.5 11.5M13.1667 7.33333C13.1667 10.555 10.555 13.1667 7.33333 13.1667C4.11167 13.1667 1.5 10.555 1.5 7.33333C1.5 4.11167 4.11167 1.5 7.33333 1.5C10.555 1.5 13.1667 4.11167 13.1667 7.33333Z"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </span>
-                      <span>Search Products</span>
-                    </button>
-                  </li>
-                </ul>
-              </div>
-            </nav>
+                      {selectedCategory.name}
+                    </h4>
+                    <ul className="mobile-menu-list">
+                      {selectedCategory.subcategories?.map((subcategory) => (
+                        <li key={subcategory.name}>
+                          <Link
+                            href={subcategory.href}
+                            onClick={() => setIsMenuOpen(false)}
+                            className="mobile-menu-subcategory-btn"
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              padding: "16px 24px",
+                              borderBottom: "1px solid #f0f0f0",
+                              textDecoration: "none",
+                              color: "#333",
+                              fontSize: "16px",
+                              background: "white",
+                              width: "100%",
+                            }}
+                          >
+                            <span>{subcategory.name}</span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </nav>
+              </>
+            )}
           </div>
         </>
       )}

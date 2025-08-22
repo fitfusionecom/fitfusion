@@ -14,9 +14,9 @@ interface CategoryBarProps {
 }
 
 // All category and subcategory hrefs now point to /shop
-const defaultCategories: Category[] = [
+export const defaultCategories: Category[] = [
   {
-    name: "Men’s Health & Wellness",
+    name: "Men's Health & Wellness",
     href: "/shop",
     subcategories: [
       { name: "Sexual Wellness", href: "/shop" },
