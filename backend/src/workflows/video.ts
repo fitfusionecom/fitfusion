@@ -17,7 +17,6 @@ export type CreateProductStoryInput = {
 }
 
 import { VIDEO_MODULE } from "../modules/video"
-import VideoModuleService from "../modules/video/service"
 
 // Create a step to filter product stories
 const filterProductStoriesStep = createStep(

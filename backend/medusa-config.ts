@@ -18,6 +18,9 @@ module.exports = defineConfig({
       resolve: "./src/modules/review",
     },
     {
+      resolve: "./src/modules/info",
+    },
+    {
       resolve: "./src/modules/carousel",
     },
     {
