@@ -116,7 +116,7 @@ Remember, a healthy liver means a healthier you!`,
 भोजन छोड़ने से बचें और नियमित खाने के पैटर्न बनाए रखें।
 
 याद रखें, स्वस्थ लिवर का मतलब स्वस्थ आप!`,
-    image: '/assets/images/why-icon1.png',
+    image: '/assets/images/blogs/b1.png',
     backgroundColor: '#f5f5dc',
     category: 'liver-health',
     publishedAt: '2024-01-15',
@@ -212,7 +212,8 @@ Your liver will thank you for these natural cleansing methods!`,
 - ध्यान के माध्यम से तनाव कम करें
 
 आपका लिवर इन प्राकृतिक सफाई विधियों के लिए आपको धन्यवाद देगा!`,
-    image: '/assets/images/why-icon2.png',
+    image: '/assets/images/blogs/b2.png',
+
     backgroundColor: '#ff6b6b',
     category: 'liver-health',
     publishedAt: '2024-01-20',
@@ -296,7 +297,8 @@ Start with small changes and gradually build your routine!`,
 - संतुलित दोष
 
 छोटे बदलावों से शुरू करें और धीरे-धीरे अपनी दिनचर्या बनाएं!`,
-    image: '/assets/images/why-icon3.png',
+    image: '/assets/images/blogs/b1.png',
+
     backgroundColor: '#e8f5e8',
     category: 'ayurveda',
     publishedAt: '2024-01-25',
