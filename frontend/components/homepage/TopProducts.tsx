@@ -42,7 +42,7 @@ export default function TopProducts({
         </div>
 
         {/* Swiper Carousel */}
-        <div className="top-products-carousel top-products-section">
+        <div className="">
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
             spaceBetween={20}
