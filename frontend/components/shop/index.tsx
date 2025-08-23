@@ -1,14 +1,12 @@
 "use client";
 
 import { sdk } from "@/lib/config";
-import ShopSidebar from "./sidebar";
 import ShopNotFound from "./not-found";
 import { HttpTypes } from "@medusajs/types";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import ProductCard from "../blocks/product-card";
 import { useInfiniteQuery, useQuery } from "react-query";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 // Simple loading skeleton for product cards
 const ProductCardSkeleton = () => (
@@ -129,11 +127,14 @@ const ShopTemplate = ({
   const minPrice = (searchParams.minPrice as string) || "0";
   const maxPrice = (searchParams.maxPrice as string) || "50000";
   const category_handle = (searchParams.category_handle as string) || "";
+  const sortBy = (searchParams.sortBy as string) || "price-low-high";
 
   const [priceRange, setPriceRange] = useState([
     minPrice ? Number(minPrice) : 0,
     maxPrice ? Number(maxPrice) : 50000,
   ]) as any;
+
+  const [sortDropdownOpen, setSortDropdownOpen] = useState(false);
 
   const [openSections, setOpenSections] = useState({
     availability: true,
@@ -143,38 +144,23 @@ const ShopTemplate = ({
     categories: true,
   });
 
-  const toggleSection = (section: keyof typeof openSections) => {
-    setOpenSections((prev) => ({
-      ...prev,
-      [section]: !prev[section],
-    }));
-  };
-
-  const {
-    data: categories,
-    isLoading: isCategoriesLoading,
-    error: categoriesError,
-  } = useQuery({
-    queryKey: ["categories"],
-    queryFn: async () => {
-      try {
-        const response = await sdk.client.fetch<{
-          product_categories: HttpTypes.StoreProductCategory[];
-        }>("/store/product-categories", {
-          query: {
-            fields:
-              "*category_children, *parent_category, *parent_category.parent_category",
-          },
-          cache: "no-store",
-        });
-        return response.product_categories || [];
-      } catch (error) {
-        console.error("Error fetching categories:", error);
-        return [];
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (!target.closest(".sort-dropdown-container")) {
+        setSortDropdownOpen(false);
       }
-    },
-    staleTime: 5 * 60 * 1000, // 5 minutes
-  });
+    };
+
+    if (sortDropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [sortDropdownOpen]);
 
   const {
     data,
@@ -185,13 +171,14 @@ const ShopTemplate = ({
     error: productsError,
     refetch,
   } = useInfiniteQuery({
-    queryKey: ["productData", q, minPrice, maxPrice, category_handle],
+    queryKey: ["productData", q, minPrice, maxPrice, category_handle, sortBy],
     queryFn: ({ pageParam = 1 }) =>
       fetchProducts({
         q,
         minPrice,
         maxPrice,
-        category_handle: category_handle || "",
+        // category_handle: category_handle || "",
+        category_handle: "",
         pageParam,
       }),
     getNextPageParam: (lastPage: any, allPages: any) =>
@@ -201,6 +188,37 @@ const ShopTemplate = ({
   });
 
   const products = data?.pages.flat() || [];
+
+  // Sort products based on selected option
+  const getSortedProducts = () => {
+    if (!products.length) return [];
+
+    const sortedProducts = [...products];
+
+    switch (sortBy) {
+      case "price-low-high":
+        return sortedProducts.sort((a, b) => {
+          const priceA = a.variants?.[0]?.prices?.[0]?.amount || 0;
+          const priceB = b.variants?.[0]?.prices?.[0]?.amount || 0;
+          return priceA - priceB;
+        });
+      case "price-high-low":
+        return sortedProducts.sort((a, b) => {
+          const priceA = a.variants?.[0]?.prices?.[0]?.amount || 0;
+          const priceB = b.variants?.[0]?.prices?.[0]?.amount || 0;
+          return priceB - priceA;
+        });
+      default:
+        // Default to price low to high
+        return sortedProducts.sort((a, b) => {
+          const priceA = a.variants?.[0]?.prices?.[0]?.amount || 0;
+          const priceB = b.variants?.[0]?.prices?.[0]?.amount || 0;
+          return priceA - priceB;
+        });
+    }
+  };
+
+  const sortedProducts = getSortedProducts();
 
   const updateQueryParams = (
     key: string,
@@ -290,17 +308,203 @@ const ShopTemplate = ({
     );
   }
 
+  const handleSortChange = (sortValue: string) => {
+    updateQueryParams("sortBy", sortValue);
+    setSortDropdownOpen(false);
+  };
+
+  const getSortDisplayText = () => {
+    switch (sortBy) {
+      case "price-low-high":
+        return "Price, low to high";
+      case "price-high-low":
+        return "Price, high to low";
+      default:
+        return "Price, low to high";
+    }
+  };
+
   return (
     <div>
       {/*----------- Shop Header Section ---------*/}
       <div
         className="ayur-bgcover"
         style={{
-          background: "linear-gradient(135deg, #f0f8f0 0%, #fff 100%)",
           padding: "60px 0 40px",
           position: "relative",
         }}
       >
+        <div className="container">
+          <div className="row">
+            <div className="col-12">
+              {/* Breadcrumb Navigation */}
+              <nav aria-label="breadcrumb" style={{ marginBottom: "20px" }}>
+                <ol
+                  className="breadcrumb"
+                  style={{
+                    background: "transparent",
+                    padding: "0",
+                    margin: "0",
+                    fontSize: "0.9rem",
+                    color: "#797979",
+                  }}
+                >
+                  <li className="breadcrumb-item">
+                    <a
+                      href="/"
+                      style={{
+                        color: "#90b644",
+                        textDecoration: "none",
+                        fontWeight: "500",
+                      }}
+                    >
+                      Home
+                    </a>
+                  </li>
+                  <li className="breadcrumb-item active" aria-current="page">
+                    {category_handle || "Shop"}
+                  </li>
+                </ol>
+              </nav>
+
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <h3
+                  style={{
+                    color: "#222222",
+                    fontWeight: "700",
+                    margin: "0",
+                    fontFamily: "Archivo, sans-serif",
+                    lineHeight: "1.2",
+                    textTransform: "capitalize",
+                  }}
+                >
+                  {category_handle.replace(/-/g, " ") || "All Products"}
+                </h3>
+
+                {/* Sort Dropdown */}
+                <div
+                  className="sort-dropdown-container"
+                  style={{ position: "relative" }}
+                >
+                  <button
+                    onClick={() => setSortDropdownOpen(!sortDropdownOpen)}
+                    style={{
+                      background: "white",
+                      border: "1px solid #e0e0e0",
+                      borderRadius: "8px",
+                      padding: "10px 16px",
+                      cursor: "pointer",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "8px",
+                      fontSize: "0.9rem",
+                      color: "#333",
+                      minWidth: "180px",
+                      justifyContent: "space-between",
+                      boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+                    }}
+                  >
+                    <span>{getSortDisplayText()}</span>
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      style={{
+                        transform: sortDropdownOpen
+                          ? "rotate(180deg)"
+                          : "rotate(0deg)",
+                        transition: "transform 0.2s ease",
+                      }}
+                    >
+                      <polyline points="6,9 12,15 18,9"></polyline>
+                    </svg>
+                  </button>
+
+                  {sortDropdownOpen && (
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "100%",
+                        right: "0",
+                        background: "white",
+                        border: "1px solid #e0e0e0",
+                        borderRadius: "8px",
+                        boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+                        zIndex: 1000,
+                        minWidth: "180px",
+                        marginTop: "4px",
+                      }}
+                    >
+                      <div
+                        onClick={() => handleSortChange("price-low-high")}
+                        style={{
+                          padding: "12px 16px",
+                          cursor: "pointer",
+                          borderBottom: "1px solid #f0f0f0",
+                          color:
+                            sortBy === "price-low-high" ? "#90b644" : "#666",
+                          background:
+                            sortBy === "price-low-high"
+                              ? "#f8f9fa"
+                              : "transparent",
+                          fontSize: "0.9rem",
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.background =
+                            sortBy === "price-low-high" ? "#f8f9fa" : "#f5f5f5";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.background =
+                            sortBy === "price-low-high"
+                              ? "#f8f9fa"
+                              : "transparent";
+                        }}
+                      >
+                        Price, low to high
+                      </div>
+                      <div
+                        onClick={() => handleSortChange("price-high-low")}
+                        style={{
+                          padding: "12px 16px",
+                          cursor: "pointer",
+                          color:
+                            sortBy === "price-high-low" ? "#90b644" : "#666",
+                          background:
+                            sortBy === "price-high-low"
+                              ? "#f8f9fa"
+                              : "transparent",
+                          fontSize: "0.9rem",
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.background =
+                            sortBy === "price-high-low" ? "#f8f9fa" : "#f5f5f5";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.background =
+                            sortBy === "price-high-low"
+                              ? "#f8f9fa"
+                              : "transparent";
+                        }}
+                      >
+                        Price, high to low
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div
           className="ayur-bgshape ayur-shop-header-bgshape"
           style={{
@@ -320,62 +524,27 @@ const ShopTemplate = ({
 
       {/*----------- Shop Main Section ---------*/}
       <div
-        className="ayur-bgcover ayur-shopsin-sec"
         style={{
           background: "#fdffff",
-          padding: "60px 0",
+          padding: "10px 0",
           position: "relative",
         }}
       >
         <div className="container">
           <div className="row">
-            {/* Sidebar */}
-            {/* <div className="col-lg-3 col-md-4 col-sm-12 mb-4">
-              <ShopSidebar
-                categories={categories || []}
-                updateQueryParams={updateQueryParams}
-                priceRange={priceRange}
-                setPriceRange={setPriceRange}
-                searchParams={searchParams}
-              />
-            </div> */}
-
             {/* Products Grid */}
             <div className="col-lg-12 col-md-12 col-sm-12">
               <div className="ayur-shopsin-products">
                 {/* Results Header */}
                 <div
-                  className="ayur-products-header mb-4"
+                  className="ayur-products-header"
                   style={{
                     display: "flex",
-                    justifyContent: "space-between",
+                    justifyContent: "flex-start",
                     alignItems: "center",
-                    padding: "20px 0",
-                    borderBottom: "2px solid #e8f5e8",
+                    marginBottom: "20px",
                   }}
                 >
-                  <div className="ayur-products-title">
-                    <h3
-                      style={{
-                        color: "#222222",
-                        fontSize: "1.8rem",
-                        fontWeight: "600",
-                        margin: "0",
-                        fontFamily: "Archivo, sans-serif",
-                      }}
-                    >
-                      {q ? `Search Results for "${q}"` : "All Products"}
-                    </h3>
-                    <p
-                      style={{
-                        color: "#797979",
-                        margin: "8px 0 0",
-                        fontSize: "1rem",
-                      }}
-                    >
-                      {products.length} products found
-                    </p>
-                  </div>
                   {q && (
                     <button
                       onClick={() => updateQueryParams("q", "")}
@@ -403,13 +572,13 @@ const ShopTemplate = ({
                     Array.from({ length: 6 }).map((_, idx) => (
                       <ProductCardSkeleton key={idx} />
                     ))
-                  ) : products.length === 0 ? (
+                  ) : sortedProducts.length === 0 ? (
                     <div className="col-12">
                       <ShopNotFound />
                     </div>
                   ) : (
                     <>
-                      {products.map((product) => (
+                      {sortedProducts.map((product) => (
                         <div
                           key={product.id}
                           className="col-lg-4 col-md-6 col-sm-6 mb-4"

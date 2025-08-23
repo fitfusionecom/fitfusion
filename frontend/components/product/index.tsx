@@ -14,6 +14,7 @@ import "react-quill/dist/quill.snow.css";
 import "./product-description.css";
 import OptionSelect from "./option-select";
 import ProductPrice from "./product-price2";
+import SpecialOffer from "./SpecialOffer";
 import { useCartContext } from "@/lib/context/cart-context";
 import { BiCheck } from "react-icons/bi";
 import { GiRibbonMedal } from "react-icons/gi";
@@ -340,26 +341,61 @@ const ProductDetails = ({
                     </button>
                   </div>
                 </div>
+
+                {/* Special Offer Section */}
+                <SpecialOffer />
+
                 <div className="mt-4">
-                  <button
-                    className="ayur-btn btn btn-primary"
-                    style={{
-                      padding: "10px 50px",
-                    }}
-                    onClick={handleAddToCart}
-                    disabled={
-                      !inStock ||
-                      !selectedVariant ||
-                      isAdding ||
-                      !isValidVariant
-                    }
-                  >
-                    {!selectedVariant && !options
-                      ? "Select variant"
-                      : !inStock || !isValidVariant
-                      ? "Out of stock"
-                      : `Add to cart${isAdding ? "..." : ""}`}
-                  </button>
+                  <p>
+                    <span style={{ fontSize: "0.95rem", color: "#555" }}>
+                      Please read our{" "}
+                      <a
+                        href="/return-policy"
+                        style={{
+                          textDecoration: "underline",
+                          color: "#007bff",
+                        }}
+                      >
+                        Return Policy
+                      </a>{" "}
+                      and{" "}
+                      <a
+                        href="/refund-policy"
+                        style={{
+                          textDecoration: "underline",
+                          color: "#007bff",
+                        }}
+                      >
+                        Refund Policy
+                      </a>{" "}
+                      for more details.
+                    </span>
+                  </p>
+
+                  <div className="d-flex gap-3 flex-wrap">
+                    <button
+                      className="ayur-btn btn btn-primary"
+                      style={{
+                        padding: "10px 50px",
+                      }}
+                      onClick={handleAddToCart}
+                      disabled={
+                        !inStock ||
+                        !selectedVariant ||
+                        isAdding ||
+                        !isValidVariant
+                      }
+                    >
+                      {!selectedVariant && !options
+                        ? "Select variant"
+                        : !inStock || !isValidVariant
+                        ? "Out of stock"
+                        : `Add to cart${isAdding ? "..." : ""}`}
+                    </button>
+                    <button className="ayur-btn btn btn-outline-primary">
+                      Buy Now
+                    </button>
+                  </div>
                 </div>
                 <div className="mt-4">
                   <p className="fs-6 fw-bold" style={{ color: "black" }}>

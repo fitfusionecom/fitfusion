@@ -10,6 +10,7 @@ import ExploreAyurveda from "@/components/homepage/ExploreAyurveda";
 import Newsletter from "@/components/homepage/Newsletter";
 import VideoGallery from "@/components/homepage/VideoGallery";
 import GoogleReviews from "@/components/homepage/GoogleReviews";
+import AlsoAvailableOn from "@/components/homepage/AlsoAvailableOn";
 import { filterProducts } from "@/lib/data/products";
 import { listCategories } from "@/lib/data/categories";
 import { getVideos } from "@/lib/data/video";
@@ -38,6 +39,7 @@ export default async function Home() {
       <TopProducts products={top_products} title="Deals" />
       <Achievement />
       <GoogleReviews />
+      {/* <AlsoAvailableOn /> */}
       {/* <WhySection /> */}
       {/* <Testimonials /> */}
       <DoctorsConsultation />

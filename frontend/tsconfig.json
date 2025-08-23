@@ -32,7 +32,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "lib/config.js"  ],
   "exclude": [
     "node_modules"
   ]

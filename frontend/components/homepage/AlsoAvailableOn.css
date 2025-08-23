@@ -1,0 +1,137 @@
+.also-available-section {
+  padding: 4rem 0;
+  background-color: #ffffff;
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.also-available-content {
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 3rem;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+.platform-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  flex-wrap: wrap;
+}
+
+.platform-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.platform-logo:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.logo-image {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(0);
+  transition: filter 0.3s ease;
+}
+
+.platform-logo:hover .logo-image {
+  filter: grayscale(0);
+}
+
+/* Platform-specific styling */
+.platform-logo.amazon {
+  border: 2px solid #ff9900;
+}
+
+.platform-logo.amazon:hover {
+  background: linear-gradient(135deg, #ff9900, #ff8800);
+}
+
+.platform-logo.amazon:hover .logo-image {
+  filter: brightness(0) invert(1);
+}
+
+.platform-logo.blinkit {
+  border: 2px solid #00d4aa;
+}
+
+.platform-logo.blinkit:hover {
+  background: linear-gradient(135deg, #00d4aa, #00b894);
+}
+
+.platform-logo.blinkit:hover .logo-image {
+  filter: brightness(0) invert(1);
+}
+
+.platform-logo.flipkart {
+  border: 2px solid #2874f0;
+}
+
+.platform-logo.flipkart:hover {
+  background: linear-gradient(135deg, #2874f0, #1e40af);
+}
+
+.platform-logo.flipkart:hover .logo-image {
+  filter: brightness(0) invert(1);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .also-available-section {
+    padding: 2rem 0;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .platform-logos {
+    gap: 2rem;
+    flex-direction: column;
+  }
+
+  .platform-logo {
+    padding: 1rem;
+  }
+
+  .logo-image {
+    height: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .platform-logos {
+    gap: 1.5rem;
+  }
+
+  .platform-logo {
+    padding: 0.75rem;
+  }
+
+  .logo-image {
+    height: 40px;
+  }
+}

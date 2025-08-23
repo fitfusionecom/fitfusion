@@ -1,0 +1,92 @@
+.special-offer-container {
+  margin-bottom: 1.5rem;
+  max-width: 300px;
+}
+
+.special-offer-heading {
+  color: black;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.special-offer-box {
+  background-color: #f5f5dc; /* Light beige color */
+  border-radius: 12px;
+  border: 1px solid #e8e8d0;
+  text-align: center;
+  padding: 1rem;
+}
+
+.coupon-code {
+  border: 2px dashed #666;
+  border-radius: 8px;
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: white;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: all 0.2s ease;
+}
+
+.coupon-code:hover {
+  border-color: #007bff;
+  background-color: #f8f9fa;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.15);
+}
+
+.coupon-code span {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.offer-description {
+  font-size: 0.95rem;
+  color: #333;
+  margin: 0 0 1rem 0;
+  line-height: 1.4;
+}
+
+.offer-description strong {
+  color: black;
+}
+
+.download-link {
+  color: #007bff;
+  text-decoration: underline;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.download-link:hover {
+  color: #0056b3;
+  text-decoration: none;
+}
+
+.disclaimer {
+  font-size: 0.8rem;
+  color: #666;
+  margin: 0.5rem 0 0 0;
+  font-style: italic;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .special-offer-box {
+    padding: 0.75rem;
+  }
+
+  .coupon-code {
+    padding: 6px 12px;
+  }
+
+  .coupon-code span {
+    font-size: 1rem;
+  }
+
+  .offer-description {
+    font-size: 0.9rem;
+  }
+}

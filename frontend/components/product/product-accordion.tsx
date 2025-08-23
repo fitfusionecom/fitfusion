@@ -9,6 +9,11 @@ import "./product-accordion.css";
 type ProductAccordionProps = {
   product: HttpTypes.StoreProduct;
   countryCode: string;
+  info?: {
+    desc1: string;
+    desc2: string;
+    desc3: string;
+  };
 };
 
 type AccordionSection = {
@@ -18,6 +23,7 @@ type AccordionSection = {
 };
 
 export default function ProductAccordion({
+  info,
   product,
   countryCode,
 }: ProductAccordionProps) {
@@ -47,6 +53,57 @@ export default function ProductAccordion({
             />
           ) : (
             <p>No description available for this product.</p>
+          )}
+        </div>
+      ),
+    },
+    {
+      id: "uses-benefits",
+      title: "Uses & Benefits",
+      content: (
+        <div className="ayur-product-uses">
+          {info?.desc1 ? (
+            <div
+              dangerouslySetInnerHTML={{
+                __html: String(info.desc1),
+              }}
+            />
+          ) : (
+            <p>No uses or benefits information available for this product.</p>
+          )}
+        </div>
+      ),
+    },
+    {
+      id: "key-ingredient-info",
+      title: "Key Ingredient & Information",
+      content: (
+        <div className="ayur-product-ingredients">
+          {info?.desc2 ? (
+            <div
+              dangerouslySetInnerHTML={{
+                __html: String(info.desc2),
+              }}
+            />
+          ) : (
+            <p>No key ingredient or information available for this product.</p>
+          )}
+        </div>
+      ),
+    },
+    {
+      id: "faq",
+      title: "Frequently Asked Questions",
+      content: (
+        <div className="ayur-product-faq">
+          {info?.desc3 ? (
+            <div
+              dangerouslySetInnerHTML={{
+                __html: String(info.desc3),
+              }}
+            />
+          ) : (
+            <p>No FAQs available for this product.</p>
           )}
         </div>
       ),

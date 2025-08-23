@@ -78,10 +78,10 @@ export const fitfusionConfig = {
 
   // Privacy & Terms
   legal: {
-    privacyPolicyLastUpdated: "January 1, 2024",
-    termsLastUpdated: "January 1, 2024",
-    returnPolicyLastUpdated: "January 1, 2024",
-    cookiePolicyLastUpdated: "January 1, 2024",
+    privacyPolicyLastUpdated: "25 Aug 2025",
+    termsLastUpdated: "25 Aug 2025",
+    returnPolicyLastUpdated: "25 Aug 2025",
+    cookiePolicyLastUpdated: "25 Aug 2025",
   },
 
   // Payment Methods

@@ -130,58 +130,120 @@ const ProductImageCarousel = ({
   }));
 
   return (
-    <div className="position-relative ratio ratio-1x1 w-100 rounded bg-white border mb-3">
-      {/* Inject custom styles for Swiper and floating button */}
-      <style>{carouselStyles}</style>
-      <Swiper
-        spaceBetween={0}
-        navigation={true}
-        pagination={{
-          clickable: true,
-          type: "bullets",
-        }}
-        thumbs={{ swiper: thumbsSwiper }}
-        modules={[Navigation, Thumbs, Pagination]}
-        className="h-100 product-image-carousel"
-        onSlideChange={(swiper) => setActiveImage(swiper.activeIndex)}
-      >
-        {images.map((image, index) => (
-          <SwiperSlide key={index}>
-            <div className="position-relative w-100 h-100">
-              <Image
-                src={image}
-                alt={`${productTitle} - View ${index + 1}`}
-                fill
-                className="object-fit-contain w-100 h-100"
-                priority={index === 0}
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-      {/* Floating enlarge button */}
-      <button
-        style={{
-          position: "absolute",
-          top: "10px",
-          left: "10px",
-          zIndex: 30,
-          width: "40px",
-          height: "40px",
-          borderRadius: "50%",
-          color: "black",
-          border: "none",
-          outline: "none",
-          padding: "0",
-        }}
-        type="button"
-        aria-label="Click to enlarge"
-        onClick={() => setLightboxOpen(true)}
-        tabIndex={0}
-      >
-        <BsArrowsFullscreen />
-      </button>
+    <div className="w-100">
+      {/* Main Image Carousel */}
+      <div className="position-relative ratio ratio-1x1 w-100 rounded bg-white border mb-3">
+        {/* Inject custom styles for Swiper and floating button */}
+        <style>{carouselStyles}</style>
+        <Swiper
+          spaceBetween={0}
+          navigation={true}
+          pagination={{
+            clickable: true,
+            type: "bullets",
+          }}
+          thumbs={{ swiper: thumbsSwiper }}
+          modules={[Navigation, Thumbs, Pagination]}
+          className="h-100 product-image-carousel"
+          onSlideChange={(swiper) => setActiveImage(swiper.activeIndex)}
+        >
+          {images.map((image, index) => (
+            <SwiperSlide key={index}>
+              <div className="position-relative w-100 h-100">
+                <Image
+                  src={image}
+                  alt={`${productTitle} - View ${index + 1}`}
+                  fill
+                  className="object-fit-contain w-100 h-100"
+                  priority={index === 0}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+        {/* Floating enlarge button */}
+        <button
+          style={{
+            position: "absolute",
+            top: "10px",
+            left: "10px",
+            zIndex: 30,
+            width: "40px",
+            height: "40px",
+            borderRadius: "50%",
+            color: "black",
+            border: "none",
+            outline: "none",
+            padding: "0",
+          }}
+          type="button"
+          aria-label="Click to enlarge"
+          onClick={() => setLightboxOpen(true)}
+          tabIndex={0}
+        >
+          <BsArrowsFullscreen />
+        </button>
+      </div>
+
+      {/* Thumbnail Carousel */}
+      {images.length > 1 && (
+        <div className="w-100">
+          <Swiper
+            onSwiper={setThumbsSwiper}
+            spaceBetween={8}
+            slidesPerView={5}
+            freeMode={true}
+            watchSlidesProgress={true}
+            modules={[Thumbs]}
+            className="thumbnail-carousel"
+            breakpoints={{
+              320: {
+                slidesPerView: 3,
+                spaceBetween: 6,
+              },
+              480: {
+                slidesPerView: 4,
+                spaceBetween: 8,
+              },
+              768: {
+                slidesPerView: 5,
+                spaceBetween: 8,
+              },
+              1024: {
+                slidesPerView: 6,
+                spaceBetween: 10,
+              },
+            }}
+          >
+            {images.map((image, index) => (
+              <SwiperSlide key={index}>
+                <div
+                  className={`thumbnail-item cursor-pointer border-2 rounded ${
+                    index === activeImage ? "border-primary" : "border-light"
+                  }`}
+                  onClick={() => {
+                    if (thumbsSwiper) {
+                      thumbsSwiper.slideTo(index);
+                    }
+                  }}
+                >
+                  <div className="position-relative ratio ratio-1x1 w-100">
+                    <Image
+                      src={image}
+                      alt={`${productTitle} thumbnail ${index + 1}`}
+                      fill
+                      className="object-fit-cover w-100 h-100 rounded"
+                      sizes="80px"
+                    />
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      )}
+
       <Lightbox
         open={lightboxOpen}
         close={() => setLightboxOpen(false)}

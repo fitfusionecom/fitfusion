@@ -19,49 +19,91 @@ export const defaultCategories: Category[] = [
     name: "Men's Health & Wellness",
     href: "/shop",
     subcategories: [
-      { name: "Sexual Wellness", href: "/shop" },
-      { name: "Stamina & Energy Boosters", href: "/shop" },
-      { name: "Muscle Growth & Strength", href: "/shop" },
+      {
+        name: "Sexual Wellness",
+        href: "/shop?category_handle=sexual-wellness",
+      },
+      {
+        name: "Stamina & Energy Boosters",
+        href: "/shop?category_handle=stamina-energy-boosters",
+      },
+      {
+        name: "Muscle Growth & Strength",
+        href: "/shop?category_handle=muscle-growth-strength",
+      },
     ],
   },
   {
     name: "Immunity & Vitality",
     href: "/shop",
     subcategories: [
-      { name: "Immune System Boosters", href: "/shop" },
-      { name: "General Wellness", href: "/shop" },
+      {
+        name: "Immune System Boosters",
+        href: "/shop?category_handle=immune-system-boosters",
+      },
+      {
+        name: "General Wellness",
+        href: "/shop?category_handle=general-wellness",
+      },
     ],
   },
   {
     name: "Lifestyle & Habit Control",
     href: "/shop",
     subcategories: [
-      { name: "Detox & De-addiction", href: "/shop" },
-      { name: "Stress & Anxiety Relief", href: "/shop" },
-      { name: "Sleep Support (Sleep-O-Fit)", href: "/shop" },
+      {
+        name: "Detox & De-addiction",
+        href: "/shop?category_handle=detox-de-addiction",
+      },
+      {
+        name: "Stress & Anxiety Relief",
+        href: "/shop?category_handle=stress-anxiety-relief",
+      },
+      {
+        name: "Sleep Support (Sleep-O-Fit)",
+        href: "/shop?category_handle=sleep-support-sleep-o-fit",
+      },
     ],
   },
   {
     name: "Metabolic & Chronic Care",
     href: "/shop",
-    subcategories: [{ name: "Diabetes Care", href: "/shop" }],
+    subcategories: [
+      { name: "Diabetes Care", href: "/shop?category_handle=diabetes-care" },
+    ],
   },
   {
     name: "Digestive Health",
     href: "/shop",
-    subcategories: [{ name: "Digestion Support", href: "/shop" }],
+    subcategories: [
+      {
+        name: "Digestion Support",
+        href: "/shop?category_handle=digestion-support",
+      },
+    ],
   },
   {
     name: "Ashwagandha",
     href: "/shop",
-    subcategories: [{ name: "Ashwagandha Capsules", href: "/shop" }],
+    subcategories: [
+      {
+        name: "Ashwagandha Capsules",
+        href: "/shop?category_handle=ashwagandha-capsules",
+      },
+    ],
   },
   {
     name: "Shilajit",
     href: "/shop",
     subcategories: [
-      { name: "Pure Shilajit Resin", href: "/shop" },
-      { name: "Shilajit Capsules", href: "/shop" },
+      {
+        name: "Pure Shilajit Resin",
+        href: "/shop?category_handle=pure-shilajit-resin",
+      },
+      {
+        name: "Shilajit Capsules",
+        href: "/shop?category_handle=shilajit-capsules",
+      },
     ],
   },
 ];

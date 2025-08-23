@@ -90,19 +90,27 @@ export default async function Product(props: Props) {
     queryParams: { handle: params.handle },
   }).then(({ response }) => response.products[0]);
 
+  const response = await fetch(`${process.env.MEDUSA_BACKEND_URL}/info`);
+  const info = await response.json();
+
   if (!pricedProduct) {
     notFound();
   }
 
   return (
     <>
+      {/* {JSON.stringify(info)} */}
       <ProductDetails
         product={pricedProduct}
         region={region}
         countryCode={country_code}
       />
       <Suspense fallback={<div>Loading...</div>}>
-        <ProductAccordion product={pricedProduct} countryCode={country_code} />
+        <ProductAccordion
+          info={info.info.at(1)}
+          product={pricedProduct}
+          countryCode={country_code}
+        />
         <ProductReviews productId={pricedProduct.id} />
         <RelatedProducts product={pricedProduct} countryCode={country_code} />
         <GoogleReviews />
