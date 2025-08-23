@@ -8,33 +8,21 @@ import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 const slides = [
   {
     id: 1,
-    mobileImage: "/assets/images/carousel/img2.webp",
-    desktopImage: "/assets/images/carousel/img.webp",
+    mobileImage: "/assets/images/banners/1.png",
+    desktopImage: "/assets/images/banners/1.png",
     alt: "Banner 1",
   },
   {
     id: 2,
-    mobileImage: "/assets/images/carousel/img2.webp",
-    desktopImage: "/assets/images/carousel/img.webp",
+    mobileImage: "/assets/images/banners/2.png",
+    desktopImage: "/assets/images/banners/2.png",
     alt: "Banner 2",
   },
   {
     id: 3,
-    mobileImage: "/assets/images/carousel/img2.webp",
-    desktopImage: "/assets/images/carousel/img.webp",
+    mobileImage: "/assets/images/banners/3.png",
+    desktopImage: "/assets/images/banners/3.png",
     alt: "Banner 3",
-  },
-  {
-    id: 4,
-    mobileImage: "/assets/images/carousel/img2.webp",
-    desktopImage: "/assets/images/carousel/img.webp",
-    alt: "Banner 4",
-  },
-  {
-    id: 5,
-    mobileImage: "/assets/images/carousel/img2.webp",
-    desktopImage: "/assets/images/carousel/img.webp",
-    alt: "Banner 5",
   },
 ];
 
