@@ -426,16 +426,16 @@ const ProductDetails = ({
                         key={index}
                         className="d-flex align-items-center justify-content-center"
                         style={{
-                          width: "64px",
-                          height: "40px",
+                          width: "80px",
+                          height: "52px",
                         }}
                         title={payment.name}
                       >
                         <Image
                           src={payment.src}
                           alt={payment.name}
-                          width={56}
-                          height={32}
+                          width={70}
+                          height={40}
                           style={{
                             width: "100%",
                             height: "100%",
