@@ -98,7 +98,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         <p className="product-benefits text-center">{getProductBenefits()}</p>
 
         {/* Volume Options */}
-        {hasVariants && (
+        {/* {hasVariants && (
           <div className="volume-options">
             {variants.slice(0, 2).map((variant, index) => (
               <button
@@ -112,7 +112,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               </button>
             ))}
           </div>
-        )}
+        )} */}
 
         {/* Pricing */}
         <div className="product-pricing d-flex justify-content-center">
