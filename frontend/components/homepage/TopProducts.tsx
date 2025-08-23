@@ -35,7 +35,10 @@ export default function TopProducts({
             </div>
           </div>
           <div className="col-lg-4 col-md-4 col-sm-12 text-end">
-            <Link href="/blog" className="explore-view-all-btn">
+            <Link
+              href="/shop?category_handle=best-selling"
+              className="explore-view-all-btn"
+            >
               View All
             </Link>
           </div>
