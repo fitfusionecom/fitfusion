@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import "./AlsoAvailableOn.css";
 
 const AlsoAvailableOn: React.FC = () => {
@@ -9,24 +10,36 @@ const AlsoAvailableOn: React.FC = () => {
           <h2 className="section-title">Also available on</h2>
           <div className="platform-logos">
             <div className="platform-logo amazon">
-              <img
+              <Image
                 src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
                 alt="Amazon"
+                width={140}
+                height={80}
                 className="logo-image"
+                priority
+                style={{ objectFit: "contain" }}
               />
             </div>
             <div className="platform-logo blinkit">
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Blinkit_logo.svg/2560px-Blinkit_logo.svg.png"
+              <Image
+                src="/assets/images/logos/blinkit.png"
                 alt="Blinkit"
+                width={140}
+                height={80}
                 className="logo-image"
+                priority
+                style={{ objectFit: "contain" }}
               />
             </div>
             <div className="platform-logo flipkart">
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Flipkart_logo.svg/2560px-Flipkart_logo.svg.png"
+              <Image
+                src="/assets/images/logos/flipkart.png"
                 alt="Flipkart"
+                width={140}
+                height={80}
                 className="logo-image"
+                priority
+                style={{ objectFit: "contain" }}
               />
             </div>
           </div>

@@ -1,5 +1,5 @@
 .also-available-section {
-  padding: 4rem 0;
+  padding: 2.5rem 0;
   background-color: #ffffff;
   border-top: 1px solid #e5e7eb;
   border-bottom: 1px solid #e5e7eb;
@@ -16,10 +16,10 @@
 }
 
 .section-title {
-  font-size: 2rem;
+  font-size: 1.75rem;
   font-weight: 700;
   color: #111827;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
 }
@@ -28,7 +28,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 4rem;
+  gap: 3rem;
   flex-wrap: wrap;
 }
 
@@ -36,102 +36,81 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem;
+  padding: 1.25rem;
   border-radius: 12px;
   transition: all 0.3s ease;
   background: #ffffff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.platform-logo:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 180px;
+  min-height: 120px;
 }
 
 .logo-image {
-  height: 60px;
+  max-width: 140px;
+  max-height: 80px;
   width: auto;
+  height: auto;
   object-fit: contain;
   filter: grayscale(0);
   transition: filter 0.3s ease;
+}
+
+/* Platform-specific styling */
+.platform-logo.amazon {
+  border: 2px solid #000000;
+}
+
+.platform-logo.blinkit {
+  border: 2px solid #000000;
+}
+
+.platform-logo.flipkart {
+  border: 2px solid #000000;
+}
+
+/* Hover effects */
+.platform-logo:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .platform-logo:hover .logo-image {
   filter: grayscale(0);
 }
 
-/* Platform-specific styling */
-.platform-logo.amazon {
-  border: 2px solid #ff9900;
-}
-
-.platform-logo.amazon:hover {
-  background: linear-gradient(135deg, #ff9900, #ff8800);
-}
-
-.platform-logo.amazon:hover .logo-image {
-  filter: brightness(0) invert(1);
-}
-
-.platform-logo.blinkit {
-  border: 2px solid #00d4aa;
-}
-
-.platform-logo.blinkit:hover {
-  background: linear-gradient(135deg, #00d4aa, #00b894);
-}
-
-.platform-logo.blinkit:hover .logo-image {
-  filter: brightness(0) invert(1);
-}
-
-.platform-logo.flipkart {
-  border: 2px solid #2874f0;
-}
-
-.platform-logo.flipkart:hover {
-  background: linear-gradient(135deg, #2874f0, #1e40af);
-}
-
-.platform-logo.flipkart:hover .logo-image {
-  filter: brightness(0) invert(1);
-}
-
 /* Responsive design */
 @media (max-width: 768px) {
   .also-available-section {
-    padding: 2rem 0;
+    padding: 1.5rem 0;
   }
 
   .section-title {
     font-size: 1.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
 
   .platform-logos {
     gap: 2rem;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
   }
 
   .platform-logo {
     padding: 1rem;
   }
-
-  .logo-image {
-    height: 50px;
-  }
 }
 
 @media (max-width: 480px) {
+  .also-available-section {
+    padding: 1.25rem 0;
+  }
+
   .platform-logos {
     gap: 1.5rem;
+    flex-direction: column;
   }
 
   .platform-logo {
-    padding: 0.75rem;
-  }
-
-  .logo-image {
-    height: 40px;
+    padding: 0.875rem;
   }
 }

@@ -33,13 +33,13 @@ export default async function Home() {
       <Banner />
       {/* <CareSlider categories={categories} /> */}
       <TopProducts products={top_products} title="Best Selling" />
+      <AlsoAvailableOn />
       <TopProducts products={top_products} title="New Arrival" />
       <About />
       {/* <VideoGallery videos={videos} /> */}
       <TopProducts products={top_products} title="Deals" />
       <Achievement />
       <GoogleReviews />
-      {/* <AlsoAvailableOn /> */}
       {/* <WhySection /> */}
       {/* <Testimonials /> */}
       <DoctorsConsultation />
