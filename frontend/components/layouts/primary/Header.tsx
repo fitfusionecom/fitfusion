@@ -91,10 +91,6 @@ export default function Header() {
     setIsSearchModalOpen(false);
   };
 
-  // Dynamic header height based on screen size
-  const HEADER_HEIGHT_DESKTOP = 120; // px for desktop
-  const HEADER_HEIGHT_MOBILE = 80; // px for mobile (without category bar)
-
   return (
     <>
       {/* Fixed Header */}
@@ -142,7 +138,7 @@ export default function Header() {
               </div>
 
               {/* Search Bar - Desktop Only */}
-              <div className="d-none d-md-flex col-md-6 col-lg-8 align-items-center justify-content-center">
+              <div className="d-none d-lg-flex col-md-6 col-lg-8 align-items-center justify-content-center">
                 <SearchBar onSearch={handleSearch} placeholder="Search" />
               </div>
 
@@ -182,11 +178,14 @@ export default function Header() {
                   </div>
 
                   {/* User Icon */}
-                  <div className="ayur-nav-usear me-2">
+                  <div className="ayur-nav-usear me-2 d-flex align-items-center justify-content-center">
                     {!isLoading && (
                       <>
                         {customer ? (
-                          <Link href="/account">
+                          <Link
+                            href="/account"
+                            className="d-flex align-items-center justify-content-center"
+                          >
                             <span className="icon">
                               <svg
                                 width="15"
@@ -205,7 +204,10 @@ export default function Header() {
                             </span>
                           </Link>
                         ) : (
-                          <Link href="/login">
+                          <Link
+                            href="/login"
+                            className="d-flex align-items-center justify-content-center"
+                          >
                             <span className="icon">
                               <svg
                                 width="15"
@@ -227,9 +229,7 @@ export default function Header() {
                       </>
                     )}
                   </div>
-
                   <div className="separator d-none d-lg-block"></div>
-
                   {/* Cart Icon */}
                   <div className="ayur-nav-product me-2">
                     <CartTrigger />
