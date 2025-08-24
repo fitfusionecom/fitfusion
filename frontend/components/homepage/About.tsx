@@ -30,7 +30,7 @@ export default function About() {
             <div className="about-image-wrapper">
               <div className="about-main-image">
                 <Image
-                  src="https://fitfusion-alpha.vercel.app/_next/image?url=https%3A%2F%2Ffitfusion.fullstackartists.com%2Fstatic%2F1754305436086-61KyALBMInL._SL1200_.jpg&w=828&q=75"
+                  src="/assets/images/about-us.png"
                   alt="FitFusion Ayurveda"
                   width={561}
                   height={348}

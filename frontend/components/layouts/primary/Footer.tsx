@@ -163,7 +163,7 @@ export default function Footer() {
                 items={[
                   "Lifestyle & Habit Control",
                   "Vigor & Vitality",
-                  "Men Health",
+                  "Men's Health",
                   "Immunity Boosters",
                   "Digestion Care",
                   "All Collections",

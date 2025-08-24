@@ -20,7 +20,7 @@ const AlsoAvailableOn: React.FC = () => {
                 style={{ objectFit: "contain" }}
               />
             </div>
-            <div className="platform-logo blinkit">
+            {/* <div className="platform-logo blinkit">
               <Image
                 src="/assets/images/logos/blinkit.png"
                 alt="Blinkit"
@@ -30,7 +30,7 @@ const AlsoAvailableOn: React.FC = () => {
                 priority
                 style={{ objectFit: "contain" }}
               />
-            </div>
+            </div> */}
             <div className="platform-logo flipkart">
               <Image
                 src="/assets/images/logos/flipkart.png"
