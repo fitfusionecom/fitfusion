@@ -13,8 +13,8 @@ const AlsoAvailableOn: React.FC = () => {
               <Image
                 src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
                 alt="Amazon"
-                width={140}
-                height={80}
+                width={120}
+                height={60}
                 className="logo-image"
                 priority
                 style={{ objectFit: "contain" }}
@@ -24,8 +24,8 @@ const AlsoAvailableOn: React.FC = () => {
               <Image
                 src="/assets/images/logos/blinkit.png"
                 alt="Blinkit"
-                width={140}
-                height={80}
+                width={120}
+                height={60}
                 className="logo-image"
                 priority
                 style={{ objectFit: "contain" }}
@@ -35,8 +35,8 @@ const AlsoAvailableOn: React.FC = () => {
               <Image
                 src="/assets/images/logos/flipkart.png"
                 alt="Flipkart"
-                width={140}
-                height={80}
+                width={120}
+                height={60}
                 className="logo-image"
                 priority
                 style={{ objectFit: "contain" }}
