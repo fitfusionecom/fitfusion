@@ -1,119 +1,112 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import "./Banner.css";
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+// Custom hook for responsive image handling
+const useResponsiveImage = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    // Check on mount
+    checkScreenSize();
+
+    // Add event listener for resize
+    window.addEventListener("resize", checkScreenSize);
+
+    // Cleanup
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
+
+  return isMobile;
+};
 
 const slides = [
   {
     id: 1,
-    mobileImage: "/assets/images/banners/1.png",
+    mobileImage: "/assets/images/banners/mobile/1.png",
     desktopImage: "/assets/images/banners/1.png",
     alt: "Banner 1",
   },
   {
     id: 2,
-    mobileImage: "/assets/images/banners/2.png",
+    mobileImage: "/assets/images/banners/mobile/2.png",
     desktopImage: "/assets/images/banners/2.png",
     alt: "Banner 2",
   },
   {
     id: 3,
-    mobileImage: "/assets/images/banners/3.png",
+    mobileImage: "/assets/images/banners/mobile/3.png",
     desktopImage: "/assets/images/banners/3.png",
     alt: "Banner 3",
   },
 ];
 
 export default function Banner() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkDevice = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    checkDevice();
-    window.addEventListener("resize", checkDevice);
-
-    return () => window.removeEventListener("resize", checkDevice);
-  }, []);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000); // Change slide every 5 seconds
-
-    return () => clearInterval(timer);
-  }, []);
-
-  const goToSlide = (index) => {
-    setCurrentSlide(index);
-  };
-
-  const goToPrevious = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-  };
-
-  const goToNext = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
-  };
+  const swiperRef = useRef(null);
+  const isMobile = useResponsiveImage();
 
   return (
     <section className="banner-carousel position-relative overflow-hidden">
-      {/* Image Slides */}
-      <div className="carousel-container">
-        {slides.map((slide, index) => (
-          <div
-            key={slide.id}
-            className={`carousel-slide ${
-              index === currentSlide ? "active" : ""
-            }`}
-            style={{
-              transform: `translateX(${(index - currentSlide) * 100}%)`,
-            }}
-          >
-            <Image
-              src={isMobile ? slide.mobileImage : slide.desktopImage}
-              alt={slide.alt}
-              fill
-              className="carousel-image"
-              priority={index === 0}
-            />
-          </div>
+      <Swiper
+        ref={swiperRef}
+        modules={[Navigation, Pagination, Autoplay]}
+        spaceBetween={0}
+        slidesPerView={1}
+        loop={true}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
+        navigation={{
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        }}
+        pagination={{
+          clickable: true,
+          el: ".swiper-pagination",
+        }}
+        className="banner-swiper"
+      >
+        {slides.map((slide) => (
+          <SwiperSlide key={slide.id}>
+            <div className="banner-slide">
+              <Image
+                src={isMobile ? slide.mobileImage : slide.desktopImage}
+                alt={slide.alt}
+                fill
+                className="banner-image"
+                priority={slide.id === 1}
+                quality={95}
+                sizes={isMobile ? "100vw" : "100vw"}
+              />
+            </div>
+          </SwiperSlide>
         ))}
-      </div>
+      </Swiper>
 
-      {/* Navigation Arrows */}
+      {/* Custom Navigation Buttons */}
       <button
-        className="carousel-nav carousel-prev"
-        onClick={goToPrevious}
+        className="swiper-button-prev swiper-button-custom"
         aria-label="Previous slide"
-      >
-        <FaAngleLeft />
-      </button>
+      ></button>
 
       <button
-        className="carousel-nav carousel-next"
-        onClick={goToNext}
+        className="swiper-button-next swiper-button-custom"
         aria-label="Next slide"
-      >
-        <FaAngleRight />
-      </button>
-
-      {/* Dots Indicator */}
-      <div className="carousel-dots">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            className={`carousel-dot ${index === currentSlide ? "active" : ""}`}
-            onClick={() => goToSlide(index)}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
+      ></button>
     </section>
   );
 }
