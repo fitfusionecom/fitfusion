@@ -195,7 +195,7 @@ const ProductImageCarousel = ({
             slidesPerView={5}
             freeMode={true}
             watchSlidesProgress={true}
-            modules={[Thumbs]}
+            modules={[]}
             className="thumbnail-carousel"
             breakpoints={{
               320: {
@@ -219,24 +219,26 @@ const ProductImageCarousel = ({
             {images.map((image, index) => (
               <SwiperSlide key={index}>
                 <div
-                  className={`thumbnail-item cursor-pointer border-2 rounded ${
-                    index === activeImage ? "border-primary" : "border-light"
-                  }`}
-                  onClick={() => {
-                    if (thumbsSwiper) {
-                      thumbsSwiper.slideTo(index);
-                    }
+                  className="position-relative w-100 h-100 ratio ratio-1x1 cursor-pointer"
+                  style={{
+                    maxWidth: "80px",
+                    minHeight: "80px",
+                    border:
+                      activeImage === index
+                        ? "2px solid #d4af37"
+                        : "2px solid transparent",
+                    borderRadius: "8px",
+                    overflow: "hidden",
                   }}
                 >
-                  <div className="position-relative ratio ratio-1x1 w-100">
-                    <Image
-                      src={image}
-                      alt={`${productTitle} thumbnail ${index + 1}`}
-                      fill
-                      className="object-fit-cover w-100 h-100 rounded"
-                      sizes="80px"
-                    />
-                  </div>
+                  <Image
+                    src={image}
+                    alt={`${productTitle} - View ${index + 1}`}
+                    fill
+                    className="object-fit-cover w-100 h-100"
+                    priority={index === 0}
+                    sizes="80px"
+                  />
                 </div>
               </SwiperSlide>
             ))}
