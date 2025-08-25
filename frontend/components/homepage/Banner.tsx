@@ -89,7 +89,7 @@ export default function Banner() {
                 fill
                 className="banner-image"
                 priority={slide.id === 1}
-                quality={95}
+                quality={100}
                 sizes={isMobile ? "100vw" : "100vw"}
               />
             </div>
