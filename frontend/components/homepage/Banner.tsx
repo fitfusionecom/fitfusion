@@ -71,12 +71,12 @@ export default function Banner() {
           disableOnInteraction: false,
         }}
         navigation={{
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
+          nextEl: ".banner-next",
+          prevEl: ".banner-prev",
         }}
         pagination={{
           clickable: true,
-          el: ".swiper-pagination",
+          el: ".banner-pagination",
         }}
         className="banner-swiper"
       >
@@ -97,16 +97,19 @@ export default function Banner() {
         ))}
       </Swiper>
 
-      {/* Custom Navigation Buttons */}
+      {/* Custom Navigation Buttons with unique classes */}
       <button
-        className="swiper-button-prev swiper-button-custom"
+        className="swiper-button-prev swiper-button-custom banner-prev"
         aria-label="Previous slide"
       ></button>
 
       <button
-        className="swiper-button-next swiper-button-custom"
+        className="swiper-button-next swiper-button-custom banner-next"
         aria-label="Next slide"
       ></button>
+
+      {/* Custom Pagination */}
+      <div className="swiper-pagination banner-pagination"></div>
     </section>
   );
 }

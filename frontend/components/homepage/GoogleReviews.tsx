@@ -87,12 +87,12 @@ export default function GoogleReviews() {
                 spaceBetween={20}
                 slidesPerView={1}
                 navigation={{
-                  nextEl: ".swiper-button-next",
-                  prevEl: ".swiper-button-prev",
+                  nextEl: ".custom-swiper-nav.swiper-button-next",
+                  prevEl: ".custom-swiper-nav.swiper-button-prev",
                 }}
                 pagination={{
                   clickable: true,
-                  el: ".swiper-pagination",
+                  el: ".custom-swiper-pagination",
                 }}
                 autoplay={{
                   delay: 5000,

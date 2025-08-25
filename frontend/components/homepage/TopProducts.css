@@ -7,7 +7,72 @@
   padding: 0 40px;
 }
 
-/* Swiper button styles are now handled globally in swiper-custom.css */
+/* Navigation buttons positioning within the carousel */
+.top-products-carousel .swiper-button-prev,
+.top-products-carousel .swiper-button-next {
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 10 !important;
+}
+
+.top-products-carousel .swiper-button-prev {
+  left: 0 !important;
+}
+
+.top-products-carousel .swiper-button-next {
+  right: 0 !important;
+}
+
+/* Custom navigation button styles for unique carousel IDs */
+.swiper-button-custom {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #d4af37;
+  color: #d4af37;
+}
+
+.swiper-button-custom:hover {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-50%) scale(1.1);
+  border-color: #2d5016;
+}
+
+.swiper-button-custom::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-style: solid;
+  border-width: 2px 2px 0 0;
+  display: inline-block;
+}
+
+.swiper-button-prev.swiper-button-custom::before {
+  transform: rotate(-135deg);
+  margin-left: 3px;
+}
+
+.swiper-button-next.swiper-button-custom::before {
+  transform: rotate(45deg);
+  margin-right: 3px;
+}
+
+/* Override global styles for this specific component */
+.top-products-carousel .swiper-button-custom {
+  background-image: none !important;
+}
+
+.top-products-carousel .swiper-button-custom::after {
+  display: none !important;
+}
 
 /* Swiper pagination styles */
 .swiper-pagination {

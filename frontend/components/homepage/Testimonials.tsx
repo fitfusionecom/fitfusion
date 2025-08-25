@@ -97,12 +97,12 @@ export default function Testimonials() {
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
             navigation={{
-              nextEl: ".swiper-button-next",
-              prevEl: ".swiper-button-prev",
+              nextEl: ".testimonials-next",
+              prevEl: ".testimonials-prev",
             }}
             pagination={{
               clickable: true,
-              el: ".swiper-pagination",
+              el: ".testimonials-pagination",
             }}
             autoplay={{
               delay: 5000,
@@ -149,16 +149,18 @@ export default function Testimonials() {
                 </div>
               </SwiperSlide>
             ))}
-
-            <div className="swiper-button-prev">
-              <FaChevronLeft />
-            </div>
-            <div className="swiper-button-next">
-              <FaChevronRight />
-            </div>
-
-            <div className="swiper-pagination"></div>
           </Swiper>
+
+          {/* Custom Navigation Buttons with unique classes */}
+          <div className="swiper-button-prev testimonials-prev">
+            <FaChevronLeft />
+          </div>
+          <div className="swiper-button-next testimonials-next">
+            <FaChevronRight />
+          </div>
+
+          {/* Custom Pagination */}
+          <div className="swiper-pagination testimonials-pagination"></div>
         </div>
 
         {/* Compact CTA */}

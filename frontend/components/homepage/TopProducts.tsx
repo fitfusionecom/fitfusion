@@ -18,11 +18,13 @@ import "./TopProducts.css";
 interface TopProductsProps {
   products: HttpTypes.StoreProduct[];
   title?: string;
+  carouselId?: string;
 }
 
 export default function TopProducts({
   products,
   title = "Explore Ayurveda",
+  carouselId = "default-carousel",
 }: TopProductsProps) {
   return (
     <div className="ayur-bgcover ayur-topproduct-sec">
@@ -45,14 +47,14 @@ export default function TopProducts({
         </div>
 
         {/* Swiper Carousel */}
-        <div className="">
+        <div className="top-products-carousel">
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
             spaceBetween={20}
             slidesPerView={1}
             navigation={{
-              nextEl: ".top-products-swiper .swiper-button-next",
-              prevEl: ".top-products-swiper .swiper-button-prev",
+              nextEl: `.${carouselId}-next`,
+              prevEl: `.${carouselId}-prev`,
             }}
             autoplay={{
               delay: 3000,
@@ -90,9 +92,13 @@ export default function TopProducts({
             ))}
           </Swiper>
 
-          {/* Custom Navigation Buttons */}
-          <div className="swiper-button-prev swiper-button-custom"></div>
-          <div className="swiper-button-next swiper-button-custom"></div>
+          {/* Custom Navigation Buttons with unique classes */}
+          <div
+            className={`swiper-button-prev swiper-button-custom ${carouselId}-prev`}
+          ></div>
+          <div
+            className={`swiper-button-next swiper-button-custom ${carouselId}-next`}
+          ></div>
         </div>
       </div>
       <div className="ayur-bgshape ayur-tpro-bgshape">

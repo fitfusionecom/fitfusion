@@ -19,25 +19,122 @@ import DoctorsConsultation from "@/components/homepage/DoctorsConsultation";
 
 export default async function Home() {
   // const categories = await listCategories();
-  const top_products = await filterProducts({
-    q: "",
-    minPrice: "0",
-    maxPrice: "10000",
-    category_handle: "top",
-    pageParam: 1,
-  });
+
+  // Fetch different products for each section to avoid duplicate carousels
+  let bestSellingProducts = [];
+  let newArrivalProducts = [];
+  let dealsProducts = [];
+
+  try {
+    bestSellingProducts =
+      (await filterProducts({
+        q: "",
+        minPrice: "0",
+        maxPrice: "10000",
+        category_handle: "top",
+        pageParam: 1,
+      })) || [];
+  } catch (error) {
+    console.error("Error fetching best selling products:", error);
+  }
+
+  try {
+    newArrivalProducts =
+      (await filterProducts({
+        q: "",
+        minPrice: "0",
+        maxPrice: "10000",
+        category_handle: "new",
+        pageParam: 1,
+      })) || [];
+  } catch (error) {
+    console.error("Error fetching new arrival products:", error);
+  }
+
+  try {
+    dealsProducts =
+      (await filterProducts({
+        q: "",
+        minPrice: "0",
+        maxPrice: "10000",
+        category_handle: "sale",
+        pageParam: 1,
+      })) || [];
+  } catch (error) {
+    console.error("Error fetching deals products:", error);
+  }
+
+  // If all category-specific queries fail, try to get all products
+  if (
+    bestSellingProducts.length === 0 &&
+    newArrivalProducts.length === 0 &&
+    dealsProducts.length === 0
+  ) {
+    try {
+      const allProducts =
+        (await filterProducts({
+          q: "",
+          minPrice: "0",
+          maxPrice: "10000",
+          category_handle: "",
+          pageParam: 1,
+        })) || [];
+
+      // Split products among the three sections
+      const chunkSize = Math.ceil(allProducts.length / 3);
+      bestSellingProducts = allProducts.slice(0, chunkSize);
+      newArrivalProducts = allProducts.slice(chunkSize, chunkSize * 2);
+      dealsProducts = allProducts.slice(chunkSize * 2);
+    } catch (error) {
+      console.error("Error fetching all products:", error);
+    }
+  }
+
+  // Fallback: if any section has no products, use the first successful result
+  const fallbackProducts =
+    bestSellingProducts.length > 0
+      ? bestSellingProducts
+      : newArrivalProducts.length > 0
+      ? newArrivalProducts
+      : dealsProducts.length > 0
+      ? dealsProducts
+      : [];
+
+  // Debug logging
+  console.log("Best Selling Products:", bestSellingProducts.length);
+  console.log("New Arrival Products:", newArrivalProducts.length);
+  console.log("Deals Products:", dealsProducts.length);
+  console.log("Fallback Products:", fallbackProducts.length);
 
   const videos = mockVideos; // Using mock data for now
   return (
     <>
       <Banner />
       {/* <CareSlider categories={categories} /> */}
-      <TopProducts products={top_products} title="Best Selling" />
+      <TopProducts
+        products={
+          bestSellingProducts.length > 0
+            ? bestSellingProducts
+            : fallbackProducts
+        }
+        title="Best Selling"
+        carouselId="best-selling-carousel"
+      />
       <AlsoAvailableOn />
-      <TopProducts products={top_products} title="New Arrival" />
+      <TopProducts
+        products={
+          newArrivalProducts.length > 0 ? newArrivalProducts : fallbackProducts
+        }
+        title="New Arrival"
+        carouselId="new-arrival-carousel"
+      />
       <About />
       {/* <VideoGallery videos={videos} /> */}
-      <TopProducts products={top_products} title="Deals" />
+      <TopProducts
+        products={dealsProducts.length > 0 ? dealsProducts : fallbackProducts}
+        title="Deals"
+        carouselId="deals-carousel"
+      />
       <Achievement />
       <GoogleReviews />
       {/* <WhySection /> */}
