@@ -416,7 +416,7 @@ export async function placeOrder(cartId?: string) {
       cartRes.order.shipping_address?.country_code?.toLowerCase()
     removeCartId()
     // @ts-ignore
-    redirect(`/${countryCode}/order/${cartRes?.order.id}/confirmed`)
+    redirect(`/orders/${cartRes?.order.id}/confirmed`)
   }
 
   // @ts-ignore
