@@ -392,9 +392,9 @@ const ProductDetails = ({
                         ? "Out of stock"
                         : `Add to cart${isAdding ? "..." : ""}`}
                     </button>
-                    <button className="ayur-btn btn btn-outline-primary">
+                    {/* <button className="ayur-btn btn btn-outline-primary">
                       Buy Now
-                    </button>
+                    </button> */}
                   </div>
                 </div>
                 <div className="mt-4">
