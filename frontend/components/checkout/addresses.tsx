@@ -10,6 +10,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import ShippingAddress from "./shipping-address";
 // import BillingAddress from "./billing-address";
 import Spinner from "../blocks/spinner";
+import { BiEdit } from "react-icons/bi";
 
 const Addresses = ({
   cart,
@@ -47,11 +48,16 @@ const Addresses = ({
         {!isOpen && cart?.shipping_address && (
           <button
             onClick={handleEdit}
-            className="btn btn-link p-0 text-primary"
+            style={{
+              padding: "5px 20px",
+              background: "whitesmoke",
+              border: "none",
+              borderRadius: "10px",
+              minWidth: "90px",
+            }}
             data-testid="edit-address-button"
-            style={{ textDecoration: "underline" }}
           >
-            Edit
+            <BiEdit /> Edit
           </button>
         )}
       </div>
@@ -78,7 +84,7 @@ const Addresses = ({
               </div>
             )} */}
             <button
-              className="ayur-btn ayur-btn-primary"
+              className="ayur-btn ayur-btn-primary px-5"
               data-testid="submit-address-button"
             >
               Continue to delivery
@@ -100,7 +106,7 @@ const Addresses = ({
                 >
                   <h5
                     style={{
-                      color: "#cd8973",
+                      color: "black",
                     }}
                     className="fw-bold  mb-2 "
                   >
@@ -129,7 +135,7 @@ const Addresses = ({
                 >
                   <h5
                     style={{
-                      color: "#cd8973",
+                      color: "black",
                     }}
                     className="fw-bold mb-2 "
                   >
@@ -146,7 +152,7 @@ const Addresses = ({
                 <div className="col-md-4" data-testid="billing-address-summary">
                   <h5
                     style={{
-                      color: "#cd8973",
+                      color: "black",
                     }}
                     className="fw-bold mb-2 "
                   >

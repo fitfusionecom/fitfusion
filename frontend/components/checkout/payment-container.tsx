@@ -34,7 +34,7 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({
       value={paymentProviderId}
       disabled={disabled}
       className={clx(
-        "d-flex flex-column gap-2 text-body cursor-pointer py-4 border rounded px-4 mb-2 payment-method-option",
+        "d-flex flex-column gap-2 text-body cursor-pointer py-3 border rounded px-3 mb-2 payment-method-option",
         {
           "border-primary": selectedPaymentOptionId === paymentProviderId,
         }
@@ -49,7 +49,7 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({
             checked={selectedPaymentOptionId === paymentProviderId}
             readOnly
           />
-          <Text className="fw-normal">
+          <Text className="fw-normal pb-0 mb-0">
             {paymentInfoMap[paymentProviderId]?.title || paymentProviderId}
           </Text>
           {isManual(paymentProviderId) && isDevelopment && (

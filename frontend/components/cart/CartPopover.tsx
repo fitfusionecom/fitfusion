@@ -155,7 +155,7 @@ export default function CartPopover({
 
   const handleCheckout = () => {
     onClose();
-    router.push("/checkout");
+    router.push("/checkout?step=address");
   };
 
   if (!isOpen) return null;

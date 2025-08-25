@@ -11,6 +11,7 @@ import PaymentContainer from "./payment-container";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import Spinner from "../blocks/spinner";
+import { BiEdit } from "react-icons/bi";
 
 const Payment = ({
   cart,
@@ -121,11 +122,16 @@ const Payment = ({
         {!isOpen && paymentReady && (
           <button
             onClick={handleEdit}
-            className="btn btn-link p-0 text-primary"
+            style={{
+              padding: "5px 20px",
+              background: "whitesmoke",
+              border: "none",
+              borderRadius: "10px",
+              minWidth: "90px",
+            }}
             data-testid="edit-address-button"
-            style={{ textDecoration: "underline" }}
           >
-            Edit
+            <BiEdit /> Edit
           </button>
         )}
       </div>
@@ -154,7 +160,7 @@ const Payment = ({
             <div className="d-flex flex-column" style={{ width: "33%" }}>
               <h5
                 style={{
-                  color: "#cd8973",
+                  color: "black",
                 }}
                 className="fw-bold  mb-2 "
               >
@@ -175,7 +181,7 @@ const Payment = ({
           /> */}
 
           <button
-            className="mt-4 ayur-btn ayur-btn-primary"
+            className="mt-4 ayur-btn ayur-btn-primary px-5"
             onClick={handleSubmit}
             disabled={
               (isStripe && !cardComplete) ||
@@ -196,7 +202,7 @@ const Payment = ({
               <div className="d-flex flex-column" style={{ width: "33%" }}>
                 <h5
                   style={{
-                    color: "#cd8973",
+                    color: "black",
                   }}
                   className="fw-bold  mb-2 "
                 >
@@ -213,7 +219,7 @@ const Payment = ({
               <div className="d-flex flex-column" style={{ width: "33%" }}>
                 <h5
                   style={{
-                    color: "#cd8973",
+                    color: "black",
                   }}
                   className="fw-bold  mb-2 "
                 >
@@ -248,7 +254,7 @@ const Payment = ({
             <div className="d-flex flex-column" style={{ width: "33%" }}>
               <h5
                 style={{
-                  color: "#cd8973",
+                  color: "black",
                 }}
                 className="fw-bold  mb-2 "
               >

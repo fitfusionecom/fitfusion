@@ -13,6 +13,7 @@ import { Button, Heading, Text, clx } from "@medusajs/ui";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Spinner from "../blocks/spinner";
+import { BiEdit } from "react-icons/bi";
 
 type ShippingProps = {
   cart: HttpTypes.StoreCart;
@@ -108,11 +109,16 @@ const Shipping: React.FC<ShippingProps> = ({
           cart?.email && (
             <button
               onClick={handleEdit}
-              className="btn btn-link p-0 text-primary"
+              style={{
+                padding: "5px 20px",
+                background: "whitesmoke",
+                border: "none",
+                borderRadius: "10px",
+                minWidth: "90px",
+              }}
               data-testid="edit-address-button"
-              style={{ textDecoration: "underline" }}
             >
-              Edit
+              <BiEdit /> Edit
             </button>
           )}
       </div>
@@ -185,7 +191,7 @@ const Shipping: React.FC<ShippingProps> = ({
           /> */}
 
           <button
-            className="mt-4 ayur-btn ayur-btn-primary"
+            className="mt-4 ayur-btn ayur-btn-primary px-5"
             onClick={handleSubmit}
             disabled={!cart.shipping_methods?.[0]}
             data-testid="submit-delivery-option-button"
@@ -201,7 +207,7 @@ const Shipping: React.FC<ShippingProps> = ({
               <div className="d-flex flex-column w-33">
                 <h5
                   style={{
-                    color: "#cd8973",
+                    color: "black",
                   }}
                   className="fw-bold  mb-2 "
                 >

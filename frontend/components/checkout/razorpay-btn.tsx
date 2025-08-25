@@ -114,6 +114,7 @@ export const RazorpayPaymentButton = ({
   return (
     <>
       <Button
+        className="ayur-btn ayur-btn-primary px-5"
         disabled={
           submitting || notReady || !orderData?.id || orderData.id == ""
         }
