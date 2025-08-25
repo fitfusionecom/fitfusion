@@ -99,7 +99,6 @@ export default async function Product(props: Props) {
 
   return (
     <>
-      {/* {JSON.stringify(info)} */}
       <ProductDetails
         product={pricedProduct}
         region={region}
@@ -107,7 +106,9 @@ export default async function Product(props: Props) {
       />
       <Suspense fallback={<div>Loading...</div>}>
         <ProductAccordion
-          info={info.info.at(1)}
+          info={info.info.find(
+            (item: any) => item.product_id === pricedProduct.id
+          )}
           product={pricedProduct}
           countryCode={country_code}
         />

@@ -194,7 +194,7 @@ const ProductDetails = ({
       {/*----------- Header Section End ---------*/}
       {/*----------- Breadcrumb Section end ---------*/}
       {/*----------- Shop single page Section start ---------*/}
-      <div className="ayur-bgcover">
+      <div className="ayur-bgcover pb-1">
         <div className="container">
           <div>
             <nav aria-label="breadcrumb" className="mb-3">

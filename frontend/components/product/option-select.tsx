@@ -1,6 +1,7 @@
 import { HttpTypes } from "@medusajs/types";
 import React, { useEffect } from "react";
 import { getProductPrice } from "@/lib/util/get-product-price";
+import "./option-select.css";
 
 type OptionSelectProps = {
   product: HttpTypes.StoreProduct;
@@ -32,12 +33,9 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
   }, []);
 
   return (
-    <div className="flex flex-col gap-y-3">
+    <div className="option-select">
       {/* <span className="text-sm">Select {title}</span> */}
-      <div
-        className="flex flex-wrap justify-between gap-2"
-        data-testid={dataTestId}
-      >
+      <div className="option-select__container" data-testid={dataTestId}>
         {filteredOptions.map((v) => {
           // Find the variant that matches the current option and value
           const variant = variants.find((variant) =>
@@ -51,45 +49,20 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
             variantId: variant?.id,
           });
 
+          const isSelected = v === current;
+
           return (
             <button
               onClick={() => updateOption(option.id, v)}
               key={v}
-              // className={clx(
-              //   "border-ui-border-base bg-ui-bg-subtle border text-small-regular h-10 rounded-rounded p-2 flex-1 ",
-              //   {
-              //     "border-ui-border-interactive": v === current,
-              //     "hover:shadow-elevation-card-rest transition-shadow ease-in-out duration-150":
-              //       v !== current,
-              //   }
-              // )}
-              style={{
-                border: "1px solid #005441",
-                background: "white",
-                minWidth: "200px",
-                borderRadius: "10px",
-                marginLeft: "10px",
-                overflow: "hidden",
-              }}
+              className={`option-select__button ${
+                isSelected ? "option-select__button--selected" : ""
+              }`}
               disabled={disabled}
               data-testid="option-button"
             >
-              <div
-                style={{
-                  padding: "10px",
-                  backgroundColor: v == current ? "#005441" : "whitesmoke",
-                  color: v == current ? "white" : "#005441",
-                  fontWeight: v == current ? "bold" : "normal",
-                }}
-              >
-                {variant?.title}
-              </div>
-              <div
-                style={{
-                  padding: "10px",
-                  borderRadius: "5px",
-                }}
-              >
+              <div className="option-select__title">{variant?.title}</div>
+              <div className="option-select__details">
                 {variantPrice?.calculated_price}
                 {variant.material}
               </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Star, StarHalf, Check, Leaf } from "lucide-react";
+import { Star, StarHalf, Check } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
@@ -33,81 +33,84 @@ const ProductReviews: React.FC<ProductReviewsProps> = ({ productId }) => {
 
   // Dummy data for reviews
   const reviews: Review[] = [
-    {
-      id: "1",
-      author: "Sarah Johnson",
-      rating: 5,
-      date: "2024-01-15",
-      title: "Exceptional Quality & Results!",
-      comment:
-        "This product has completely transformed my wellness routine. The quality is outstanding and I've noticed significant improvements in just a few weeks. The natural ingredients make me feel confident about what I'm putting in my body. Highly recommend to anyone looking for authentic Ayurvedic solutions!",
-      verified: true,
-    },
-    {
-      id: "2",
-      author: "Michael Chen",
-      rating: 4,
-      date: "2024-01-12",
-      title: "Great Value & Effective",
-      comment:
-        "Excellent product with reasonable pricing. The delivery was fast and the packaging was secure. I appreciate the attention to detail and the product works as described. Would definitely buy again and recommend to friends and family.",
-      verified: true,
-    },
-    {
-      id: "3",
-      author: "Emily Rodriguez",
-      rating: 5,
-      date: "2024-01-10",
-      title: "Perfect for My Needs",
-      comment:
-        "Exactly what I was looking for! The product is durable, effective, and the customer service was exceptional. I love how it integrates seamlessly into my daily routine. This has become an essential part of my wellness journey.",
-      verified: true,
-    },
-    {
-      id: "4",
-      author: "David Thompson",
-      rating: 3,
-      date: "2024-01-08",
-      title: "Good but Could Be Better",
-      comment:
-        "The product is decent and serves its purpose. There are some minor issues with the packaging, but overall it works as expected. It's a solid option if you're looking for something in this price range.",
-      verified: true,
-    },
-    {
-      id: "5",
-      author: "Lisa Wang",
-      rating: 5,
-      date: "2024-01-05",
-      title: "Life-Changing Experience!",
-      comment:
-        "I absolutely love this product! It has improved my daily routine significantly and I feel more energized and balanced. The quality is top-notch and the results speak for themselves. This is exactly what I needed!",
-      verified: true,
-    },
-    {
-      id: "6",
-      author: "Robert Kim",
-      rating: 4,
-      date: "2024-01-03",
-      title: "Very Satisfied Customer",
-      comment:
-        "Great product, fast shipping, and excellent customer support. The product exceeded my expectations and I'm very happy with my purchase. Will definitely recommend to friends and family. Thank you!",
-      verified: true,
-    },
-    {
-      id: "7",
-      author: "Jennifer Lee",
-      rating: 1,
-      date: "2024-01-01",
-      title: "Not As Expected",
-      comment:
-        "Unfortunately, the product didn't meet my expectations. It seems to be of lower quality than advertised and didn't provide the results I was hoping for. I was disappointed with this purchase.",
-      verified: true,
-    },
+    // {
+    //   id: "1",
+    //   author: "Sarah Johnson",
+    //   rating: 5,
+    //   date: "2024-01-15",
+    //   title: "Exceptional Quality & Results!",
+    //   comment:
+    //     "This product has completely transformed my wellness routine. The quality is outstanding and I've noticed significant improvements in just a few weeks. The natural ingredients make me feel confident about what I'm putting in my body. Highly recommend to anyone looking for authentic Ayurvedic solutions!",
+    //   verified: true,
+    // },
+    // {
+    //   id: "2",
+    //   author: "Michael Chen",
+    //   rating: 4,
+    //   date: "2024-01-12",
+    //   title: "Great Value & Effective",
+    //   comment:
+    //     "Excellent product with reasonable pricing. The delivery was fast and the packaging was secure. I appreciate the attention to detail and the product works as described. Would definitely buy again and recommend to friends and family.",
+    //   verified: true,
+    // },
+    // {
+    //   id: "3",
+    //   author: "Emily Rodriguez",
+    //   rating: 5,
+    //   date: "2024-01-10",
+    //   title: "Perfect for My Needs",
+    //   comment:
+    //     "Exactly what I was looking for! The product is durable, effective, and the customer service was exceptional. I love how it integrates seamlessly into my daily routine. This has become an essential part of my wellness journey.",
+    //   verified: true,
+    // },
+    // {
+    //   id: "4",
+    //   author: "David Thompson",
+    //   rating: 3,
+    //   date: "2024-01-08",
+    //   title: "Good but Could Be Better",
+    //   comment:
+    //     "The product is decent and serves its purpose. There are some minor issues with the packaging, but overall it works as expected. It's a solid option if you're looking for something in this price range.",
+    //   verified: true,
+    // },
+    // {
+    //   id: "5",
+    //   author: "Lisa Wang",
+    //   rating: 5,
+    //   date: "2024-01-05",
+    //   title: "Life-Changing Experience!",
+    //   comment:
+    //     "I absolutely love this product! It has improved my daily routine significantly and I feel more energized and balanced. The quality is top-notch and the results speak for themselves. This is exactly what I needed!",
+    //   verified: true,
+    // },
+    // {
+    //   id: "6",
+    //   author: "Robert Kim",
+    //   rating: 4,
+    //   date: "2024-01-03",
+    //   title: "Very Satisfied Customer",
+    //   comment:
+    //     "Great product, fast shipping, and excellent customer support. The product exceeded my expectations and I'm very happy with my purchase. Will definitely recommend to friends and family. Thank you!",
+    //   verified: true,
+    // },
+    // {
+    //   id: "7",
+    //   author: "Jennifer Lee",
+    //   rating: 1,
+    //   date: "2024-01-01",
+    //   title: "Not As Expected",
+    //   comment:
+    //     "Unfortunately, the product didn't meet my expectations. It seems to be of lower quality than advertised and didn't provide the results I was hoping for. I was disappointed with this purchase.",
+    //   verified: true,
+    // },
   ];
 
   const totalReviews = reviews.length;
+  // Fix NaN issue by checking if there are reviews
   const averageRating =
-    reviews.reduce((sum, review) => sum + review.rating, 0) / totalReviews;
+    totalReviews > 0
+      ? reviews.reduce((sum, review) => sum + review.rating, 0) / totalReviews
+      : 0;
 
   const ratingCounts = {
     5: reviews.filter((r) => r.rating === 5).length,
@@ -126,9 +129,9 @@ const ProductReviews: React.FC<ProductReviewsProps> = ({ productId }) => {
     const hasHalfStar = rating % 1 !== 0;
 
     const starSizes = {
-      large: "w-10 h-10",
-      medium: "w-6 h-6",
-      small: "w-5 h-5",
+      large: "w-8 h-8",
+      medium: "w-5 h-5",
+      small: "w-4 h-4",
     };
 
     for (let i = 0; i < 5; i++) {
@@ -171,10 +174,33 @@ const ProductReviews: React.FC<ProductReviewsProps> = ({ productId }) => {
     );
   };
 
+  // If no reviews, show empty state
+  if (totalReviews === 0) {
+    return (
+      <section className="reviews-section">
+        <div className="reviews-container">
+          <div className="max-w-4xl mx-auto px-4">
+            <div className="reviews-header">
+              <h2 className="reviews-title">Customer Reviews</h2>
+              <p className="reviews-subtitle">
+                Be the first to review this product
+              </p>
+            </div>
+            <div className="empty-reviews">
+              <p className="text-center text-gray-500 py-8">
+                No reviews yet. Share your experience with this product!
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className={`reviews-section ${isVisible ? "fade-in" : ""}`}>
       <div className="reviews-container">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-w-6xl mx-auto px-4">
           {/* Header Section */}
           <div className="reviews-header">
             <h2 className="reviews-title">Customer Reviews</h2>
@@ -215,7 +241,7 @@ const ProductReviews: React.FC<ProductReviewsProps> = ({ productId }) => {
                     {renderStars(averageRating, "large")}
                   </div>
                   <div className="rating-number">
-                    {averageRating.toFixed(2)}
+                    {averageRating.toFixed(1)}
                   </div>
                   <div className="rating-text">out of 5 stars</div>
                   <div className="rating-text">
@@ -285,40 +311,60 @@ const ProductReviews: React.FC<ProductReviewsProps> = ({ productId }) => {
                 >
                   {reviews.map((review) => (
                     <SwiperSlide key={review.id}>
-                      <div className="review-card">
-                        <div className="review-header">
-                          <div className="review-author">
-                            <div className="author-avatar">
-                              {review.author.charAt(0)}
-                            </div>
-                            <div className="author-info">
-                              <h4>{review.author}</h4>
-                              <p>
-                                {new Date(review.date).toLocaleDateString(
-                                  "en-US",
-                                  {
-                                    year: "numeric",
-                                    month: "long",
-                                    day: "numeric",
-                                  }
-                                )}
-                              </p>
-                            </div>
-                          </div>
-                          <div className="review-rating">
+                      <div className="card border-0 shadow-sm h-100">
+                        <div className="card-body p-4">
+                          {/* Rating Stars */}
+                          <div className="mb-3">
                             {renderStars(review.rating, "medium")}
                           </div>
-                        </div>
 
-                        <h4 className="review-title">{review.title}</h4>
-                        <p className="review-comment">{review.comment}</p>
+                          {/* Review Title */}
+                          <h6
+                            className="card-title mb-2 text-dark"
+                            style={{ fontSize: "16px", fontWeight: "600" }}
+                          >
+                            {review.title}
+                          </h6>
 
-                        {review.verified && (
-                          <div className="review-verified">
-                            <Check className="check-icon" />
-                            <span>Verified purchase</span>
+                          {/* Review Text */}
+                          <p
+                            className="card-text text-muted mb-3"
+                            style={{ fontSize: "14px", lineHeight: "1.5" }}
+                          >
+                            {review.comment}
+                          </p>
+
+                          {/* Reviewer Name */}
+                          <h6
+                            className="card-title mb-2 text-dark"
+                            style={{ fontSize: "16px", fontWeight: "600" }}
+                          >
+                            {review.author}
+                          </h6>
+
+                          {/* Date and Verified Badge */}
+                          <div className="d-flex align-items-center justify-content-between">
+                            <small
+                              className="text-muted"
+                              style={{ fontSize: "12px" }}
+                            >
+                              {new Date(review.date).toLocaleDateString(
+                                "en-US",
+                                {
+                                  year: "numeric",
+                                  month: "long",
+                                  day: "numeric",
+                                }
+                              )}
+                            </small>
+                            {review.verified && (
+                              <div className="review-verified">
+                                <Check className="check-icon" />
+                                <span>Verified</span>
+                              </div>
+                            )}
                           </div>
-                        )}
+                        </div>
                       </div>
                     </SwiperSlide>
                   ))}

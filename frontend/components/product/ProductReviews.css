@@ -7,18 +7,6 @@
   padding: 40px 0;
 }
 
-.reviews-section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23000000" opacity="0.03"/><circle cx="75" cy="75" r="1" fill="%23000000" opacity="0.03"/><circle cx="50" cy="10" r="0.5" fill="%23000000" opacity="0.03"/><circle cx="10" cy="60" r="0.5" fill="%23000000" opacity="0.03"/><circle cx="90" cy="40" r="0.5" fill="%23000000" opacity="0.03"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-  opacity: 0.5;
-  z-index: 1;
-}
-
 .reviews-container {
   position: relative;
   z-index: 2;
@@ -26,7 +14,7 @@
 
 .reviews-header {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
 .reviews-header::before {
@@ -42,14 +30,14 @@
 }
 
 .reviews-title {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 700;
   color: #000000;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .reviews-subtitle {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #666666;
   max-width: 500px;
   margin: 0 auto;
@@ -60,7 +48,7 @@
 .reviews-tabs {
   display: flex;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
 .tab-container {
@@ -72,10 +60,10 @@
 }
 
 .tab-button {
-  padding: 12px 24px;
+  padding: 10px 20px;
   border-radius: 8px;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 0.95rem;
   transition: all 0.3s ease;
   border: none;
   background: transparent;
@@ -99,8 +87,8 @@
 .summary-card {
   background: #ffffff;
   border-radius: 16px;
-  padding: 30px;
-  margin-bottom: 25px;
+  padding: 25px;
+  margin-bottom: 20px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   border: 1px solid #e9ecef;
   position: relative;
@@ -120,7 +108,7 @@
 .summary-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  gap: 30px;
   align-items: center;
 }
 
@@ -131,7 +119,7 @@
 .rating-stars {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   gap: 6px;
 }
 
@@ -144,66 +132,66 @@
 }
 
 .rating-number {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 800;
   color: #000000;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .rating-text {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #666666;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .verified-badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 16px;
+  padding: 6px 12px;
   background: #000000;
   color: white;
   border-radius: 20px;
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .verified-badge .check-icon {
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
 }
 
 /* Rating Breakdown */
 .rating-breakdown {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 12px;
 }
 
 .rating-row {
   display: flex;
   align-items: center;
-  gap: 15px;
-  padding: 10px 0;
+  gap: 12px;
+  padding: 8px 0;
 }
 
 .rating-stars-small {
   display: flex;
   gap: 3px;
-  min-width: 80px;
+  min-width: 70px;
 }
 
 .rating-stars-small .star {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   fill: #ffd700;
   color: #ffd700;
 }
 
 .progress-bar {
   flex: 1;
-  height: 8px;
+  height: 6px;
   background: #e9ecef;
   border-radius: 4px;
   overflow: hidden;
@@ -246,9 +234,9 @@
 .rating-count {
   font-weight: 700;
   color: #000000;
-  min-width: 25px;
+  min-width: 20px;
   text-align: center;
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 /* Reviews Carousel */
@@ -265,121 +253,62 @@
   height: auto;
 }
 
-.review-card {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 25px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-  border: 1px solid #e9ecef;
+/* Card Styles - Bootstrap-like */
+.reviews-carousel .card {
   transition: all 0.3s ease;
-  position: relative;
+  border-radius: 12px;
   overflow: hidden;
   height: 100%;
 }
 
-.review-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 3px;
-  height: 100%;
-  background: #000000;
-  transform: scaleY(0);
-  transition: transform 0.3s ease;
+.reviews-carousel .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
-.review-card:hover::before {
-  transform: scaleY(1);
+.reviews-carousel .card-body {
+  padding: 1.5rem;
 }
 
-.review-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+.reviews-carousel .text-warning {
+  color: #ffc107 !important;
 }
 
-.review-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 15px;
+.reviews-carousel .text-muted {
+  color: #6c757d !important;
 }
 
-.review-author {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+.reviews-carousel .text-dark {
+  color: #343a40 !important;
 }
 
-.author-avatar {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: #000000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 1.2rem;
-  font-weight: 700;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.author-info h4 {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #000000;
-  margin-bottom: 4px;
-}
-
-.author-info p {
-  color: #666666;
-  font-size: 0.9rem;
-}
-
-.review-rating {
-  display: flex;
-  gap: 3px;
-}
-
-.review-rating .star {
-  width: 20px;
-  height: 20px;
-  fill: #ffd700;
-  color: #ffd700;
-}
-
-.review-title {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #000000;
-  margin-bottom: 12px;
-  line-height: 1.3;
-}
-
-.review-comment {
-  color: #444444;
-  line-height: 1.6;
-  font-size: 1rem;
-  margin-bottom: 15px;
-}
-
+/* Review Verified Badge */
 .review-verified {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
+  gap: 4px;
+  padding: 4px 8px;
   background: #000000;
   color: white;
-  border-radius: 16px;
+  border-radius: 12px;
   font-weight: 600;
-  font-size: 0.8rem;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  font-size: 0.75rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .review-verified .check-icon {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
+}
+
+/* Empty Reviews State */
+.empty-reviews {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 40px 20px;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e9ecef;
 }
 
 /* Custom Navigation Buttons */
@@ -445,6 +374,11 @@
   transform: scale(1.2) !important;
 }
 
+.custom-swiper-pagination .swiper-pagination-bullet:hover {
+  background-color: #000000 !important;
+  transform: scale(1.1) !important;
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
   .reviews-section {
@@ -452,15 +386,15 @@
   }
 
   .reviews-title {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
   }
 
   .summary-grid {
-    gap: 30px;
+    gap: 25px;
   }
 
   .summary-card {
-    padding: 25px;
+    padding: 20px;
   }
 }
 
@@ -470,21 +404,21 @@
   }
 
   .reviews-title {
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
 
   .summary-grid {
     grid-template-columns: 1fr;
-    gap: 25px;
+    gap: 20px;
   }
 
   .summary-card {
-    padding: 20px;
+    padding: 18px;
   }
 
   .tab-button {
-    padding: 10px 20px;
-    font-size: 0.95rem;
+    padding: 8px 16px;
+    font-size: 0.9rem;
   }
 
   .rating-stars .star {
@@ -493,7 +427,7 @@
   }
 
   .rating-number {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
   }
 
   .custom-swiper-nav {
@@ -504,20 +438,16 @@
 
 @media (max-width: 480px) {
   .reviews-title {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
   }
 
   .summary-card {
-    padding: 18px;
-  }
-
-  .review-card {
-    padding: 20px;
+    padding: 16px;
   }
 
   .tab-container {
     flex-direction: column;
-    gap: 6px;
+    gap: 4px;
   }
 
   .tab-button {
@@ -561,18 +491,12 @@
   }
 }
 
-/* Loading States */
-.loading-skeleton {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-  background-size: 200% 100%;
-  animation: loading 1.5s infinite;
+/* Hide default Swiper navigation and pagination */
+.reviews-swiper .swiper-button-next,
+.reviews-swiper .swiper-button-prev {
+  display: none;
 }
 
-@keyframes loading {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
+.reviews-swiper .swiper-pagination {
+  display: none;
 }
