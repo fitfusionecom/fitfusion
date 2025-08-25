@@ -92,6 +92,38 @@ const carouselStyles = `
     max-width: 200px;
     margin-left: 0.5rem;
   }
+
+  /* Thumbnail carousel styles */
+  .thumbnail-carousel {
+    margin-top: 12px;
+  }
+  
+  .thumbnail-carousel .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px !important;
+    height: 80px !important;
+  }
+  
+  .thumbnail-carousel .swiper-wrapper {
+    align-items: center;
+    display: flex;
+  }
+  
+  .thumbnail-carousel .swiper-container {
+    overflow: visible;
+  }
+
+  /* Hide scrollbar for webkit browsers */
+  .overflow-auto::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Ensure thumbnails have no extra spacing */
+  .gap-2 > * {
+    margin: 0 !important;
+  }
 `;
 
 interface ProductImageCarouselProps {
@@ -188,61 +220,45 @@ const ProductImageCarousel = ({
 
       {/* Thumbnail Carousel */}
       {images.length > 1 && (
-        <div className="w-100">
-          <Swiper
-            onSwiper={setThumbsSwiper}
-            spaceBetween={8}
-            slidesPerView={5}
-            freeMode={true}
-            watchSlidesProgress={true}
-            modules={[]}
-            className="thumbnail-carousel"
-            breakpoints={{
-              320: {
-                slidesPerView: 3,
-                spaceBetween: 6,
-              },
-              480: {
-                slidesPerView: 4,
-                spaceBetween: 8,
-              },
-              768: {
-                slidesPerView: 5,
-                spaceBetween: 8,
-              },
-              1024: {
-                slidesPerView: 6,
-                spaceBetween: 10,
-              },
+        <div className="w-100 mt-3">
+          <div
+            className="d-flex gap-2 overflow-auto"
+            style={{
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
             }}
           >
             {images.map((image, index) => (
-              <SwiperSlide key={index}>
-                <div
-                  className="position-relative w-100 h-100 ratio ratio-1x1 cursor-pointer"
-                  style={{
-                    maxWidth: "80px",
-                    minHeight: "80px",
-                    border:
-                      activeImage === index
-                        ? "2px solid #d4af37"
-                        : "2px solid transparent",
-                    borderRadius: "8px",
-                    overflow: "hidden",
-                  }}
-                >
-                  <Image
-                    src={image}
-                    alt={`${productTitle} - View ${index + 1}`}
-                    fill
-                    className="object-fit-cover w-100 h-100"
-                    priority={index === 0}
-                    sizes="80px"
-                  />
-                </div>
-              </SwiperSlide>
+              <div
+                key={index}
+                className="position-relative cursor-pointer flex-shrink-0"
+                style={{
+                  width: "80px",
+                  height: "80px",
+                  border:
+                    activeImage === index
+                      ? "2px solid #d4af37"
+                      : "2px solid transparent",
+                  borderRadius: "8px",
+                  overflow: "hidden",
+                }}
+                onClick={() => {
+                  if (thumbsSwiper) {
+                    thumbsSwiper.slideTo(index);
+                  }
+                }}
+              >
+                <Image
+                  src={image}
+                  alt={`${productTitle} - View ${index + 1}`}
+                  fill
+                  className="object-fit-cover"
+                  priority={index === 0}
+                  sizes="80px"
+                />
+              </div>
             ))}
-          </Swiper>
+          </div>
         </div>
       )}
 
