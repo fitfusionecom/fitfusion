@@ -241,6 +241,7 @@ const ProductImageCarousel = ({
                       : "2px solid transparent",
                   borderRadius: "8px",
                   overflow: "hidden",
+                  backgroundColor: "whitesmoke",
                 }}
                 onClick={() => {
                   if (thumbsSwiper) {

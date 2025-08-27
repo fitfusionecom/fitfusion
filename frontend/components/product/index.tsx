@@ -241,7 +241,7 @@ const ProductDetails = ({
                 />
               </div>
             </div>
-            <div className="col-lg-6 col-md-6 col-sm-12">
+            <div className="col-lg-6 col-md-6 col-sm-12 mt-md-0 mt-3">
               <div className="ayur-shopsin-details">
                 <div className="ayur-shopsin-heaing">
                   <h3>{product.title}</h3>

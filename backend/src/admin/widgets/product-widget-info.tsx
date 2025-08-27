@@ -158,7 +158,7 @@ const ProductWidget = ({ data }: DetailWidgetProps<AdminProduct>) => {
             </div>
           )}
         </div>
-      </div>
+      </div>  
       <Button disabled={isSubmitting} onClick={() => handleSave()}>
         {isSubmitting ? "..." : "Save"}
       </Button>
