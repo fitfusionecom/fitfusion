@@ -58,13 +58,20 @@ export default function ProductCard({ product }: ProductCardProps) {
     <div className="product-card">
       {/* Product Image Section */}
       <div>
-        <ProductImage
-          thumbnail={product.thumbnail}
-          images={product.images}
-          size="medium"
-          isFeatured={false}
-          className="product-image"
-        />
+        <Link
+          style={{
+            cursor: "pointer",
+          }}
+          href={`/product/${product.handle}`}
+        >
+          <ProductImage
+            thumbnail={product.thumbnail}
+            images={product.images}
+            size="medium"
+            isFeatured={false}
+            className="product-image"
+          />
+        </Link>
 
         {/* Save Badge */}
         {discountPercentage > 0 && (
