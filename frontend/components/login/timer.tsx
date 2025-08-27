@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import "./Timer.css";
 
 interface TimerProps {
   loading: boolean;
@@ -35,7 +36,7 @@ const Timer: React.FC<TimerProps> = ({
   return (
     <button
       type="button"
-      className="btn btn-outline-secondary w-100 mt-2"
+      className="timer-btn"
       onClick={handleResend}
       disabled={otpTimeout || loading}
     >

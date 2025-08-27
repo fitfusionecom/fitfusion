@@ -1,0 +1,55 @@
+/* Timer Component Styles */
+.timer-btn {
+  background: transparent;
+  color: #10b981;
+  border: 2px solid #10b981;
+  border-radius: 0.75rem;
+  width: 100%;
+  padding: 0.75rem 0;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-top: 0.75rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.timer-btn:hover:not(:disabled) {
+  background: #10b981;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+}
+
+.timer-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.timer-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  color: #9ca3af;
+  border-color: #d1d5db;
+  transform: none;
+}
+
+.timer-btn i {
+  margin-right: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .timer-btn {
+    padding: 0.625rem 0;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .timer-btn {
+    padding: 0.5rem 0;
+    font-size: 0.85rem;
+  }
+}
