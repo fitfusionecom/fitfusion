@@ -204,8 +204,9 @@ const ProductImageCarousel = ({
             width: "40px",
             height: "40px",
             borderRadius: "50%",
+            backgroundColor: "transparent",
             color: "black",
-            border: "none",
+            border: "2px solid black",
             outline: "none",
             padding: "0",
           }}
@@ -233,8 +234,8 @@ const ProductImageCarousel = ({
                 key={index}
                 className="position-relative cursor-pointer flex-shrink-0"
                 style={{
-                  width: "80px",
-                  height: "80px",
+                  width: "60px",
+                  height: "60px",
                   border:
                     activeImage === index
                       ? "2px solid #d4af37"

@@ -86,12 +86,6 @@ export default function Footer() {
                     style={{ height: "auto", maxWidth: "120px" }}
                   />
                 </div>
-                <p
-                  className="text-muted mb-3"
-                  style={{ fontSize: "14px", lineHeight: "1.6" }}
-                >
-                  {fitfusionConfig.brand.tagline}
-                </p>
 
                 <div className="ayur-contact-list" style={{ fontSize: "13px" }}>
                   <div className="d-flex align-items-start gap-2 mb-3">

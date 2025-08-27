@@ -1,12 +1,12 @@
 "use client";
 
-import { addToCart } from "@/lib/data/cart";
-import { HttpTypes } from "@medusajs/types";
+import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
 import { toast } from "react-toastify";
 import { isEqual } from "lodash";
-import Link from "next/link";
+import { addToCart } from "@/lib/data/cart";
+import { HttpTypes } from "@medusajs/types";
+import { useEffect, useMemo, useState } from "react";
 import Head from "next/head";
 import ProductImageCarousel from "./product-image-carousel";
 
@@ -197,37 +197,39 @@ const ProductDetails = ({
       <div className="ayur-bgcover pb-1">
         <div className="container">
           <div>
-            <nav aria-label="breadcrumb" className="mb-3">
-              <ol
-                className="breadcrumb bg-transparent p-0 m-0"
-                style={{ fontSize: "0.95rem", display: "flex" }}
-              >
+            <nav aria-label="breadcrumb" className="mb-3  pt-2 pt-md-0">
+              <ol className="breadcrumb bg-transparent p-0 m-0 d-flex align-items-center flex-wrap">
                 <li className="breadcrumb-item">
-                  <Link href="/" className="text-decoration-none text-muted">
+                  <Link
+                    href="/"
+                    className="text-decoration-none text-muted small"
+                  >
                     Home
                   </Link>
                 </li>
                 <li className="breadcrumb-item">
                   <Link
                     href="/shop"
-                    className="text-decoration-none text-muted"
+                    className="text-decoration-none text-muted small"
                   >
-                    Product
+                    Shop
                   </Link>
                 </li>
-                <li
-                  className="breadcrumb-item active text-dark"
-                  aria-current="page"
-                  style={{
-                    display: "-webkit-box",
-                    WebkitLineClamp: 1,
-                    WebkitBoxOrient: "vertical",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    whiteSpace: "normal",
-                  }}
-                >
-                  {product.title}
+                <li className="breadcrumb-item active d-flex">
+                  <span
+                    className="text-dark small"
+                    aria-current="page"
+                    style={{
+                      maxWidth: "100px",
+                      marginTop: "2px",
+                      display: "inline-block",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {product.title}
+                  </span>
                 </li>
               </ol>
             </nav>
@@ -300,7 +302,7 @@ const ProductDetails = ({
                   )}
                 </div>
 
-                <div className="d-flex align-items-center gap-3 mt-4">
+                <div className="d-flex align-items-center gap-3">
                   <div
                     className="input-group border"
                     style={{
@@ -329,7 +331,7 @@ const ProductDetails = ({
                           setQuantity(val);
                         }
                       }}
-                      style={{ maxWidth: "50px" }}
+                      style={{ maxWidth: "60px" }}
                     />
                     <button
                       className="btn btn-outline-secondary border-0"
@@ -402,7 +404,14 @@ const ProductDetails = ({
                     Guaranteed Safe Checkout
                   </p>
 
-                  <div className="d-flex flex-wrap gap-2 mb-3">
+                  <div
+                    className="d-flex flex-nowrap gap-2 mb-3"
+                    style={{
+                      overflowX: "auto",
+                      scrollbarWidth: "none",
+                      msOverflowStyle: "none",
+                    }}
+                  >
                     {[
                       { name: "Visa", src: "/assets/images/footer/visa.webp" },
                       {
