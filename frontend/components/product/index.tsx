@@ -17,10 +17,8 @@ import ProductPrice from "./product-price2";
 import SpecialOffer from "./SpecialOffer";
 import { useCartContext } from "@/lib/context/cart-context";
 import { BiCheck } from "react-icons/bi";
-import { GiRibbonMedal } from "react-icons/gi";
-import { FaLeaf } from "react-icons/fa";
-import { MdScience, MdNoFood } from "react-icons/md";
-import { GiPlantSeed } from "react-icons/gi";
+import ProductFeature from "./product-feature";
+import PaymentOptions from "./payment-options";
 
 type ProductDetailsProps = {
   product: HttpTypes.StoreProduct;
@@ -36,29 +34,6 @@ const optionsAsKeymap = (
     return acc;
   }, {});
 };
-
-const PRODUCT_FEATURES = [
-  {
-    icon: <GiPlantSeed size={32} color="#4CAF50" />,
-    title: "100% Vegetarian",
-  },
-  {
-    icon: <MdNoFood size={32} color="#FF9800" />,
-    title: "No Gelatin",
-  },
-  {
-    icon: <MdScience size={32} color="#2196F3" />,
-    title: "Scientifically Tested",
-  },
-  {
-    icon: <GiRibbonMedal size={32} color="#FFD700" />,
-    title: "Best Quality",
-  },
-  {
-    icon: <FaLeaf size={32} color="#43A047" />,
-    title: "Natural and Safe",
-  },
-];
 
 const ProductDetails = ({
   product,
@@ -306,7 +281,7 @@ const ProductDetails = ({
                   <div
                     className="input-group border"
                     style={{
-                      width: "100px",
+                      width: "150px",
                       overflow: "hidden",
                       borderRadius: "1rem",
                     }}
@@ -331,7 +306,7 @@ const ProductDetails = ({
                           setQuantity(val);
                         }
                       }}
-                      style={{ maxWidth: "60px" }}
+                      style={{ maxWidth: "90px" }}
                     />
                     <button
                       className="btn btn-outline-secondary border-0"
@@ -351,25 +326,27 @@ const ProductDetails = ({
                   <p>
                     <span style={{ fontSize: "0.95rem", color: "#555" }}>
                       Please read our{" "}
-                      <a
-                        href="/return-policy"
+                      <Link
+                        href="/shipping-delivery"
+                        target="_blank"
                         style={{
                           textDecoration: "underline",
                           color: "#007bff",
                         }}
                       >
-                        Return Policy
-                      </a>{" "}
+                        Shipping Policy
+                      </Link>{" "}
                       and{" "}
-                      <a
-                        href="/refund-policy"
+                      <Link
+                        href="/return-policy"
+                        target="_blank"
                         style={{
                           textDecoration: "underline",
                           color: "#007bff",
                         }}
                       >
                         Refund Policy
-                      </a>{" "}
+                      </Link>{" "}
                       for more details.
                     </span>
                   </p>
@@ -400,114 +377,9 @@ const ProductDetails = ({
                   </div>
                 </div>
                 <div className="mt-4">
-                  <p className="fs-6 fw-bold" style={{ color: "black" }}>
-                    Guaranteed Safe Checkout
-                  </p>
-
-                  <div
-                    className="d-flex flex-nowrap gap-2 mb-3"
-                    style={{
-                      overflowX: "auto",
-                      scrollbarWidth: "none",
-                      msOverflowStyle: "none",
-                    }}
-                  >
-                    {[
-                      { name: "Visa", src: "/assets/images/footer/visa.webp" },
-                      {
-                        name: "Paytm",
-                        src: "/assets/images/footer/paytm.avif",
-                      },
-                      {
-                        name: "PhonePe",
-                        src: "/assets/images/footer/phone-pe.webp",
-                      },
-                      {
-                        name: "UPI",
-                        src: "/assets/images/footer/upi-icon.webp",
-                      },
-                      {
-                        name: "Net Banking",
-                        src: "/assets/images/footer/net_banking.webp",
-                      },
-                    ].map((payment, index) => (
-                      <div
-                        key={index}
-                        className="d-flex align-items-center justify-content-center"
-                        style={{
-                          width: "80px",
-                          height: "52px",
-                        }}
-                        title={payment.name}
-                      >
-                        <Image
-                          src={payment.src}
-                          alt={payment.name}
-                          width={70}
-                          height={40}
-                          style={{
-                            width: "100%",
-                            height: "100%",
-                            objectFit: "contain",
-                          }}
-                        />
-                      </div>
-                    ))}
-                  </div>
-
                   {/* Features Section */}
-                  <div
-                    className="product-features-list d-flex flex-wrap justify-content-between align-items-center"
-                    style={{
-                      background: "#f8f9fa",
-                      borderRadius: "16px",
-                      padding: "18px 18px 10px 18px",
-                      marginTop: "18px",
-                      marginBottom: "0",
-                      boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
-                    }}
-                  >
-                    {PRODUCT_FEATURES.map((feature, idx) => (
-                      <div
-                        key={feature.title}
-                        className="d-flex flex-column align-items-center justify-content-center"
-                        style={{
-                          flex: "1 1 120px",
-                          minWidth: "110px",
-                          marginBottom: "8px",
-                          marginTop: "8px",
-                        }}
-                      >
-                        <div
-                          style={{
-                            background: "#fff",
-                            borderRadius: "50%",
-                            width: "48px",
-                            height: "48px",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            marginBottom: "8px",
-                            boxShadow: "0 1px 4px rgba(0,0,0,0.07)",
-                          }}
-                        >
-                          {feature.icon}
-                        </div>
-                        <span
-                          style={{
-                            fontSize: "0.98rem",
-                            fontWeight: 500,
-                            color: "#222",
-                            textAlign: "center",
-                            lineHeight: 1.2,
-                          }}
-                        >
-                          {feature.title}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                  {/* End Features Section */}
+                  <PaymentOptions />
+                  <ProductFeature />
                 </div>
               </div>
             </div>

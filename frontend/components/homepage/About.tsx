@@ -61,7 +61,7 @@ export default function About() {
 
               <div className="about-actions">
                 <Link href="/about-us" className="about-btn primary-btn">
-                  Learn More
+                  About Us
                   <FaArrowRight />
                 </Link>
               </div>
