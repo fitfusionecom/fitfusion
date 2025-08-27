@@ -37,11 +37,8 @@ export default function AccountOverview() {
 
   if (isLoading) {
     return (
-      <div
-        className="d-flex justify-content-center align-items-center"
-        style={{ minHeight: "40vh" }}
-      >
-        <div className="spinner-border text-primary" role="status">
+      <div className="loading-container">
+        <div className="spinner-border loading-spinner" role="status">
           <span className="visually-hidden">Loading...</span>
         </div>
       </div>
@@ -72,15 +69,13 @@ export default function AccountOverview() {
   };
 
   return (
-    <div className="account-overview mt-5">
+    <div className="account-overview">
       {/* Header */}
       <div className="d-none d-md-block mb-4">
         <div className="d-flex justify-content-between align-items-center">
-          <div>
-            <h2 className="mb-1" style={{ color: "#cd8973", fontWeight: 700 }}>
-              Hello {customer?.first_name || "User"}
-            </h2>
-            <p className="text-muted mb-0">
+          <div className="account-header">
+            <h2 className="mb-1">Hello {customer?.first_name || "User"}</h2>
+            <p className="mb-0">
               Signed in as:{" "}
               <span className="fw-semibold">
                 {customer?.phone || customer?.email}
@@ -93,40 +88,28 @@ export default function AccountOverview() {
       {/* Stats Cards */}
       <div className="row mb-4">
         <div className="col-md-6 mb-3">
-          <div
-            className="card h-100 shadow-sm"
-            style={{ borderRadius: "1rem", border: "none" }}
-          >
-            <div className="card-body text-center">
+          <div className="stats-card">
+            <div className="stats-card-body">
               <div className="mb-3">
-                <FaUserCircle size={48} color="#cd8973" />
+                <FaUserCircle size={48} className="stats-icon" />
               </div>
-              <h3
-                className="mb-2"
-                style={{ color: "#cd8973", fontWeight: 700 }}
-              >
+              <h3 className="stats-number mb-2">
                 {getProfileCompletion(customer)}%
               </h3>
-              <p className="text-muted mb-0">Profile Completed</p>
+              <p className="stats-label">Profile Completed</p>
             </div>
           </div>
         </div>
         <div className="col-md-6 mb-3">
-          <div
-            className="card h-100 shadow-sm"
-            style={{ borderRadius: "1rem", border: "none" }}
-          >
-            <div className="card-body text-center">
+          <div className="stats-card">
+            <div className="stats-card-body">
               <div className="mb-3">
-                <FaMapMarkerAlt size={48} color="#cd8973" />
+                <FaMapMarkerAlt size={48} className="stats-icon" />
               </div>
-              <h3
-                className="mb-2"
-                style={{ color: "#cd8973", fontWeight: 700 }}
-              >
+              <h3 className="stats-number mb-2">
                 {customer?.addresses?.length || 0}
               </h3>
-              <p className="text-muted mb-0">Saved Addresses</p>
+              <p className="stats-label">Saved Addresses</p>
             </div>
           </div>
         </div>
@@ -134,11 +117,9 @@ export default function AccountOverview() {
 
       {/* Recent Orders */}
       <div className="mb-4">
-        <div className="d-flex align-items-center gap-2 mb-3">
-          <h4 className="mb-0" style={{ color: "#cd8973", fontWeight: 700 }}>
-            Recent Orders
-          </h4>
-          <FaShoppingBag color="#cd8973" />
+        <div className="section-header">
+          <h4 className="mb-0">Recent Orders</h4>
+          <FaShoppingBag className="icon" />
         </div>
 
         {orders && orders.length > 0 ? (
@@ -147,41 +128,34 @@ export default function AccountOverview() {
               <div key={order.id} className="col-12 mb-3">
                 <Link
                   href={`/account/orders/${order.id}`}
-                  style={{ textDecoration: "none" }}
+                  className="order-card"
                 >
-                  <div
-                    className="card shadow-sm"
-                    style={{ borderRadius: "1rem", border: "none" }}
-                  >
-                    <div className="card-body">
-                      <div className="row align-items-center">
-                        <div className="col-md-3">
-                          <small className="text-muted d-block">
-                            Date placed
-                          </small>
-                          <span className="fw-semibold">
-                            {new Date(order.created_at).toLocaleDateString()}
-                          </span>
-                        </div>
-                        <div className="col-md-3">
-                          <small className="text-muted d-block">
-                            Order number
-                          </small>
-                          <span className="fw-semibold">
-                            #{order.display_id}
-                          </span>
-                        </div>
-                        <div className="col-md-3">
-                          <small className="text-muted d-block">
-                            Total amount
-                          </small>
-                          <span className="fw-semibold">
-                            {formatCurrency(order.total, order.currency_code)}
-                          </span>
-                        </div>
-                        <div className="col-md-3 text-end">
-                          <FaChevronRight color="#cd8973" />
-                        </div>
+                  <div className="order-card-body">
+                    <div className="row align-items-center">
+                      <div className="col-md-3">
+                        <small className="order-label d-block">
+                          Date placed
+                        </small>
+                        <span className="order-value">
+                          {new Date(order.created_at).toLocaleDateString()}
+                        </span>
+                      </div>
+                      <div className="col-md-3">
+                        <small className="order-label d-block">
+                          Order number
+                        </small>
+                        <span className="order-value">#{order.display_id}</span>
+                      </div>
+                      <div className="col-md-3">
+                        <small className="order-label d-block">
+                          Total amount
+                        </small>
+                        <span className="order-value">
+                          {formatCurrency(order.total, order.currency_code)}
+                        </span>
+                      </div>
+                      <div className="col-md-3 text-end">
+                        <FaChevronRight className="order-arrow" />
                       </div>
                     </div>
                   </div>
@@ -190,17 +164,12 @@ export default function AccountOverview() {
             ))}
           </div>
         ) : (
-          <div
-            className="card shadow-sm"
-            style={{ borderRadius: "1rem", border: "none" }}
-          >
-            <div className="card-body text-center py-5">
-              <FaShoppingBag size={48} className="mb-3" color="#ccc" />
-              <h5 className="text-muted">No recent orders</h5>
-              <p className="text-muted mb-0">
-                Start shopping to see your orders here
-              </p>
-            </div>
+          <div className="empty-state">
+            <FaShoppingBag size={48} className="empty-state-icon mb-3" />
+            <h5 className="empty-state-title">No recent orders</h5>
+            <p className="empty-state-desc">
+              Start shopping to see your orders here
+            </p>
           </div>
         )}
       </div>
@@ -208,61 +177,36 @@ export default function AccountOverview() {
       {/* Quick Actions */}
       <div className="row">
         <div className="col-12">
-          <h4 className="mb-3" style={{ color: "#cd8973", fontWeight: 700 }}>
-            Quick Actions
-          </h4>
+          <h4 className="section-header mb-3">Quick Actions</h4>
           <div className="row">
             <div className="col-md-4 mb-3">
-              <Link href="/account/profile" className="text-decoration-none">
-                <div
-                  className="card shadow-sm h-100"
-                  style={{ borderRadius: "1rem", border: "none" }}
-                >
-                  <div className="card-body text-center">
-                    <FaUser size={32} className="mb-3" color="#cd8973" />
-                    <h6 className="mb-2">Update Profile</h6>
-                    <p className="text-muted small mb-0">
-                      Edit your personal information
-                    </p>
-                  </div>
+              <Link href="/account/profile" className="quick-action-card">
+                <div className="quick-action-card-body">
+                  <FaUser size={32} className="quick-action-icon" />
+                  <h6 className="quick-action-title">Update Profile</h6>
+                  <p className="quick-action-desc">
+                    Edit your personal information
+                  </p>
                 </div>
               </Link>
             </div>
             <div className="col-md-4 mb-3">
-              <Link href="/account/addresses" className="text-decoration-none">
-                <div
-                  className="card shadow-sm h-100"
-                  style={{ borderRadius: "1rem", border: "none" }}
-                >
-                  <div className="card-body text-center">
-                    <FaMapMarkerAlt
-                      size={32}
-                      className="mb-3"
-                      color="#cd8973"
-                    />
-                    <h6 className="mb-2">Manage Addresses</h6>
-                    <p className="text-muted small mb-0">
-                      Add or edit your addresses
-                    </p>
-                  </div>
+              <Link href="/account/addresses" className="quick-action-card">
+                <div className="quick-action-card-body">
+                  <FaMapMarkerAlt size={32} className="quick-action-icon" />
+                  <h6 className="quick-action-title">Manage Addresses</h6>
+                  <p className="quick-action-desc">
+                    Add or edit your addresses
+                  </p>
                 </div>
               </Link>
             </div>
             <div className="col-md-4 mb-3">
-              <Link href="/shop" className="text-decoration-none">
-                <div
-                  className="card shadow-sm h-100"
-                  style={{ borderRadius: "1rem", border: "none" }}
-                >
-                  <div className="card-body text-center">
-                    <FaShoppingCart
-                      size={32}
-                      className="mb-3"
-                      color="#cd8973"
-                    />
-                    <h6 className="mb-2">Start Shopping</h6>
-                    <p className="text-muted small mb-0">Browse our products</p>
-                  </div>
+              <Link href="/shop" className="quick-action-card">
+                <div className="quick-action-card-body">
+                  <FaShoppingCart size={32} className="quick-action-icon" />
+                  <h6 className="quick-action-title">Start Shopping</h6>
+                  <p className="quick-action-desc">Browse our products</p>
                 </div>
               </Link>
             </div>

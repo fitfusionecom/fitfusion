@@ -19,18 +19,15 @@ export default function AddressCard({ address, onDelete }: AddressCardProps) {
   };
 
   return (
-    <div
-      className="card shadow-sm h-100"
-      style={{ borderRadius: "1rem", border: "none" }}
-    >
-      <div className="card-body">
+    <div className="account-card h-100">
+      <div className="account-card-body">
         <div className="d-flex justify-content-between align-items-start mb-3">
           <div>
             {address.is_default_billing && (
               <span
                 className="badge me-2"
                 style={{
-                  background: "#cd8973",
+                  background: "#1a1a1a",
                   color: "#fff",
                   fontSize: "0.75rem",
                 }}
@@ -42,7 +39,7 @@ export default function AddressCard({ address, onDelete }: AddressCardProps) {
               <span
                 className="badge"
                 style={{
-                  background: "#1B5E20",
+                  background: "#1a1a1a",
                   color: "#fff",
                   fontSize: "0.75rem",
                 }}
@@ -53,9 +50,8 @@ export default function AddressCard({ address, onDelete }: AddressCardProps) {
           </div>
           <button
             type="button"
-            className="btn btn-sm btn-outline-danger"
+            className="btn btn-sm btn-outline"
             onClick={onDelete}
-            style={{ borderRadius: "0.5rem" }}
             title="Delete address"
           >
             <FaTrash />
@@ -65,29 +61,29 @@ export default function AddressCard({ address, onDelete }: AddressCardProps) {
         <div className="address-content">
           {address.company && (
             <div className="mb-2">
-              <small className="text-muted d-block">Company</small>
-              <span className="fw-semibold">{address.company}</span>
+              <small className="order-label d-block">Company</small>
+              <span className="order-value">{address.company}</span>
             </div>
           )}
 
           <div className="mb-2">
-            <small className="text-muted d-block">Address</small>
-            <div className="fw-semibold">
+            <small className="order-label d-block">Address</small>
+            <div className="order-value">
               <div>{address.address_1}</div>
               {address.address_2 && <div>{address.address_2}</div>}
             </div>
           </div>
 
           <div className="mb-2">
-            <small className="text-muted d-block">City & Postal Code</small>
-            <span className="fw-semibold">
+            <small className="order-label d-block">City & Postal Code</small>
+            <span className="order-value">
               {address.city}, {address.postal_code}
             </span>
           </div>
 
           <div>
-            <small className="text-muted d-block">Country</small>
-            <span className="fw-semibold">
+            <small className="order-label d-block">Country</small>
+            <span className="order-value">
               {getCountryName(address.country_code)}
             </span>
           </div>

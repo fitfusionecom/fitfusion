@@ -88,21 +88,16 @@ export default function ProfileBillingAddress({
     <div className="profile-section">
       <div className="d-flex justify-content-between align-items-center mb-3">
         <div>
-          <h4 className="mb-1" style={{ color: "#cd8973", fontWeight: 700 }}>
-            Billing Address
-          </h4>
-          <p className="text-muted mb-0">Manage your billing address</p>
+          <h4 className="profile-section-title mb-1">Billing Address</h4>
+          <p className="profile-section-desc mb-0">
+            Manage your billing address
+          </p>
         </div>
         {!isEditing && (
           <button
             type="button"
-            className="btn btn-outline-primary btn-sm"
+            className="btn btn-outline btn-sm"
             onClick={() => setIsEditing(true)}
-            style={{
-              borderColor: "#cd8973",
-              color: "#cd8973",
-              borderRadius: "0.5rem",
-            }}
           >
             <FaPlus className="me-2" />
             Add Address
@@ -133,10 +128,9 @@ export default function ProfileBillingAddress({
                 type="text"
                 id="company"
                 name="company"
-                className="form-control"
+                className="form-input"
                 value={formData.company}
                 onChange={handleChange}
-                style={{ borderRadius: "0.5rem" }}
               />
             </div>
             <div className="col-md-6 mb-3">
@@ -146,11 +140,10 @@ export default function ProfileBillingAddress({
               <select
                 id="country_code"
                 name="country_code"
-                className="form-select"
+                className="form-input"
                 value={formData.country_code}
                 onChange={handleChange}
                 required
-                style={{ borderRadius: "0.5rem" }}
               >
                 <option value="in">India</option>
                 <option value="us">United States</option>
@@ -168,11 +161,10 @@ export default function ProfileBillingAddress({
               type="text"
               id="address_1"
               name="address_1"
-              className="form-control"
+              className="form-input"
               value={formData.address_1}
               onChange={handleChange}
               required
-              style={{ borderRadius: "0.5rem" }}
             />
           </div>
 
@@ -184,10 +176,9 @@ export default function ProfileBillingAddress({
               type="text"
               id="address_2"
               name="address_2"
-              className="form-control"
+              className="form-input"
               value={formData.address_2}
               onChange={handleChange}
-              style={{ borderRadius: "0.5rem" }}
             />
           </div>
 
@@ -200,11 +191,10 @@ export default function ProfileBillingAddress({
                 type="text"
                 id="city"
                 name="city"
-                className="form-control"
+                className="form-input"
                 value={formData.city}
                 onChange={handleChange}
                 required
-                style={{ borderRadius: "0.5rem" }}
               />
             </div>
             <div className="col-md-6 mb-3">
@@ -215,11 +205,10 @@ export default function ProfileBillingAddress({
                 type="text"
                 id="postal_code"
                 name="postal_code"
-                className="form-control"
+                className="form-input"
                 value={formData.postal_code}
                 onChange={handleChange}
                 required
-                style={{ borderRadius: "0.5rem" }}
               />
             </div>
           </div>
@@ -229,11 +218,6 @@ export default function ProfileBillingAddress({
               type="submit"
               className="btn btn-primary"
               disabled={isLoading}
-              style={{
-                background: "#cd8973",
-                borderColor: "#cd8973",
-                borderRadius: "0.5rem",
-              }}
             >
               {isLoading ? (
                 <>
@@ -246,48 +230,44 @@ export default function ProfileBillingAddress({
             </button>
             <button
               type="button"
-              className="btn btn-outline-secondary"
+              className="btn btn-outline"
               onClick={handleCancel}
               disabled={isLoading}
-              style={{ borderRadius: "0.5rem" }}
             >
               Cancel
             </button>
           </div>
         </form>
       ) : (
-        <div
-          className="card shadow-sm"
-          style={{ borderRadius: "1rem", border: "none" }}
-        >
-          <div className="card-body">
+        <div className="account-card">
+          <div className="account-card-body">
             {billingAddress ? (
               <div>
                 <div className="row">
                   <div className="col-md-6">
-                    <small className="text-muted d-block">Address</small>
-                    <span className="fw-semibold">
+                    <small className="order-label d-block">Address</small>
+                    <span className="order-value">
                       {billingAddress.address_1}
                     </span>
                     {billingAddress.address_2 && (
-                      <div className="fw-semibold">
+                      <div className="order-value">
                         {billingAddress.address_2}
                       </div>
                     )}
                   </div>
                   <div className="col-md-6">
-                    <small className="text-muted d-block">
+                    <small className="order-label d-block">
                       City & Postal Code
                     </small>
-                    <span className="fw-semibold">
+                    <span className="order-value">
                       {billingAddress.city}, {billingAddress.postal_code}
                     </span>
                   </div>
                 </div>
                 {billingAddress.company && (
                   <div className="mt-2">
-                    <small className="text-muted d-block">Company</small>
-                    <span className="fw-semibold">
+                    <small className="order-label d-block">Company</small>
+                    <span className="order-value">
                       {billingAddress.company}
                     </span>
                   </div>
@@ -295,12 +275,10 @@ export default function ProfileBillingAddress({
               </div>
             ) : (
               <div className="text-center py-3">
-                <FaMapMarkerAlt
-                  size={48}
-                  className="mb-2"
-                  style={{ color: "#ccc" }}
-                />
-                <p className="text-muted mb-0">No billing address added yet</p>
+                <FaMapMarkerAlt size={48} className="empty-state-icon mb-3" />
+                <p className="empty-state-desc mb-0">
+                  No billing address added yet
+                </p>
               </div>
             )}
           </div>

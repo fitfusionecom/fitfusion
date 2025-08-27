@@ -50,11 +50,8 @@ export default function OrderOverview({ order }: OrderOverviewProps) {
       {/* Order Status */}
       <div className="row mb-4">
         <div className="col-12">
-          <div
-            className="card shadow-sm"
-            style={{ borderRadius: "1rem", border: "none" }}
-          >
-            <div className="card-body">
+          <div className="account-card">
+            <div className="account-card-body">
               <div className="d-flex align-items-center justify-content-between">
                 <div className="d-flex align-items-center">
                   <div
@@ -86,10 +83,7 @@ export default function OrderOverview({ order }: OrderOverviewProps) {
                 </div>
                 <div className="text-end">
                   <div className="text-muted">Order Total</div>
-                  <div
-                    className="h4 mb-0"
-                    style={{ color: "#cd8973", fontWeight: 700 }}
-                  >
+                  <div className="h4 mb-0 order-value">
                     {formatCurrency(order.total, order.currency_code)}
                   </div>
                 </div>
@@ -102,17 +96,9 @@ export default function OrderOverview({ order }: OrderOverviewProps) {
       <div className="row">
         {/* Order Details */}
         <div className="col-lg-8 mb-4">
-          <div
-            className="card shadow-sm"
-            style={{ borderRadius: "1rem", border: "none" }}
-          >
+          <div className="account-card">
             <div className="card-header bg-transparent border-0 pb-0">
-              <h5
-                className="mb-0"
-                style={{ color: "#cd8973", fontWeight: 700 }}
-              >
-                Order Items
-              </h5>
+              <h5 className="profile-section-title mb-0">Order Items</h5>
             </div>
             <div className="card-body">
               {order.items && order.items.length > 0 ? (
@@ -128,13 +114,13 @@ export default function OrderOverview({ order }: OrderOverviewProps) {
                           style={{
                             width: "60px",
                             height: "60px",
-                            background: "#f6f1ed",
+                            background: "#f3f4f6",
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
                           }}
                         >
-                          <FaBox size={32} style={{ color: "#cd8973" }} />
+                          <FaBox size={32} className="order-arrow" />
                         </div>
                       </div>
                       <div className="flex-grow-1">
@@ -157,8 +143,8 @@ export default function OrderOverview({ order }: OrderOverviewProps) {
                 </div>
               ) : (
                 <div className="text-center py-4">
-                  <FaBox size={48} className="mb-3" style={{ color: "#ccc" }} />
-                  <p className="text-muted">No items found</p>
+                  <FaBox size={48} className="empty-state-icon mb-3" />
+                  <p className="empty-state-desc">No items found</p>
                 </div>
               )}
             </div>
@@ -167,17 +153,9 @@ export default function OrderOverview({ order }: OrderOverviewProps) {
 
         {/* Order Summary */}
         <div className="col-lg-4 mb-4">
-          <div
-            className="card shadow-sm"
-            style={{ borderRadius: "1rem", border: "none" }}
-          >
+          <div className="account-card">
             <div className="card-header bg-transparent border-0 pb-0">
-              <h5
-                className="mb-0"
-                style={{ color: "#cd8973", fontWeight: 700 }}
-              >
-                Order Summary
-              </h5>
+              <h5 className="profile-section-title mb-0">Order Summary</h5>
             </div>
             <div className="card-body">
               <div className="order-summary">
@@ -212,7 +190,7 @@ export default function OrderOverview({ order }: OrderOverviewProps) {
                 <hr />
                 <div className="d-flex justify-content-between fw-bold">
                   <span>Total</span>
-                  <span style={{ color: "#cd8973" }}>
+                  <span className="order-value">
                     {formatCurrency(order.total, order.currency_code)}
                   </span>
                 </div>
@@ -222,17 +200,9 @@ export default function OrderOverview({ order }: OrderOverviewProps) {
 
           {/* Shipping Address */}
           {order.shipping_address && (
-            <div
-              className="card shadow-sm mt-4"
-              style={{ borderRadius: "1rem", border: "none" }}
-            >
+            <div className="account-card mt-4">
               <div className="card-header bg-transparent border-0 pb-0">
-                <h5
-                  className="mb-0"
-                  style={{ color: "#cd8973", fontWeight: 700 }}
-                >
-                  Shipping Address
-                </h5>
+                <h5 className="profile-section-title mb-0">Shipping Address</h5>
               </div>
               <div className="card-body">
                 <div className="shipping-address">
@@ -256,17 +226,9 @@ export default function OrderOverview({ order }: OrderOverviewProps) {
 
           {/* Billing Address */}
           {order.billing_address && (
-            <div
-              className="card shadow-sm mt-4"
-              style={{ borderRadius: "1rem", border: "none" }}
-            >
+            <div className="account-card mt-4">
               <div className="card-header bg-transparent border-0 pb-0">
-                <h5
-                  className="mb-0"
-                  style={{ color: "#cd8973", fontWeight: 700 }}
-                >
-                  Billing Address
-                </h5>
+                <h5 className="profile-section-title mb-0">Billing Address</h5>
               </div>
               <div className="card-body">
                 <div className="billing-address">
@@ -293,45 +255,19 @@ export default function OrderOverview({ order }: OrderOverviewProps) {
       {/* Action Buttons */}
       <div className="row">
         <div className="col-12">
-          <div
-            className="card shadow-sm"
-            style={{ borderRadius: "1rem", border: "none" }}
-          >
-            <div className="card-body">
+          <div className="account-card">
+            <div className="account-card-body">
               <div className="d-flex gap-2 flex-wrap">
-                <Link
-                  href="/account/orders"
-                  className="btn btn-outline-primary"
-                  style={{
-                    borderColor: "#cd8973",
-                    color: "#cd8973",
-                    borderRadius: "0.75rem",
-                  }}
-                >
+                <Link href="/account/orders" className="btn btn-outline">
                   <FaArrowLeft className="me-2" />
                   Back to Orders
                 </Link>
-                <Link
-                  href="/shop"
-                  className="btn btn-primary"
-                  style={{
-                    background: "#cd8973",
-                    borderColor: "#cd8973",
-                    borderRadius: "0.75rem",
-                  }}
-                >
+                <Link href="/shop" className="btn btn-primary">
                   <FaShoppingCart className="me-2" />
                   Continue Shopping
                 </Link>
                 {order.status === "delivered" && (
-                  <button
-                    className="btn btn-outline-success"
-                    style={{
-                      borderColor: "#28a745",
-                      color: "#28a745",
-                      borderRadius: "0.75rem",
-                    }}
-                  >
+                  <button className="btn btn-outline">
                     <FaStar className="me-2" />
                     Write Review
                   </button>

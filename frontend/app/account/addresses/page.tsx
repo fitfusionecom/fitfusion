@@ -25,11 +25,8 @@ export default function AddressesPage() {
 
   if (isLoading) {
     return (
-      <div
-        className="d-flex justify-content-center align-items-center"
-        style={{ minHeight: "40vh" }}
-      >
-        <div className="spinner-border text-primary" role="status">
+      <div className="loading-container">
+        <div className="spinner-border loading-spinner" role="status">
           <span className="visually-hidden">Loading...</span>
         </div>
       </div>
@@ -48,10 +45,8 @@ export default function AddressesPage() {
     <div className="addresses-page">
       {/* Header */}
       <div className="mb-4">
-        <h2 className="mb-2" style={{ color: "#cd8973", fontWeight: 700 }}>
-          Addresses
-        </h2>
-        <p className="text-muted">
+        <h2 className="account-header mb-2">Addresses</h2>
+        <p className="account-header">
           Manage your shipping and billing addresses for faster checkout.
         </p>
       </div>

@@ -101,11 +101,6 @@ export default function AddressBook({ customer }: AddressBookProps) {
             type="button"
             className="btn btn-primary"
             onClick={() => setIsAdding(true)}
-            style={{
-              background: "#cd8973",
-              borderColor: "#cd8973",
-              borderRadius: "0.75rem",
-            }}
           >
             <FaPlus className="me-2" />
             Add New Address
@@ -128,14 +123,9 @@ export default function AddressBook({ customer }: AddressBookProps) {
 
       {/* Add Address Form */}
       {isAdding && (
-        <div
-          className="card shadow-sm mb-4"
-          style={{ borderRadius: "1rem", border: "none" }}
-        >
-          <div className="card-body">
-            <h5 className="mb-3" style={{ color: "#cd8973", fontWeight: 700 }}>
-              Add New Address
-            </h5>
+        <div className="account-card mb-4">
+          <div className="account-card-body">
+            <h5 className="profile-section-title mb-3">Add New Address</h5>
             <form onSubmit={handleSubmit}>
               <div className="row">
                 <div className="col-md-6 mb-3">
@@ -146,10 +136,9 @@ export default function AddressBook({ customer }: AddressBookProps) {
                     type="text"
                     id="company"
                     name="company"
-                    className="form-control"
+                    className="form-input"
                     value={formData.company}
                     onChange={handleChange}
-                    style={{ borderRadius: "0.5rem" }}
                   />
                 </div>
                 <div className="col-md-6 mb-3">
@@ -159,11 +148,10 @@ export default function AddressBook({ customer }: AddressBookProps) {
                   <select
                     id="country_code"
                     name="country_code"
-                    className="form-select"
+                    className="form-input"
                     value={formData.country_code}
                     onChange={handleChange}
                     required
-                    style={{ borderRadius: "0.5rem" }}
                   >
                     <option value="in">India</option>
                     <option value="us">United States</option>
@@ -181,11 +169,10 @@ export default function AddressBook({ customer }: AddressBookProps) {
                   type="text"
                   id="address_1"
                   name="address_1"
-                  className="form-control"
+                  className="form-input"
                   value={formData.address_1}
                   onChange={handleChange}
                   required
-                  style={{ borderRadius: "0.5rem" }}
                 />
               </div>
 
@@ -197,10 +184,9 @@ export default function AddressBook({ customer }: AddressBookProps) {
                   type="text"
                   id="address_2"
                   name="address_2"
-                  className="form-control"
+                  className="form-input"
                   value={formData.address_2}
                   onChange={handleChange}
-                  style={{ borderRadius: "0.5rem" }}
                 />
               </div>
 
@@ -213,11 +199,10 @@ export default function AddressBook({ customer }: AddressBookProps) {
                     type="text"
                     id="city"
                     name="city"
-                    className="form-control"
+                    className="form-input"
                     value={formData.city}
                     onChange={handleChange}
                     required
-                    style={{ borderRadius: "0.5rem" }}
                   />
                 </div>
                 <div className="col-md-6 mb-3">
@@ -228,11 +213,10 @@ export default function AddressBook({ customer }: AddressBookProps) {
                     type="text"
                     id="postal_code"
                     name="postal_code"
-                    className="form-control"
+                    className="form-input"
                     value={formData.postal_code}
                     onChange={handleChange}
                     required
-                    style={{ borderRadius: "0.5rem" }}
                   />
                 </div>
               </div>
@@ -242,11 +226,6 @@ export default function AddressBook({ customer }: AddressBookProps) {
                   type="submit"
                   className="btn btn-primary"
                   disabled={isLoading}
-                  style={{
-                    background: "#cd8973",
-                    borderColor: "#cd8973",
-                    borderRadius: "0.5rem",
-                  }}
                 >
                   {isLoading ? (
                     <>
@@ -259,10 +238,9 @@ export default function AddressBook({ customer }: AddressBookProps) {
                 </button>
                 <button
                   type="button"
-                  className="btn btn-outline-secondary"
+                  className="btn btn-outline"
                   onClick={handleCancel}
                   disabled={isLoading}
-                  style={{ borderRadius: "0.5rem" }}
                 >
                   Cancel
                 </button>
@@ -286,17 +264,12 @@ export default function AddressBook({ customer }: AddressBookProps) {
             ))}
           </div>
         ) : (
-          <div
-            className="card shadow-sm"
-            style={{ borderRadius: "1rem", border: "none" }}
-          >
-            <div className="card-body text-center py-5">
-              <FaMapMarkerAlt size={48} className="mb-3" style={{ color: "#ccc" }} />
-              <h5 className="text-muted">No addresses found</h5>
-              <p className="text-muted mb-0">
-                Add your first address to get started
-              </p>
-            </div>
+          <div className="empty-state">
+            <FaMapMarkerAlt size={48} className="empty-state-icon mb-3" />
+            <h5 className="empty-state-title">No addresses found</h5>
+            <p className="empty-state-desc">
+              Add your first address to get started
+            </p>
           </div>
         )}
       </div>

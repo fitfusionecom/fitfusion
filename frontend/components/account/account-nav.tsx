@@ -30,25 +30,25 @@ export default function AccountNav({ customer }: AccountNavProps) {
     {
       href: "/account",
       label: "Overview",
-      icon: <FaHome style={{ width: "20px", height: "20px" }} />,
+      icon: <FaHome className="icon-sm" />,
       testId: "overview-link",
     },
     {
       href: "/account/profile",
       label: "Profile",
-      icon: <FaUser style={{ width: "20px", height: "20px" }} />,
+      icon: <FaUser className="icon-sm" />,
       testId: "profile-link",
     },
     {
       href: "/account/addresses",
       label: "Addresses",
-      icon: <FaMapMarkerAlt style={{ width: "20px", height: "20px" }} />,
+      icon: <FaMapMarkerAlt className="icon-sm" />,
       testId: "addresses-link",
     },
     {
       href: "/account/orders",
       label: "Orders",
-      icon: <FaShoppingBag style={{ width: "20px", height: "20px" }} />,
+      icon: <FaShoppingBag className="icon-sm" />,
       testId: "orders-link",
     },
   ];
@@ -57,19 +57,10 @@ export default function AccountNav({ customer }: AccountNavProps) {
     <div className="account-nav">
       {/* Mobile Navigation */}
       <div className="d-md-none mb-4">
-        <div
-          className="card shadow-sm"
-          style={{ borderRadius: "1rem", border: "none" }}
-        >
-          <div className="card-body p-0">
-            <div
-              className="p-3 border-bottom"
-              style={{ background: "#f6f1ed" }}
-            >
-              <h5
-                className="mb-0"
-                style={{ color: "#cd8973", fontWeight: 700 }}
-              >
+        <div className="account-card">
+          <div className="account-card-body p-0">
+            <div className="p-3 border-bottom">
+              <h5 className="profile-section-title mb-0">
                 Hello {customer?.first_name || "User"}
               </h5>
             </div>
@@ -78,16 +69,9 @@ export default function AccountNav({ customer }: AccountNavProps) {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`list-group-item list-group-item-action d-flex align-items-center gap-3 ${
+                  className={`list-group-item d-flex align-items-center gap-3 ${
                     isActive(item.href) ? "active" : ""
                   }`}
-                  style={{
-                    border: "none",
-                    padding: "1rem 1.5rem",
-                    color: isActive(item.href) ? "#fff" : "#333",
-                    background: isActive(item.href) ? "#cd8973" : "transparent",
-                    textDecoration: "none",
-                  }}
                   data-testid={item.testId}
                 >
                   {item.icon}
@@ -96,19 +80,11 @@ export default function AccountNav({ customer }: AccountNavProps) {
               ))}
               <button
                 type="button"
-                className="list-group-item list-group-item-action d-flex align-items-center gap-3"
-                style={{
-                  border: "none",
-                  padding: "1rem 1.5rem",
-                  background: "transparent",
-                  color: "#dc3545",
-                  width: "100%",
-                  textAlign: "left",
-                }}
+                className="list-group-item logout d-flex align-items-center gap-3"
                 onClick={handleLogout}
                 data-testid="logout-button"
               >
-                <FaSignOutAlt style={{ width: "20px", height: "20px" }} />
+                <FaSignOutAlt className="icon-sm" />
                 <span>Log out</span>
               </button>
             </div>
@@ -118,18 +94,10 @@ export default function AccountNav({ customer }: AccountNavProps) {
 
       {/* Desktop Navigation */}
       <div className="d-none d-md-block">
-        <div
-          className="card shadow-sm"
-          style={{ borderRadius: "1rem", border: "none" }}
-        >
-          <div className="card-body p-4">
+        <div className="account-card">
+          <div className="account-card-body p-4">
             <div className="mb-4">
-              <h5
-                className="mb-0"
-                style={{ color: "#cd8973", fontWeight: 700 }}
-              >
-                Account
-              </h5>
+              <h5 className="profile-section-title mb-0">Account</h5>
             </div>
 
             <div className="nav flex-column">
@@ -140,15 +108,6 @@ export default function AccountNav({ customer }: AccountNavProps) {
                   className={`nav-link d-flex align-items-center gap-3 mb-2 ${
                     isActive(item.href) ? "active" : ""
                   }`}
-                  style={{
-                    padding: "0.75rem 1rem",
-                    borderRadius: "0.5rem",
-                    color: isActive(item.href) ? "#fff" : "#666",
-                    background: isActive(item.href) ? "#cd8973" : "transparent",
-                    textDecoration: "none",
-                    fontWeight: isActive(item.href) ? "600" : "400",
-                    transition: "all 0.2s ease",
-                  }}
                   data-testid={item.testId}
                 >
                   {item.icon}
@@ -158,22 +117,11 @@ export default function AccountNav({ customer }: AccountNavProps) {
 
               <button
                 type="button"
-                className="nav-link d-flex align-items-center gap-3 mb-2"
-                style={{
-                  padding: "0.75rem 1rem",
-                  borderRadius: "0.5rem",
-                  color: "#dc3545",
-                  background: "transparent",
-                  border: "none",
-                  width: "100%",
-                  textAlign: "left",
-                  fontWeight: "400",
-                  transition: "all 0.2s ease",
-                }}
+                className="nav-link logout d-flex align-items-center gap-3 mb-2"
                 onClick={handleLogout}
                 data-testid="logout-button"
               >
-                <FaSignOutAlt style={{ width: "20px", height: "20px" }} />
+                <FaSignOutAlt className="icon-sm" />
                 <span>Log out</span>
               </button>
             </div>

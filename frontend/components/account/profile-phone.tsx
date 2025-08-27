@@ -45,21 +45,14 @@ export default function ProfilePhone({ customer }: ProfilePhoneProps) {
     <div className="profile-section">
       <div className="d-flex justify-content-between align-items-center mb-3">
         <div>
-          <h4 className="mb-1" style={{ color: "#cd8973", fontWeight: 700 }}>
-            Phone Number
-          </h4>
-          <p className="text-muted mb-0">Update your phone number</p>
+          <h4 className="profile-section-title mb-1">Phone Number</h4>
+          <p className="profile-section-desc mb-0">Update your phone number</p>
         </div>
         {!isEditing && (
           <button
             type="button"
-            className="btn btn-outline-primary btn-sm"
+            className="btn btn-outline btn-sm"
             onClick={() => setIsEditing(true)}
-            style={{
-              borderColor: "#cd8973",
-              color: "#cd8973",
-              borderRadius: "0.5rem",
-            }}
           >
             <FaEdit className="me-2" />
             Edit
@@ -88,13 +81,12 @@ export default function ProfilePhone({ customer }: ProfilePhoneProps) {
             <input
               type="tel"
               id="phone"
-              className="form-control"
+              className="form-input"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               required
               pattern="[0-9]{10}"
               title="Please enter a valid 10-digit phone number"
-              style={{ borderRadius: "0.5rem" }}
             />
           </div>
           <div className="d-flex gap-2">
@@ -102,11 +94,6 @@ export default function ProfilePhone({ customer }: ProfilePhoneProps) {
               type="submit"
               className="btn btn-primary"
               disabled={isLoading}
-              style={{
-                background: "#cd8973",
-                borderColor: "#cd8973",
-                borderRadius: "0.5rem",
-              }}
             >
               {isLoading ? (
                 <>
@@ -119,23 +106,19 @@ export default function ProfilePhone({ customer }: ProfilePhoneProps) {
             </button>
             <button
               type="button"
-              className="btn btn-outline-secondary"
+              className="btn btn-outline"
               onClick={handleCancel}
               disabled={isLoading}
-              style={{ borderRadius: "0.5rem" }}
             >
               Cancel
             </button>
           </div>
         </form>
       ) : (
-        <div
-          className="card shadow-sm"
-          style={{ borderRadius: "1rem", border: "none" }}
-        >
-          <div className="card-body">
-            <small className="text-muted d-block">Phone Number</small>
-            <span className="fw-semibold">
+        <div className="account-card">
+          <div className="account-card-body">
+            <small className="order-label d-block">Phone Number</small>
+            <span className="order-value">
               {customer?.phone || "Not provided"}
             </span>
           </div>

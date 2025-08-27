@@ -26,11 +26,8 @@ export default function OrdersPage() {
 
   if (isLoading) {
     return (
-      <div
-        className="d-flex justify-content-center align-items-center"
-        style={{ minHeight: "40vh" }}
-      >
-        <div className="spinner-border text-primary" role="status">
+      <div className="loading-container">
+        <div className="spinner-border loading-spinner" role="status">
           <span className="visually-hidden">Loading...</span>
         </div>
       </div>
@@ -41,10 +38,8 @@ export default function OrdersPage() {
     <div className="orders-page">
       {/* Header */}
       <div className="mb-4">
-        <h2 className="mb-2" style={{ color: "#cd8973", fontWeight: 700 }}>
-          Orders
-        </h2>
-        <p className="text-muted">View and track your order history.</p>
+        <h2 className="account-header mb-2">Orders</h2>
+        <p className="account-header">View and track your order history.</p>
       </div>
 
       {/* Orders List */}
@@ -58,17 +53,12 @@ export default function OrdersPage() {
             ))}
           </div>
         ) : (
-          <div
-            className="card shadow-sm"
-            style={{ borderRadius: "1rem", border: "none" }}
-          >
-            <div className="card-body text-center py-5">
-              <FaShoppingBag size={48} className="mb-3" style={{ color: "#ccc" }} />
-              <h5 className="text-muted">No orders found</h5>
-              <p className="text-muted mb-0">
-                Start shopping to see your orders here
-              </p>
-            </div>
+          <div className="empty-state">
+            <FaShoppingBag size={48} className="empty-state-icon mb-3" />
+            <h5 className="empty-state-title">No orders found</h5>
+            <p className="empty-state-desc">
+              Start shopping to see your orders here
+            </p>
           </div>
         )}
       </div>

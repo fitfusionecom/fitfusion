@@ -27,11 +27,8 @@ export default function ProfilePage() {
 
   if (isLoading) {
     return (
-      <div
-        className="d-flex justify-content-center align-items-center"
-        style={{ minHeight: "40vh" }}
-      >
-        <div className="spinner-border text-primary" role="status">
+      <div className="loading-container">
+        <div className="spinner-border loading-spinner" role="status">
           <span className="visually-hidden">Loading...</span>
         </div>
       </div>
@@ -50,10 +47,8 @@ export default function ProfilePage() {
     <div className="profile-page">
       {/* Header */}
       <div className="mb-4">
-        <h2 className="mb-2" style={{ color: "#cd8973", fontWeight: 700 }}>
-          Profile
-        </h2>
-        <p className="text-muted">
+        <h2 className="account-header mb-2">Profile</h2>
+        <p className="account-header">
           View and update your profile information, including your name, phone
           number, and billing address. You can also change your password.
         </p>

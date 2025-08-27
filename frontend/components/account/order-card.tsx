@@ -33,48 +33,40 @@ export default function OrderCard({ order }: OrderCardProps) {
   };
 
   return (
-    <Link
-      href={`/account/orders/${order.id}`}
-      style={{ textDecoration: "none" }}
-    >
-      <div
-        className="card shadow-sm"
-        style={{ borderRadius: "1rem", border: "none" }}
-      >
-        <div className="card-body">
-          <div className="row align-items-center">
-            <div className="col-md-3">
-              <small className="text-muted d-block">Order Date</small>
-              <span className="fw-semibold">
-                {new Date(order.created_at).toLocaleDateString()}
-              </span>
-            </div>
-            <div className="col-md-3">
-              <small className="text-muted d-block">Order Number</small>
-              <span className="fw-semibold">#{order.display_id}</span>
-            </div>
-            <div className="col-md-2">
-              <small className="text-muted d-block">Total Amount</small>
-              <span className="fw-semibold">
-                {formatCurrency(order.total, order.currency_code)}
-              </span>
-            </div>
-            <div className="col-md-2">
-              <small className="text-muted d-block">Status</small>
-              <span
-                className="badge"
-                style={{
-                  background: getStatusColor(order.status),
-                  color: "#fff",
-                  fontSize: "0.75rem",
-                }}
-              >
-                {getStatusText(order.status)}
-              </span>
-            </div>
-            <div className="col-md-2 text-end">
-              <FaChevronRight style={{ color: "#cd8973" }} />
-            </div>
+    <Link href={`/account/orders/${order.id}`} className="order-card">
+      <div className="order-card-body">
+        <div className="row align-items-center">
+          <div className="col-md-3">
+            <small className="order-label d-block">Order Date</small>
+            <span className="order-value">
+              {new Date(order.created_at).toLocaleDateString()}
+            </span>
+          </div>
+          <div className="col-md-3">
+            <small className="order-label d-block">Order Number</small>
+            <span className="order-value">#{order.display_id}</span>
+          </div>
+          <div className="col-md-2">
+            <small className="order-label d-block">Total Amount</small>
+            <span className="order-value">
+              {formatCurrency(order.total, order.currency_code)}
+            </span>
+          </div>
+          <div className="col-md-2">
+            <small className="order-label d-block">Status</small>
+            <span
+              className="badge"
+              style={{
+                background: getStatusColor(order.status),
+                color: "#fff",
+                fontSize: "0.75rem",
+              }}
+            >
+              {getStatusText(order.status)}
+            </span>
+          </div>
+          <div className="col-md-2 text-end">
+            <FaChevronRight className="order-arrow" />
           </div>
         </div>
       </div>

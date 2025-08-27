@@ -63,21 +63,16 @@ export default function ProfileName({ customer }: ProfileNameProps) {
     <div className="profile-section">
       <div className="d-flex justify-content-between align-items-center mb-3">
         <div>
-          <h4 className="mb-1" style={{ color: "#cd8973", fontWeight: 700 }}>
-            Name
-          </h4>
-          <p className="text-muted mb-0">Update your first and last name</p>
+          <h4 className="profile-section-title mb-1">Name</h4>
+          <p className="profile-section-desc mb-0">
+            Update your first and last name
+          </p>
         </div>
         {!isEditing && (
           <button
             type="button"
-            className="btn btn-outline-primary btn-sm"
+            className="btn btn-outline btn-sm"
             onClick={() => setIsEditing(true)}
-            style={{
-              borderColor: "#cd8973",
-              color: "#cd8973",
-              borderRadius: "0.5rem",
-            }}
           >
             <FaEdit className="me-2" />
             Edit
@@ -108,11 +103,10 @@ export default function ProfileName({ customer }: ProfileNameProps) {
                 type="text"
                 id="first_name"
                 name="first_name"
-                className="form-control"
+                className="form-input"
                 value={formData.first_name}
                 onChange={handleChange}
                 required
-                style={{ borderRadius: "0.5rem" }}
               />
             </div>
             <div className="col-md-6 mb-3">
@@ -123,11 +117,10 @@ export default function ProfileName({ customer }: ProfileNameProps) {
                 type="text"
                 id="last_name"
                 name="last_name"
-                className="form-control"
+                className="form-input"
                 value={formData.last_name}
                 onChange={handleChange}
                 required
-                style={{ borderRadius: "0.5rem" }}
               />
             </div>
           </div>
@@ -136,11 +129,6 @@ export default function ProfileName({ customer }: ProfileNameProps) {
               type="submit"
               className="btn btn-primary"
               disabled={isLoading}
-              style={{
-                background: "#cd8973",
-                borderColor: "#cd8973",
-                borderRadius: "0.5rem",
-              }}
             >
               {isLoading ? (
                 <>
@@ -153,31 +141,27 @@ export default function ProfileName({ customer }: ProfileNameProps) {
             </button>
             <button
               type="button"
-              className="btn btn-outline-secondary"
+              className="btn btn-outline"
               onClick={handleCancel}
               disabled={isLoading}
-              style={{ borderRadius: "0.5rem" }}
             >
               Cancel
             </button>
           </div>
         </form>
       ) : (
-        <div
-          className="card shadow-sm"
-          style={{ borderRadius: "1rem", border: "none" }}
-        >
-          <div className="card-body">
+        <div className="account-card">
+          <div className="account-card-body">
             <div className="row">
               <div className="col-md-6">
-                <small className="text-muted d-block">First Name</small>
-                <span className="fw-semibold">
+                <small className="order-label d-block">First Name</small>
+                <span className="order-value">
                   {customer?.first_name || "Not provided"}
                 </span>
               </div>
               <div className="col-md-6">
-                <small className="text-muted d-block">Last Name</small>
-                <span className="fw-semibold">
+                <small className="order-label d-block">Last Name</small>
+                <span className="order-value">
                   {customer?.last_name || "Not provided"}
                 </span>
               </div>

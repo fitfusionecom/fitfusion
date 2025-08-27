@@ -40,11 +40,8 @@ export default function OrderDetailPage() {
 
   if (isLoading) {
     return (
-      <div
-        className="d-flex justify-content-center align-items-center"
-        style={{ minHeight: "40vh" }}
-      >
-        <div className="spinner-border text-primary" role="status">
+      <div className="loading-container">
+        <div className="spinner-border loading-spinner" role="status">
           <span className="visually-hidden">Loading...</span>
         </div>
       </div>
@@ -54,34 +51,17 @@ export default function OrderDetailPage() {
   if (error || !order) {
     return (
       <div className="text-center py-5">
-        <div
-          className="card shadow-sm"
-          style={{ borderRadius: "1rem", border: "none" }}
-        >
-          <div className="card-body py-5">
-            <FaExclamationTriangle
-              size={48}
-              className="mb-3"
-              style={{ color: "#cd8973" }}
-            />
-            <h4 className="text-muted mb-3">Order Not Found</h4>
-            <p className="text-muted mb-4">
-              {error ||
-                "The order you're looking for doesn't exist or you don't have permission to view it."}
-            </p>
-            <Link
-              href="/account/orders"
-              className="btn btn-primary"
-              style={{
-                background: "#cd8973",
-                borderColor: "#cd8973",
-                borderRadius: "0.75rem",
-              }}
-            >
-              <FaArrowLeft className="me-2" />
-              Back to Orders
-            </Link>
-          </div>
+        <div className="empty-state">
+          <FaExclamationTriangle size={48} className="empty-state-icon mb-3" />
+          <h4 className="empty-state-title mb-3">Order Not Found</h4>
+          <p className="empty-state-desc mb-4">
+            {error ||
+              "The order you're looking for doesn't exist or you don't have permission to view it."}
+          </p>
+          <Link href="/account/orders" className="btn btn-primary">
+            <FaArrowLeft className="me-2" />
+            Back to Orders
+          </Link>
         </div>
       </div>
     );
@@ -93,22 +73,12 @@ export default function OrderDetailPage() {
       <div className="mb-4">
         <div className="d-flex justify-content-between align-items-center mb-3">
           <div>
-            <h2 className="mb-1" style={{ color: "#cd8973", fontWeight: 700 }}>
-              Order #{order.display_id}
-            </h2>
-            <p className="text-muted mb-0">
+            <h2 className="account-header mb-1">Order #{order.display_id}</h2>
+            <p className="account-header mb-0">
               Placed on {new Date(order.created_at).toLocaleDateString()}
             </p>
           </div>
-          <Link
-            href="/account/orders"
-            className="btn btn-outline-primary"
-            style={{
-              borderColor: "#cd8973",
-              color: "#cd8973",
-              borderRadius: "0.75rem",
-            }}
-          >
+          <Link href="/account/orders" className="btn btn-outline">
             <FaArrowLeft className="me-2" />
             Back to Orders
           </Link>

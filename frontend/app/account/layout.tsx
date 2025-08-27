@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { retrieveCustomer } from "@/lib/data/customer";
 import AccountNav from "@/components/account/account-nav";
 import Link from "next/link";
+import "./account-page.css";
 
 interface AccountLayoutProps {
   children: React.ReactNode;
@@ -30,11 +31,8 @@ export default function AccountLayout({ children }: AccountLayoutProps) {
 
   if (isLoading) {
     return (
-      <div
-        className="d-flex justify-content-center align-items-center"
-        style={{ minHeight: "60vh" }}
-      >
-        <div className="spinner-border text-primary" role="status">
+      <div className="loading-container" style={{ minHeight: "60vh" }}>
+        <div className="spinner-border loading-spinner" role="status">
           <span className="visually-hidden">Loading...</span>
         </div>
       </div>
@@ -43,38 +41,24 @@ export default function AccountLayout({ children }: AccountLayoutProps) {
 
   if (!customer) {
     return (
-      <div className="container py-5 mt-5">
-        <div className="row justify-content-center">
-          <div className="col-md-6 text-center">
-            <div className="card shadow-sm">
-              <div className="card-body p-5">
-                <h2
-                  className="mb-4"
-                  style={{ color: "#cd8973", fontWeight: 700 }}
-                >
-                  Access Denied
-                </h2>
-                <p className="text-muted mb-4">
-                  You need to be logged in to access your account.
-                </p>
-                <Link
-                  href="/login"
-                  className="btn me-3"
-                  style={{
-                    color: "#cd8973",
-                    fontWeight: 700,
-                    fontSize: "1.1rem",
-                    padding: "10px 20px",
-                    border: "1px solid #cd8973",
-                    borderRadius: "6px",
-                  }}
-                >
-                  Login
-                </Link>
+      <div className="account-container">
+        <div className="container py-5 mt-5">
+          <div className="row justify-content-center">
+            <div className="col-md-6 text-center">
+              <div className="account-card">
+                <div className="account-card-body p-5">
+                  <h2 className="account-header mb-4">Access Denied</h2>
+                  <p className="account-header mb-4">
+                    You need to be logged in to access your account.
+                  </p>
+                  <Link href="/login" className="btn btn-outline me-3">
+                    Login
+                  </Link>
 
-                {/* <Link href="/signup" className="btn btn-outline-primary">
+                  {/* <Link href="/signup" className="btn btn-outline-primary">
                   Sign Up
                 </Link> */}
+                </div>
               </div>
             </div>
           </div>
@@ -84,65 +68,41 @@ export default function AccountLayout({ children }: AccountLayoutProps) {
   }
 
   return (
-    <div
-      className="account-layout"
-      style={{ minHeight: "100vh", background: "#f6f1ed" }}
-    >
-      <div className="container py-5 ">
-        <div className="row pt-5">
-          {/* Sidebar Navigation */}
-          <div className="col-lg-3 col-md-4 mb-4">
-            <AccountNav customer={customer} />
-          </div>
+    <div className="account-layout">
+      <div className="account-container">
+        <div className="container">
+          <div className="row">
+            {/* Sidebar Navigation */}
+            <div className="col-lg-3 col-md-4 mb-4">
+              <AccountNav customer={customer} />
+            </div>
 
-          {/* Main Content */}
-          <div className="col-lg-9 col-md-8">
-            <div
-              className="card shadow-sm"
-              style={{ borderRadius: "1rem", border: "none" }}
-            >
-              <div className="card-body p-4">{children}</div>
+            {/* Main Content */}
+            <div className="col-lg-9 col-md-8">
+              <div className="account-card">
+                <div className="account-card-body">{children}</div>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Footer Section */}
-        <div className="row mt-5">
-          <div className="col-12">
-            <div
-              className="card shadow-sm"
-              style={{
-                borderRadius: "1rem",
-                border: "none",
-                background: "#fff",
-              }}
-            >
-              <div className="card-body p-4">
-                <div className="row align-items-center">
-                  <div className="col-md-8">
-                    <h4
-                      className="mb-2"
-                      style={{ color: "#cd8973", fontWeight: 700 }}
-                    >
-                      Got questions?
-                    </h4>
-                    <p className="text-muted mb-0">
-                      You can find frequently asked questions and answers on our
-                      customer service page.
-                    </p>
-                  </div>
-                  <div className="col-md-4 text-md-end">
-                    <Link
-                      href="/contact"
-                      className="btn btn-outline-primary"
-                      style={{
-                        borderColor: "#cd8973",
-                        color: "#cd8973",
-                        borderRadius: "0.75rem",
-                      }}
-                    >
-                      Customer Service
-                    </Link>
+          {/* Footer Section */}
+          <div className="row mt-5">
+            <div className="col-12">
+              <div className="account-card">
+                <div className="account-card-body">
+                  <div className="row align-items-center">
+                    <div className="col-md-8">
+                      <h4 className="account-header mb-2">Got questions?</h4>
+                      <p className="account-header mb-0">
+                        You can find frequently asked questions and answers on
+                        our customer service page.
+                      </p>
+                    </div>
+                    <div className="col-md-4 text-md-end">
+                      <Link href="/contact" className="btn btn-outline">
+                        Customer Service
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
