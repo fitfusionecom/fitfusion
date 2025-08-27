@@ -5,6 +5,7 @@ import { HttpTypes } from "@medusajs/types";
 import { ChevronDown, ChevronUp } from "lucide-react";
 // import RelatedProductsInline from "./related-products-inline";
 import "./product-accordion.css";
+import "./product-description.css";
 
 type ProductAccordionProps = {
   product: HttpTypes.StoreProduct;
@@ -44,7 +45,7 @@ export default function ProductAccordion({
       id: "description",
       title: "Product Description",
       content: (
-        <div className="ayur-product-desc">
+        <div className="ayur-product-desc product-description ">
           {product.description ? (
             <div
               dangerouslySetInnerHTML={{
@@ -61,7 +62,7 @@ export default function ProductAccordion({
       id: "uses-benefits",
       title: "Uses & Benefits",
       content: (
-        <div className="ayur-product-uses">
+        <div className="ayur-product-uses product-description">
           {info?.desc1 ? (
             <div
               dangerouslySetInnerHTML={{
@@ -78,7 +79,7 @@ export default function ProductAccordion({
       id: "key-ingredient-info",
       title: "Key Ingredient & Information",
       content: (
-        <div className="ayur-product-ingredients">
+        <div className="ayur-product-ingredients product-description">
           {info?.desc2 ? (
             <div
               dangerouslySetInnerHTML={{
@@ -95,7 +96,7 @@ export default function ProductAccordion({
       id: "faq",
       title: "Frequently Asked Questions",
       content: (
-        <div className="ayur-product-faq">
+        <div className="ayur-product-faq product-description">
           {info?.desc3 ? (
             <div
               dangerouslySetInnerHTML={{

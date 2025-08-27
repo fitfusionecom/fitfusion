@@ -1,17 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
-import { toast } from "react-toastify";
+import Head from "next/head";
 import { isEqual } from "lodash";
+import { toast } from "react-toastify";
 import { addToCart } from "@/lib/data/cart";
 import { HttpTypes } from "@medusajs/types";
 import { useEffect, useMemo, useState } from "react";
-import Head from "next/head";
 import ProductImageCarousel from "./product-image-carousel";
 
 import "react-quill/dist/quill.snow.css";
-import "./product-description.css";
+
 import OptionSelect from "./option-select";
 import ProductPrice from "./product-price2";
 import SpecialOffer from "./SpecialOffer";
