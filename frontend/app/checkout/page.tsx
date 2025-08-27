@@ -18,28 +18,8 @@ export default async function Checkout() {
   const customer = await retrieveCustomer();
   return (
     <div>
-      {/* Breadcrumb */}
-      <div className="ayur-bread-section">
-        <div className="ayur-breadcrumb-wrapper">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-12 col-md-12 col-sm-12">
-                <div className="ayur-bread-content">
-                  <h2>Checkout</h2>
-                  <div className="ayur-bread-list">
-                    <span>
-                      <a href="/">Home</a>
-                    </span>
-                    <span className="ayur-active-page">Checkout</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       {/* Checkout Form */}
-      <div className="container mt-5">
+      <div className="container">
         <div className="row g-4">
           <div className="col-12 col-lg-8 mb-4 mb-lg-0">
             <CheckoutForm cart={cart} customer={customer} />
