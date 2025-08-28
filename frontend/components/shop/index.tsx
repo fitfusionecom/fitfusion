@@ -85,24 +85,11 @@ const fetchProducts = async ({
   pageParam: number;
 }) => {
   try {
-    // Get region data
-    const regionsResponse = await sdk.client.fetch<{
-      regions: HttpTypes.StoreRegion[];
-    }>("/store/regions");
-
-    const region =
-      regionsResponse.regions?.find((r) =>
-        r.countries?.some((c) => c.iso_2 === "in")
-      ) || regionsResponse.regions?.[0];
-
-    if (!region) {
-      throw new Error("No region found");
-    }
+    const currency_code = "inr";
+    const region_id = process.env.NEXT_PUBLIC_REGION_ID;
 
     const response = await sdk.client.fetch<any>(
-      `/store/search?region_id=${region.id}&currency_code=${
-        region.currency_code || "inr"
-      }&q=${q}&price_min=${minPrice}&price_max=${maxPrice}&category_handle=${category_handle}&offset=${
+      `/store/search?region_id=${region_id}&currency_code=${currency_code}&q=${q}&price_min=${minPrice}&price_max=${maxPrice}&category_handle=${category_handle}&offset=${
         (pageParam - 1) * 20
       }`,
       {
