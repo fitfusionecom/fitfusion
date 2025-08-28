@@ -384,23 +384,32 @@ const ShopTemplate = ({
                     style={{
                       background: "white",
                       border: "1px solid #e0e0e0",
-                      borderRadius: "8px",
-                      padding: "10px 16px",
+                      borderRadius: "6px",
+                      padding: "4px 8px",
                       cursor: "pointer",
                       display: "flex",
                       alignItems: "center",
-                      gap: "8px",
-                      fontSize: "0.9rem",
+                      gap: "4px",
+                      fontSize: "0.75rem",
                       color: "#333",
-                      minWidth: "180px",
+                      minWidth: "110px",
                       justifyContent: "space-between",
-                      boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+                      boxShadow: "0 1px 2px rgba(0,0,0,0.07)",
+                      height: "32px",
                     }}
                   >
-                    <span>{getSortDisplayText()}</span>
+                    <span
+                      style={{
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
+                      {getSortDisplayText()}
+                    </span>
                     <svg
-                      width="12"
-                      height="12"
+                      width="14"
+                      height="14"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -410,6 +419,7 @@ const ShopTemplate = ({
                           ? "rotate(180deg)"
                           : "rotate(0deg)",
                         transition: "transform 0.2s ease",
+                        marginLeft: "2px",
                       }}
                     >
                       <polyline points="6,9 12,15 18,9"></polyline>
@@ -427,14 +437,14 @@ const ShopTemplate = ({
                         borderRadius: "8px",
                         boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
                         zIndex: 1000,
-                        minWidth: "180px",
+                        minWidth: "140px",
                         marginTop: "4px",
                       }}
                     >
                       <div
                         onClick={() => handleSortChange("price-low-high")}
                         style={{
-                          padding: "12px 16px",
+                          padding: "8px 12px",
                           cursor: "pointer",
                           borderBottom: "1px solid #f0f0f0",
                           color:
@@ -443,7 +453,7 @@ const ShopTemplate = ({
                             sortBy === "price-low-high"
                               ? "#f8f9fa"
                               : "transparent",
-                          fontSize: "0.9rem",
+                          fontSize: "0.8rem",
                         }}
                         onMouseEnter={(e) => {
                           e.currentTarget.style.background =
@@ -461,7 +471,7 @@ const ShopTemplate = ({
                       <div
                         onClick={() => handleSortChange("price-high-low")}
                         style={{
-                          padding: "12px 16px",
+                          padding: "8px 12px",
                           cursor: "pointer",
                           color:
                             sortBy === "price-high-low" ? "#90b644" : "#666",
@@ -469,7 +479,7 @@ const ShopTemplate = ({
                             sortBy === "price-high-low"
                               ? "#f8f9fa"
                               : "transparent",
-                          fontSize: "0.9rem",
+                          fontSize: "0.8rem",
                         }}
                         onMouseEnter={(e) => {
                           e.currentTarget.style.background =
