@@ -16,9 +16,11 @@ import { BiEdit } from "react-icons/bi";
 const Payment = ({
   cart,
   availablePaymentMethods,
+  isBuyNow,
 }: {
   cart: any;
   availablePaymentMethods: any[];
+  isBuyNow?: boolean;
 }) => {
   const activeSession = cart.payment_collection?.payment_sessions?.find(
     (paymentSession: any) => paymentSession.status === "pending"

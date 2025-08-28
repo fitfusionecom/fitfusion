@@ -18,6 +18,7 @@ import { useCartContext } from "@/lib/context/cart-context";
 import { BiCheck } from "react-icons/bi";
 import ProductFeature from "./product-feature";
 import PaymentOptions from "./payment-options";
+import BuyNowButton from "@/components/blocks/buy-now-button";
 
 type ProductDetailsProps = {
   product: HttpTypes.StoreProduct;
@@ -370,9 +371,16 @@ const ProductDetails = ({
                         ? "Out of stock"
                         : `Add to cart${isAdding ? "..." : ""}`}
                     </button>
-                    {/* <button className="ayur-btn btn btn-outline-primary">
-                      Buy Now
-                    </button> */}
+
+                    <BuyNowButton
+                      product={product}
+                      inStock={inStock}
+                      quantity={quantity}
+                      countryCode={countryCode}
+                      isValidVariant={isValidVariant}
+                      selectedVariant={selectedVariant}
+                      disabled={!inStock || !selectedVariant || !isValidVariant}
+                    />
                   </div>
                 </div>
                 <div className="mt-4">

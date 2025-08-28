@@ -15,9 +15,11 @@ import { BiEdit } from "react-icons/bi";
 const Addresses = ({
   cart,
   customer,
+  isBuyNow,
 }: {
   cart: HttpTypes.StoreCart | null;
   customer: HttpTypes.StoreCustomer | null;
+  isBuyNow?: boolean;
 }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -32,7 +34,11 @@ const Addresses = ({
   );
 
   const handleEdit = () => {
-    router.push(pathname + "?step=address");
+    if (isBuyNow) {
+      router.push(pathname + "?cartId=" + cart?.id + "&step=address");
+    } else {
+      router.push(pathname + "?step=address");
+    }
   };
 
   const [message, formAction] = useActionState(setAddresses, null);

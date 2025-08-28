@@ -10,9 +10,11 @@ import "./checkout-form.css";
 export default async function CheckoutForm({
   cart,
   customer,
+  isBuyNow,
 }: {
   cart: HttpTypes.StoreCart | null;
   customer: HttpTypes.StoreCustomer | null;
+  isBuyNow?: boolean;
 }) {
   if (!cart) {
     return null;
@@ -28,9 +30,17 @@ export default async function CheckoutForm({
   return (
     <div className="checkout-form-container">
       <div className="checkout-form-wrapper">
-        <Addresses cart={cart} customer={customer} />
-        <Shipping cart={cart} availableShippingMethods={shippingMethods} />
-        <Payment cart={cart} availablePaymentMethods={paymentMethods} />
+        <Addresses cart={cart} customer={customer} isBuyNow={isBuyNow} />
+        <Shipping
+          cart={cart}
+          availableShippingMethods={shippingMethods}
+          isBuyNow={isBuyNow}
+        />
+        <Payment
+          cart={cart}
+          availablePaymentMethods={paymentMethods}
+          isBuyNow={isBuyNow}
+        />
         <Review cart={cart} />
       </div>
     </div>

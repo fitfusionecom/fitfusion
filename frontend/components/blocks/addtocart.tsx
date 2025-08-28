@@ -214,7 +214,7 @@ const AddToCartButton = ({
   }
 
   return (
-    <div className="grid">
+    <div className="grid gap-3">
       <button
         onClick={handleAddToCart}
         disabled={

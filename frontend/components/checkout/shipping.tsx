@@ -18,11 +18,13 @@ import { BiEdit } from "react-icons/bi";
 type ShippingProps = {
   cart: HttpTypes.StoreCart;
   availableShippingMethods: HttpTypes.StoreCartShippingOption[] | null;
+  isBuyNow?: boolean;
 };
 
 const Shipping: React.FC<ShippingProps> = ({
   cart,
   availableShippingMethods,
+  isBuyNow,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingPrices, setIsLoadingPrices] = useState(true);

@@ -326,6 +326,8 @@ export async function submitPromotionForm(
 // TODO: Pass a POJO instead of a form entity here
 export async function setAddresses(currentState: unknown, formData: FormData) {
   try {
+
+
     if (!formData) {
       throw new Error("No form data found when setting addresses")
     }
