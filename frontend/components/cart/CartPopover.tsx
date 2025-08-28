@@ -226,7 +226,11 @@ export default function CartPopover({
               <BiCart className="cart-icon" />
               <span>Cart ({itemCount || 0})</span>
             </div>
-            <button className="close-btn-mobile" onClick={onClose}>
+            <button 
+              className="close-btn-mobile" 
+              onClick={onClose}
+              aria-label="Close cart"
+            >
               <BiX />
             </button>
           </div>

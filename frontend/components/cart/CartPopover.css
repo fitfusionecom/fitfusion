@@ -6,6 +6,8 @@
   bottom: 0;
   z-index: 1000;
   pointer-events: none;
+  /* Ensure it's isolated from other page elements */
+  isolation: isolate;
 }
 
 .cart-popover {
@@ -22,6 +24,10 @@
   overflow: hidden;
   pointer-events: auto;
   animation: slideInDown 0.3s ease-out;
+  /* Ensure it's isolated from other page elements */
+  isolation: isolate;
+  /* Prevent any interference with other fixed elements */
+  contain: layout style paint;
 }
 
 @keyframes slideInDown {
@@ -512,6 +518,11 @@
     animation: slideInRight 0.3s ease-out;
     display: flex;
     flex-direction: column;
+    /* Ensure it's above all other elements */
+    z-index: 1101;
+    /* Account for the offer banner height */
+    margin-top: 36px;
+    height: calc(100vh - 36px);
   }
 
   @keyframes slideInRight {
@@ -529,10 +540,14 @@
     max-height: none;
     flex: 1;
     overflow-y: auto;
+    /* Ensure content doesn't overlap with header */
+    padding-top: 0;
   }
 
   .cart-actions-compact {
     flex-direction: column;
+    /* Ensure buttons are always visible at bottom */
+    margin-top: auto;
   }
 
   /* Ensure mobile header is always visible */
@@ -601,5 +616,45 @@
   .close-btn-mobile:hover {
     background: #f1f5f9;
     border-color: #d1d5db;
+  }
+
+  /* Ensure the cart popover doesn't interfere with other fixed elements */
+  .cart-popover-overlay {
+    /* Prevent any interference with offer banner or header */
+    pointer-events: auto;
+    z-index: 1100; /* Higher than header (1050) and offer banner */
+    background: rgba(0, 0, 0, 0.5); /* Add backdrop for mobile */
+  }
+
+  /* Ensure the cart popover content is properly contained */
+  .cart-popover {
+    /* Use flexbox to ensure proper layout */
+    display: flex;
+    flex-direction: column;
+    /* Ensure it takes full available height */
+    height: calc(100vh - 36px);
+    /* Ensure it's above all other elements */
+    z-index: 1101;
+    /* Account for the offer banner height */
+    margin-top: 36px;
+  }
+
+  /* Ensure the content area is scrollable and doesn't overflow */
+  .popover-content {
+    flex: 1;
+    overflow-y: auto;
+    /* Add some padding to prevent content from touching edges */
+    padding-bottom: 20px;
+  }
+
+  /* Ensure mobile header is always visible and properly positioned */
+  .popover-header-mobile {
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #f8fafc;
+    /* Add stronger shadow for better separation */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
 }
