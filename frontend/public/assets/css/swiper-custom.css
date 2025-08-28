@@ -15,9 +15,9 @@
   margin: 0 !important;
   padding: 0 !important;
 
-  /* Circular design */
-  background: rgba(255, 255, 255, 0.95) !important;
-  border: 2px solid #d4af37 !important;
+  /* Circular design with black border and low opacity white background */
+  background: rgba(255, 255, 255, 0.3) !important;
+  border: 2px solid #000000 !important;
   border-radius: 50% !important;
 
   /* Centering content */
@@ -25,8 +25,8 @@
   align-items: center !important;
   justify-content: center !important;
 
-  /* Typography and colors */
-  color: #d4af37 !important;
+  /* Typography and colors - black text */
+  color: #000000 !important;
   font-size: 18px !important;
   font-weight: bold !important;
 
@@ -94,16 +94,16 @@
   right: 15px !important;
 }
 
-/* Hover effects */
+/* Hover effects - increase white background opacity on hover */
 .swiper .swiper-button-next:hover,
 .swiper .swiper-button-prev:hover,
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
-  background: #d4af37 !important;
-  color: #fff !important;
+  background: rgba(255, 255, 255, 0.6) !important;
+  color: #000000 !important;
   transform: translateY(-50%) scale(1.1) !important;
-  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4) !important;
-  border-color: #2d5016 !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25) !important;
+  border-color: #000000 !important;
 }
 
 /* Disabled state */
@@ -124,7 +124,7 @@
   display: none !important;
 }
 
-/* Custom arrow icons using CSS */
+/* Custom arrow icons using CSS - ensure black color */
 .swiper .swiper-button-next::before,
 .swiper .swiper-button-prev::before,
 .swiper-button-next::before,
@@ -132,7 +132,7 @@
   content: "" !important;
   width: 12px !important;
   height: 12px !important;
-  border: 2px solid currentColor !important;
+  border: 2px solid #000000 !important;
   border-top: none !important;
   border-right: none !important;
   transition: all 0.3s ease !important;
