@@ -28,39 +28,13 @@ const CartTotals: React.FC<CartTotalsProps> = ({ totals }) => {
   } = totals;
 
   return (
-    <div>
-      <table className="table table-bordere">
+    <div className="cart-totals-container">
+      <table className="table table-bordere cart-totals-table">
         <tbody>
-          <tr className="ayur-cartsubtotal">
-            <th>Subtotal</th>
-            <td>
-              <span data-testid="cart-subtotal" data-value={subtotal || 0}>
-                {convertToLocale({ amount: subtotal ?? 0, currency_code })}
-              </span>
-            </td>
-          </tr>
-          {!!discount_total && (
-            <tr className="ayur-cartsubtotal">
-              <th>Discount</th>
-              <td>
-                <span
-                  className="text-ui-fg-interactive"
-                  data-testid="cart-discount"
-                  data-value={discount_total || 0}
-                >
-                  -{" "}
-                  {convertToLocale({
-                    amount: discount_total ?? 0,
-                    currency_code,
-                  })}
-                </span>
-              </td>
-            </tr>
-          )}
           {!!shipping_subtotal && (
             <tr className="ayur-cartsubtotal">
-              <th>Shipping</th>
-              <td>
+              <th className="cart-total-label">Shipping</th>
+              <td className="cart-total-value">
                 <span
                   data-testid="cart-shipping"
                   data-value={shipping_subtotal || 0}
@@ -75,8 +49,8 @@ const CartTotals: React.FC<CartTotalsProps> = ({ totals }) => {
           )}
           {!!tax_total && (
             <tr className="ayur-cartsubtotal">
-              <th>Taxes</th>
-              <td>
+              <th className="cart-total-label">Taxes</th>
+              <td className="cart-total-value">
                 <span data-testid="cart-taxes" data-value={tax_total || 0}>
                   {convertToLocale({ amount: tax_total ?? 0, currency_code })}
                 </span>
@@ -85,8 +59,8 @@ const CartTotals: React.FC<CartTotalsProps> = ({ totals }) => {
           )}
           {!!gift_card_total && (
             <tr className="ayur-cartsubtotal">
-              <th>Gift card</th>
-              <td>
+              <th className="cart-total-label">Gift card</th>
+              <td className="cart-total-value">
                 <span
                   className="text-ui-fg-interactive"
                   data-testid="cart-gift-card-amount"
@@ -101,17 +75,45 @@ const CartTotals: React.FC<CartTotalsProps> = ({ totals }) => {
               </td>
             </tr>
           )}
+
+          <tr className="ayur-cartsubtotal">
+            <th className="cart-total-label">Subtotal</th>
+            <td className="cart-total-value">
+              <span data-testid="cart-subtotal" data-value={subtotal || 0}>
+                {convertToLocale({ amount: subtotal ?? 0, currency_code })}
+              </span>
+            </td>
+          </tr>
+          {!!discount_total && (
+            <tr className="ayur-cartsubtotal">
+              <th className="cart-total-label">Discount</th>
+              <td className="cart-total-value">
+                <span
+                  className="text-ui-fg-interactive"
+                  data-testid="cart-discount"
+                  data-value={discount_total || 0}
+                >
+                  -{" "}
+                  {convertToLocale({
+                    amount: discount_total ?? 0,
+                    currency_code,
+                  })}
+                </span>
+              </td>
+            </tr>
+          )}
+
           <tr className="ayur-ordertotal">
-            <th>Total</th>
-            <td>
+            <th className="cart-total-label cart-total-final">Total</th>
+            <td className="cart-total-value cart-total-final">
               <span data-testid="cart-total" data-value={total || 0}>
                 {convertToLocale({ amount: total ?? 0, currency_code })}
               </span>
+              <p className="cart-total-note">(Price Inclusive Of Tax)</p>
             </td>
           </tr>
         </tbody>
       </table>
-
     </div>
   );
 };

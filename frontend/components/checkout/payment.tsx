@@ -113,22 +113,16 @@ const Payment = ({
   }, [isOpen]);
 
   return (
-    <div className="bg-white mt-4">
-      <div className="d-flex flex-row align-items-center justify-content-between mb-4">
-        <h2 className="d-flex flex-row gap-2 align-items-baseline fs-2">
+    <div className="border rounded overflow-hidden mt-3">
+      <div className="d-flex flex-row align-items-center justify-content-between mb-2 bg-black text-white px-3 py-3">
+        <h2 className="d-flex flex-row gap-2 align-items-baseline fs-5 mb-0">
           Payment
           {!isOpen && paymentReady && <CheckCircleSolid />}
         </h2>
         {!isOpen && paymentReady && (
           <button
             onClick={handleEdit}
-            style={{
-              padding: "5px 20px",
-              background: "whitesmoke",
-              border: "none",
-              borderRadius: "10px",
-              minWidth: "90px",
-            }}
+            className="edit-address-btn"
             data-testid="edit-address-button"
           >
             <BiEdit /> Edit
@@ -136,7 +130,7 @@ const Payment = ({
         )}
       </div>
       <div>
-        <div className={isOpen ? "" : "d-none"}>
+        <div className={isOpen ? "p-3" : "d-none"}>
           {!paidByGiftcard && availablePaymentMethods?.length && (
             <>
               <RadioGroup
@@ -157,13 +151,8 @@ const Payment = ({
           )}
 
           {paidByGiftcard && (
-            <div className="d-flex flex-column" style={{ width: "33%" }}>
-              <h5
-                style={{
-                  color: "black",
-                }}
-                className="fw-bold  mb-2 "
-              >
+            <div className="d-flex flex-column payment-method-summary">
+              <h5 className="fw-bold mb-2 payment-method-title">
                 Payment method
               </h5>
               <h6
@@ -196,18 +185,18 @@ const Payment = ({
           </button>
         </div>
 
-        <div className={isOpen ? "d-none" : ""}>
+        <div className={isOpen ? "d-none" : "p-3"}>
           {cart && paymentReady && activeSession ? (
-            <div className="d-flex align-items-start gap-1 w-100">
+            <div className="d-flex align-items-start gap-1 w-100 ">
               <div className="d-flex flex-column" style={{ width: "33%" }}>
-                <h5
+                <h6
                   style={{
                     color: "black",
                   }}
                   className="fw-bold  mb-2 "
                 >
                   Payment method
-                </h5>
+                </h6>
                 <h6
                   className="fw-normal text-secondary"
                   data-testid="payment-method-summary"
@@ -217,14 +206,14 @@ const Payment = ({
                 </h6>
               </div>
               <div className="d-flex flex-column" style={{ width: "33%" }}>
-                <h5
+                <h6
                   style={{
                     color: "black",
                   }}
                   className="fw-bold  mb-2 "
                 >
                   Payment details
-                </h5>
+                </h6>
                 <div
                   className="d-flex gap-2 fw-normal text-secondary align-items-center"
                   data-testid="payment-details-summary"

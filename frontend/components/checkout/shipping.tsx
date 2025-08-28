@@ -94,9 +94,9 @@ const Shipping: React.FC<ShippingProps> = ({
   }, [isOpen]);
 
   return (
-    <div className="bg-white mt-4">
-      <div className="d-flex flex-row align-items-center justify-content-between mb-2">
-        <h2 className="d-flex flex-row gap-2 align-items-baseline fs-2">
+    <div className="border rounded overflow-hidden mt-3">
+      <div className="d-flex flex-row align-items-center justify-content-between mb-2 bg-black text-white px-3 py-3">
+        <h2 className="d-flex flex-row gap-2 align-items-baseline fs-5 mb-0">
           Delivery
           {!isOpen && (cart.shipping_methods?.length ?? 0) > 0 && (
             <CheckCircleSolid />
@@ -109,13 +109,7 @@ const Shipping: React.FC<ShippingProps> = ({
           cart?.email && (
             <button
               onClick={handleEdit}
-              style={{
-                padding: "5px 20px",
-                background: "whitesmoke",
-                border: "none",
-                borderRadius: "10px",
-                minWidth: "90px",
-              }}
+              className="edit-address-btn"
               data-testid="edit-address-button"
             >
               <BiEdit /> Edit
@@ -124,7 +118,7 @@ const Shipping: React.FC<ShippingProps> = ({
       </div>
 
       {isOpen ? (
-        <div data-testid="delivery-options-container">
+        <div data-testid="delivery-options-container" className="p-3">
           <div>
             <RadioGroup
               value={shippingMethodId}
@@ -143,7 +137,7 @@ const Shipping: React.FC<ShippingProps> = ({
                     data-testid="delivery-option-radio"
                     disabled={isDisabled}
                     className={clx(
-                      "d-flex align-items-center justify-content-between cursor-pointer py-3 border rounded px-4 mb-2",
+                      "d-flex align-items-center justify-content-between cursor-pointer py-3 border rounded px-4 mb-2 shipping-option",
                       {
                         "border-primary": option.id === shippingMethodId,
                         "cursor-not-allowed": isDisabled,
@@ -160,9 +154,11 @@ const Shipping: React.FC<ShippingProps> = ({
                         />
                         <label htmlFor={option.id} />
                       </div>
-                      <span className="fw-normal">{option.name}</span>
+                      <span className="fw-normal shipping-option-name">
+                        {option.name}
+                      </span>
                     </div>
-                    <span className="text-body">
+                    <span className="text-body shipping-option-price">
                       {option.price_type === "flat" ? (
                         convertToLocale({
                           amount: option.amount!,
@@ -202,17 +198,17 @@ const Shipping: React.FC<ShippingProps> = ({
         </div>
       ) : (
         <div>
-          <div className="fw-normal">
+          <div className="fw-normal p-3 ">
             {cart && (cart.shipping_methods?.length ?? 0) > 0 && (
               <div className="d-flex flex-column w-33">
-                <h5
+                <h6
                   style={{
                     color: "black",
                   }}
                   className="fw-bold  mb-2 "
                 >
                   Method
-                </h5>
+                </h6>
                 <h6 className="fw-normal text-muted">
                   {cart.shipping_methods?.at(-1)?.name}
                   {" - "}

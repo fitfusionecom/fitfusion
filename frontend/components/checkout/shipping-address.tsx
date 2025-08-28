@@ -5,6 +5,46 @@ import React, { useEffect, useMemo, useState } from "react";
 import AddressSelect from "./address-select";
 import CountrySelect from "./country-select";
 
+// Array of all Indian states and union territories
+const INDIAN_STATES = [
+  "Andhra Pradesh",
+  "Arunachal Pradesh",
+  "Assam",
+  "Bihar",
+  "Chhattisgarh",
+  "Goa",
+  "Gujarat",
+  "Haryana",
+  "Himachal Pradesh",
+  "Jharkhand",
+  "Karnataka",
+  "Kerala",
+  "Madhya Pradesh",
+  "Maharashtra",
+  "Manipur",
+  "Meghalaya",
+  "Mizoram",
+  "Nagaland",
+  "Odisha",
+  "Punjab",
+  "Rajasthan",
+  "Sikkim",
+  "Tamil Nadu",
+  "Telangana",
+  "Tripura",
+  "Uttar Pradesh",
+  "Uttarakhand",
+  "West Bengal",
+  "Andaman and Nicobar Islands",
+  "Chandigarh",
+  "Dadra and Nagar Haveli and Daman and Diu",
+  "Delhi",
+  "Jammu and Kashmir",
+  "Ladakh",
+  "Lakshadweep",
+  "Puducherry",
+];
+
 const ShippingAddress = ({
   customer,
   cart,
@@ -164,9 +204,7 @@ const ShippingAddress = ({
 
         <div className="col-lg-6 col-md-6 col-sm-12">
           <div className="ayur-form-input ayur-check-form">
-            <label>
-              Company <span>*</span>
-            </label>
+            <label>Company</label>
             <input
               name="shipping_address.company"
               type="text"
@@ -221,16 +259,21 @@ const ShippingAddress = ({
             <label>
               State / Province <span>*</span>
             </label>
-            <input
+            <select
               name="shipping_address.province"
-              type="text"
               className="form-control"
-              placeholder=""
               value={formData["shipping_address.province"]}
               onChange={handleChange}
               required
-              data-testid="shipping-province-input"
-            />
+              data-testid="shipping-province-select"
+            >
+              <option value="">Select State</option>
+              {INDIAN_STATES.map((state) => (
+                <option key={state} value={state}>
+                  {state}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
 

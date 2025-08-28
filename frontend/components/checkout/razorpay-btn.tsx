@@ -123,7 +123,7 @@ export const RazorpayPaymentButton = ({
           handlePayment();
         }}
       >
-        {submitting ? <Spinner /> : "Checkout"}
+        {submitting ? <Spinner /> : "Place Order"}
       </Button>
       {errorMessage && (
         <div className="text-red-500 text-small-regular mt-2">

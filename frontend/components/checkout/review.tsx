@@ -16,7 +16,7 @@ const Review = ({ cart }: { cart: any }) => {
   return (
     <div className="bg-white mt-4 pb-5">
       <div className="d-flex flex-row align-items-center justify-content-between mb-2">
-        <h2 className="d-flex flex-row gap-2 align-items-baseline fs-2">
+        <h2 className="d-flex flex-row gap-2 align-items-baseline fs-2 review-title">
           Review
         </h2>
       </div>
@@ -24,7 +24,7 @@ const Review = ({ cart }: { cart: any }) => {
         <>
           <div className="d-flex align-items-start gap-1 w-full mb-2">
             <div className="w-full">
-              <h6 className="fw-normal text-muted mb-1">
+              <h6 className="fw-normal text-muted mb-1 review-text">
                 By clicking the Place Order button, you confirm that you have
                 read, understand and accept our Terms of Use, Terms of Sale and
                 Returns Policy and acknowledge that you have read Medusa

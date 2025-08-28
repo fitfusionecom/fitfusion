@@ -1,0 +1,553 @@
+/* Checkout Form Responsive Styles */
+.checkout-form-container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.checkout-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Form input styles */
+.ayur-form-input {
+  margin-bottom: 20px;
+}
+
+.ayur-form-input label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #333;
+}
+
+.ayur-form-input input,
+.ayur-form-input select,
+.ayur-form-input textarea {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+}
+
+.ayur-form-input input:focus,
+.ayur-form-input select:focus,
+.ayur-form-input textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+}
+
+/* Address component specific styles */
+.edit-address-btn {
+  padding: 5px 20px;
+  background: whitesmoke;
+  border: none;
+  border-radius: 20px;
+  min-width: 90px;
+  font-size: 13px;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.edit-address-btn:hover {
+  background: #e6e6e6;
+  transform: translateY(-1px);
+}
+
+.address-label {
+  color: black;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.address-text {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* Shipping component specific styles */
+.shipping-option {
+  transition: all 0.3s ease;
+}
+
+.shipping-option:hover {
+  border-color: #007bff !important;
+  box-shadow: 0 2px 4px rgba(0, 123, 255, 0.1);
+}
+
+.shipping-option-name {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.shipping-option-price {
+  font-size: 16px;
+  font-weight: 600;
+  color: #007bff;
+}
+
+/* Payment component specific styles */
+.payment-method-summary {
+  width: 33%;
+}
+
+.payment-method-title {
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Review component specific styles */
+.review-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+}
+
+.review-text {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #6c757d;
+}
+
+/* Mobile-first responsive design */
+@media (max-width: 767px) {
+  .checkout-form-container {
+    padding: 0 10px;
+  }
+
+  .checkout-form-wrapper {
+    gap: 15px;
+  }
+
+  /* Form inputs mobile optimization */
+  .checkout-form-container .ayur-form-input {
+    margin-bottom: 15px;
+  }
+
+  .checkout-form-container .ayur-form-input label {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+
+  .checkout-form-container .ayur-form-input input,
+  .checkout-form-container .ayur-form-input select,
+  .checkout-form-container .ayur-form-input textarea {
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 12px 15px;
+    height: 48px; /* Better touch target */
+  }
+
+  /* Grid layout adjustments for mobile */
+  .checkout-form-container .col-lg-6,
+  .checkout-form-container .col-md-6 {
+    margin-bottom: 10px;
+  }
+
+  /* Reduce font sizes for mobile */
+  .checkout-form-container h1,
+  .checkout-form-container h2,
+  .checkout-form-container h3,
+  .checkout-form-container h4,
+  .checkout-form-container h5,
+  .checkout-form-container h6 {
+    font-size: clamp(16px, 4vw, 24px);
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Specific heading adjustments */
+  .checkout-form-container .fs-5 {
+    font-size: 18px !important;
+  }
+
+  .checkout-form-container .fs-2 {
+    font-size: 20px !important;
+  }
+
+  .checkout-form-container .fs-6 {
+    font-size: 16px !important;
+  }
+
+  /* Address labels and text */
+  .checkout-form-container .address-label {
+    font-size: 15px !important;
+  }
+
+  .checkout-form-container .address-text {
+    font-size: 13px !important;
+  }
+
+  /* Shipping options */
+  .checkout-form-container .shipping-option-name {
+    font-size: 15px !important;
+  }
+
+  .checkout-form-container .shipping-option-price {
+    font-size: 15px !important;
+  }
+
+  /* Payment method */
+  .checkout-form-container .payment-method-summary {
+    width: 100% !important;
+  }
+
+  .checkout-form-container .payment-method-title {
+    font-size: 16px !important;
+  }
+
+  /* Review section */
+  .checkout-form-container .review-title {
+    font-size: 18px !important;
+  }
+
+  .checkout-form-container .review-text {
+    font-size: 13px !important;
+  }
+
+  /* Buttons */
+  .checkout-form-container .ayur-btn {
+    font-size: 16px;
+    padding: 12px 20px;
+    min-height: 48px; /* Better touch target */
+  }
+
+  .checkout-form-container .edit-address-btn {
+    font-size: 12px !important;
+    padding: 6px 16px !important;
+    min-width: 75px !important;
+  }
+
+  /* Address cards and sections */
+  .checkout-form-container .border.rounded {
+    margin-bottom: 15px;
+  }
+
+  .checkout-form-container .px-3.py-3 {
+    padding: 15px !important;
+  }
+
+  .checkout-form-container .p-3 {
+    padding: 15px !important;
+  }
+
+  /* Edit buttons */
+  .checkout-form-container button[data-testid*="edit"] {
+    font-size: 14px !important;
+    padding: 8px 16px !important;
+    min-width: 80px !important;
+  }
+
+  /* Shipping and payment options */
+  .checkout-form-container .radio-group {
+    gap: 10px;
+  }
+
+  .checkout-form-container .radio-option {
+    padding: 15px;
+    margin-bottom: 10px;
+  }
+
+  /* Review section */
+  .checkout-form-container .text-muted {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  /* Address grid layout */
+  .checkout-form-container .row.g-4 {
+    gap: 1rem !important;
+  }
+
+  .checkout-form-container .col-md-4.col-12 {
+    margin-bottom: 1rem;
+  }
+
+  /* Shipping options mobile layout */
+  .checkout-form-container .shipping-option {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+  }
+
+  .checkout-form-container
+    .shipping-option
+    .d-flex.align-items-center.justify-content-between {
+    width: 100%;
+    justify-content: space-between !important;
+  }
+}
+
+@media (max-width: 575px) {
+  .checkout-form-container {
+    padding: 0 8px;
+  }
+
+  .checkout-form-wrapper {
+    gap: 12px;
+  }
+
+  /* Form inputs for small mobile */
+  .checkout-form-container .ayur-form-input {
+    margin-bottom: 12px;
+  }
+
+  .checkout-form-container .ayur-form-input label {
+    font-size: 13px;
+    margin-bottom: 5px;
+  }
+
+  .checkout-form-container .ayur-form-input input,
+  .checkout-form-container .ayur-form-input select,
+  .checkout-form-container .ayur-form-input textarea {
+    font-size: 15px;
+    padding: 10px 12px;
+    height: 44px;
+  }
+
+  .checkout-form-container h2.fs-5 {
+    font-size: 16px !important;
+  }
+
+  .checkout-form-container h2.fs-2 {
+    font-size: 18px !important;
+  }
+
+  .checkout-form-container .px-3.py-3 {
+    padding: 12px !important;
+  }
+
+  .checkout-form-container .p-3 {
+    padding: 12px !important;
+  }
+
+  .checkout-form-container .ayur-btn {
+    font-size: 15px;
+    padding: 10px 18px;
+    width: 100%;
+  }
+
+  .checkout-form-container .edit-address-btn {
+    font-size: 11px !important;
+    padding: 5px 14px !important;
+    min-width: 70px !important;
+  }
+
+  .checkout-form-container button[data-testid*="edit"] {
+    font-size: 13px !important;
+    padding: 6px 14px !important;
+    min-width: 70px !important;
+  }
+
+  .checkout-form-container .address-label {
+    font-size: 14px !important;
+  }
+
+  .checkout-form-container .address-text {
+    font-size: 12px !important;
+  }
+
+  .checkout-form-container .shipping-option-name {
+    font-size: 14px !important;
+  }
+
+  .checkout-form-container .shipping-option-price {
+    font-size: 14px !important;
+  }
+
+  .checkout-form-container .review-title {
+    font-size: 17px !important;
+  }
+
+  .checkout-form-container .review-text {
+    font-size: 12px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .checkout-form-container {
+    padding: 0 5px;
+  }
+
+  .checkout-form-wrapper {
+    gap: 10px;
+  }
+
+  /* Form inputs for extra small mobile */
+  .checkout-form-container .ayur-form-input {
+    margin-bottom: 10px;
+  }
+
+  .checkout-form-container .ayur-form-input label {
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+
+  .checkout-form-container .ayur-form-input input,
+  .checkout-form-container .ayur-form-input select,
+  .checkout-form-container .ayur-form-input textarea {
+    font-size: 14px;
+    padding: 8px 10px;
+    height: 40px;
+  }
+
+  .checkout-form-container h2.fs-5 {
+    font-size: 15px !important;
+  }
+
+  .checkout-form-container h2.fs-2 {
+    font-size: 17px !important;
+  }
+
+  .checkout-form-container .px-3.py-3 {
+    padding: 10px !important;
+  }
+
+  .checkout-form-container .p-3 {
+    padding: 10px !important;
+  }
+
+  .checkout-form-container input,
+  .checkout-form-container select,
+  .checkout-form-container textarea {
+    font-size: 15px;
+    padding: 10px 12px;
+  }
+
+  .checkout-form-container label {
+    font-size: 13px;
+  }
+
+  .checkout-form-container .ayur-btn {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .checkout-form-container .edit-address-btn {
+    font-size: 10px !important;
+    padding: 4px 12px !important;
+    min-width: 65px !important;
+  }
+
+  .checkout-form-container button[data-testid*="edit"] {
+    font-size: 12px !important;
+    padding: 5px 12px !important;
+    min-width: 65px !important;
+  }
+
+  .checkout-form-container .text-muted {
+    font-size: 12px;
+  }
+
+  .checkout-form-container .address-label {
+    font-size: 13px !important;
+  }
+
+  .checkout-form-container .address-text {
+    font-size: 11px !important;
+  }
+
+  .checkout-form-container .shipping-option-name {
+    font-size: 13px !important;
+  }
+
+  .checkout-form-container .shipping-option-price {
+    font-size: 13px !important;
+  }
+
+  .checkout-form-container .review-title {
+    font-size: 16px !important;
+  }
+
+  .checkout-form-container .review-text {
+    font-size: 11px !important;
+  }
+}
+
+/* Tablet styles */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .checkout-form-container {
+    padding: 0 20px;
+  }
+
+  .checkout-form-wrapper {
+    gap: 18px;
+  }
+
+  .checkout-form-container h2.fs-5 {
+    font-size: 20px !important;
+  }
+
+  .checkout-form-container h2.fs-2 {
+    font-size: 22px !important;
+  }
+
+  .checkout-form-container .ayur-btn {
+    font-size: 16px;
+    padding: 14px 24px;
+  }
+
+  .checkout-form-container .edit-address-btn {
+    font-size: 13px;
+    padding: 6px 18px;
+    min-width: 85px;
+  }
+
+  .checkout-form-container .shipping-option-name {
+    font-size: 17px;
+  }
+
+  .checkout-form-container .shipping-option-price {
+    font-size: 17px;
+  }
+
+  .checkout-form-container .review-title {
+    font-size: 22px;
+  }
+
+  .checkout-form-container .review-text {
+    font-size: 15px;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 1024px) {
+  .checkout-form-container {
+    max-width: 1200px;
+    padding: 0 30px;
+  }
+
+  .checkout-form-wrapper {
+    gap: 25px;
+  }
+}
+
+/* Additional mobile optimizations for checkout layout */
+@media (max-width: 991px) {
+  .checkout-form-container {
+    order: 1;
+  }
+
+  .checkout-form-wrapper {
+    gap: 12px;
+  }
+
+  /* Ensure proper spacing on mobile */
+  .checkout-form-container .border.rounded:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* Ensure proper desktop layout */
+@media (min-width: 992px) {
+  .checkout-form-container {
+    order: 1;
+  }
+
+  .checkout-summary-container {
+    order: 2;
+  }
+}

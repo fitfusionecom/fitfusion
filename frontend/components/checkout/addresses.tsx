@@ -38,9 +38,9 @@ const Addresses = ({
   const [message, formAction] = useActionState(setAddresses, null);
 
   return (
-    <div>
-      <div className="d-flex flex-row align-items-center justify-content-between mb-2">
-        <h2 className="d-flex flex-row gap-2 align-items-baseline fs-2">
+    <div className="border rounded overflow-hidden">
+      <div className="d-flex flex-row align-items-center justify-content-between mb-2 bg-black text-white px-3 py-3">
+        <h2 className="d-flex flex-row gap-2 align-items-baseline fs-5 mb-0">
           Shipping Address
           {!isOpen && <CheckCircleSolid />}
         </h2>
@@ -48,13 +48,7 @@ const Addresses = ({
         {!isOpen && cart?.shipping_address && (
           <button
             onClick={handleEdit}
-            style={{
-              padding: "5px 20px",
-              background: "whitesmoke",
-              border: "none",
-              borderRadius: "10px",
-              minWidth: "90px",
-            }}
+            className="edit-address-btn"
             data-testid="edit-address-button"
           >
             <BiEdit /> Edit
@@ -63,7 +57,7 @@ const Addresses = ({
       </div>
       {isOpen ? (
         <form action={formAction}>
-          <div className="pb-8">
+          <div className="p-3">
             <ShippingAddress
               customer={customer}
               checked={sameAsBilling}
@@ -97,95 +91,51 @@ const Addresses = ({
         </form>
       ) : (
         <div>
-          <div className="fs-6">
+          <div className="fs-6 p-3">
             {cart && cart.shipping_address ? (
               <div className="row align-items-start g-4">
                 <div
-                  className="col-md-4"
+                  className="col-md-4 col-12"
                   data-testid="shipping-address-summary"
                 >
-                  <h5
-                    style={{
-                      color: "black",
-                    }}
-                    className="fw-bold  mb-2 "
-                  >
+                  <h6 className="fw-bold mb-2 address-label">
                     Shipping Address
-                  </h5>
-                  <h6 className="text-secondary fw-normal mb-1">
+                  </h6>
+                  <h6 className="text-secondary fw-normal mb-1 address-text">
                     {cart.shipping_address.first_name}{" "}
                     {cart.shipping_address.last_name}
                   </h6>
-                  <h6 className="text-secondary fw-normal mb-1">
+                  <h6 className="text-secondary fw-normal mb-1 address-text">
                     {cart.shipping_address.address_1}{" "}
                     {cart.shipping_address.address_2}
                   </h6>
-                  <h6 className="text-secondary fw-normal mb-1">
+                  <h6 className="text-secondary fw-normal mb-1 address-text">
                     {cart.shipping_address.postal_code},{" "}
                     {cart.shipping_address.city}
                   </h6>
-                  <h6 className="text-secondary fw-normal mb-1">
+                  <h6 className="text-secondary fw-normal mb-1 address-text">
                     {cart.shipping_address.country_code?.toUpperCase()}
                   </h6>
                 </div>
 
                 <div
-                  className="col-md-4"
+                  className="col-md-4 col-12"
                   data-testid="shipping-contact-summary"
                 >
-                  <h5
-                    style={{
-                      color: "black",
-                    }}
-                    className="fw-bold mb-2 "
-                  >
-                    Contact
-                  </h5>
-                  <h6 className="text-secondary fw-normal mb-1">
+                  <h6 className="fw-bold mb-2 address-label">
+                    Contact Information
+                  </h6>
+                  <h6 className="text-secondary fw-normal mb-1 address-text">
                     {cart.shipping_address.phone}
                   </h6>
-                  <h6 className="text-secondary fw-normal mb-1">
+                  <h6 className="text-secondary fw-normal mb-1 address-text">
                     {cart.email}
                   </h6>
                 </div>
-
-                <div className="col-md-4" data-testid="billing-address-summary">
-                  <h5
-                    style={{
-                      color: "black",
-                    }}
-                    className="fw-bold mb-2 "
-                  >
-                    Billing Address
-                  </h5>
-                  {sameAsBilling ? (
-                    <h6 className="text-secondary fw-normal mb-1">
-                      Billing- and delivery address are the same.
-                    </h6>
-                  ) : (
-                    <>
-                      <h6 className="text-secondary fw-normal mb-1">
-                        {cart.billing_address?.first_name}{" "}
-                        {cart.billing_address?.last_name}
-                      </h6>
-                      <h6 className="text-secondary fw-normal mb-1">
-                        {cart.billing_address?.address_1}{" "}
-                        {cart.billing_address?.address_2}
-                      </h6>
-                      <h6 className="text-secondary fw-normal mb-1">
-                        {cart.billing_address?.postal_code},{" "}
-                        {cart.billing_address?.city}
-                      </h6>
-                      <h6 className="text-secondary fw-normal mb-1">
-                        {cart.billing_address?.country_code?.toUpperCase()}
-                      </h6>
-                    </>
-                  )}
-                </div>
               </div>
             ) : (
-              <div className="d-flex justify-content-center align-items-center py-4">
-                <Spinner />
+              <div className="text-center py-3">
+                <p className="text-muted mb-0">No shipping address set</p>
               </div>
             )}
           </div>

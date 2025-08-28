@@ -43,6 +43,39 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
   const maxQtyFromInventory = 10;
   const maxQuantity = item.variant?.manage_inventory ? 10 : maxQtyFromInventory;
 
+  // For preview mode (checkout sidebar), show compact layout
+  if (type === "preview") {
+    return (
+      <div className="cart-item-preview">
+        <div className="cart-item-preview-content">
+          <div className="cart-item-preview-image">
+            <ProductImage
+              thumbnail={item.thumbnail}
+              images={item.variant?.product?.images}
+              size="square"
+              isFeatured={false}
+              className="cursor-pointer"
+            />
+          </div>
+          <div className="cart-item-preview-details">
+            <h6 className="cart-item-preview-title">{item.product_title}</h6>
+            <div className="cart-item-preview-meta">
+              <span className="cart-item-preview-quantity">
+                Qty: {item.quantity}
+              </span>
+              <span className="cart-item-preview-price">
+                {convertToLocale({
+                  amount: item.unit_price ?? 0,
+                  currency_code: currencyCode,
+                })}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <tr>
       <td>1</td>
@@ -94,21 +127,7 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
         {updating && <Spinner />}
       </td>
       <td>
-        <span
-          className={clx("!pr-0", {
-            "flex flex-col items-end h-full justify-center": type === "preview",
-          })}
-        >
-          {type === "preview" && (
-            <span className="flex gap-x-1 ">
-              <span className="text-ui-fg-muted">{item.quantity}x </span>
-              <LineItemUnitPrice
-                item={item}
-                style="tight"
-                currencyCode={currencyCode}
-              />
-            </span>
-          )}
+        <span className="!pr-0">
           <LineItemPrice
             item={item}
             style="tight"

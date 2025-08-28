@@ -51,14 +51,14 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
   const [message, formAction] = useActionState(submitPromotionForm, null);
 
   return (
-    <div className="rounded p-3">
+    <div className="rounded p-3 discount-code-container">
       <div className="text-dark">
         <form action={(a) => addPromotionCode(a)} className="w-100 mb-4">
           <label className="d-flex gap-2 my-2 align-items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
-              className="btn btn-link text-dark text-decoration-none p-0 border-0 bg-transparent"
+              className="btn btn-link text-dark text-decoration-none p-0 border-0 bg-transparent discount-toggle-btn"
               data-testid="add-discount-button"
             >
               Add Promotion Code(s)
@@ -71,12 +71,9 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
 
           {isOpen && (
             <>
-              <div className="d-flex w-100 gap-2">
+              <div className="d-flex w-100 gap-2 discount-input-group">
                 <input
-                  className="flex-fill p-2"
-                  style={{
-                    background: "whitesmoke",
-                  }}
+                  className="flex-fill p-2 discount-input"
                   id="promotion-input"
                   name="code"
                   type="text"
@@ -84,14 +81,14 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
                   data-testid="discount-input"
                 />
                 <button
-                  className="btn btn-dark px-3"
+                  className="btn btn-dark px-3 discount-apply-btn"
                   data-testid="discount-apply-button"
                 >
                   Apply
                 </button>
               </div>
 
-              {message && <p>{JSON.stringify(message)}</p>}
+              {message && <p className="discount-message">{JSON.stringify(message)}</p>}
             </>
           )}
         </form>
@@ -99,13 +96,13 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
         {promotions.length > 0 && (
           <div className="w-100 d-flex align-items-center">
             <div className="d-flex flex-column w-100">
-              <h6 className="h6 text-dark mb-2">Promotion(s) applied:</h6>
+              <h6 className="h6 text-dark mb-2 discount-applied-title">Promotion(s) applied:</h6>
 
               {promotions.map((promotion) => {
                 return (
                   <div
                     key={promotion.id}
-                    className="d-flex align-items-center justify-content-between w-100 mb-2 p-2 border border-secondary rounded"
+                    className="d-flex align-items-center justify-content-between w-100 mb-2 p-2 border border-secondary rounded discount-item"
                     data-testid="discount-row"
                   >
                     <p className="d-flex gap-1 align-items-baseline w-75 pr-2">
@@ -149,7 +146,7 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
                     </p>
                     {!promotion.is_automatic && (
                       <button
-                        className="btn btn-outline-danger btn-sm d-flex align-items-center"
+                        className="btn btn-outline-danger btn-sm d-flex align-items-center discount-remove-btn"
                         onClick={() => {
                           if (!promotion.code) {
                             return;

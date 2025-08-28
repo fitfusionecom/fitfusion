@@ -1512,15 +1512,15 @@ a.likeproduct img.like {
 .ayur-form-input .form-control {
   color: var(--ayur-para-color);
   font-size: 14px;
+  background-color: whitesmoke;
   font-weight: 400;
   min-height: 45px;
-  background-color: rgb(205 137 115 / 8%);
   max-width: 100%;
   width: 100%;
   border-radius: 10px;
   border: none;
-  padding: 10px 20px;
-  border: 1px solid var(--ayur-border-color);
+  padding: 8px 18px;
+  border: 1px solid #e0e0e0;
   font-family: "Inter", sans-serif;
 }
 .ayur-form-btn .ayur-btn {
