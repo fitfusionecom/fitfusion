@@ -7,6 +7,7 @@ import { CartProvider } from "@/lib/context/cart-context";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Newsletter from "@/components/homepage/Newsletter";
+import FloatingChatbot from "@/components/ui/FloatingChatbot";
 
 export default function PrimaryLayout({
   children,
@@ -22,6 +23,7 @@ export default function PrimaryLayout({
           {children}
           <Newsletter />
           <Footer />
+          <FloatingChatbot />
         </CartProvider>
       </NuqsProvider>
       <ToastContainer />
