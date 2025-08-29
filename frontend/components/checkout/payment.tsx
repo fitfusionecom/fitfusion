@@ -62,16 +62,21 @@ const Payment = ({
     (name: string, value: string) => {
       const params = new URLSearchParams(searchParams);
       params.set(name, value);
-
       return params.toString();
     },
     [searchParams]
   );
 
   const handleEdit = () => {
-    router.push(pathname + "?" + createQueryString("step", "payment"), {
-      scroll: false,
-    });
+    if (isBuyNow) {
+      router.push(pathname + "?cartId=" + cart?.id + "&step=payment", {
+        scroll: false,
+      });
+    } else {
+      router.push(pathname + "?" + createQueryString("step", "payment"), {
+        scroll: false,
+      });
+    }
   };
 
   const handleSubmit = async () => {

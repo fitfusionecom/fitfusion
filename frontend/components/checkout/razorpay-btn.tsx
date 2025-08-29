@@ -15,10 +15,12 @@ export const RazorpayPaymentButton = ({
   session,
   notReady,
   cart,
+  isBuyNow,
 }: {
   session: HttpTypes.StorePaymentSession;
   notReady: boolean;
   cart: HttpTypes.StoreCart;
+  isBuyNow?: boolean;
 }) => {
   const [disabled, setDisabled] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -31,7 +33,7 @@ export const RazorpayPaymentButton = ({
 
   console.log(`session_data: ` + JSON.stringify(session));
   const onPaymentCompleted = async () => {
-    await placeOrder().catch(() => {
+    await placeOrder(isBuyNow ? cart.id : undefined).catch(() => {
       setErrorMessage("An error occurred, please try again.");
       setSubmitting(false);
     });

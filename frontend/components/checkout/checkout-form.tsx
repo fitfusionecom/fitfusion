@@ -41,7 +41,7 @@ export default async function CheckoutForm({
           availablePaymentMethods={paymentMethods}
           isBuyNow={isBuyNow}
         />
-        <Review cart={cart} />
+        <Review cart={cart} isBuyNow={isBuyNow} />
       </div>
     </div>
   );

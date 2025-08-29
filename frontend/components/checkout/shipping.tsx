@@ -65,11 +65,23 @@ const Shipping: React.FC<ShippingProps> = ({
   }, [availableShippingMethods]);
 
   const handleEdit = () => {
-    router.push(pathname + "?step=delivery", { scroll: false });
+    if (isBuyNow) {
+      router.push(pathname + "?cartId=" + cart?.id + "&step=delivery", {
+        scroll: false,
+      });
+    } else {
+      router.push(pathname + "?step=delivery", { scroll: false });
+    }
   };
 
   const handleSubmit = () => {
-    router.push(pathname + "?step=payment", { scroll: false });
+    if (isBuyNow) {
+      router.push(pathname + "?cartId=" + cart?.id + "&step=payment", {
+        scroll: false,
+      });
+    } else {
+      router.push(pathname + "?step=payment", { scroll: false });
+    }
   };
 
   const handleSetShippingMethod = async (id: string) => {

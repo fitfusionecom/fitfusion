@@ -11,11 +11,13 @@ import { RazorpayPaymentButton } from "./razorpay-btn";
 
 type PaymentButtonProps = {
   cart: HttpTypes.StoreCart;
+  isBuyNow?: boolean;
   "data-testid": string;
 };
 
 const PaymentButton: React.FC<PaymentButtonProps> = ({
   cart,
+  isBuyNow,
   "data-testid": dataTestId,
 }) => {
   const notReady =
@@ -38,6 +40,7 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
           session={paymentSession as any}
           notReady={notReady}
           cart={cart}
+          isBuyNow={isBuyNow}
         />
       );
     default:

@@ -3,14 +3,14 @@
 import { useActionState } from "react";
 import { HttpTypes } from "@medusajs/types";
 import { setAddresses } from "@/lib/data/cart";
-import compareAddresses from "@/lib/util/compare-addresses";
-import { CheckCircleSolid } from "@medusajs/icons";
 import { useToggleState } from "@medusajs/ui";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import ShippingAddress from "./shipping-address";
+import { CheckCircleSolid } from "@medusajs/icons";
+import compareAddresses from "@/lib/util/compare-addresses";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 // import BillingAddress from "./billing-address";
-import Spinner from "../blocks/spinner";
 import { BiEdit } from "react-icons/bi";
+import { setAddressForBuyNow } from "@/lib/data/buy-now-cart";
 
 const Addresses = ({
   cart,
@@ -41,7 +41,10 @@ const Addresses = ({
     }
   };
 
-  const [message, formAction] = useActionState(setAddresses, null);
+  const [message, formAction] = useActionState(
+    isBuyNow ? setAddressForBuyNow : setAddresses,
+    null
+  );
 
   return (
     <div className="border rounded overflow-hidden">
@@ -62,7 +65,16 @@ const Addresses = ({
         )}
       </div>
       {isOpen ? (
-        <form action={formAction}>
+        <form
+          action={
+            !isBuyNow
+              ? formAction
+              : (formData) => {
+                  formData.append("cartId", cart?.id ?? "");
+                  formAction(formData);
+                }
+          }
+        >
           <div className="p-3">
             <ShippingAddress
               customer={customer}

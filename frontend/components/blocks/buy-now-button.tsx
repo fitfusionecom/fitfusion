@@ -1,10 +1,9 @@
 "use client";
 
-import { HttpTypes } from "@medusajs/types";
-import { isEqual } from "lodash";
-import React, { useEffect, useMemo, useState } from "react";
-import { useBuyNow } from "@/hooks/useBuyNow";
 import "./buy-now-button.css";
+import React, { useState } from "react";
+import { HttpTypes } from "@medusajs/types";
+import { useBuyNow } from "@/hooks/useBuyNow";
 
 type BuyNowButtonProps = {
   product: HttpTypes.StoreProduct;
@@ -17,21 +16,8 @@ type BuyNowButtonProps = {
   isValidVariant?: boolean;
 };
 
-const optionsAsKeymap = (
-  variantOptions: HttpTypes.StoreProductVariant["options"]
-): Record<string, string> => {
-  if (!variantOptions) return {};
-
-  return variantOptions.reduce((acc: Record<string, string>, varopt: any) => {
-    acc[varopt.option_id] = varopt.value;
-    return acc;
-  }, {});
-};
-
 const BuyNowButton = ({
-  product,
   disabled,
-  variant = "default",
   countryCode = "in",
   quantity = 1,
   selectedVariant,

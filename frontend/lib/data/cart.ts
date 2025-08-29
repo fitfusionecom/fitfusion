@@ -327,7 +327,6 @@ export async function submitPromotionForm(
 export async function setAddresses(currentState: unknown, formData: FormData) {
   try {
 
-
     if (!formData) {
       throw new Error("No form data found when setting addresses")
     }

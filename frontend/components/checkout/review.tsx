@@ -3,7 +3,7 @@
 import PaymentButton from "./payment-btn";
 import { useSearchParams } from "next/navigation";
 
-const Review = ({ cart }: { cart: any }) => {
+const Review = ({ cart, isBuyNow }: { cart: any; isBuyNow?: boolean }) => {
   const searchParams = useSearchParams();
   const isOpen = searchParams.get("step") === "review";
   const paidByGiftcard =
@@ -14,7 +14,7 @@ const Review = ({ cart }: { cart: any }) => {
     (cart.payment_collection || paidByGiftcard);
 
   return (
-    <div className="bg-white mt-4 pb-5">
+    <div className="mt-4 pb-5">
       <div className="d-flex flex-row align-items-center justify-content-between mb-2">
         <h2 className="d-flex flex-row gap-2 align-items-baseline fs-2 review-title">
           Review
@@ -33,7 +33,11 @@ const Review = ({ cart }: { cart: any }) => {
             </div>
           </div>
 
-          <PaymentButton cart={cart} data-testid="submit-order-button" />
+          <PaymentButton
+            cart={cart}
+            data-testid="submit-order-button"
+            isBuyNow={isBuyNow}
+          />
         </>
       )}
     </div>
