@@ -1666,6 +1666,11 @@ ul.ayur-links li a:hover::before {
     padding: 100px 0 60px;
     margin-top: 60px; /* 👈 Push section down below navbar */
   }
+
+  /* Reduce spacing for testimonial section on tablets */
+  .ayur-testimonial-sec {
+    padding: 60px 0 50px;
+  }
 }
 
 /* Mobile adjustments */
@@ -1673,6 +1678,11 @@ ul.ayur-links li a:hover::before {
   .ayur-bread-section {
     padding: 60px 0 40px;
     margin-top: 60px; /* 👈 Adjust this value to match your navbar height */
+  }
+
+  /* Further reduce spacing for testimonial section on mobile */
+  .ayur-testimonial-sec {
+    padding: 40px 0 30px;
   }
 }
 

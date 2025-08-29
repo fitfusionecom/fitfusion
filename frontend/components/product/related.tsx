@@ -56,8 +56,7 @@ export default async function RelatedProducts({
         <div className="row">
           <div className="col-lg-12 col-md-12 col-sm-12">
             <div className="ayur-heading-wrap">
-              <h5>Product</h5>
-              <h3>Recommended Products</h3>
+              <h4>Recommended Products</h4>
             </div>
           </div>
         </div>
