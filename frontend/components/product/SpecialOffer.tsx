@@ -3,8 +3,8 @@ import "./SpecialOffer.css";
 
 const SpecialOffer: React.FC = () => {
   return (
-    <div className="special-offer-container my-2">
-      <h4 className="special-offer-heading mb-2">Special Offer</h4>
+    <div className="special-offer-container my-2 mt-3">
+      <h5 className="special-offer-heading mb-2">Special Offer</h5>
 
       <div className="special-offer-box p-2">
         {/* Coupon Code */}

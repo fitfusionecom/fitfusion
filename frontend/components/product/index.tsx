@@ -322,7 +322,7 @@ const ProductDetails = ({
                 {/* Special Offer Section */}
                 <SpecialOffer />
 
-                <div className="mt-4">
+                <div className="mt-2">
                   <p>
                     <span style={{ fontSize: "0.95rem", color: "#555" }}>
                       Please read our{" "}
