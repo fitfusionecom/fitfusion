@@ -52,25 +52,23 @@ const BuyNowButton = ({
 
   // For single variant products, show quantity selector and buy now button
   return (
-    <div className="d-flex gap-2 align-items-center">
-      <button
-        onClick={handleBuyNow}
-        disabled={
-          !inStock ||
-          !selectedVariant ||
-          !!disabled ||
-          isBuyingNow ||
-          !isValidVariant
-        }
-        className="ayur-btn btn btn-primary"
-        style={{
-          padding: "10px 50px",
-        }}
-        data-testid="buy-now-button"
-      >
-        Buy Now{isBuyingNow && "..."}
-      </button>
-    </div>
+    <button
+      onClick={handleBuyNow}
+      disabled={
+        !inStock ||
+        !selectedVariant ||
+        !!disabled ||
+        isBuyingNow ||
+        !isValidVariant
+      }
+      className="ayur-btn btn btn-secondary"
+      style={{
+        padding: "10px 50px",
+      }}
+      data-testid="buy-now-button"
+    >
+      Buy Now{isBuyingNow && "..."}
+    </button>
   );
 };
 

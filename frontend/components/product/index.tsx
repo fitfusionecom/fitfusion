@@ -351,7 +351,7 @@ const ProductDetails = ({
                     </span>
                   </p>
 
-                  <div className="d-flex gap-3 flex-wrap">
+                  <div className="d-md-flex d-grid gap-2">
                     <button
                       className="ayur-btn btn btn-primary"
                       style={{
