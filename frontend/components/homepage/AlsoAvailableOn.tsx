@@ -11,7 +11,7 @@ const AlsoAvailableOn: React.FC = () => {
           <h2 className="section-title">Also available on</h2>
           <div className="platform-logos">
             <Link
-              href="https://www.amazon.in/stores/FitFusionAyurveda/page/A550C5B1-A91F-4469-BD61-15A3F250AC0F?is_byline_deeplink=true&deeplink=A550C5B1-A91F-4469-BD61-15A3F250AC0F&redirect_store_id=A550C5B1-A91F-4469-BD61-15A3F250AC0F&lp_asin=B0FJ87KX3K&ref_=ast_bln&store_ref=bl_ast_dp_brandLogo_sto"
+              href="https://www.amazon.in/stores/page/8762DF5A-2B8F-44B8-8439-112FB25E1F42?ingress=2&lp_context_asin=B0FJ87KX3K&visitId=269ad951-f2f0-4930-be4a-41b880efffe5&store_ref=bl_ast_dp_brandLogo_sto&ref_=ast_bln"
               target="_blank"
               rel="noopener noreferrer"
               className="platform-logo amazon"
