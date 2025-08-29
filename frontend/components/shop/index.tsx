@@ -123,14 +123,6 @@ const ShopTemplate = ({
 
   const [sortDropdownOpen, setSortDropdownOpen] = useState(false);
 
-  const [openSections, setOpenSections] = useState({
-    availability: true,
-    price: true,
-    productType: true,
-    rating: false,
-    categories: true,
-  });
-
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -164,8 +156,7 @@ const ShopTemplate = ({
         q,
         minPrice,
         maxPrice,
-        // category_handle: category_handle || "",
-        category_handle: "",
+        category_handle: category_handle || "",
         pageParam,
       }),
     getNextPageParam: (lastPage: any, allPages: any) =>

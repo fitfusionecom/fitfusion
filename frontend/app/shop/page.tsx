@@ -7,7 +7,6 @@ type Props = {
 
 export default async function Shop({ searchParams }: Props) {
   const params = await searchParams;
-
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <ShopTemplate searchParams={params} />

@@ -1,10 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import ProductCard from "@/components/blocks/product-card";
+import Image from "next/image";
 import { HttpTypes } from "@medusajs/types";
 import { Swiper, SwiperSlide } from "swiper/react";
+import ProductCard from "@/components/blocks/product-card";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
 // Import Swiper styles
@@ -19,12 +19,14 @@ interface TopProductsProps {
   products: HttpTypes.StoreProduct[];
   title?: string;
   carouselId?: string;
+  category_handle?: string;
 }
 
 export default function TopProducts({
   products,
   title = "Explore Ayurveda",
   carouselId = "default-carousel",
+  category_handle = "best-selling",
 }: TopProductsProps) {
   return (
     <div className="ayur-bgcover ayur-topproduct-sec">
@@ -38,7 +40,7 @@ export default function TopProducts({
           </div>
           <div className="col-lg-4 col-md-4 col-sm-12 text-end">
             <Link
-              href="/shop?category_handle=best-selling"
+              href={`/shop?category_handle=${category_handle}`}
               className="explore-view-all-btn"
             >
               View All

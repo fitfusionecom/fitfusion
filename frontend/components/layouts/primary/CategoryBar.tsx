@@ -17,7 +17,7 @@ interface CategoryBarProps {
 export const defaultCategories: Category[] = [
   {
     name: "Men's Health & Wellness",
-    href: "/shop",
+    href: "/shop?category_handle=men's-health-and-wellness",
     subcategories: [
       {
         name: "Sexual Wellness",
@@ -25,17 +25,17 @@ export const defaultCategories: Category[] = [
       },
       {
         name: "Stamina & Energy Boosters",
-        href: "/shop?category_handle=stamina-energy-boosters",
+        href: "/shop?category_handle=stamina-and-energy-boosters",
       },
       {
         name: "Muscle Growth & Strength",
-        href: "/shop?category_handle=muscle-growth-strength",
+        href: "/shop?category_handle=muscle-growth-and-strength",
       },
     ],
   },
   {
     name: "Immunity & Vitality",
-    href: "/shop",
+    href: "/shop?category_handle=immunity-and-vitality",
     subcategories: [
       {
         name: "Immune System Boosters",
@@ -49,15 +49,15 @@ export const defaultCategories: Category[] = [
   },
   {
     name: "Lifestyle & Habit Control",
-    href: "/shop",
+    href: "/shop?category_handle=lifestyle-and-habit-control",
     subcategories: [
       {
         name: "Detox & De-addiction",
-        href: "/shop?category_handle=detox-de-addiction",
+        href: "/shop?category_handle=detox-and-de-addiction",
       },
       {
         name: "Stress & Anxiety Relief",
-        href: "/shop?category_handle=stress-anxiety-relief",
+        href: "/shop?category_handle=stress-and-anxiety-relief",
       },
       {
         name: "Sleep Support (Sleep-O-Fit)",
@@ -67,14 +67,14 @@ export const defaultCategories: Category[] = [
   },
   {
     name: "Metabolic & Chronic Care",
-    href: "/shop",
+    href: "/shop?category_handle=metabolic-and-chronic-care",
     subcategories: [
       { name: "Diabetes Care", href: "/shop?category_handle=diabetes-care" },
     ],
   },
   {
     name: "Digestive Health",
-    href: "/shop",
+    href: "/shop?category_handle=digestive-health",
     subcategories: [
       {
         name: "Digestion Support",
@@ -84,7 +84,7 @@ export const defaultCategories: Category[] = [
   },
   {
     name: "Ashwagandha",
-    href: "/shop",
+    href: "/shop?category_handle=ashwagandha",
     subcategories: [
       {
         name: "Ashwagandha Capsules",
@@ -94,7 +94,7 @@ export const defaultCategories: Category[] = [
   },
   {
     name: "Shilajit",
-    href: "/shop",
+    href: "/shop?category_handle=shilajit",
     subcategories: [
       {
         name: "Pure Shilajit Resin",
