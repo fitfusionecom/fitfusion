@@ -3,9 +3,16 @@ import { fitfusionConfig } from "@/lib/fitfusion-config";
 export default function AboutUs() {
   return (
     <div style={{ background: "white", minHeight: "100vh" }}>
-      <div className="container" style={{ padding: "60px 20px" }}>
+      <div
+        className="container"
+        // style={{ padding: "60px 20px" }}
+
+        style={{
+          padding: "20px 20px",
+        }}
+      >
         {/* YouTube Video */}
-        <div style={{ marginBottom: "40px", textAlign: "center" }}>
+        {/* <div style={{ marginBottom: "40px", textAlign: "center" }}>
           <iframe
             width="100%"
             height="400"
@@ -16,7 +23,7 @@ export default function AboutUs() {
             allowFullScreen
             style={{ maxWidth: "800px" }}
           ></iframe>
-        </div>
+        </div> */}
 
         {/* Title */}
         <div style={{ marginBottom: "20px", textAlign: "center" }}>
