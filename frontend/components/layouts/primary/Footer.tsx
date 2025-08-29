@@ -155,12 +155,27 @@ export default function Footer() {
               <FooterSection
                 title="Popular Categories"
                 items={[
-                  "Lifestyle & Habit Control",
-                  "Vigor & Vitality",
-                  "Men's Health",
-                  "Immunity Boosters",
-                  "Digestion Care",
-                  "All Collections",
+                  {
+                    name: "Lifestyle & Habit Control",
+                    href: "/shop?category_handle=lifestyle-and-habit-control",
+                  },
+                  {
+                    name: "Vigor & Vitality",
+                    href: "/shop?category=vigor-vitality",
+                  },
+                  {
+                    name: "Men's Health",
+                    href: "/shop?category_handle=men's-health-and-wellness",
+                  },
+                  {
+                    name: "Immunity Boosters",
+                    href: "/shop?category_handle=immune-system-boosters",
+                  },
+                  {
+                    name: "Digestion Care",
+                    href: "/shop?category_handle=digestive-health",
+                  },
+                  { name: "All Collections", href: "/shop" },
                 ]}
                 isOpen={openSections.categories}
                 onToggle={() => toggleSection("categories")}
@@ -173,14 +188,28 @@ export default function Footer() {
               <FooterSection
                 title="Popular Products"
                 items={[
-                  "Massage Oil",
-                  "Men's Health Kit",
-                  "Josh Power Capsule",
-                  "Sugar Medic",
-                  "Ashwagandha Capsules",
-                  "Shilajit Resin",
-                  "Digestive Supplements",
-                  "View All Products",
+                  { name: "Massage Oil", href: "/shop?search=massage-oil" },
+                  {
+                    name: "Men's Health Kit",
+                    href: "/shop?category_handle=men's-health-and-wellness",
+                  },
+                  {
+                    name: "Josh Power Capsule",
+                    href: "/shop?category_handle=shilajit-capsules",
+                  },
+                  {
+                    name: "Ashwagandha Capsules",
+                    href: "/shop?category_handle=ashwagandha-capsules",
+                  },
+                  {
+                    name: "Pure Shilajit Resin",
+                    href: "/shop?category_handle=pure-shilajit-resin",
+                  },
+                  {
+                    name: "Digestive Supplements",
+                    href: "/shop?category_handle=digestive-health",
+                  },
+                  { name: "View All Products", href: "/shop" },
                 ]}
                 isOpen={openSections.products}
                 onToggle={() => toggleSection("products")}
