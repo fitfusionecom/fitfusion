@@ -10,7 +10,7 @@ import { useInfiniteQuery, useQuery } from "react-query";
 
 // Simple loading skeleton for product cards
 const ProductCardSkeleton = () => (
-  <div className="col-lg-4 col-md-6 col-sm-6">
+  <div className="col-lg-4 col-md-6 col-6">
     <div
       style={{
         background: "#f6f1ed",
@@ -569,7 +569,7 @@ const ShopTemplate = ({
                       {sortedProducts.map((product) => (
                         <div
                           key={product.id}
-                          className="col-lg-4 col-md-6 col-sm-6 mb-4"
+                          className="col-lg-4 col-md-6 col-6 mb-4"
                         >
                           <ProductCard product={product} />
                         </div>
