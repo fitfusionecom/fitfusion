@@ -29,7 +29,7 @@ export default function TopProducts({
   category_handle = "best-selling",
 }: TopProductsProps) {
   return (
-    <div className="ayur-bgcover ayur-topproduct-sec">
+    <div className="ayur-bgcover my-md-3 pb-0 pb-md-3">
       <div className="container">
         <div className="row align-items-center mb-3">
           <div className="col-lg-8 col-md-8 col-sm-12">
