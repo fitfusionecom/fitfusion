@@ -35,7 +35,7 @@ const doctors: Doctor[] = [
   {
     id: 1,
     name: "Prof. (Dr.) Irshad Ahmad Khan “Bayarvi”",
-    image: "/assets/images/dr.jpg",
+    image: "/assets/images/dr1.jpg",
     specialization: [
       "Unani & Ayurvedic Medicine",
       "General Physician",
@@ -47,24 +47,6 @@ const doctors: Doctor[] = [
     languages: ["Hindi", "English"],
     description:
       "Prof. (Dr.) Irshad Ahmad Khan “Bayarvi” (B.U.M.S, M.A, Ph.D) is a highly experienced practitioner specializing in Unani & Ayurvedic Medicine, general health, men’s health, lifestyle disorders, and chronic illness management. With over 25 years of expertise, he has provided care to more than 20,000 patients, offering consultations in Hindi and English.",
-    patients: "20,000+",
-  },
-  {
-    id: 2,
-    name: "Prof. (Dr.) Irshad Ahmad Khan “Bayarvi”",
-    image: "/assets/images/dr.jpg",
-    specialization: [
-      "Unani & Ayurvedic Medicine",
-      "General Physician",
-      "Men’s Health",
-      "Chronic Diseases",
-      "Lifestyle Disorders",
-      "General Health",
-    ],
-    experience: "25+ Years",
-    languages: ["Hindi", "English"],
-    description:
-      "Prof. (Dr.) Irshad Ahmad Khan “Bayarvi” is a highly respected Unani and Ayurvedic practitioner as well as an experienced General Physician. With over 25 years of clinical expertise, he has helped thousands of patients manage men’s health concerns, chronic diseases, lifestyle-related disorders, and general health issues. Combining ancient healing traditions with modern medical practices, Dr. Khan offers safe, natural, and personalized treatments, earning the trust of more than 20,000 patients across India.",
     patients: "20,000+",
   },
 ];

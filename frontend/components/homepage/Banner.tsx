@@ -42,8 +42,8 @@ const slides = [
   },
   {
     id: 2,
-    mobileImage: "/assets/images/banners/mobile/2.png",
-    desktopImage: "/assets/images/banners/2.png",
+    mobileImage: "/assets/images/banners/mobile/4.png",
+    desktopImage: "/assets/images/banners/4.png",
     alt: "Banner 2",
   },
   {
