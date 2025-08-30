@@ -1,11 +1,11 @@
 "use client";
 
+import "./LoginForm.css";
 import Link from "next/link";
 import Timer from "./timer";
 import { useState } from "react";
 import { sdk } from "@/lib/config";
 import { directLogin } from "@/lib/data/customer";
-import "./LoginForm.css";
 
 export default function LoginForm() {
   const [otp, setOtp] = useState("");
@@ -182,8 +182,8 @@ export default function LoginForm() {
 
           <p className="login-footer">
             By continuing, you agree to FitFusion's{" "}
-            <Link href="/privacy-policy">Privacy Policy</Link> and{" "}
-            <Link href="/terms-and-condition">Terms & Conditions</Link>.
+            <Link href="/privacy">Privacy Policy</Link> and{" "}
+            <Link href="/terms">Terms & Conditions</Link>.
           </p>
         </div>
       </div>
