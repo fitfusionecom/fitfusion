@@ -1,10 +1,12 @@
 "use client";
 
+import { retrieveOrder } from "@/lib/data/orders";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import OrderOverview from "@/components/account/order-overview";
 import { FaExclamationTriangle, FaArrowLeft } from "react-icons/fa";
+// import { retrieveOrder } from "@/lib/data/order";
 
 export default function OrderDetailPage() {
   const params = useParams();
@@ -16,12 +18,9 @@ export default function OrderDetailPage() {
   useEffect(() => {
     const loadOrder = async () => {
       try {
-        // In a real implementation, you would fetch the specific order
-        // For now, we'll simulate loading
-        const response = await fetch(`/api/orders/${orderId}`);
-        if (response.ok) {
-          const orderData = await response.json();
-          setOrder(orderData);
+        const response = await retrieveOrder(orderId).catch(() => null);
+        if (response.id) {
+          setOrder(response);
         } else {
           setError("Order not found");
         }
@@ -69,8 +68,9 @@ export default function OrderDetailPage() {
 
   return (
     <div className="order-detail-page">
+      {JSON.stringify(order)}
       {/* Header */}
-      <div className="mb-4">
+      {/* <div className="mb-4">
         <div className="d-flex justify-content-between align-items-center mb-3">
           <div>
             <h2 className="account-header mb-1">Order #{order.display_id}</h2>
@@ -85,8 +85,7 @@ export default function OrderDetailPage() {
         </div>
       </div>
 
-      {/* Order Overview Component */}
-      <OrderOverview order={order} />
+      <OrderOverview order={order} /> */}
     </div>
   );
 }

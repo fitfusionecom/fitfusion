@@ -1,13 +1,13 @@
+import { Metadata } from "next";
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { getRegion } from "@/lib/data/regions";
 import { listProducts } from "@/lib/data/product";
-import { Metadata } from "next";
 import ProductDetails from "@/components/product";
+import ProductReviews from "@/components/product/reviews";
 import RelatedProducts from "@/components/product/related";
-import { Suspense } from "react";
 import GoogleReviews from "@/components/homepage/GoogleReviews";
 import ProductAccordion from "@/components/product/product-accordion";
-import ProductReviews from "@/components/product/ProductReviews";
 type Props = {
   params: Promise<{ handle: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -114,7 +114,6 @@ export default async function Product(props: Props) {
         />
         <ProductReviews productId={pricedProduct.id} />
         <RelatedProducts product={pricedProduct} countryCode={country_code} />
-        <GoogleReviews />
       </Suspense>
     </>
   );

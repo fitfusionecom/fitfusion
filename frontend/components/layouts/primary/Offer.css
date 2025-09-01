@@ -76,7 +76,7 @@
 
   .offer-content {
     /* flex-direction: column; */
-    gap: 2px;
+    gap: 5px;
   }
 
   .offer-code {
@@ -98,7 +98,7 @@
   }
 
   .offer-content {
-    gap: 1px;
+    gap: 5px;
   }
 
   .offer-code {

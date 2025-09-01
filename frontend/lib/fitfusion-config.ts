@@ -1,7 +1,7 @@
 export const fitfusionConfig = {
   // Brand Information
   brand: {
-    name: "FitFusion Ayurveda",
+    name: "Fit Fusion Ayurveda",
     shortName: "FitFusion",
     tagline: "The Natural Way To Achieving Balance And Optimal Health",
     logo: "/fitfusion.JPG",
