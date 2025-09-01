@@ -34,7 +34,14 @@ export default defineMiddlewares({
         validateAndTransformBody(PostStoreReviewSchema),
       ],
     },
+    {
+      matcher: "/store/reviews",
+      method: ["GET"],
+      middlewares: [
+        authenticate("customer", ["session", "bearer"]),
 
+      ],
+    },
     {
       matcher: "/admin/reviews",
       method: ["GET"],

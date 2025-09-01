@@ -204,3 +204,22 @@ export const addProductReview = async (input: {
         cache: "no-store",
     })
 }
+
+
+export const hasProductReview = async () => {
+    const headers = {
+        ...(await getAuthHeaders()),
+    }
+
+    return sdk.client.fetch(`/store/reviews`, {
+        method: "GET",
+        headers,
+        query: {
+            customer_id: "cus_01K0YQZJKNYMECGNAFZMNA76V1",
+            product_id: "prod_01K3AWFB0P38W103YPCAH6Y086",
+        },
+        next: {
+            ...(await getCacheOptions(`product-has-review`)),
+        },
+    })
+}

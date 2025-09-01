@@ -3,6 +3,7 @@ import type {
   MedusaResponse,
 } from "@medusajs/framework/http"
 import { createReviewWorkflow } from "../../../workflows/create-review"
+import { hasReviewWorkflow } from "../../../workflows/has-review"
 
 import { z } from "zod"
 
@@ -40,4 +41,23 @@ export const POST = async (
     })
 
   res.json(result)
+}
+
+
+
+
+export const GET = async (
+  req: AuthenticatedMedusaRequest,
+  res: MedusaResponse
+) => {
+  const { result } = await hasReviewWorkflow(req.scope)
+    .run({
+      input: {
+        //@ts-ignore
+        customer_id: req.query.customer_id,
+        //@ts-ignore
+        product_id: req.query.product_id,
+      },
+    })
+  res.json(result.reviews ?? [])
 }
