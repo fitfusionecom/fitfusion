@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useRef, useState, useEffect } from "react";
 import "./Banner.css";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -39,18 +40,21 @@ const slides = [
     mobileImage: "/assets/images/banners/mobile/1.png",
     desktopImage: "/assets/images/banners/1.png",
     alt: "Banner 1",
+    href: "/product/fit-fusion-ayurveda-josh-power-mens-health-combo-kit-energy-powder-herbal-capsules-massage-oil-gas-relief-powder-ayurvedic-medicine-for-enhances-stamina-energy-vitality-4-in-1-pack",
   },
   {
     id: 2,
     mobileImage: "/assets/images/banners/mobile/4.png",
     desktopImage: "/assets/images/banners/4.png",
     alt: "Banner 2",
+    href: "#doctors-consultation", // Example link, adjust as needed
   },
   {
     id: 3,
     mobileImage: "/assets/images/banners/mobile/3.png",
     desktopImage: "/assets/images/banners/3.png",
     alt: "Banner 3",
+    href: "/shop?category_handle=men's-health-and-wellness&maxPrice=50000", // Example link, adjust as needed
   },
 ];
 
@@ -82,17 +86,19 @@ export default function Banner() {
       >
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
-            <div className="banner-slide">
-              <Image
-                src={isMobile ? slide.mobileImage : slide.desktopImage}
-                alt={slide.alt}
-                fill
-                className="banner-image"
-                priority={slide.id === 1}
-                quality={100}
-                sizes={isMobile ? "100vw" : "100vw"}
-              />
-            </div>
+            <Link href={slide.href} tabIndex={0} aria-label={slide.alt}>
+              <div className="banner-slide">
+                <Image
+                  src={isMobile ? slide.mobileImage : slide.desktopImage}
+                  alt={slide.alt}
+                  fill
+                  className="banner-image"
+                  priority={slide.id === 1}
+                  quality={100}
+                  sizes={isMobile ? "100vw" : "100vw"}
+                />
+              </div>
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>

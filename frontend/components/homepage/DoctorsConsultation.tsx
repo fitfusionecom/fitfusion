@@ -91,7 +91,10 @@ export default function DoctorsConsultation() {
   };
 
   return (
-    <section className="doctors-consultation-section spacer-top-- spacer-bottom--">
+    <section
+      id="doctors-consultation"
+      className="doctors-consultation-section spacer-top-- spacer-bottom--"
+    >
       <div className="container">
         {/* Header Section */}
         <div className="row align-items-center">
