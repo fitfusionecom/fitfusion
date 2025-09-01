@@ -34,19 +34,19 @@ interface Doctor {
 const doctors: Doctor[] = [
   {
     id: 1,
-    name: "Prof. (Dr.) Irshad Ahmad Khan “Bayarvi”",
+    name: 'Prof. (Dr.) Irshad Ahmad Khan "Bayarvi"',
     image: "/assets/images/dr1.jpg",
     specialization: [
       "Unani & Ayurvedic Medicine",
       "General Physician",
-      "Men’s Health",
+      "Men's Health",
       "Lifestyle Disorders",
       "Chronic Illness Management",
     ],
     experience: "25+ Years",
     languages: ["Hindi", "English"],
     description:
-      "Prof. (Dr.) Irshad Ahmad Khan “Bayarvi” (B.U.M.S, M.A, Ph.D) is a highly experienced practitioner specializing in Unani & Ayurvedic Medicine, general health, men’s health, lifestyle disorders, and chronic illness management. With over 25 years of expertise, he has provided care to more than 20,000 patients, offering consultations in Hindi and English.",
+      'Prof. (Dr.) Irshad Ahmad Khan "Bayarvi" (B.U.M.S, M.A, Ph.D) is a highly experienced practitioner specializing in Unani & Ayurvedic Medicine, general health, men\'s health, lifestyle disorders, and chronic illness management. With over 25 years of expertise, he has provided care to more than 20,000 patients, offering consultations in Hindi and English.',
     patients: "20,000+",
   },
 ];
@@ -105,94 +105,63 @@ export default function DoctorsConsultation() {
           </div>
         </div>
 
-        {/* Doctors Carousel Section */}
-        <div className="doctors-carousel-wrapper">
-          <Swiper
-            modules={[Navigation, Pagination, Autoplay]}
-            spaceBetween={30}
-            slidesPerView={1}
-            navigation={{
-              nextEl: ".swiper-button-next",
-              prevEl: ".swiper-button-prev",
-            }}
-            pagination={{
-              clickable: true,
-              el: ".swiper-pagination",
-            }}
-            autoplay={{
-              delay: 5000,
-              disableOnInteraction: false,
-            }}
-            loop={true}
-            className="doctors-swiper doctors-consultation"
-          >
-            {doctors.map((doctor) => (
-              <SwiperSlide key={doctor.id}>
-                <div className="doctor-profile-card">
-                  <div className="row align-items-center">
-                    <div className="col-lg-4 col-md-4 col-sm-12">
-                      <div className="doctor-image-section">
-                        <div className="doctor-main-image">
-                          <Image
-                            src={doctor.image}
-                            alt={doctor.name}
-                            width={200}
-                            height={250}
-                            className="img-fluid"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-lg-8 col-md-8 col-sm-12">
-                      <div className="doctor-content">
-                        <h3 className="doctor-name">{doctor.name}</h3>
-
-                        <div className="doctor-details">
-                          <div className="detail-item">
-                            <strong>Specialization:</strong>
-                            <span>{doctor.specialization.join(", ")}</span>
-                          </div>
-                          <div className="detail-item">
-                            <strong>Experience:</strong>
-                            <span>{doctor.experience}</span>
-                          </div>
-                          <div className="detail-item">
-                            <strong>Languages:</strong>
-                            <span>{doctor.languages.join(" & ")}</span>
-                          </div>
-                          <div className="detail-item">
-                            <strong>Patients:</strong>
-                            <span>{doctor.patients}</span>
-                          </div>
-                        </div>
-
-                        <p className="doctor-description">
-                          {doctor.description}
-                        </p>
-
-                        {/* <button
-                          onClick={() =>
-                            handleWhatsAppConsultation(doctor.name)
-                          }
-                          className="consultation-btn"
-                        >
-                          <FaWhatsapp />
-                          Get Free Consultation
-                        </button> */}
-                      </div>
+        {/* Doctors Section - No Carousel */}
+        <div className="doctors-section">
+          {doctors.map((doctor) => (
+            <div key={doctor.id} className="doctor-profile-card">
+              <div className="row align-items-center">
+                <div className="col-lg-4 col-md-4 col-sm-12">
+                  <div className="doctor-image-section">
+                    <div className="doctor-main-image">
+                      <Image
+                        src={doctor.image}
+                        alt={doctor.name}
+                        width={200}
+                        height={250}
+                        className="img-fluid"
+                      />
                     </div>
                   </div>
                 </div>
-              </SwiperSlide>
-            ))}
+                <div className="col-lg-8 col-md-8 col-sm-12">
+                  <div className="doctor-content">
+                    <h3 className="doctor-name">{doctor.name}</h3>
 
-            {/* Custom Navigation Buttons */}
-            <div className="swiper-button-prev"></div>
-            <div className="swiper-button-next"></div>
+                    <div className="doctor-details">
+                      <div className="detail-item">
+                        <strong>Specialization:</strong>
+                        <span>{doctor.specialization.join(", ")}</span>
+                      </div>
+                      <div className="detail-item">
+                        <strong>Experience:</strong>
+                        <span>{doctor.experience}</span>
+                      </div>
+                      <div className="detail-item">
+                        <strong>Languages:</strong>
+                        <span>{doctor.languages.join(" & ")}</span>
+                      </div>
+                      <div className="detail-item">
+                        <strong>Patients:</strong>
+                        <span>{doctor.patients}</span>
+                      </div>
+                    </div>
 
-            {/* Custom Pagination */}
-            <div className="swiper-pagination"></div>
-          </Swiper>
+                    <p className="doctor-description">{doctor.description}</p>
+
+                    {/* <button
+                      onClick={() =>
+                        handleWhatsAppConsultation(doctor.name)
+                      }
+                      className="consultation-btn"
+                    >
+                      <FaWhatsapp />
+                      Get Free Consultation
+                    </button> */}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* Benefits Section */}
