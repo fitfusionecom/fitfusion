@@ -182,6 +182,46 @@ export const getProductReviews = async ({
     })
 }
 
+export const getBlogs = async () => {
+    const headers = {
+        ...(await getAuthHeaders()),
+    }
+
+    return sdk.client.fetch<{
+        reviews: any[]
+        average_rating: number
+        limit: number
+        offset: number
+        count: number
+    }>(`/store/blogs`, {
+        headers,
+        query: {
+            limit: 10,
+            offset: 0,
+        },
+        next: {
+            ...(await getCacheOptions(`blogs`)),
+        },
+        cache: "force-cache",
+    })
+}
+
+export const getBlogBySlug = async (slug: string) => {
+    const headers = {
+        ...(await getAuthHeaders()),
+    }
+
+    return sdk.client.fetch<{
+        blog: any
+    }>(`/store/blogs/${slug}`, {
+        headers,
+        next: {
+            ...(await getCacheOptions(`blog-${slug}`)),
+        },
+    })
+
+}
+
 export const addProductReview = async (input: {
     title?: string
     content: string
