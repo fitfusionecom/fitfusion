@@ -9,6 +9,7 @@ export default function AboutUs() {
 
         style={{
           padding: "20px 20px",
+          marginBottom: "20px",
         }}
       >
         {/* YouTube Video */}
@@ -51,10 +52,25 @@ export default function AboutUs() {
               marginBottom: "20px",
             }}
           >
-            Discover the ancient wisdom of Ayurveda with our premium natural
-            products. We are committed to bringing you authentic, high-quality
-            ayurvedic solutions that promote holistic wellness and balance in
-            your life.
+            At {fitfusionConfig.brand.name}, we believe that true wellness lies
+            in the heart of nature. Our journey began with a simple yet powerful
+            vision to help people live healthier and happier lives through pure,
+            trusted, and side effect free herbal Ayurvedic products.
+          </p>
+          <p
+            style={{
+              color: "black",
+              fontSize: "1.1rem",
+              lineHeight: "1.6",
+              maxWidth: "800px",
+              margin: "0 auto",
+              marginBottom: "20px",
+            }}
+          >
+            Every product we create is made from 100% natural and authentic
+            Ayurvedic herbs, carefully sourced from trusted suppliers. This
+            dedication to quality and purity is why thousands of happy customers
+            are already a part of the {fitfusionConfig.brand.name} family.
           </p>
           <p
             style={{
@@ -65,11 +81,11 @@ export default function AboutUs() {
               margin: "0 auto",
             }}
           >
-            Founded in {fitfusionConfig.brand.foundedYear}, we have been
-            dedicated to preserving traditional ayurvedic practices while
-            incorporating modern quality standards. Our products are carefully
-            sourced, tested, and formulated to ensure the highest efficacy and
-            safety for our customers.
+            Our range is designed to address some of the most important aspects
+            of health. We provide natural solutions for men's health and sexual
+            wellness, offer herbal support for managing diabetes, help improve
+            digestion for daily comfort, and work to strengthen the immune
+            system so the body stays naturally protected.
           </p>
         </div>
 
@@ -86,6 +102,38 @@ export default function AboutUs() {
           >
             Our Ayurvedic Heritage
           </h2>
+
+          {/* Content about formula blending */}
+          <div style={{ marginBottom: "30px" }}>
+            <p
+              style={{
+                color: "black",
+                fontSize: "1.1rem",
+                lineHeight: "1.6",
+                maxWidth: "800px",
+                margin: "0 auto",
+                marginBottom: "20px",
+              }}
+            >
+              Each formula is the result of blending time-tested Ayurvedic
+              wisdom with modern research, ensuring that every pack delivers not
+              just results, but also trust.
+            </p>
+            <p
+              style={{
+                color: "black",
+                fontSize: "1.1rem",
+                lineHeight: "1.6",
+                maxWidth: "800px",
+                margin: "0 auto",
+              }}
+            >
+              Our latest launches – No More Addiction (a natural solution to
+              overcome harmful habits) and Sleep-O-Fit (herbal support for deep,
+              restful sleep) continue our mission of promoting complete physical
+              and mental well-being.
+            </p>
+          </div>
 
           {/* Banner Image */}
           <div
@@ -196,7 +244,7 @@ export default function AboutUs() {
               position: "relative",
             }}
           >
-            Our Mission & Vision
+            Our Mission
             <div
               style={{
                 width: "80px",
@@ -207,6 +255,37 @@ export default function AboutUs() {
               }}
             ></div>
           </h2>
+
+          {/* Mission Content */}
+          <div style={{ marginTop: "30px" }}>
+            <p
+              style={{
+                color: "black",
+                fontSize: "1.1rem",
+                lineHeight: "1.6",
+                maxWidth: "800px",
+                margin: "0 auto",
+                marginBottom: "20px",
+              }}
+            >
+              We don't just sell products we promote a lifestyle of health and
+              balance. At {fitfusionConfig.brand.name}, our mission is to help
+              people reconnect with nature, even in today's fast-paced life, and
+              achieve long term wellness the natural way.
+            </p>
+            <p
+              style={{
+                color: "#1a4d2e",
+                fontSize: "1.3rem",
+                fontWeight: "600",
+                margin: "0 auto",
+                fontStyle: "italic",
+              }}
+            >
+              {fitfusionConfig.brand.name} – The Power of Nature, For Your
+              Health
+            </p>
+          </div>
         </div>
 
         {/* Bottom Image Section */}
