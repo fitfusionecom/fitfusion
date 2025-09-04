@@ -11,10 +11,10 @@
 
 .explore-ayurveda-title {
   color: black; /* Dark green */
-  font-size: 36px;
+  font-size: 32px;
   font-weight: 600;
-  margin-bottom: 15px;
-  margin-top: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
   text-transform: capitalize;
 }
 
@@ -22,7 +22,7 @@
   width: 80px;
   height: 3px;
   background: #d4af37; /* Golden line */
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .explore-view-all-btn {
@@ -55,7 +55,7 @@
 /* Article Cards Styles */
 .explore-ayurveda-card {
   border-radius: 15px;
-  padding: 25px;
+  padding: 18px;
   height: 100%;
   transition: all 0.3s ease;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
@@ -70,7 +70,7 @@
 
 .explore-ayurveda-image {
   text-align: center;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .explore-ayurveda-image img {
@@ -88,19 +88,19 @@
 
 .explore-ayurveda-article-title {
   color: #2d5016; /* Dark green */
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 1.4;
-  margin-bottom: 15px;
-  min-height: 50px;
+  margin-bottom: 10px;
+  min-height: 40px;
 }
 
 .explore-ayurveda-article-desc {
   color: #333;
-  font-size: 14px;
-  line-height: 1.6;
-  margin-bottom: 20px;
-  min-height: 45px;
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 15px;
+  min-height: 35px;
 }
 
 .explore-ayurveda-read-more {
@@ -130,7 +130,7 @@
 /* Service Features Styles */
 .explore-service-feature {
   text-align: center;
-  padding: 20px;
+  padding: 12px;
   transition: all 0.3s ease;
 }
 
@@ -139,12 +139,12 @@
 }
 
 .explore-service-icon {
-  margin-bottom: 15px;
+  margin-bottom: 8px;
 }
 
 .explore-service-icon svg {
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   color: #d4af37; /* Dark green */
   transition: transform 0.3s ease;
 }
@@ -156,9 +156,9 @@
 
 .explore-service-title {
   color: white;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
 }
 
 .explore-service-subtitle {
@@ -198,15 +198,15 @@
 /* Responsive Design */
 @media (max-width: 991px) {
   .explore-ayurveda-title {
-    font-size: 30px;
+    font-size: 28px;
   }
 
   .explore-ayurveda-card {
-    padding: 20px;
+    padding: 15px;
   }
 
   .explore-ayurveda-article-title {
-    font-size: 16px;
+    font-size: 15px;
     min-height: auto;
   }
 
@@ -217,12 +217,12 @@
 
 @media (max-width: 767px) {
   .explore-ayurveda-title {
-    font-size: 26px;
+    font-size: 24px;
     text-align: center;
   }
 
   .explore-ayurveda-line {
-    margin: 0 auto 20px;
+    margin: 0 auto 15px;
   }
 
   .explore-view-all-btn {
@@ -232,11 +232,11 @@
   }
 
   .explore-ayurveda-card {
-    padding: 20px 15px;
+    padding: 15px 12px;
   }
 
   .explore-ayurveda-article-title {
-    font-size: 15px;
+    font-size: 14px;
     text-align: center;
   }
 
@@ -246,38 +246,38 @@
 
   .explore-ayurveda-read-more {
     position: relative;
-    margin: 15px auto 0;
+    margin: 12px auto 0;
     bottom: auto;
     right: auto;
   }
 
   .explore-service-feature {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
 }
 
 @media (max-width: 575px) {
   .explore-ayurveda-title {
-    font-size: 24px;
+    font-size: 22px;
   }
 
   .explore-ayurveda-card {
-    padding: 15px;
+    padding: 12px;
   }
 
   .explore-ayurveda-article-title {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .explore-ayurveda-article-desc {
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .explore-service-title {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .explore-service-subtitle {
-    font-size: 13px;
+    font-size: 12px;
   }
 }

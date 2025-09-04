@@ -42,7 +42,8 @@ export default function ExploreAyurveda() {
           className="row"
           style={{
             background: "black",
-            paddingTop: "25px",
+            paddingTop: "15px",
+            paddingBottom: "15px",
             borderRadius: "10px",
             overflow: "hidden",
           }}
@@ -67,7 +68,7 @@ export default function ExploreAyurveda() {
         </div>
 
         {/* Header Section */}
-        <div className="row align-items-center mb-3 mt-4">
+        <div className="row align-items-center mb-2 mt-3">
           <div className="col-lg-8 col-md-8 col-sm-12">
             <div className="explore-ayurveda-header">
               <h2 className="explore-ayurveda-title">Explore Ayurveda</h2>
@@ -82,7 +83,7 @@ export default function ExploreAyurveda() {
         </div>
 
         {/* Articles Cards Section */}
-        <div className="row mb-5">
+        <div className="row mb-3">
           {blogPosts.map((post) => (
             <div key={post.id} className="col-lg-6 col-md-6 col-sm-12 mb-4">
               <div
