@@ -246,20 +246,30 @@ export const addProductReview = async (input: {
 }
 
 
-export const hasProductReview = async () => {
+export const hasProductReview = async ({
+    customerId,
+    productId,
+}: {
+    customerId: string
+    productId: string
+}) => {
     const headers = {
         ...(await getAuthHeaders()),
     }
 
-    return sdk.client.fetch(`/store/reviews`, {
+    return sdk.client.fetch<{
+        has_review: boolean
+        review?: StoreProductReview
+    }>(`/store/reviews`, {
         method: "GET",
         headers,
         query: {
-            customer_id: "cus_01K0YQZJKNYMECGNAFZMNA76V1",
-            product_id: "prod_01K3AWFB0P38W103YPCAH6Y086",
+            customer_id: customerId,
+            product_id: productId,
         },
         next: {
-            ...(await getCacheOptions(`product-has-review`)),
+            ...(await getCacheOptions(`product-has-review-${customerId}-${productId}`)),
         },
+        cache: "force-cache",
     })
 }

@@ -27,6 +27,7 @@ export default function ProductReviews({ productId }: ProductReviewsProps) {
   const [rating, setRating] = useState(0);
   const [hasMoreReviews, setHasMoreReviews] = useState(false);
   const [count, setCount] = useState(0);
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
 
   useEffect(() => {
     getProductReviews({
@@ -45,7 +46,15 @@ export default function ProductReviews({ productId }: ProductReviewsProps) {
       setHasMoreReviews(count > limit * page);
       setCount(count);
     });
-  }, [page]);
+  }, [page, refreshTrigger]);
+
+  // Function to refresh reviews when a new review is submitted
+  const handleReviewSubmitted = () => {
+    // Reset reviews and trigger refresh
+    setReviews([]);
+    setPage(1);
+    setRefreshTrigger((prev) => prev + 1);
+  };
 
   return (
     <div className="product-page-constraint">
@@ -180,7 +189,10 @@ export default function ProductReviews({ productId }: ProductReviewsProps) {
                 </Swiper>
 
                 <div className="mt-4 d-flex justify-content-center align-items-center">
-                  <ProductReviewsForm productId={productId} />
+                  <ProductReviewsForm
+                    productId={productId}
+                    onReviewSubmitted={handleReviewSubmitted}
+                  />
                 </div>
               </div>
             </div>

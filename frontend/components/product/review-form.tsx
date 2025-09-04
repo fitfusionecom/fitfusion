@@ -3,20 +3,24 @@
 import { useState, useEffect } from "react";
 import { retrieveCustomer } from "@/lib/data/customer";
 import { HttpTypes } from "@medusajs/types";
-import { addProductReview } from "@/lib/data/product";
+import { addProductReview, hasProductReview } from "@/lib/data/product";
 import { FaStar, FaTimes, FaSpinner } from "react-icons/fa";
 
 type ProductReviewsFormProps = {
   productId: string;
+  onReviewSubmitted?: () => void;
 };
 
 export default function ProductReviewsForm({
   productId,
+  onReviewSubmitted,
 }: ProductReviewsFormProps) {
   const [customer, setCustomer] = useState<HttpTypes.StoreCustomer | null>(
     null
   );
   const [isLoading, setIsLoading] = useState(false);
+  const [isCheckingReview, setIsCheckingReview] = useState(false);
+  const [hasExistingReview, setHasExistingReview] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [title, setTitle] = useState(`${productId}`);
   const [content, setContent] = useState("");
@@ -32,8 +36,58 @@ export default function ProductReviewsForm({
     retrieveCustomer().then(setCustomer);
   }, []);
 
+  // Check if customer has already reviewed this product
+  useEffect(() => {
+    if (!customer?.id) {
+      return;
+    }
+
+    const checkExistingReview = async () => {
+      setIsCheckingReview(true);
+      try {
+        const result = await hasProductReview({
+          customerId: customer.id,
+          productId: productId,
+        });
+        setHasExistingReview(result.has_review);
+      } catch (error) {
+        console.error("Error checking existing review:", error);
+        // If there's an error, assume no review exists to allow form to show
+        setHasExistingReview(false);
+      } finally {
+        setIsCheckingReview(false);
+      }
+    };
+
+    checkExistingReview();
+  }, [customer?.id, productId]);
+
   if (!customer) {
     return <></>;
+  }
+
+  // Show loading state while checking for existing review
+  if (isCheckingReview) {
+    return (
+      <div className="text-center">
+        <div className="d-flex align-items-center justify-content-center">
+          <FaSpinner className="fa-spin me-2" />
+          <span>Checking for existing review...</span>
+        </div>
+      </div>
+    );
+  }
+
+  // If customer has already reviewed, show a message instead of the form
+  if (hasExistingReview) {
+    return (
+      <div className="text-center">
+        <div className="alert alert-info d-inline-block" role="alert">
+          <FaStar className="me-2" />
+          You have already reviewed this product. Thank you for your feedback!
+        </div>
+      </div>
+    );
   }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -62,6 +116,14 @@ export default function ProductReviewsForm({
       setTitle("");
       setContent("");
       setRating(0);
+
+      // Update the has review state since user just submitted a review
+      setHasExistingReview(true);
+
+      // Notify parent component that a review was submitted
+      if (onReviewSubmitted) {
+        onReviewSubmitted();
+      }
 
       // Close form after a short delay to show success message
       setTimeout(() => {
