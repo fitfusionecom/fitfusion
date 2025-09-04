@@ -3,7 +3,7 @@
 import { sdk } from "@/lib/config";
 import ShopNotFound from "./not-found";
 import { HttpTypes } from "@medusajs/types";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
 import ProductCard from "../blocks/product-card";
 import { useInfiniteQuery, useQuery } from "react-query";
@@ -67,6 +67,14 @@ const ProductCardSkeleton = () => (
           opacity: 1;
         }
       }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
     `}</style>
   </div>
 );
@@ -122,24 +130,7 @@ const ShopTemplate = ({
   ]) as any;
 
   const [sortDropdownOpen, setSortDropdownOpen] = useState(false);
-
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as Element;
-      if (!target.closest(".sort-dropdown-container")) {
-        setSortDropdownOpen(false);
-      }
-    };
-
-    if (sortDropdownOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [sortDropdownOpen]);
+  const observerRef = useRef<HTMLDivElement>(null);
 
   const {
     data,
@@ -164,6 +155,52 @@ const ShopTemplate = ({
     staleTime: 2 * 60 * 1000, // 2 minutes
     retry: 2,
   });
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (!target.closest(".sort-dropdown-container")) {
+        setSortDropdownOpen(false);
+      }
+    };
+
+    if (sortDropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [sortDropdownOpen]);
+
+  // Intersection Observer for infinite scroll
+  const handleObserver = useCallback(
+    (entries: IntersectionObserverEntry[]) => {
+      const target = entries[0];
+      if (target.isIntersecting && hasNextPage && !isFetchingNextPage) {
+        fetchNextPage();
+      }
+    },
+    [fetchNextPage, hasNextPage, isFetchingNextPage]
+  );
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(handleObserver, {
+      threshold: 0.1,
+      rootMargin: "100px",
+    });
+
+    if (observerRef.current) {
+      observer.observe(observerRef.current);
+    }
+
+    return () => {
+      if (observerRef.current) {
+        observer.unobserve(observerRef.current);
+      }
+    };
+  }, [handleObserver]);
 
   const products = data?.pages.flat() || [];
 
@@ -575,37 +612,41 @@ const ShopTemplate = ({
                         </div>
                       ))}
 
-                      {/* Load more button */}
+                      {/* Infinite scroll trigger and loading indicator */}
                       {hasNextPage && (
-                        <div className="col-12 text-center mt-5">
-                          <button
-                            onClick={() => fetchNextPage()}
-                            disabled={isFetchingNextPage}
-                            className="ayur-btn"
+                        <div className="col-12 text-center mt-4">
+                          <div
+                            ref={observerRef}
                             style={{
-                              background: isFetchingNextPage
-                                ? "#d6cdca"
-                                : "#90b644",
-                              borderColor: isFetchingNextPage
-                                ? "#d6cdca"
-                                : "#90b644",
-                              color: "white",
-                              border: "none",
-                              padding: "15px 40px",
-                              borderRadius: "8px",
-                              cursor: isFetchingNextPage
-                                ? "not-allowed"
-                                : "pointer",
-                              fontSize: "1.1rem",
-                              fontWeight: "500",
-                              transition: "all 0.3s ease",
-                              boxShadow: "0 4px 12px rgba(144, 182, 68, 0.3)",
+                              height: "20px",
+                              marginBottom: "20px",
                             }}
-                          >
-                            {isFetchingNextPage
-                              ? "Loading..."
-                              : "Load More Products"}
-                          </button>
+                          />
+                          {isFetchingNextPage && (
+                            <div
+                              style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                gap: "8px",
+                                color: "#90b644",
+                                fontSize: "0.9rem",
+                                fontWeight: "500",
+                              }}
+                            >
+                              <div
+                                style={{
+                                  width: "20px",
+                                  height: "20px",
+                                  border: "2px solid #e0e0e0",
+                                  borderTop: "2px solid #90b644",
+                                  borderRadius: "50%",
+                                  animation: "spin 1s linear infinite",
+                                }}
+                              />
+                              Loading more products...
+                            </div>
+                          )}
                         </div>
                       )}
                     </>
