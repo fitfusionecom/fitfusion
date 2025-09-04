@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import { useRef, useState, useEffect } from "react";
 import "./Banner.css";
+import Link from "next/link";
+import Image from "next/image";
+import { useRef, useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
@@ -113,9 +113,6 @@ export default function Banner() {
         className="swiper-button-next swiper-button-custom banner-next"
         aria-label="Next slide"
       ></button>
-
-      {/* Custom Pagination */}
-      <div className="swiper-pagination banner-pagination"></div>
     </section>
   );
 }
