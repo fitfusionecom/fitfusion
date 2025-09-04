@@ -56,7 +56,7 @@ export default async function Home() {
       {/* <WhySection /> */}
       {/* <Testimonials /> */}
       <DoctorsConsultation />
-      <ExploreAyurveda />
+      {/* <ExploreAyurveda /> */}
       {/* <Team /> */}
     </>
   );
