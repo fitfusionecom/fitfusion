@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { getRegion } from "@/lib/data/regions";
-import { listProducts } from "@/lib/data/product";
+import { listProducts, getProductReviews } from "@/lib/data/product";
 import ProductDetails from "@/components/product";
 import ProductReviews from "@/components/product/reviews";
 import RelatedProducts from "@/components/product/related";
@@ -90,6 +90,12 @@ export default async function Product(props: Props) {
     queryParams: { handle: params.handle },
   }).then(({ response }) => response.products[0]);
 
+  const reviews = await getProductReviews({
+    productId: pricedProduct.id,
+    limit: 10,
+    offset: 0,
+  });
+
   const response = await fetch(`${process.env.MEDUSA_BACKEND_URL}/info`);
   const info = await response.json();
 
@@ -100,6 +106,7 @@ export default async function Product(props: Props) {
   return (
     <>
       <ProductDetails
+        reviews={reviews}
         product={pricedProduct}
         region={region}
         countryCode={country_code}

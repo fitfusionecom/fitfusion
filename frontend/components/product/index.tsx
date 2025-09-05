@@ -24,6 +24,7 @@ type ProductDetailsProps = {
   product: HttpTypes.StoreProduct;
   region: HttpTypes.StoreRegion;
   countryCode: string;
+  reviews: any;
 };
 
 const optionsAsKeymap = (
@@ -39,6 +40,7 @@ const ProductDetails = ({
   product,
   region,
   countryCode,
+  reviews,
 }: ProductDetailsProps) => {
   const [quantity, setQuantity] = useState(1);
   const [options, setOptions] = useState<Record<string, string | undefined>>(
@@ -245,7 +247,11 @@ const ProductDetails = ({
                   )}
                 </div>
 
-                <div>⭐ 4.8 (40 reviews)</div>
+                {reviews && (
+                  <div>
+                    ⭐ {reviews?.average_rating} ({reviews?.count} reviews)
+                  </div>
+                )}
 
                 <ProductPrice product={product} variant={selectedVariant} />
 

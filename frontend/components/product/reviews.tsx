@@ -174,7 +174,6 @@ export default function ProductReviews({ productId }: ProductReviewsProps) {
 
                           {/* Source */}
                           <div className="d-flex align-items-center">
-                            <div className="me-2"></div>
                             <small
                               className="text-muted"
                               style={{ fontSize: "12px" }}
