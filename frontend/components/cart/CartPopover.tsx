@@ -14,6 +14,7 @@ import LineItemUnitPrice from "./line-item-unit-price";
 import { convertToLocale } from "@/lib/util/money";
 import { deleteLineItem, updateLineItem } from "@/lib/data/cart";
 import { useIsMobile } from "@/lib/hooks/use-mobile";
+import Link from "next/link";
 
 interface CartPopoverProps {
   isOpen: boolean;
@@ -226,8 +227,8 @@ export default function CartPopover({
               <BiCart className="cart-icon" />
               <span>Cart ({itemCount || 0})</span>
             </div>
-            <button 
-              className="close-btn-mobile" 
+            <button
+              className="close-btn-mobile"
               onClick={onClose}
               aria-label="Close cart"
             >
@@ -254,12 +255,9 @@ export default function CartPopover({
             <div className="empty-cart">
               <div className="empty-cart-icon">🛒</div>
               <p>Your cart is empty</p>
-              <button
-                className="shop-now-btn"
-                onClick={() => router.push("/shop")}
-              >
+              <Link href="/" className="shop-now-btn text-white">
                 Start Shopping
-              </button>
+              </Link>
             </div>
           ) : (
             <>

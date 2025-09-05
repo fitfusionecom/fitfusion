@@ -6,6 +6,7 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 // import RelatedProductsInline from "./related-products-inline";
 import "./product-accordion.css";
 import "./product-description.css";
+import Image from "next/image";
 
 type ProductAccordionProps = {
   product: HttpTypes.StoreProduct;
@@ -14,6 +15,7 @@ type ProductAccordionProps = {
     desc1: string;
     desc2: string;
     desc3: string;
+    banner: string;
   };
 };
 
@@ -114,8 +116,8 @@ export default function ProductAccordion({
       title: "Additional Information",
       content: (
         <div className="ayur-product-info">
-          <div className="row">
-            <div className="col-md-6">
+          {/* <div className="row"> */}
+          {/* <div className="col-md-6">
               <h5>Product Details</h5>
               <ul className="list-unstyled">
                 <li>
@@ -139,8 +141,8 @@ export default function ProductAccordion({
                   <span className="badge bg-success">{product.status}</span>
                 </li>
               </ul>
-            </div>
-            <div className="col-md-6">
+            </div> */}
+          {/* <div className="col-md-6">
               <h5>Variants & Options</h5>
               <ul className="list-unstyled">
                 <li>
@@ -164,16 +166,21 @@ export default function ProductAccordion({
                   </li>
                 )}
               </ul>
-            </div>
-          </div>
-
+            </div> */}
+          {/* </div> */}
           {product.metadata && Object.keys(product.metadata).length > 0 && (
-            <div className="mt-4">
-              <h5>Additional Specifications</h5>
+            <div>
               <div className="row">
                 {Object.entries(product.metadata).map(([key, value]) => (
                   <div key={key} className="col-md-6 mb-2">
-                    <strong>{key}:</strong> {String(value)}
+                    <strong
+                      style={{
+                        textTransform: "capitalize",
+                      }}
+                    >
+                      {key}:
+                    </strong>{" "}
+                    {String(value)}
                   </div>
                 ))}
               </div>
@@ -186,6 +193,23 @@ export default function ProductAccordion({
 
   return (
     <div className="ayur-product-accordion">
+      {info && info?.banner && (
+        <div className="container">
+          <div className="accordion-item w-full">
+            <div className="accordion-collapse collapse show w-full">
+              <div className="accordion-body d-flex justify-content-center align-items-center w-full p-0">
+                <img
+                  className="border w-100"
+                  src={info.banner}
+                  alt="Banner"
+                  style={{ objectFit: "cover", width: "100%" }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="container">
         <div className="row">
           <div className="col-lg-12">

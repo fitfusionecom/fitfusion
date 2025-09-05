@@ -66,7 +66,7 @@ export default function GoogleReviews() {
         {/* Header */}
         <div className="row mb-4">
           <div className="col-12 text-center">
-            <h2 className="h2 text-dark mb-2">Fit Fusion Reviews</h2>
+            <h2 className="h2 text-dark mb-2">Customer Reviews</h2>
             <div
               className="mx-auto"
               style={{

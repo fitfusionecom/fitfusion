@@ -25,7 +25,7 @@ export default function Newsletter() {
               <h2>Subscribe to Fit Fusion Ayurveda</h2>
               <p>
                 Find out all about our latest offers, new products, and guides
-                to Ayurveda via FitFusion Ayurveda newsletters
+                to Ayurveda via Fit Fusion Ayurveda newsletters
               </p>
             </div>
 

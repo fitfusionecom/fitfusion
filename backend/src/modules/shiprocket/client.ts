@@ -186,7 +186,7 @@ class Shiprocket {
             ...data,
           },
         })
-          .then(() => {}) //This request doesn't return any response body
+          .then(() => { }) //This request doesn't return any response body
           .catch((err) => {
             console.log(err.response.data);
             throw new Error("Shiprocket Order: Failed to cancelOrder");

@@ -26,6 +26,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "fitfusion-alpha.vercel.app",
       },
+      {
+        protocol: "https",
+        hostname: "myckc.s3.us-east-1.amazonaws.com",
+      },
     ],
   },
 };

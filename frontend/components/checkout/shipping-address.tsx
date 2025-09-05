@@ -212,7 +212,6 @@ const ShippingAddress = ({
               placeholder=""
               value={formData["shipping_address.company"]}
               onChange={handleChange}
-              required
               data-testid="shipping-company-input"
             />
           </div>
