@@ -104,7 +104,7 @@ export async function signup(_currentState: unknown, formData: FormData) {
 }
 
 export async function directLogin(_currentState: unknown, formData: FormData, state: string) {
-  const password = "CUSTOMPASSWORD"
+  const password = formData.get("password") as string
   const phone = formData.get("phone") as string
   const email = formData.get("email") as string
   try {

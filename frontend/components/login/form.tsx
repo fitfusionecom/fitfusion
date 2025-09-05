@@ -2,49 +2,33 @@
 
 import "./LoginForm.css";
 import Link from "next/link";
-import Timer from "./timer";
 import { useState } from "react";
 import { sdk } from "@/lib/config";
 import { directLogin } from "@/lib/data/customer";
 
 export default function LoginForm() {
-  const [otp, setOtp] = useState("");
   const [error, setError] = useState("");
+  const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [otpTimeout, setOtpTimeout] = useState(false);
   const [mobileNumber, setMobileNumber] = useState("");
-  const [showOtpView, setShowOtpView] = useState(false);
-
-  async function sendOtp() {
-    try {
-      setIsLoading(true);
-      setError("");
-
-      if (mobileNumber.length !== 10 || !/^\d+$/.test(mobileNumber)) {
-        setError("Please enter a valid 10-digit mobile number");
-        return;
-      }
-      setShowOtpView(true);
-      setOtpTimeout(true);
-    } catch (err) {
-      setError("Failed to send OTP. Please try again.");
-    } finally {
-      setIsLoading(false);
-    }
-  }
 
   async function onSubmit() {
     try {
       setIsLoading(true);
       setError("");
-      if (otp.length !== 6 || !/^\d+$/.test(otp)) {
-        setError("Please enter a valid 6-digit OTP");
+
+      if (password.length < 6) {
+        setError("Password must be at least 6 characters long.");
+        setIsLoading(false);
         return;
       }
+
       const email = `${mobileNumber}@fitfusion.com`;
       const formData = new FormData();
       formData.append("email", email);
+      formData.append("password", password);
       formData.append("phone", mobileNumber);
+
       const customer: any = await sdk.client.fetch(`/store/custom`, {
         method: "POST",
         body: {
@@ -52,21 +36,20 @@ export default function LoginForm() {
         },
       });
       const state = customer?.data?.customer ? "login" : "register";
-      await directLogin(null, formData, state);
-      if (typeof window !== "undefined") {
-        window.location.replace("/");
+      const response = await directLogin(null, formData, state);
+
+      if (response && response.includes("Error:")) {
+        throw new Error(response.replace("Error: ", ""));
+      } else {
+        window.location.replace("/account");
       }
     } catch (err) {
-      setError("OTP verification failed. Please try again.");
+      console.log("err: ", err);
+      setError(err.toString());
     } finally {
       setIsLoading(false);
     }
   }
-
-  const handleResendOtp = () => {
-    setOtp("");
-    sendOtp();
-  };
 
   return (
     <div className="login-form-home-theme">
@@ -88,91 +71,57 @@ export default function LoginForm() {
             onSubmit={(e) => e.preventDefault()}
             autoComplete="off"
           >
-            {!showOtpView && (
-              <div className="login-form-group">
-                <label htmlFor="mobileNumber" className="login-label">
-                  Mobile Number <span className="required">*</span>
-                </label>
-                <input
-                  type="tel"
-                  id="mobileNumber"
-                  className="login-input"
-                  placeholder="Enter your mobile number"
-                  value={mobileNumber}
-                  onChange={(e) => setMobileNumber(e.target.value)}
-                  pattern="[0-9]{10}"
-                  title="Please enter a valid 10-digit mobile number"
-                  required
-                  autoFocus
-                />
-              </div>
-            )}
-
-            {showOtpView && (
-              <div className="login-form-group">
-                <label htmlFor="otp" className="login-label">
-                  OTP <span className="required">*</span>
-                </label>
-                <input
-                  type="text"
-                  id="otp"
-                  className="login-input otp-input"
-                  placeholder="Enter 6-digit OTP"
-                  value={otp}
-                  onChange={(e) => setOtp(e.target.value)}
-                  maxLength={6}
-                  pattern="[0-9]{6}"
-                  title="Please enter a valid 6-digit OTP"
-                  required
-                  autoFocus
-                />
-              </div>
-            )}
-
-            {!showOtpView && (
-              <button
-                type="button"
-                className="login-btn"
-                onClick={sendOtp}
-                disabled={isLoading}
-              >
-                {isLoading ? (
-                  <span>
-                    <i className="fa fa-spinner fa-spin me-2"></i>
-                    Sending OTP...
-                  </span>
-                ) : (
-                  "Send OTP"
-                )}
-              </button>
-            )}
-
-            {showOtpView && (
-              <button
-                type="button"
-                className="login-btn"
-                onClick={onSubmit}
-                disabled={isLoading}
-              >
-                {isLoading ? (
-                  <span>
-                    <i className="fa fa-spinner fa-spin me-2"></i>
-                    Verifying OTP...
-                  </span>
-                ) : (
-                  "Verify OTP"
-                )}
-              </button>
-            )}
-
-            {showOtpView && (
-              <Timer
-                loading={isLoading}
-                handleResend={handleResendOtp}
-                otpTimeout={otpTimeout}
-                setOtpTimeout={setOtpTimeout}
+            <div className="login-form-group">
+              <label htmlFor="mobileNumber" className="login-label">
+                Mobile Number <span className="required">*</span>
+              </label>
+              <input
+                type="tel"
+                id="mobileNumber"
+                className="login-input"
+                placeholder="Enter your mobile number"
+                value={mobileNumber}
+                onChange={(e) => setMobileNumber(e.target.value)}
+                pattern="[0-9]{10}"
+                title="Please enter a valid 10-digit mobile number"
+                required
+                autoFocus
               />
-            )}
+            </div>
+
+            <div className="login-form-group">
+              <label htmlFor="otp" className="login-label">
+                Password <span className="required">*</span>
+              </label>
+              <input
+                type="text"
+                id="otp"
+                className="login-input"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                maxLength={16}
+                title="Please enter a valid password"
+                required
+                autoFocus
+              />
+            </div>
+
+            <button
+              type="button"
+              className="login-btn"
+              onClick={onSubmit}
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <span>
+                  <i className="fa fa-spinner fa-spin me-2"></i>
+                  Submitting...
+                </span>
+              ) : (
+                "Submit"
+              )}
+            </button>
           </form>
 
           <div className="login-divider">
