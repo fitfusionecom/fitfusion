@@ -81,13 +81,6 @@ export default function ProductCard({ product }: ProductCardProps) {
 
       {/* Product Information Section */}
       <div className="product-card-info">
-        {/* Rating */}
-        <div className="product-rating">
-          <span className="star">★</span>
-          <span className="rating-text">4.6 (13 reviews)</span>
-        </div>
-
-        {/* Product Title */}
         <h3
           className="product-title text-center"
           style={{
