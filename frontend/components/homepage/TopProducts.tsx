@@ -30,15 +30,15 @@ export default function TopProducts({
 }: TopProductsProps) {
   return (
     <div className="ayur-bgcover my-md-3 pb-0 pb-md-3">
-      <div className="container">
+      <div className="container pt-3">
         <div className="row align-items-center mb-3">
-          <div className="col-lg-8 col-md-8 col-sm-12">
+          <div className="col-lg-8 col-md-8 col-6">
             <div className="explore-ayurveda-header">
               <h2 className="explore-ayurveda-title">{title}</h2>
               <div className="explore-ayurveda-line"></div>
             </div>
           </div>
-          <div className="col-lg-4 col-md-4 col-sm-12 text-end">
+          <div className="col-lg-4 col-md-4 col-6 text-end">
             <Link
               href={`/shop?category_handle=${category_handle}`}
               className="explore-view-all-btn"

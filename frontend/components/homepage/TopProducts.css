@@ -1,3 +1,30 @@
+.explore-view-all-btn {
+  background: #dcce91; /* Dark olive green */
+  color: #000000;
+  padding: 0px 20px;
+  min-width: 140px;
+  height: 50px;
+  line-height: 46px;
+  border: none;
+  border-radius: 50px;
+  text-transform: capitalize;
+  outline: none;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-decoration: none;
+  border: 2px solid #dcce91;
+}
+
+.explore-view-all-btn:hover {
+  background: black;
+  color: white;
+  text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(107, 142, 35, 0.3);
+}
+
 .top-products-carousel {
   position: relative;
   margin-bottom: 2rem;
@@ -94,6 +121,14 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  .explore-view-all-btn {
+    display: block;
+    margin: 0 auto;
+
+    padding: 0px 10px;
+    text-align: center;
+  }
+
   .top-products-swiper {
     padding: 0 30px;
   }
