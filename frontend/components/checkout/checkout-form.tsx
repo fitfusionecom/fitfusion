@@ -6,6 +6,7 @@ import Shipping from "@/components/checkout/shipping";
 import Payment from "@/components/checkout/payment";
 import Review from "@/components/checkout/review";
 import "./checkout-form.css";
+import QuickCheckout from "./quick-checkout";
 
 export default async function CheckoutForm({
   cart,
@@ -31,16 +32,14 @@ export default async function CheckoutForm({
     <div className="checkout-form-container">
       <div className="checkout-form-wrapper">
         <Addresses cart={cart} customer={customer} isBuyNow={isBuyNow} />
-        <Shipping
+
+        <QuickCheckout
+          isBuyNow={isBuyNow}
           cart={cart}
           availableShippingMethods={shippingMethods}
-          isBuyNow={isBuyNow}
-        />
-        <Payment
-          cart={cart}
           availablePaymentMethods={paymentMethods}
-          isBuyNow={isBuyNow}
         />
+
         <Review cart={cart} isBuyNow={isBuyNow} />
       </div>
     </div>

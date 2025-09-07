@@ -99,7 +99,7 @@ const Addresses = ({
               className="ayur-btn ayur-btn-primary px-5"
               data-testid="submit-address-button"
             >
-              Continue to delivery
+              Next
             </button>
 
             {message && <div className="text-red-500">{message}</div>}

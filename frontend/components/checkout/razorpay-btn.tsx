@@ -1,6 +1,5 @@
 import { Button } from "@medusajs/ui";
 // import Spinner from "@modules/common/icons/spinner";
-import Spinner from "../blocks/spinner";
 import React, { useCallback, useEffect, useState } from "react";
 import { useRazorpay, RazorpayOrderOptions } from "react-razorpay";
 import { HttpTypes } from "@medusajs/types";
@@ -11,6 +10,7 @@ import {
 } from "@/lib/data/cart";
 
 import { CurrencyCode } from "react-razorpay/dist/constants/currency";
+import ButtonSpinner from "../blocks/button-spinner";
 export const RazorpayPaymentButton = ({
   session,
   notReady,
@@ -125,7 +125,7 @@ export const RazorpayPaymentButton = ({
           handlePayment();
         }}
       >
-        {submitting ? <Spinner /> : "Place Order"}
+        {submitting ? <ButtonSpinner /> : "Place Order"}
       </Button>
       {errorMessage && (
         <div className="text-red-500 text-small-regular mt-2">

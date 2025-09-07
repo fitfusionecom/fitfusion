@@ -14,3 +14,94 @@ body {
     padding-top: 108px; /* 28px (Offer small mobile) + 80px (Header mobile) */
   }
 }
+
+/* Shipping Method Buttons Styles */
+.shipping-methods-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.shipping-method-btn {
+  background: white;
+  border: 2px solid #e5e5e5;
+  border-radius: 8px;
+  padding: 16px 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.shipping-method-btn:hover {
+  border-color: #333;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.shipping-method-btn.selected {
+  background: #000;
+  border-color: #000;
+  color: white;
+}
+
+.shipping-method-btn.selected:hover {
+  background: #333;
+  border-color: #333;
+}
+
+.shipping-method-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.shipping-method-btn.loading {
+  pointer-events: none;
+}
+
+.shipping-method-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+  align-items: flex-start;
+}
+
+.shipping-method-name {
+  font-weight: 600;
+  font-size: 16px;
+  color: inherit;
+}
+
+.shipping-method-id {
+  font-size: 12px;
+  color: #666;
+  font-family: monospace;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.shipping-method-btn.selected .shipping-method-id {
+  color: #ccc;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .shipping-method-btn {
+    padding: 14px 16px;
+  }
+
+  .shipping-method-name {
+    font-size: 15px;
+  }
+
+  .shipping-method-id {
+    font-size: 11px;
+  }
+}
