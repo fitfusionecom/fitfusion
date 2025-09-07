@@ -91,11 +91,13 @@ export default function ProductCard({ product }: ProductCardProps) {
             minHeight: "unset",
           }}
         >
-          <Link href={`/product/${product.handle}`}>{product.title}</Link>
+          <Link href={`/product/${product.handle}`}>
+            {product.title.replace(/Fit Fusion Ayurveda\s*[-|:]*\s*/i, "")}
+          </Link>
         </h3>
 
         {/* Product Benefits */}
-        <p className="product-benefits text-center">{getProductBenefits()}</p>
+        <p className="product-benefits text-center">{product.subtitle}</p>
 
         {/* Volume Options */}
         {/* {hasVariants && (
