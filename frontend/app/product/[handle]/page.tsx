@@ -3,10 +3,14 @@ import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { getRegion } from "@/lib/data/regions";
 import ProductDetails from "@/components/product";
-import ProductReviews from "@/components/product/reviews";
-import RelatedProducts from "@/components/product/related";
-import { listProducts, getProductReviews } from "@/lib/data/product";
-import ProductAccordion from "@/components/product/product-accordion";
+import { listProducts, getProductReviews, getInfo } from "@/lib/data/product";
+import dynamic from "next/dynamic";
+
+const RelatedProducts = dynamic(() => import("@/components/product/related"));
+const ProductReviews = dynamic(() => import("@/components/product/reviews"));
+const ProductAccordion = dynamic(
+  () => import("@/components/product/product-accordion")
+);
 
 type Props = {
   params: Promise<{ handle: string }>;
@@ -96,8 +100,7 @@ export default async function Product(props: Props) {
     offset: 0,
   });
 
-  const response = await fetch(`${process.env.MEDUSA_BACKEND_URL}/info`);
-  const info = await response.json();
+  const info = await getInfo();
 
   if (!pricedProduct) {
     notFound();

@@ -5,8 +5,6 @@ import { HttpTypes } from "@medusajs/types"
 import { sortProducts } from "@/lib/util/sort-products"
 import { getAuthHeaders, getCacheOptions } from "./cookies"
 
-const region_id = process.env.NEXT_PUBLIC_REGION_ID
-
 
 export type StoreProductReview = {
     id: string
@@ -36,6 +34,7 @@ export const listProducts = async ({
         throw new Error("Country code or region ID is required")
     }
 
+    const region_id = process.env.NEXT_PUBLIC_REGION_ID
     const limit = queryParams?.limit || 12
     const _pageParam = Math.max(pageParam, 1)
     const offset = (_pageParam - 1) * limit
@@ -270,6 +269,25 @@ export const hasProductReview = async ({
         next: {
             ...(await getCacheOptions(`product-has-review-${customerId}-${productId}`)),
         },
+        cache: "force-cache",
+    })
+}
+
+export const getInfo = async () => {
+    const headers = {
+        ...(await getAuthHeaders()),
+    }
+
+    const next = {
+        ...(await getCacheOptions("info")),
+    }
+
+    return sdk.client.fetch<{
+        info: any[]
+    }>(`/info`, {
+        method: "GET",
+        headers,
+        next,
         cache: "force-cache",
     })
 }

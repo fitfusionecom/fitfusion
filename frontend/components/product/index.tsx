@@ -19,6 +19,7 @@ import { BiCheck } from "react-icons/bi";
 import ProductFeature from "./product-feature";
 import PaymentOptions from "./payment-options";
 import BuyNowButton from "@/components/blocks/buy-now-button";
+import ButtonSpinner from "@/components/blocks/button-spinner";
 
 type ProductDetailsProps = {
   product: HttpTypes.StoreProduct;
@@ -357,37 +358,46 @@ const ProductDetails = ({
                     </span>
                   </p>
 
-                  <div className="d-md-flex d-grid gap-2">
-                    <button
-                      className="ayur-btn btn btn-primary"
-                      style={{
-                        padding: "10px 50px",
-                      }}
-                      onClick={handleAddToCart}
-                      disabled={
-                        !inStock ||
-                        !selectedVariant ||
-                        isAdding ||
-                        !isValidVariant
-                      }
-                    >
-                      {!selectedVariant && !options
-                        ? "Select variant"
-                        : !inStock || !isValidVariant
-                        ? "Out of stock"
-                        : `Add to cart${isAdding ? "..." : ""}`}
-                    </button>
+                  {selectedVariant && (
+                    <div className="d-md-flex d-grid gap-2">
+                      <button
+                        className="ayur-btn btn btn-primary"
+                        style={{
+                          padding: "10px 50px",
+                        }}
+                        onClick={handleAddToCart}
+                        disabled={
+                          !inStock ||
+                          !selectedVariant ||
+                          isAdding ||
+                          !isValidVariant
+                        }
+                      >
+                        {!selectedVariant ? (
+                          "Select variant"
+                        ) : !inStock || !isValidVariant ? (
+                          "Out of stock"
+                        ) : (
+                          <>
+                            {isAdding && <ButtonSpinner />}
+                            Add to cart
+                          </>
+                        )}
+                      </button>
 
-                    <BuyNowButton
-                      product={product}
-                      inStock={inStock}
-                      quantity={quantity}
-                      countryCode={countryCode}
-                      isValidVariant={isValidVariant}
-                      selectedVariant={selectedVariant}
-                      disabled={!inStock || !selectedVariant || !isValidVariant}
-                    />
-                  </div>
+                      <BuyNowButton
+                        product={product}
+                        inStock={inStock}
+                        quantity={quantity}
+                        countryCode={countryCode}
+                        isValidVariant={isValidVariant}
+                        selectedVariant={selectedVariant}
+                        disabled={
+                          !inStock || !selectedVariant || !isValidVariant
+                        }
+                      />
+                    </div>
+                  )}
                 </div>
                 <div className="mt-4">
                   {/* Features Section */}

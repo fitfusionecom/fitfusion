@@ -4,6 +4,7 @@ import "./buy-now-button.css";
 import React, { useState } from "react";
 import { HttpTypes } from "@medusajs/types";
 import { useBuyNow } from "@/hooks/useBuyNow";
+import ButtonSpinner from "./button-spinner";
 
 type BuyNowButtonProps = {
   product: HttpTypes.StoreProduct;
@@ -26,6 +27,7 @@ const BuyNowButton = ({
 }: BuyNowButtonProps) => {
   const { buyNow } = useBuyNow();
   const [isBuyingNow, setIsBuyingNow] = useState(false);
+
   // Handle buy now action
   const handleBuyNow = async () => {
     if (!selectedVariant?.id) return null;
@@ -33,9 +35,7 @@ const BuyNowButton = ({
       alert("Maximum Quantity 100");
       return;
     }
-
     setIsBuyingNow(true);
-
     try {
       await buyNow({
         variantId: selectedVariant.id,
@@ -64,10 +64,12 @@ const BuyNowButton = ({
       className="ayur-btn btn btn-secondary"
       style={{
         padding: "10px 50px",
+        position: "relative",
       }}
       data-testid="buy-now-button"
     >
-      Buy Now{isBuyingNow && "..."}
+      {isBuyingNow && <ButtonSpinner />}
+      Buy Now
     </button>
   );
 };
