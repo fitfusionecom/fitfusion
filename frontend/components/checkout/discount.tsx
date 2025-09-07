@@ -70,7 +70,11 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
   return (
     <div className="rounded p-3 discount-code-container">
       <div className="text-dark">
-        <form action={(a) => addPromotionCode(a)} className="w-100 mb-4">
+        <form
+          //@ts-ignore
+          action={(a) => addPromotionCode(a)}
+          className="w-100 mb-4"
+        >
           <label className="d-flex gap-2 my-2 align-items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
