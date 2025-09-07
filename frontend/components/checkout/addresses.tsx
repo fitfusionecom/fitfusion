@@ -111,7 +111,7 @@ const Addresses = ({
         <div>
           <div className="fs-6 p-3">
             {cart && cart.shipping_address ? (
-              <div className="row align-items-start g-4">
+              <div className="row align-items-start">
                 <div
                   className="col-md-4 col-12"
                   data-testid="shipping-address-summary"
