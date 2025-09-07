@@ -3,11 +3,12 @@
 import "./LoginForm.css";
 import Link from "next/link";
 import { useState } from "react";
-import { sdk } from "@/lib/config";
+import { errorHandling } from "./error-handling";
 import { directLogin } from "@/lib/data/customer";
 
 export default function LoginForm() {
   const [error, setError] = useState("");
+  const [tab, setTab] = useState("login");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [mobileNumber, setMobileNumber] = useState("");
@@ -29,17 +30,13 @@ export default function LoginForm() {
       formData.append("password", password);
       formData.append("phone", mobileNumber);
 
-      const customer: any = await sdk.client.fetch(`/store/custom`, {
-        method: "POST",
-        body: {
-          email,
-        },
-      });
-      const state = customer?.data?.customer ? "login" : "register";
+      // const state = customer?.data?.customer ? "login" : "register";
+      const state = tab === "login" ? "login" : "register";
       const response = await directLogin(null, formData, state);
 
-      if (response && response.includes("Error:")) {
-        throw new Error(response.replace("Error: ", ""));
+      if (typeof response === "string" && response.includes("Error:")) {
+        // In this error handling we are modifying the error message to make it more user friendly
+        throw new Error(errorHandling(response));
       } else {
         window.location.replace("/account");
       }
@@ -56,9 +53,29 @@ export default function LoginForm() {
       <div className="login-card shadow-lg----">
         {/* Right Side - Login Form */}
         <div className="login-right">
+          {/* Toggle Tabs */}
+          <div className="tab-container">
+            <button
+              className={`tab-button ${tab === "login" ? "active" : ""}`}
+              onClick={() => setTab("login")}
+            >
+              Login
+            </button>
+            <button
+              className={`tab-button ${tab === "register" ? "active" : ""}`}
+              onClick={() => setTab("register")}
+            >
+              Register
+            </button>
+          </div>
+
           <div className="login-header">
-            <h5>Login</h5>
-            <p>Get access to your Orders, Wishlist and Recommendations</p>
+            <h5>{tab === "login" ? "Login" : "Register"} </h5>
+            <p>
+              {tab === "login"
+                ? "Get access to your Orders, Wishlist and Recommendations"
+                : "Create your account to start shopping with FitFusion"}
+            </p>
           </div>
 
           {error && (
@@ -91,13 +108,20 @@ export default function LoginForm() {
 
             <div className="login-form-group">
               <label htmlFor="otp" className="login-label">
-                Password <span className="required">*</span>
+                {tab === "login"
+                  ? "Password"
+                  : "Create a password (min 6 characters)"}
+                <span className="required">*</span>
               </label>
               <input
                 type="text"
                 id="otp"
                 className="login-input"
-                placeholder="Enter your password"
+                placeholder={
+                  tab === "login"
+                    ? "Enter your password"
+                    : "Create a password (min 6 characters)"
+                }
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 maxLength={16}
