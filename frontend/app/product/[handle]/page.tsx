@@ -2,12 +2,12 @@ import { Metadata } from "next";
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { getRegion } from "@/lib/data/regions";
-import { listProducts, getProductReviews } from "@/lib/data/product";
 import ProductDetails from "@/components/product";
 import ProductReviews from "@/components/product/reviews";
 import RelatedProducts from "@/components/product/related";
-import GoogleReviews from "@/components/homepage/GoogleReviews";
+import { listProducts, getProductReviews } from "@/lib/data/product";
 import ProductAccordion from "@/components/product/product-accordion";
+
 type Props = {
   params: Promise<{ handle: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -64,10 +64,10 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   }
 
   return {
-    title: `${product.title} | Medusa Store`,
+    title: `${product.title}`,
     description: `${product.title}`,
     openGraph: {
-      title: `${product.title} | Medusa Store`,
+      title: `${product.title}`,
       description: `${product.title}`,
       images: product.thumbnail ? [product.thumbnail] : [],
     },
@@ -92,7 +92,7 @@ export default async function Product(props: Props) {
 
   const reviews = await getProductReviews({
     productId: pricedProduct.id,
-    limit: 10,
+    limit: 0,
     offset: 0,
   });
 
