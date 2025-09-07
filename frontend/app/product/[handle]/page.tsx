@@ -65,10 +65,10 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
   return {
     title: `${product.title}`,
-    description: `${product.title}`,
+    description: `${product.subtitle}`,
     openGraph: {
       title: `${product.title}`,
-      description: `${product.title}`,
+      description: `${product.subtitle}`,
       images: product.thumbnail ? [product.thumbnail] : [],
     },
   };
