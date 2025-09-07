@@ -1,18 +1,21 @@
 "use client";
 
-import React, { useActionState } from "react";
-// import { Badge, Heading, Input, Label, Text, Tooltip } from "@medusajs/ui"; //
-import { applyPromotions, submitPromotionForm } from "@/lib/data/cart";
-import { convertToLocale } from "@/lib/util/money";
-import { InformationCircleSolid } from "@medusajs/icons";
-import { HttpTypes } from "@medusajs/types";
 import { Trash } from "lucide-react";
+import { HttpTypes } from "@medusajs/types";
+import React, { useActionState } from "react";
+import { convertToLocale } from "@/lib/util/money";
+import { retrieveCustomer } from "@/lib/data/customer";
+import { applyPromotions, submitPromotionForm } from "@/lib/data/cart";
+import { toast } from "react-toastify";
+import { listOrders } from "@/lib/data/orders";
 
 type DiscountCodeProps = {
   cart: HttpTypes.StoreCart & {
     promotions: HttpTypes.StorePromotion[];
   };
 };
+
+const firstOrderDiscountCode = "FITFA50";
 
 const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -29,10 +32,24 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
   };
 
   const addPromotionCode = async (formData: FormData) => {
-    const code = formData.get("code");
+    const code = formData.get("code")?.toString().toUpperCase();
+    console.log("code", code);
     if (!code) {
       return;
     }
+    if (code === firstOrderDiscountCode) {
+      // validate logged in user
+      const customer = await retrieveCustomer();
+      if (!customer) {
+        return toast.error("Please login to use this discount code");
+      } else {
+        const ordersData = await listOrders();
+        if (ordersData && ordersData.length > 0) {
+          return toast.error("You have already placed an order");
+        }
+      }
+    }
+
     const input = document.getElementById(
       "promotion-input"
     ) as HTMLInputElement;
@@ -73,7 +90,10 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
             <>
               <div className="d-flex w-100 gap-2 discount-input-group">
                 <input
-                  className="flex-fill p-2 discount-input"
+                  style={{
+                    textTransform: "uppercase",
+                  }}
+                  className="flex-fill p-2 discount-input "
                   id="promotion-input"
                   name="code"
                   type="text"
@@ -88,7 +108,9 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
                 </button>
               </div>
 
-              {message && <p className="discount-message">{JSON.stringify(message)}</p>}
+              {message && (
+                <p className="discount-message">{JSON.stringify(message)}</p>
+              )}
             </>
           )}
         </form>
@@ -96,7 +118,9 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
         {promotions.length > 0 && (
           <div className="w-100 d-flex align-items-center">
             <div className="d-flex flex-column w-100">
-              <h6 className="h6 text-dark mb-2 discount-applied-title">Promotion(s) applied:</h6>
+              <h6 className="h6 text-dark mb-2 discount-applied-title">
+                Promotion(s) applied:
+              </h6>
 
               {promotions.map((promotion) => {
                 return (
