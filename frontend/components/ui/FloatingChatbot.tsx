@@ -34,11 +34,7 @@ const FloatingChatbot = () => {
 
   const handleWhatsAppClick = () => {
     // Replace with your actual WhatsApp number
-    const phoneNumber = "+919876543210"; // Update this with your actual number
-    const message = "Hi! I have a query about Fit Fusion Ayurveda products.";
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-      message
-    )}`;
+    const whatsappUrl = "https://wa.link/xmhij6";
     window.open(whatsappUrl, "_blank");
   };
 
