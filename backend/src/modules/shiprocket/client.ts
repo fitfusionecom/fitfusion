@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjc3NzIyOTEsInNvdXJjZSI6InNyLWF1dGgtaW50IiwiZXhwIjoxNzU4MTc4MjUyLCJqdGkiOiJONDdvdWVFQ0JoMm9LZFkyIiwiaWF0IjoxNzU3MzE0MjUyLCJpc3MiOiJodHRwczovL3NyLWF1dGguc2hpcHJvY2tldC5pbi9hdXRob3JpemUvdXNlciIsIm5iZiI6MTc1NzMxNDI1MiwiY2lkIjo2NDU5NjkyLCJ0YyI6MzYwLCJ2ZXJib3NlIjpmYWxzZSwidmVuZG9yX2lkIjowLCJ2ZW5kb3JfY29kZSI6IiJ9._h66dl7SbE2rDjsde2T7OlAbbYlqC9UimnTu84FhXmw"
+
 class Shiprocket {
   protected client_: any;
   protected token_: string;
@@ -13,22 +15,35 @@ class Shiprocket {
 
   constructor() {
     //this.account_ = account
-    this.fetchToken_()
-      .then((token) => {
-        console.log("token", token);
-        this.token_ = token;
-        this.client_ = this.initializeClient_(token);
-        this.orders = this.buildOrderEndpoints_();
-        this.shipments = this.buildShipmentEndpoints_();
-        this.couriers = this.buildCourierEndpoints_();
-        this.company = this.buildCompanyEndpoints_();
-        this.returns = this.buildReturnEndpoints_();
-        this.wrapper = this.buildWrapperEndpoints_();
-        this.auth = this.buildAuthEndpoints_();
-      })
-      .catch((error) => {
-        console.error("Failed to fetch Shiprocket token:", error);
-      });
+    // this.fetchToken_()
+    //   .then((token) => {
+    //     console.log("token", token);
+    //     this.token_ = token;
+    //     this.client_ = this.initializeClient_(token);
+    //     this.orders = this.buildOrderEndpoints_();
+    //     this.shipments = this.buildShipmentEndpoints_();
+    //     this.couriers = this.buildCourierEndpoints_();
+    //     this.company = this.buildCompanyEndpoints_();
+    //     this.returns = this.buildReturnEndpoints_();
+    //     this.wrapper = this.buildWrapperEndpoints_();
+    //     this.auth = this.buildAuthEndpoints_();
+    //   })
+    //   .catch((error) => {
+    //     console.error("Failed to fetch Shiprocket token:", error);
+    //   });
+
+
+    this.token_ = token;
+    this.client_ = this.initializeClient_(token);
+    this.orders = this.buildOrderEndpoints_();
+    this.shipments = this.buildShipmentEndpoints_();
+    this.couriers = this.buildCourierEndpoints_();
+    this.company = this.buildCompanyEndpoints_();
+    this.returns = this.buildReturnEndpoints_();
+    this.wrapper = this.buildWrapperEndpoints_();
+    this.auth = this.buildAuthEndpoints_();
+
+
     // this.documents = this.buildDocumentEndpoints_()
     // this.shippingRates = this.buildShippingRateEndpoints_()
   }
