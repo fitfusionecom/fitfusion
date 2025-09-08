@@ -74,7 +74,7 @@ export default function LoginForm() {
             <p>
               {tab === "login"
                 ? "Get access to your Orders, Wishlist and Recommendations"
-                : "Create your account to start shopping with FitFusion"}
+                : "Create your account to start shopping with Fit Fusion Ayurveda"}
             </p>
           </div>
 
@@ -147,11 +147,6 @@ export default function LoginForm() {
               )}
             </button>
           </form>
-
-          <div className="login-divider">
-            <hr />
-            <span className="divider-text">OR</span>
-          </div>
 
           <p className="login-footer">
             By continuing, you agree to FitFusion's{" "}
