@@ -95,12 +95,12 @@ export default function TopProducts({
           </Swiper>
 
           {/* Custom Navigation Buttons with unique classes */}
-          <div
+          {/* <div
             className={`swiper-button-prev swiper-button-custom ${carouselId}-prev`}
           ></div>
           <div
             className={`swiper-button-next swiper-button-custom ${carouselId}-next`}
-          ></div>
+          ></div> */}
         </div>
       </div>
       <div className="ayur-bgshape ayur-tpro-bgshape">

@@ -147,8 +147,8 @@ export default function GoogleReviews() {
               </Swiper>
 
               {/* Custom Navigation Buttons */}
-              <div className="swiper-button-prev custom-swiper-nav"></div>
-              <div className="swiper-button-next custom-swiper-nav"></div>
+              {/* <div className="swiper-button-prev custom-swiper-nav"></div>
+              <div className="swiper-button-next custom-swiper-nav"></div> */}
             </div>
           </div>
         </div>

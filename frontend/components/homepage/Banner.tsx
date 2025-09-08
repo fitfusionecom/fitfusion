@@ -104,7 +104,7 @@ export default function Banner() {
       </Swiper>
 
       {/* Custom Navigation Buttons with unique classes */}
-      <button
+      {/* <button
         className="swiper-button-prev swiper-button-custom banner-prev"
         aria-label="Previous slide"
       ></button>
@@ -112,7 +112,7 @@ export default function Banner() {
       <button
         className="swiper-button-next swiper-button-custom banner-next"
         aria-label="Next slide"
-      ></button>
+      ></button> */}
     </section>
   );
 }

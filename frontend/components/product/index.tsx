@@ -280,6 +280,7 @@ const ProductDetails = ({
                           })}
                         </div>
                       )}
+                      <br />
                     </div>
                   )}
                 </div>

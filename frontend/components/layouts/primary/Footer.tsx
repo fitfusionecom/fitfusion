@@ -161,11 +161,11 @@ export default function Footer() {
                   },
                   {
                     name: "Vigor & Vitality",
-                    href: "/shop?category=vigor-vitality",
+                    href: "/shop?category_handle=men's-health-and-wellness",
                   },
                   {
                     name: "Shilajit",
-                    href: "/shop?category_handle=shilajit-capsules",
+                    href: "/shop?category_handle=shilajit",
                   },
                   {
                     name: "Men's Health",
@@ -194,19 +194,19 @@ export default function Footer() {
                 items={[
                   {
                     name: "Massage Oil",
-                    href: "/product/fit-fusion-ayurveda-tila-josh-jawani-herbal-massage-oil-for-men-with-jaiphal-long-malkangani-arandi-beerbahuti-jaivitri-relieves-muscle-pain-promotes-daily-wellness-15ml",
+                    href: "/product/fit-fusion-ayurveda-tila-josh-jawani-herbal-massage-oil-men-15ml",
                   },
                   {
                     name: "Men's Health Kit",
-                    href: "/product/fit-fusion-ayurveda-josh-power-mens-health-combo-kit-energy-powder-herbal-capsules-massage-oil-gas-relief-powder-ayurvedic-medicine-for-enhances-stamina-energy-vitality-4-in-1-pack",
+                    href: "/product/fit-fusion-ayurveda-josh-power-mens-health-combo-kit",
                   },
                   {
                     name: "Josh Power Capsule",
-                    href: " /product/fit-fusion-ayurveda-josh-power-capsule-for-men-ayurvedic-supplement-with-ashwagandha-safed-musli-kaunch-beej-boosts-strength-vitality-testosterone-enhances-stamina-energy-30-caps",
+                    href: "/product/fit-fusion-ayurveda-josh-power-capsule-men-ashwagandha-safed-musli",
                   },
                   {
                     name: "Ashwagandha Capsules",
-                    href: "/product/fit-fusion-ayurveda-josh-power-capsule-for-men-ayurvedic-energy-stamina-booster-with-ashwagandha-safed-musli-kaunch-beej-capsules-for-performance-vitality-testosterone-30-caps-pack-of-1",
+                    href: "/product/fit-fusion-ayurveda-ashwagandha-capsules-500mg",
                   },
                   // {
                   //   name: "Pure Shilajit Resin",
@@ -214,7 +214,7 @@ export default function Footer() {
                   // },
                   {
                     name: "Digestive Supplements",
-                    href: "/product/fit-fusion-ayurveda-josh-power-gasotone-powder-100g-ayurvedic-digestive-supplement-with-15-herbs-activated-charcoal-natural-relief-for-gas-bloating-indigestion-pack-of-1",
+                    href: "/product/fit-fusion-ayurveda-josh-power-gasotone-powder-100g",
                   },
                   { name: "View All Products", href: "/shop" },
                 ]}
