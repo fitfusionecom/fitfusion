@@ -56,6 +56,10 @@ export default function ProductReviews({ productId }: ProductReviewsProps) {
     setRefreshTrigger((prev) => prev + 1);
   };
 
+  if (reviews.length === 0) {
+    return null;
+  }
+
   return (
     <div className="product-page-constraint">
       {/* <div className="flex flex-col items-center text-center mb-16">
