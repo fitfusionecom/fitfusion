@@ -21,7 +21,7 @@ const SpecialOffer: React.FC = () => {
 
         {/* Offer Description */}
         <p className="offer-description mb-2">
-          Get <strong>EXTRA 50% OFF</strong> on 1st purchase only on Fitfusion
+          Get <strong>EXTRA 15% OFF</strong> on 1st purchase only on Fitfusion
           Ayurveda Website
         </p>
       </div>
