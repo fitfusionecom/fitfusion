@@ -82,11 +82,7 @@ const benefits = [
 
 export default function DoctorsConsultation() {
   const handleWhatsAppConsultation = (doctorName: string) => {
-    const phoneNumber = "+919876543210"; // Replace with actual WhatsApp number
-    const message = `Hi, I would like to book a free consultation with ${doctorName} for Ayurvedic treatment.`;
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-      message
-    )}`;
+    const whatsappUrl = "https://wa.link/xmhij6";
     window.open(whatsappUrl, "_blank");
   };
 
