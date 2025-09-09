@@ -292,54 +292,6 @@
   }
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .product-description {
-    color: #e2e8f0;
-  }
-
-  .product-description p {
-    color: #cbd5e0;
-  }
-
-  .product-description h1,
-  .product-description h2,
-  .product-description h3,
-  .product-description h4,
-  .product-description h5,
-  .product-description h6 {
-    color: #f7fafc;
-  }
-
-  .product-description strong,
-  .product-description b {
-    color: #f7fafc;
-  }
-
-  .product-description li {
-    color: #cbd5e0;
-  }
-
-  .product-description blockquote {
-    background-color: #2d3748;
-    color: #cbd5e0;
-  }
-
-  .product-description code {
-    background-color: #2d3748;
-    border-color: #4a5568;
-  }
-
-  .product-description th {
-    background-color: #2d3748;
-    color: #f7fafc;
-  }
-
-  .product-description tr:hover {
-    background-color: #2d3748;
-  }
-}
-
 /* Print styles */
 @media print {
   .product-description {
