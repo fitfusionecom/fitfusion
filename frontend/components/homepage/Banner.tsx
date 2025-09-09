@@ -11,6 +11,7 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 
 // Custom hook for responsive image handling
 const useResponsiveImage = () => {
@@ -63,7 +64,7 @@ export default function Banner() {
   const isMobile = useResponsiveImage();
 
   return (
-    <section className="banner-carousel position-relative overflow-hidden">
+    <section className="banner-carousel position-relative">
       <Swiper
         ref={swiperRef}
         modules={[Navigation, Pagination, Autoplay]}
@@ -102,6 +103,73 @@ export default function Banner() {
           </SwiperSlide>
         ))}
       </Swiper>
+
+      <div className="banner-controls">
+        <div className="banner-controls-inner container">
+          <button
+            type="button"
+            aria-label="Previous slide"
+            onClick={() => {
+              // @ts-ignore
+              swiperRef.current?.swiper?.slidePrev();
+            }}
+          >
+            <span
+              aria-hidden="true"
+              style={{
+                fontSize: "1.6rem",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              {/* Left chevron SVG */}
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+            </span>
+          </button>
+          <button
+            type="button"
+            aria-label="Next slide"
+            onClick={() => {
+              // @ts-ignore
+              swiperRef.current?.swiper?.slideNext();
+            }}
+          >
+            <span
+              aria-hidden="true"
+              style={{
+                fontSize: "1.6rem",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              {/* Right chevron SVG */}
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <polyline points="9 6 15 12 9 18" />
+              </svg>
+            </span>
+          </button>
+        </div>
+      </div>
 
       {/* Custom Navigation Buttons with unique classes */}
       {/* <button

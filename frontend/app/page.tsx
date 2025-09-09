@@ -29,6 +29,7 @@ export default async function Home() {
   return (
     <>
       <Banner />
+      <br />
       {/* <CareSlider categories={categories} /> */}
       <TopProducts
         products={best_selling}
