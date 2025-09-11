@@ -149,7 +149,7 @@ export default function LoginForm() {
           </form>
 
           <p className="login-footer">
-            By continuing, you agree to FitFusion's{" "}
+            By continuing, you agree to Our Website's{" "}
             <Link href="/privacy">Privacy Policy</Link> and{" "}
             <Link href="/terms">Terms & Conditions</Link>.
           </p>
