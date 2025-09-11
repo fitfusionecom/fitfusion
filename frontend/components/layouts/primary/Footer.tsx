@@ -132,12 +132,13 @@ export default function Footer() {
                       <FaPhone style={{ fontSize: "14px" }} />
                     </span>
                     <span>
-                      <span
+                      <a
+                        href={`tel:${fitfusionConfig.contact.phone}`}
                         className="text-muted fw-medium d-block"
-                        style={{ lineHeight: 1.4 }}
+                        style={{ lineHeight: 1.4, textDecoration: "none" }}
                       >
                         {fitfusionConfig.contact.phone}
-                      </span>
+                      </a>
                       <span
                         className="text-muted d-block"
                         style={{ fontSize: "11px", marginTop: "2px" }}
