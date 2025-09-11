@@ -1,39 +1,47 @@
 "use client";
 
+import React from "react";
 import { Trash } from "lucide-react";
+import { toast } from "react-toastify";
 import { HttpTypes } from "@medusajs/types";
-import React, { useActionState } from "react";
+import { listOrders } from "@/lib/data/orders";
 import { convertToLocale } from "@/lib/util/money";
 import { retrieveCustomer } from "@/lib/data/customer";
-import { applyPromotions, submitPromotionForm } from "@/lib/data/cart";
-import { toast } from "react-toastify";
-import { listOrders } from "@/lib/data/orders";
+import { applyPromotions, applyPromotionsForBuyNow } from "@/lib/data/cart";
 
 type DiscountCodeProps = {
   cart: HttpTypes.StoreCart & {
     promotions: HttpTypes.StorePromotion[];
   };
+  isBuyNow?: boolean;
 };
 
-const firstOrderDiscountCode = "FITFA50";
+const firstOrderDiscountCode = "FITFA15";
 
-const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
+const DiscountCode: React.FC<DiscountCodeProps> = ({ cart, isBuyNow }) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const { items = [], promotions = [] } = cart;
+
   const removePromotionCode = async (code: string) => {
     const validPromotions = promotions.filter(
       (promotion) => promotion.code !== code
     );
 
-    await applyPromotions(
-      validPromotions.filter((p) => p.code === undefined).map((p) => p.code!)
-    );
+    if (isBuyNow) {
+      await applyPromotionsForBuyNow(
+        validPromotions.filter((p) => p.code === undefined).map((p) => p.code!),
+        cart.id
+      );
+    } else {
+      await applyPromotions(
+        validPromotions.filter((p) => p.code === undefined).map((p) => p.code!)
+      );
+    }
   };
 
   const addPromotionCode = async (formData: FormData) => {
     const code = formData.get("code")?.toString().toUpperCase();
-    console.log("code", code);
     if (!code) {
       return;
     }
@@ -58,14 +66,14 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
       .map((p) => p.code!);
     codes.push(code.toString());
 
-    await applyPromotions(codes);
+    isBuyNow
+      ? await applyPromotionsForBuyNow(codes, cart.id)
+      : await applyPromotions(codes);
 
     if (input) {
       input.value = "";
     }
   };
-
-  const [message, formAction] = useActionState(submitPromotionForm, null);
 
   return (
     <div className="rounded p-3 discount-code-container">
@@ -84,10 +92,6 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
             >
               Add Promotion Code(s)
             </button>
-
-            {/* <Tooltip content="You can add multiple promotion codes">
-              <InformationCircleSolid color="var(--fg-muted)" />
-            </Tooltip> */}
           </label>
 
           {isOpen && (
@@ -111,10 +115,6 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
                   Apply
                 </button>
               </div>
-
-              {message && (
-                <p className="discount-message">{JSON.stringify(message)}</p>
-              )}
             </>
           )}
         </form>

@@ -41,7 +41,7 @@ export default async function Checkout({ searchParams }: CheckoutProps) {
           </div>
           <div className="col-12 col-lg-4 checkout-summary-section">
             <CheckoutSummary cart={cart} />
-            <DiscountCode cart={cart} />
+            <DiscountCode cart={cart} isBuyNow={!!cartId} />
           </div>
         </div>
       </div>
