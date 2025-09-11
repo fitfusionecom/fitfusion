@@ -41,7 +41,7 @@ const slides = [
     mobileImage: "/assets/images/banners/mobile/1.png",
     desktopImage: "/assets/images/banners/5.png",
     alt: "Banner 1",
-    href: "/product/fit-fusion-ayurveda-josh-power-mens-health-combo-kit-energy-powder-herbal-capsules-massage-oil-gas-relief-powder-ayurvedic-medicine-for-enhances-stamina-energy-vitality-4-in-1-pack",
+    href: "/product/fit-fusion-ayurveda-josh-power-mens-health-combo-kit",
   },
   {
     id: 2,
