@@ -34,7 +34,7 @@ interface Doctor {
 const doctors: Doctor[] = [
   {
     id: 1,
-    name: 'Prof. (Dr.) Irshad Ahmad Khan "Bayarvi"',
+    name: "Prof. (Dr.) Irshad Ahmad Khan",
     image: "/assets/images/dr1.jpg",
     specialization: [
       "Unani & Ayurvedic Medicine",
@@ -46,7 +46,7 @@ const doctors: Doctor[] = [
     experience: "25+ Years",
     languages: ["Hindi", "English"],
     description:
-      'Prof. (Dr.) Irshad Ahmad Khan "Bayarvi" (B.U.M.S, M.A, Ph.D) is a highly experienced practitioner specializing in Unani & Ayurvedic Medicine, general health, men\'s health, lifestyle disorders, and chronic illness management. With over 25 years of expertise, he has provided care to more than 20,000 patients, offering consultations in Hindi and English.',
+      "Prof. (Dr.) Irshad Ahmad Khan (B.U.M.S, M.A, Ph.D) is a highly experienced practitioner specializing in Unani & Ayurvedic Medicine, general health, men's health, lifestyle disorders, and chronic illness management. With over 25 years of expertise, he has provided care to more than 20,000 patients, offering consultations in Hindi and English.",
     patients: "20,000+",
   },
 ];
