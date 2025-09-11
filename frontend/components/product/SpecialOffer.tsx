@@ -11,12 +11,12 @@ const SpecialOffer: React.FC = () => {
         <div
           className="coupon-code mb-2 p-1"
           onClick={() => {
-            navigator.clipboard.writeText("GET10");
+            navigator.clipboard.writeText("FITFA15");
             // You can add a toast notification here if you want
           }}
           title="Click to copy coupon code"
         >
-          <span>FITFA50</span>
+          <span>FITFA15</span>
         </div>
 
         {/* Offer Description */}
