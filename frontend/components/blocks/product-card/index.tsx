@@ -37,19 +37,6 @@ export default function ProductCard({ product }: ProductCardProps) {
         )
       : 0;
 
-  // Get product benefits/description (using tags or description)
-  const getProductBenefits = () => {
-    if (product.tags && product.tags.length > 0) {
-      return product.tags.slice(0, 3).join(" | ");
-    }
-    if (product.description) {
-      return product.description.length > 60
-        ? `${product.description.substring(0, 60)}...`
-        : product.description;
-    }
-    return "100% Natural | Ayurvedic | Premium Quality";
-  };
-
   const onSuccess = () => {
     toast.success("Product added to cart successfully");
   };
