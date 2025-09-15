@@ -79,14 +79,24 @@ export const POST = async (
         })
 
         if (!result.success) {
-            if (result.error === "Selected time slot is not available") {
+            console.log("Appointment booking failed:", result.error)
+
+            // Check if it's a slot availability issue
+            if (result.error && (
+                result.error.includes("Doctor is not available") ||
+                result.error.includes("holiday") ||
+                result.error.includes("time slot is already booked") ||
+                result.error.includes("only available between")
+            )) {
+                console.log("Returning SLOT_NOT_AVAILABLE error:", result.error)
                 return res.status(400).json({
                     code: "SLOT_NOT_AVAILABLE",
                     type: "invalid_request",
-                    message: "The selected time slot is not available. Please choose a different time.",
+                    message: result.error,
                 })
             }
 
+            console.log("Returning generic BOOKING_ERROR:", result.error)
             return res.status(400).json({
                 code: "BOOKING_ERROR",
                 type: "invalid_request",

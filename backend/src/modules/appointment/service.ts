@@ -25,11 +25,11 @@ class AppointmentModuleService extends MedusaService({
         @MedusaContext() sharedContext?: Context<EntityManager>
     ): Promise<{ success: boolean; appointment?: any; error?: string }> {
         // Check if slot is available
-        const isSlotAvailable = await this.isSlotAvailable(data.appointment_date, data.appointment_time, sharedContext)
-        if (!isSlotAvailable) {
+        const slotCheck = await this.isSlotAvailable(data.appointment_date, data.appointment_time, sharedContext)
+        if (!slotCheck.available) {
             return {
                 success: false,
-                error: "Selected time slot is not available"
+                error: slotCheck.reason || "Selected time slot is not available"
             }
         }
 
@@ -50,19 +50,19 @@ class AppointmentModuleService extends MedusaService({
         date: Date | string,
         time: string,
         @MedusaContext() sharedContext?: Context<EntityManager>
-    ): Promise<boolean> {
+    ): Promise<{ available: boolean; reason?: string }> {
         // Ensure date is a Date object
         const appointmentDate = date instanceof Date ? date : new Date(date)
 
         // Check if it's a Monday (doctor's day off)
         if (appointmentDate.getDay() === 1) {
-            return false
+            return { available: false, reason: "Doctor is not available on Mondays" }
         }
 
         // Check if it's a holiday
         const holiday = await this.isHoliday(appointmentDate, sharedContext)
         if (holiday) {
-            return false
+            return { available: false, reason: `Doctor is not available due to holiday: ${holiday.name}` }
         }
 
         // Check if doctor is unavailable for this date
@@ -72,7 +72,10 @@ class AppointmentModuleService extends MedusaService({
         if (unavailability && !unavailability.is_available) {
             // Doctor is unavailable for the entire day
             if (unavailability.unavailable_type === 'full_day') {
-                return false
+                return {
+                    available: false,
+                    reason: `Doctor is unavailable for the entire day: ${unavailability.unavailable_reason}`
+                }
             }
 
             // Doctor is unavailable for partial day - check if requested time falls within unavailable hours
@@ -88,7 +91,10 @@ class AppointmentModuleService extends MedusaService({
 
                 // If requested time falls within unavailable hours
                 if (requestedTime >= unavailableStartTime && requestedTime < unavailableEndTime) {
-                    return false
+                    return {
+                        available: false,
+                        reason: `Doctor is unavailable from ${unavailability.start_time} to ${unavailability.end_time}: ${unavailability.unavailable_reason}`
+                    }
                 }
             }
         }
@@ -96,12 +102,16 @@ class AppointmentModuleService extends MedusaService({
         // Default working hours (2:00 PM - 6:00 PM) - doctor is available during these hours
         const timeHour = parseInt(time.split(':')[0])
         if (timeHour < 14 || timeHour >= 18) {
-            return false
+            return { available: false, reason: "Doctor is only available between 2:00 PM and 6:00 PM" }
         }
 
         // Check if slot is already booked
         const existingAppointments = await this.getAppointmentsByDateTime(appointmentDate, time, sharedContext)
-        return existingAppointments.length === 0
+        if (existingAppointments.length > 0) {
+            return { available: false, reason: "This time slot is already booked" }
+        }
+
+        return { available: true }
     }
 
     @InjectManager()
@@ -161,8 +171,8 @@ class AppointmentModuleService extends MedusaService({
         for (let hour = startHour; hour < endHour; hour++) {
             for (let minute = 0; minute < 60; minute += slotDuration) {
                 const timeStr = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`
-                const isAvailable = await this.isSlotAvailable(appointmentDate, timeStr, sharedContext)
-                if (isAvailable) {
+                const slotCheck = await this.isSlotAvailable(appointmentDate, timeStr, sharedContext)
+                if (slotCheck.available) {
                     slots.push(timeStr)
                 }
             }
