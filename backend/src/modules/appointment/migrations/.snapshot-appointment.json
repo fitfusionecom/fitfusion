@@ -256,24 +256,6 @@
           "nullable": true,
           "mappedType": "text"
         },
-        "start_time": {
-          "name": "start_time",
-          "type": "text",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": true,
-          "mappedType": "text"
-        },
-        "end_time": {
-          "name": "end_time",
-          "type": "text",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": true,
-          "mappedType": "text"
-        },
         "max_slots": {
           "name": "max_slots",
           "type": "integer",
@@ -293,6 +275,15 @@
           "nullable": false,
           "default": "15",
           "mappedType": "integer"
+        },
+        "notes": {
+          "name": "notes",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "text"
         },
         "created_at": {
           "name": "created_at",

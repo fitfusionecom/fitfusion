@@ -15,9 +15,6 @@ export const UpdateDoctorAvailabilitySchema = z.object({
 export const SetDoctorUnavailableSchema = z.object({
     date: z.string().transform((str) => new Date(str)),
     unavailable_reason: z.string().min(1),
-    unavailable_type: z.enum(['full_day', 'partial_day', 'specific_hours']),
-    start_time: z.string().optional(),
-    end_time: z.string().optional(),
     notes: z.string().optional(),
 })
 
@@ -66,16 +63,13 @@ export const PUT = async (
     res: MedusaResponse
 ) => {
     const validatedBody = SetDoctorUnavailableSchema.parse(req.body)
-    const { date, unavailable_reason, unavailable_type, start_time, end_time, notes } = validatedBody
+    const { date, unavailable_reason, notes } = validatedBody
 
     const appointmentModuleService: AppointmentModuleService = req.scope.resolve(APPOINTMENT_MODULE)
 
     const result = await appointmentModuleService.setDoctorUnavailable({
         date,
         unavailable_reason,
-        unavailable_type,
-        start_time,
-        end_time,
         notes,
     })
 

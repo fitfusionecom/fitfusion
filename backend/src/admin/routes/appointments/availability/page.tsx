@@ -26,9 +26,6 @@ interface DoctorAvailability {
   date: string;
   is_available: boolean;
   unavailable_reason?: string;
-  unavailable_type?: "full_day" | "partial_day" | "specific_hours";
-  start_time?: string;
-  end_time?: string;
   max_slots: number;
   slot_duration: number;
   notes?: string;
@@ -70,12 +67,6 @@ export default function AvailabilityPage() {
   const [unavailabilityForm, setUnavailabilityForm] = useState({
     date: "",
     unavailable_reason: "",
-    unavailable_type: "full_day" as
-      | "full_day"
-      | "partial_day"
-      | "specific_hours",
-    start_time: "",
-    end_time: "",
     notes: "",
   });
 
@@ -219,9 +210,6 @@ export default function AvailabilityPage() {
         setUnavailabilityForm({
           date: "",
           unavailable_reason: "",
-          unavailable_type: "full_day",
-          start_time: "",
-          end_time: "",
           notes: "",
         });
         fetchAvailabilities();
@@ -655,64 +643,6 @@ export default function AvailabilityPage() {
                 </div>
                 <div>
                   <Text className="text-sm font-medium mb-1">
-                    Unavailability Type *
-                  </Text>
-                  <select
-                    value={unavailabilityForm.unavailable_type}
-                    onChange={(e) =>
-                      setUnavailabilityForm({
-                        ...unavailabilityForm,
-                        unavailable_type: e.target.value as
-                          | "full_day"
-                          | "partial_day"
-                          | "specific_hours",
-                      })
-                    }
-                    className="w-full p-2 border border-gray-300 rounded-md"
-                    required
-                  >
-                    <option value="full_day">Full Day</option>
-                    <option value="partial_day">Partial Day</option>
-                    <option value="specific_hours">Specific Hours</option>
-                  </select>
-                </div>
-                {(unavailabilityForm.unavailable_type === "partial_day" ||
-                  unavailabilityForm.unavailable_type === "specific_hours") && (
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <Text className="text-sm font-medium mb-1">
-                        Start Time
-                      </Text>
-                      <Input
-                        type="time"
-                        value={unavailabilityForm.start_time}
-                        onChange={(e) =>
-                          setUnavailabilityForm({
-                            ...unavailabilityForm,
-                            start_time: e.target.value,
-                          })
-                        }
-                        required
-                      />
-                    </div>
-                    <div>
-                      <Text className="text-sm font-medium mb-1">End Time</Text>
-                      <Input
-                        type="time"
-                        value={unavailabilityForm.end_time}
-                        onChange={(e) =>
-                          setUnavailabilityForm({
-                            ...unavailabilityForm,
-                            end_time: e.target.value,
-                          })
-                        }
-                        required
-                      />
-                    </div>
-                  </div>
-                )}
-                <div>
-                  <Text className="text-sm font-medium mb-1">
                     Notes (Optional)
                   </Text>
                   <Textarea
@@ -768,18 +698,7 @@ export default function AvailabilityPage() {
                               {availability.unavailable_reason}
                             </Text>
                           )}
-                          {availability.unavailable_type && (
-                            <Text className="text-sm text-gray-500">
-                              ({availability.unavailable_type.replace("_", " ")}
-                              )
-                            </Text>
-                          )}
                         </div>
-                        {availability.start_time && availability.end_time && (
-                          <Text className="text-sm text-gray-600 mt-1">
-                            {availability.start_time} - {availability.end_time}
-                          </Text>
-                        )}
                         {availability.notes && (
                           <Text className="text-sm text-gray-500 mt-1">
                             {availability.notes}

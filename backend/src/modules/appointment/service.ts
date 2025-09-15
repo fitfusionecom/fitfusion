@@ -68,34 +68,11 @@ class AppointmentModuleService extends MedusaService({
         // Check if doctor is unavailable for this date
         const unavailability = await this.getDoctorAvailability(appointmentDate, sharedContext)
 
-        // If no unavailability record exists, doctor is available by default
+        // If unavailability record exists and doctor is unavailable, doctor is unavailable for the entire day
         if (unavailability && !unavailability.is_available) {
-            // Doctor is unavailable for the entire day
-            if (unavailability.unavailable_type === 'full_day') {
-                return {
-                    available: false,
-                    reason: `Doctor is unavailable for the entire day: ${unavailability.unavailable_reason}`
-                }
-            }
-
-            // Doctor is unavailable for partial day - check if requested time falls within unavailable hours
-            if (unavailability.unavailable_type === 'partial_day' && unavailability.start_time && unavailability.end_time) {
-                const timeHour = parseInt(time.split(':')[0])
-                const timeMinute = parseInt(time.split(':')[1])
-                const requestedTime = timeHour * 60 + timeMinute
-
-                const [startHour, startMinute] = unavailability.start_time.split(':').map(Number)
-                const [endHour, endMinute] = unavailability.end_time.split(':').map(Number)
-                const unavailableStartTime = startHour * 60 + startMinute
-                const unavailableEndTime = endHour * 60 + endMinute
-
-                // If requested time falls within unavailable hours
-                if (requestedTime >= unavailableStartTime && requestedTime < unavailableEndTime) {
-                    return {
-                        available: false,
-                        reason: `Doctor is unavailable from ${unavailability.start_time} to ${unavailability.end_time}: ${unavailability.unavailable_reason}`
-                    }
-                }
+            return {
+                available: false,
+                reason: `Doctor is unavailable for the entire day: ${unavailability.unavailable_reason}`
             }
         }
 
@@ -326,9 +303,6 @@ class AppointmentModuleService extends MedusaService({
         data: {
             date: Date | string
             unavailable_reason: string
-            unavailable_type: 'full_day' | 'partial_day' | 'specific_hours'
-            start_time?: string
-            end_time?: string
             notes?: string
         },
         @MedusaContext() sharedContext?: Context<EntityManager>
@@ -343,9 +317,6 @@ class AppointmentModuleService extends MedusaService({
             return await this.updateDoctorAvailabilities({
                 is_available: false,
                 unavailable_reason: data.unavailable_reason,
-                unavailable_type: data.unavailable_type,
-                start_time: data.start_time,
-                end_time: data.end_time,
                 notes: data.notes
             }, { id: existing.id })
         } else {
@@ -354,9 +325,6 @@ class AppointmentModuleService extends MedusaService({
                 date: appointmentDate,
                 is_available: false,
                 unavailable_reason: data.unavailable_reason,
-                unavailable_type: data.unavailable_type,
-                start_time: data.start_time,
-                end_time: data.end_time,
                 notes: data.notes,
                 max_slots: 0, // No slots available
                 slot_duration: 15
