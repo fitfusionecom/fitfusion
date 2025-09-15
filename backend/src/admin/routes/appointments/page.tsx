@@ -8,6 +8,7 @@ import {
   Input,
   Select,
   Toaster,
+  DropdownMenu,
 } from "@medusajs/ui";
 import {
   Calendar,
@@ -18,7 +19,7 @@ import {
   Eye,
   Trash,
 } from "@medusajs/icons";
-import { Stethoscope, Filter, Download } from "lucide-react";
+import { Stethoscope, Filter, Download, MoreHorizontal } from "lucide-react";
 import { useState, useEffect } from "react";
 
 interface Appointment {
@@ -74,6 +75,9 @@ export default function AppointmentsPage() {
   const [showModal, setShowModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [appointmentToDelete, setAppointmentToDelete] =
+    useState<Appointment | null>(null);
+  const [showRevertModal, setShowRevertModal] = useState(false);
+  const [appointmentToRevert, setAppointmentToRevert] =
     useState<Appointment | null>(null);
   const [filters, setFilters] = useState({
     status: "all",
@@ -164,6 +168,21 @@ export default function AppointmentsPage() {
   const openDeleteModal = (appointment: Appointment) => {
     setAppointmentToDelete(appointment);
     setShowDeleteModal(true);
+  };
+
+  const openRevertModal = (appointment: Appointment) => {
+    setAppointmentToRevert(appointment);
+    setShowRevertModal(true);
+  };
+
+  const revertAppointment = async (appointmentId: string) => {
+    try {
+      await updateAppointmentStatus(appointmentId, "scheduled");
+      setShowRevertModal(false);
+      setAppointmentToRevert(null);
+    } catch (error) {
+      console.error("Error reverting appointment:", error);
+    }
   };
 
   const exportAppointments = () => {
@@ -371,55 +390,69 @@ export default function AppointmentsPage() {
                       ₹{appointment.consultation_fee}
                     </Text>
 
-                    <div className="flex gap-2">
-                      <Button
-                        size="small"
-                        variant="secondary"
-                        onClick={() => openAppointmentDetails(appointment)}
-                      >
-                        <Eye className="h-4 w-4 mr-1" />
-                        View Details
-                      </Button>
+                    <DropdownMenu>
+                      <DropdownMenu.Trigger asChild>
+                        <Button size="small" variant="secondary">
+                          <MoreHorizontal className="h-4 w-4" />
+                        </Button>
+                      </DropdownMenu.Trigger>
+                      <DropdownMenu.Content align="end" className="w-48">
+                        <DropdownMenu.Item
+                          onClick={() => openAppointmentDetails(appointment)}
+                        >
+                          <Eye className="h-4 w-4 mr-2" />
+                          View Details
+                        </DropdownMenu.Item>
 
-                      {appointment.status === "scheduled" && (
-                        <>
-                          <Button
-                            size="small"
-                            onClick={() =>
-                              updateAppointmentStatus(
-                                appointment.id,
-                                "completed"
-                              )
-                            }
-                            className="bg-green-600 hover:bg-green-700"
-                          >
-                            Complete
-                          </Button>
-                          <Button
-                            size="small"
-                            variant="secondary"
-                            onClick={() =>
-                              updateAppointmentStatus(
-                                appointment.id,
-                                "cancelled"
-                              )
-                            }
-                          >
-                            Cancel
-                          </Button>
-                        </>
-                      )}
+                        {appointment.status === "scheduled" && (
+                          <>
+                            <DropdownMenu.Item
+                              onClick={() =>
+                                updateAppointmentStatus(
+                                  appointment.id,
+                                  "completed"
+                                )
+                              }
+                              className="text-green-600"
+                            >
+                              <Clock className="h-4 w-4 mr-2" />
+                              Mark Complete
+                            </DropdownMenu.Item>
+                            <DropdownMenu.Item
+                              onClick={() =>
+                                updateAppointmentStatus(
+                                  appointment.id,
+                                  "cancelled"
+                                )
+                              }
+                              className="text-orange-600"
+                            >
+                              <Clock className="h-4 w-4 mr-2" />
+                              Cancel Appointment
+                            </DropdownMenu.Item>
+                          </>
+                        )}
 
-                      <Button
-                        size="small"
-                        variant="secondary"
-                        onClick={() => openDeleteModal(appointment)}
-                        className="text-red-600 hover:text-red-700 hover:bg-red-50"
-                      >
-                        <Trash className="h-4 w-4 mr-1" />
-                        Delete
-                      </Button>
-                    </div>
+                        {appointment.status === "completed" && (
+                          <DropdownMenu.Item
+                            onClick={() => openRevertModal(appointment)}
+                            className="text-orange-600"
+                          >
+                            <Clock className="h-4 w-4 mr-2" />
+                            Revert to Scheduled
+                          </DropdownMenu.Item>
+                        )}
+
+                        <DropdownMenu.Separator />
+                        <DropdownMenu.Item
+                          onClick={() => openDeleteModal(appointment)}
+                          className="text-red-600"
+                        >
+                          <Trash className="h-4 w-4 mr-2" />
+                          Delete Appointment
+                        </DropdownMenu.Item>
+                      </DropdownMenu.Content>
+                    </DropdownMenu>
                   </div>
                 </div>
               </div>
@@ -535,34 +568,74 @@ export default function AppointmentsPage() {
                 )}
 
                 {/* Action Buttons */}
-                {selectedAppointment.status === "scheduled" && (
-                  <div className="flex gap-3 pt-4 border-t">
-                    <Button
-                      onClick={() => {
-                        updateAppointmentStatus(
-                          selectedAppointment.id,
-                          "completed"
-                        );
-                        setShowModal(false);
-                      }}
-                      className="bg-green-600 hover:bg-green-700"
-                    >
-                      Mark Complete
-                    </Button>
-                    <Button
-                      variant="secondary"
-                      onClick={() => {
-                        updateAppointmentStatus(
-                          selectedAppointment.id,
-                          "cancelled"
-                        );
-                        setShowModal(false);
-                      }}
-                    >
-                      Cancel Appointment
-                    </Button>
-                  </div>
-                )}
+                <div className="flex justify-between items-center pt-4 border-t">
+                  <Text className="text-sm text-gray-600">Actions</Text>
+                  <DropdownMenu>
+                    <DropdownMenu.Trigger asChild>
+                      <Button size="small" variant="secondary">
+                        <MoreHorizontal className="h-4 w-4" />
+                        Actions
+                      </Button>
+                    </DropdownMenu.Trigger>
+                    <DropdownMenu.Content align="end" className="w-48">
+                      {selectedAppointment.status === "scheduled" && (
+                        <>
+                          <DropdownMenu.Item
+                            onClick={() => {
+                              updateAppointmentStatus(
+                                selectedAppointment.id,
+                                "completed"
+                              );
+                              setShowModal(false);
+                            }}
+                            className="text-green-600"
+                          >
+                            <Clock className="h-4 w-4 mr-2" />
+                            Mark Complete
+                          </DropdownMenu.Item>
+                          <DropdownMenu.Item
+                            onClick={() => {
+                              updateAppointmentStatus(
+                                selectedAppointment.id,
+                                "cancelled"
+                              );
+                              setShowModal(false);
+                            }}
+                            className="text-orange-600"
+                          >
+                            <Clock className="h-4 w-4 mr-2" />
+                            Cancel Appointment
+                          </DropdownMenu.Item>
+                        </>
+                      )}
+
+                      {selectedAppointment.status === "completed" && (
+                        <DropdownMenu.Item
+                          onClick={() => {
+                            openRevertModal(selectedAppointment);
+                            setShowModal(false);
+                          }}
+                          className="text-orange-600"
+                        >
+                          <Clock className="h-4 w-4 mr-2" />
+                          Revert to Scheduled
+                        </DropdownMenu.Item>
+                      )}
+
+                      <DropdownMenu.Separator />
+                      <DropdownMenu.Item
+                        onClick={() => {
+                          openDeleteModal(selectedAppointment);
+                          setShowModal(false);
+                        }}
+                        className="text-red-600"
+                      >
+                        <Trash className="h-4 w-4 mr-2" />
+                        Delete Appointment
+                      </DropdownMenu.Item>
+                    </DropdownMenu.Content>
+                  </DropdownMenu>
+                </div>
               </div>
             )}
           </div>
@@ -616,6 +689,58 @@ export default function AppointmentsPage() {
                 className="bg-red-600 hover:bg-red-700"
               >
                 Delete Appointment
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Revert Confirmation Modal */}
+      {showRevertModal && appointmentToRevert && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="flex-shrink-0 w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center">
+                <Clock className="h-5 w-5 text-orange-600" />
+              </div>
+              <div>
+                <Heading
+                  level="h2"
+                  className="text-lg font-semibold text-gray-900"
+                >
+                  Revert Appointment
+                </Heading>
+                <Text className="text-sm text-gray-500">
+                  This will change the appointment back to scheduled status.
+                </Text>
+              </div>
+            </div>
+
+            <div className="mb-6">
+              <Text className="text-sm text-gray-700">
+                Are you sure you want to revert the appointment for{" "}
+                <span className="font-semibold">
+                  {appointmentToRevert.patient_name}
+                </span>{" "}
+                from completed back to scheduled status?
+              </Text>
+            </div>
+
+            <div className="flex gap-3 justify-end">
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  setShowRevertModal(false);
+                  setAppointmentToRevert(null);
+                }}
+              >
+                Cancel
+              </Button>
+              <Button
+                onClick={() => revertAppointment(appointmentToRevert.id)}
+                className="bg-orange-600 hover:bg-orange-700"
+              >
+                Revert to Scheduled
               </Button>
             </div>
           </div>

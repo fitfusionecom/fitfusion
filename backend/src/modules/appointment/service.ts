@@ -194,9 +194,13 @@ class AppointmentModuleService extends MedusaService({
             updated_at: new Date(),
         }
 
-        // If appointment is being marked as completed, update payment status to paid
+        // Update payment status based on appointment status
         if (status === "completed") {
             updateData.payment_status = "paid"
+        } else if (status === "scheduled") {
+            // If reverting to scheduled status, reset payment status to pending
+            // This handles the case where a completed appointment is being reverted
+            updateData.payment_status = "pending"
         }
 
         if (cancellation_reason) {
