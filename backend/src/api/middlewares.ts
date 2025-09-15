@@ -10,6 +10,8 @@ import { PostAdminUpdateReviewsStatusSchema } from "./admin/reviews/status/route
 import { GetStoreReviewsSchema } from "./store/products/[id]/reviews/route";
 import { PostAdminBlogSchema, GetAdminBlogsSchema } from "./admin/blogs/route";
 import { PutAdminBlogSchema } from "./admin/blogs/[id]/route";
+import { GetAvailableSlotsSchema, CreateAppointmentSchema } from "./store/appointments/route";
+import { GetAdminAppointmentsSchema, UpdateAppointmentStatusSchema } from "./admin/appointments/route";
 
 import multer from "multer";
 
@@ -135,6 +137,61 @@ export default defineMiddlewares({
             "created_at",
           ],
         }),
+      ],
+    },
+
+    // Store Appointments Routes
+    {
+      matcher: "/store/appointments",
+      method: ["GET"],
+      middlewares: [
+        validateAndTransformQuery(GetAvailableSlotsSchema, {
+          isList: false,
+        }),
+      ],
+    },
+    {
+      matcher: "/store/appointments",
+      method: ["POST"],
+      middlewares: [
+        // @ts-ignore
+        validateAndTransformBody(CreateAppointmentSchema),
+      ],
+    },
+
+    // Admin Appointments Routes
+    {
+      matcher: "/admin/appointments",
+      method: ["GET"],
+      middlewares: [
+        validateAndTransformQuery(GetAdminAppointmentsSchema, {
+          isList: true,
+          defaults: [
+            "id",
+            "patient_name",
+            "patient_age",
+            "patient_address",
+            "contact_number",
+            "problem",
+            "appointment_date",
+            "appointment_time",
+            "status",
+            "payment_status",
+            "consultation_fee",
+            "doctor_notes",
+            "cancellation_reason",
+            "created_at",
+            "updated_at",
+          ],
+        }),
+      ],
+    },
+    {
+      matcher: "/admin/appointments",
+      method: ["PATCH"],
+      middlewares: [
+        // @ts-ignore
+        validateAndTransformBody(UpdateAppointmentStatusSchema),
       ],
     },
 

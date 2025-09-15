@@ -33,6 +33,9 @@ module.exports = defineConfig({
       resolve: "./src/modules/video",
     },
     {
+      resolve: "./src/modules/appointment",
+    },
+    {
       resolve: "@medusajs/medusa/payment",
       options: {
         providers: [
