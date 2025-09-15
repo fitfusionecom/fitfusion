@@ -95,7 +95,12 @@ export default function CalendarPage() {
 
       const dayAppointments = appointments.filter((apt) => {
         const aptDate = new Date(apt.appointment_date);
-        return aptDate.toDateString() === date.toDateString();
+        // Compare dates by year, month, and day to avoid timezone issues
+        return (
+          aptDate.getFullYear() === date.getFullYear() &&
+          aptDate.getMonth() === date.getMonth() &&
+          aptDate.getDate() === date.getDate()
+        );
       });
 
       days.push({

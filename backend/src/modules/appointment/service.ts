@@ -202,7 +202,8 @@ class AppointmentModuleService extends MedusaService({
         status?: string,
         @MedusaContext() sharedContext?: Context<EntityManager>
     ): Promise<any[]> {
-        let query = "SELECT * FROM appointment WHERE appointment_date >= ? AND appointment_date <= ?"
+        // Use date casting to compare only the date part, not the time
+        let query = "SELECT * FROM appointment WHERE appointment_date::date >= ? AND appointment_date::date <= ?"
         const params: any[] = [startDate.toISOString().split('T')[0], endDate.toISOString().split('T')[0]]
 
         if (status) {
