@@ -6,6 +6,7 @@ import { createFindParams } from "@medusajs/medusa/api/utils/validators"
 import { z } from "zod"
 import { updateAppointmentStatusWorkflow } from "../../../workflows/update-appointment-status"
 import { getAppointmentsWorkflow } from "../../../workflows/get-appointments"
+import { deleteAppointmentWorkflow } from "../../../workflows/delete-appointment"
 
 export const GetAdminAppointmentsSchema = createFindParams().extend({
     status: z.enum(["scheduled", "completed", "cancelled", "rescheduled"]).optional(),
@@ -19,6 +20,10 @@ export const UpdateAppointmentStatusSchema = z.object({
     status: z.enum(["scheduled", "completed", "cancelled", "rescheduled"]),
     cancellation_reason: z.string().optional(),
     doctor_notes: z.string().optional(),
+})
+
+export const DeleteAppointmentSchema = z.object({
+    id: z.string(),
 })
 
 export const GET = async (
@@ -61,5 +66,24 @@ export const PATCH = async (
     res.json({
         appointment: result.appointment,
         message: "Appointment status updated successfully",
+    })
+}
+
+export const DELETE = async (
+    req: MedusaRequest<z.infer<typeof DeleteAppointmentSchema>>,
+    res: MedusaResponse
+) => {
+    const validatedBody = DeleteAppointmentSchema.parse(req.body)
+    const { id } = validatedBody
+
+    const { result } = await deleteAppointmentWorkflow(req.scope).run({
+        input: {
+            id,
+        },
+    })
+
+    res.json({
+        success: result,
+        message: "Appointment deleted successfully",
     })
 }

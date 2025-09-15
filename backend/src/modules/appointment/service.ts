@@ -194,6 +194,11 @@ class AppointmentModuleService extends MedusaService({
             updated_at: new Date(),
         }
 
+        // If appointment is being marked as completed, update payment status to paid
+        if (status === "completed") {
+            updateData.payment_status = "paid"
+        }
+
         if (cancellation_reason) {
             updateData.cancellation_reason = cancellation_reason
         }
@@ -285,6 +290,7 @@ class AppointmentModuleService extends MedusaService({
     ): Promise<any> {
         return await this.createHolidays(data)
     }
+
 
     @InjectManager()
     async updateDoctorAvailability(

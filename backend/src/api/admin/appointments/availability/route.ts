@@ -25,12 +25,19 @@ export const SetDoctorAvailableSchema = z.object({
     date: z.string().transform((str) => new Date(str)),
 })
 
-export const CreateHolidaySchema = z.object({
-    name: z.string().min(1),
-    date: z.string().transform((str) => new Date(str)),
-    is_recurring: z.boolean().optional().default(false),
-    description: z.string().optional(),
-})
+export const GET = async (
+    req: MedusaRequest,
+    res: MedusaResponse
+) => {
+    const appointmentModuleService: AppointmentModuleService = req.scope.resolve(APPOINTMENT_MODULE)
+
+    // Fetch doctor availabilities using MedusaService method
+    const availabilities = await appointmentModuleService.listDoctorAvailabilities()
+
+    res.json({
+        availabilities: availabilities || [],
+    })
+}
 
 export const PATCH = async (
     req: MedusaRequest<z.infer<typeof UpdateDoctorAvailabilitySchema>>,
@@ -50,28 +57,6 @@ export const PATCH = async (
     res.json({
         availability: result,
         message: `Doctor availability updated for ${date.toISOString().split('T')[0]}`,
-    })
-}
-
-export const POST = async (
-    req: MedusaRequest<z.infer<typeof CreateHolidaySchema>>,
-    res: MedusaResponse
-) => {
-    const validatedBody = CreateHolidaySchema.parse(req.body)
-    const { name, date, is_recurring, description } = validatedBody
-
-    const appointmentModuleService: AppointmentModuleService = req.scope.resolve(APPOINTMENT_MODULE)
-
-    const result = await appointmentModuleService.createHoliday({
-        name,
-        date,
-        is_recurring,
-        description,
-    })
-
-    res.json({
-        holiday: result,
-        message: "Holiday created successfully",
     })
 }
 

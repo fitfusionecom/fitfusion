@@ -44,6 +44,8 @@ export default function AvailabilityPage() {
   const [showHolidayForm, setShowHolidayForm] = useState(false);
   const [showAvailabilityForm, setShowAvailabilityForm] = useState(false);
   const [showUnavailabilityForm, setShowUnavailabilityForm] = useState(false);
+  const [showDeleteHolidayModal, setShowDeleteHolidayModal] = useState(false);
+  const [holidayToDelete, setHolidayToDelete] = useState<Holiday | null>(null);
 
   // Holiday form state
   const [holidayForm, setHolidayForm] = useState({
@@ -171,14 +173,20 @@ export default function AvailabilityPage() {
 
   const handleDeleteHoliday = async (id: string) => {
     try {
-      const response = await fetch(`/admin/appointments/holidays/${id}`, {
+      const response = await fetch("/admin/appointments/holidays", {
         method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id }),
       });
 
       if (response.ok) {
         setMessage("Holiday deleted successfully");
         fetchHolidays();
         toast.success("Holiday deleted successfully");
+        setShowDeleteHolidayModal(false);
+        setHolidayToDelete(null);
       } else {
         setMessage("Failed to delete holiday");
         toast.error("Failed to delete holiday");
@@ -187,6 +195,11 @@ export default function AvailabilityPage() {
       setMessage("Error deleting holiday");
       toast.error("Error deleting holiday");
     }
+  };
+
+  const openDeleteHolidayModal = (holiday: Holiday) => {
+    setHolidayToDelete(holiday);
+    setShowDeleteHolidayModal(true);
   };
 
   const handleUnavailabilitySubmit = async (e: React.FormEvent) => {
@@ -423,7 +436,8 @@ export default function AvailabilityPage() {
                     <Button
                       variant="secondary"
                       size="small"
-                      onClick={() => handleDeleteHoliday(holiday.id)}
+                      onClick={() => openDeleteHolidayModal(holiday)}
+                      className="text-red-600 hover:text-red-700 hover:bg-red-50"
                     >
                       <X className="h-4 w-4" />
                     </Button>
@@ -786,6 +800,57 @@ export default function AvailabilityPage() {
           </div>
         </div>
       </div>
+      {/* Delete Holiday Confirmation Modal */}
+      {showDeleteHolidayModal && holidayToDelete && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="flex-shrink-0 w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+                <X className="h-5 w-5 text-red-600" />
+              </div>
+              <div>
+                <Heading
+                  level="h2"
+                  className="text-lg font-semibold text-gray-900"
+                >
+                  Delete Holiday
+                </Heading>
+                <Text className="text-sm text-gray-500">
+                  This action cannot be undone.
+                </Text>
+              </div>
+            </div>
+
+            <div className="mb-6">
+              <Text className="text-sm text-gray-700">
+                Are you sure you want to delete the holiday{" "}
+                <span className="font-semibold">{holidayToDelete.name}</span>{" "}
+                scheduled for{" "}
+                {new Date(holidayToDelete.date).toLocaleDateString()}?
+              </Text>
+            </div>
+
+            <div className="flex gap-3 justify-end">
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  setShowDeleteHolidayModal(false);
+                  setHolidayToDelete(null);
+                }}
+              >
+                Cancel
+              </Button>
+              <Button
+                onClick={() => handleDeleteHoliday(holidayToDelete.id)}
+                className="bg-red-600 hover:bg-red-700"
+              >
+                Delete Holiday
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <Toaster />
     </Container>
   );

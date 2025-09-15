@@ -9,7 +9,15 @@ import {
   Select,
   Toaster,
 } from "@medusajs/ui";
-import { Calendar, Clock, User, Phone, MapPin, Eye } from "@medusajs/icons";
+import {
+  Calendar,
+  Clock,
+  User,
+  Phone,
+  MapPin,
+  Eye,
+  Trash,
+} from "@medusajs/icons";
 import { Stethoscope, Filter, Download } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -64,6 +72,9 @@ export default function AppointmentsPage() {
   const [selectedAppointment, setSelectedAppointment] =
     useState<Appointment | null>(null);
   const [showModal, setShowModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [appointmentToDelete, setAppointmentToDelete] =
+    useState<Appointment | null>(null);
   const [filters, setFilters] = useState({
     status: "all",
     start_date: "",
@@ -126,6 +137,33 @@ export default function AppointmentsPage() {
   const openAppointmentDetails = (appointment: Appointment) => {
     setSelectedAppointment(appointment);
     setShowModal(true);
+  };
+
+  const deleteAppointment = async (appointmentId: string) => {
+    try {
+      const response = await fetch("/admin/appointments", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: appointmentId,
+        }),
+      });
+
+      if (response.ok) {
+        fetchAppointments(); // Refresh the list
+        setShowDeleteModal(false);
+        setAppointmentToDelete(null);
+      }
+    } catch (error) {
+      console.error("Error deleting appointment:", error);
+    }
+  };
+
+  const openDeleteModal = (appointment: Appointment) => {
+    setAppointmentToDelete(appointment);
+    setShowDeleteModal(true);
   };
 
   const exportAppointments = () => {
@@ -371,6 +409,16 @@ export default function AppointmentsPage() {
                           </Button>
                         </>
                       )}
+
+                      <Button
+                        size="small"
+                        variant="secondary"
+                        onClick={() => openDeleteModal(appointment)}
+                        className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                      >
+                        <Trash className="h-4 w-4 mr-1" />
+                        Delete
+                      </Button>
                     </div>
                   </div>
                 </div>
@@ -517,6 +565,59 @@ export default function AppointmentsPage() {
                 )}
               </div>
             )}
+          </div>
+        </div>
+      )}
+
+      {/* Delete Confirmation Modal */}
+      {showDeleteModal && appointmentToDelete && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="flex-shrink-0 w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+                <Trash className="h-5 w-5 text-red-600" />
+              </div>
+              <div>
+                <Heading
+                  level="h2"
+                  className="text-lg font-semibold text-gray-900"
+                >
+                  Delete Appointment
+                </Heading>
+                <Text className="text-sm text-gray-500">
+                  This action cannot be undone.
+                </Text>
+              </div>
+            </div>
+
+            <div className="mb-6">
+              <Text className="text-sm text-gray-700">
+                Are you sure you want to delete the appointment for{" "}
+                <span className="font-semibold">
+                  {appointmentToDelete.patient_name}
+                </span>{" "}
+                scheduled on {formatDate(appointmentToDelete.appointment_date)}{" "}
+                at {formatTime(appointmentToDelete.appointment_time)}?
+              </Text>
+            </div>
+
+            <div className="flex gap-3 justify-end">
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  setShowDeleteModal(false);
+                  setAppointmentToDelete(null);
+                }}
+              >
+                Cancel
+              </Button>
+              <Button
+                onClick={() => deleteAppointment(appointmentToDelete.id)}
+                className="bg-red-600 hover:bg-red-700"
+              >
+                Delete Appointment
+              </Button>
+            </div>
           </div>
         </div>
       )}

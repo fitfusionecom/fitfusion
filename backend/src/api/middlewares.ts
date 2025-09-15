@@ -11,7 +11,8 @@ import { GetStoreReviewsSchema } from "./store/products/[id]/reviews/route";
 import { PostAdminBlogSchema, GetAdminBlogsSchema } from "./admin/blogs/route";
 import { PutAdminBlogSchema } from "./admin/blogs/[id]/route";
 import { GetAvailableSlotsSchema, CreateAppointmentSchema } from "./store/appointments/route";
-import { GetAdminAppointmentsSchema, UpdateAppointmentStatusSchema } from "./admin/appointments/route";
+import { GetAdminAppointmentsSchema, UpdateAppointmentStatusSchema, DeleteAppointmentSchema } from "./admin/appointments/route";
+import { DeleteHolidaySchema } from "./admin/appointments/holidays/route";
 
 import multer from "multer";
 
@@ -192,6 +193,22 @@ export default defineMiddlewares({
       middlewares: [
         // @ts-ignore
         validateAndTransformBody(UpdateAppointmentStatusSchema),
+      ],
+    },
+    {
+      matcher: "/admin/appointments",
+      method: ["DELETE"],
+      middlewares: [
+        // @ts-ignore
+        validateAndTransformBody(DeleteAppointmentSchema),
+      ],
+    },
+    {
+      matcher: "/admin/appointments/holidays",
+      method: ["DELETE"],
+      middlewares: [
+        // @ts-ignore
+        validateAndTransformBody(DeleteHolidaySchema),
       ],
     },
 
