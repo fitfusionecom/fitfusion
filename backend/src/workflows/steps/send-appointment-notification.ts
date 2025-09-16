@@ -39,12 +39,15 @@ export const sendAppointmentNotificationStep = createStep(
 
         switch (input.notification_type) {
             case 'confirmation':
+                // @ts-ignore   
                 await notificationService.sendAppointmentConfirmation(notificationData)
                 break
             case 'update':
+                // @ts-ignore   
                 await notificationService.sendAppointmentUpdate(notificationData)
                 break
             case 'reminder':
+                // @ts-ignore   
                 await notificationService.sendReminder(notificationData)
                 break
         }

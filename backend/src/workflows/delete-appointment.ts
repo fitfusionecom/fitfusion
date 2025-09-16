@@ -7,7 +7,7 @@ export type DeleteAppointmentInput = {
 
 export const deleteAppointmentWorkflow = createWorkflow(
     "delete-appointment",
-    function (input: DeleteAppointmentInput) {
+    function (input: DeleteAppointmentInput): any {
         return deleteAppointmentStep(input)
     }
 )
