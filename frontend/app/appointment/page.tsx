@@ -23,16 +23,28 @@ interface AppointmentFormData {
 }
 
 const problemOptions = [
-  "General Consultation",
-  "Digestive Issues",
-  "Skin Problems",
-  "Respiratory Issues",
-  "Joint Pain",
-  "Sleep Disorders",
-  "Stress & Anxiety",
-  "Weight Management",
-  "Hair Loss",
-  "Other",
+  "Erectile dysfunction (ED)",
+  "Premature ejaculation",
+  "Low testosterone",
+  "Infertility / low sperm count",
+  "Testicular problems",
+  "Sexually transmitted infections (STIs)",
+  "Frequent urination",
+  "Urinary tract infections (UTIs)",
+  "Diabetes",
+  "Metabolic syndrome",
+  "Mental & Emotional Health",
+  "Stress, anxiety",
+  "Depression",
+  "Sleep disorders",
+  "Substance abuse (alcohol, smoking, drugs)",
+  "Poor diet & malnutrition",
+  "Digestive issues (acidity, constipation)",
+  "General weakness",
+  "Fatigue",
+  "Low stamina",
+  "Muscular weakness",
+  "Lack of endurance",
 ];
 
 export default function AppointmentPage() {
@@ -189,7 +201,7 @@ export default function AppointmentPage() {
           </p>
           <div className="appointment-info-card">
             <p className="appointment-info-text">
-              <strong>Consultation Fee:</strong> ₹99 |
+              {/* <strong>Consultation Fee:</strong> ₹99 |   */}
               <strong> Available Hours:</strong> 2:00 PM - 6:00 PM |
               <strong> Doctor's Day Off:</strong> Monday
             </p>
@@ -215,161 +227,186 @@ export default function AppointmentPage() {
           <div className="lg:col-span-2 appointment-form-card">
             <h2 className="appointment-form-title">Patient Information</h2>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Patient Name */}
-              <div className="form-group">
-                <label htmlFor="patient_name" className="form-label">
-                  Full Name *
-                </label>
-                <input
-                  type="text"
-                  id="patient_name"
-                  name="patient_name"
-                  value={formData.patient_name}
-                  onChange={handleInputChange}
-                  required
-                  className="form-input"
-                  placeholder="Enter your full name"
-                />
-              </div>
+            <form onSubmit={handleSubmit}>
+              {/* Personal Information Section */}
+              <div className="form-section">
+                <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                  Personal Information
+                </h3>
 
-              {/* Patient Age and Contact Number Row */}
-              <div className="form-row">
+                {/* Patient Name */}
                 <div className="form-group">
-                  <label htmlFor="patient_age" className="form-label">
-                    Age *
+                  <label htmlFor="patient_name" className="form-label">
+                    Full Name *
                   </label>
                   <input
-                    type="number"
-                    id="patient_age"
-                    name="patient_age"
-                    value={formData.patient_age || ""}
+                    type="text"
+                    id="patient_name"
+                    name="patient_name"
+                    value={formData.patient_name}
                     onChange={handleInputChange}
                     required
-                    min="1"
-                    max="120"
                     className="form-input"
-                    placeholder="Enter your age"
+                    placeholder="Enter your full name"
                   />
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="contact_number" className="form-label">
-                    Contact Number *
-                  </label>
-                  <input
-                    type="tel"
-                    id="contact_number"
-                    name="contact_number"
-                    value={formData.contact_number}
-                    onChange={handleInputChange}
-                    required
-                    pattern="[0-9]{10}"
-                    className="form-input"
-                    placeholder="Enter 10-digit mobile number"
-                  />
-                </div>
-              </div>
-
-              {/* Patient Address */}
-              <div className="form-group">
-                <label htmlFor="patient_address" className="form-label">
-                  Address *
-                </label>
-                <textarea
-                  id="patient_address"
-                  name="patient_address"
-                  value={formData.patient_address}
-                  onChange={handleInputChange}
-                  required
-                  rows={3}
-                  className="form-textarea"
-                  placeholder="Enter your complete address"
-                />
-              </div>
-
-              {/* Problem/Issue */}
-              <div className="form-group">
-                <label htmlFor="problem" className="form-label">
-                  What brings you here? *
-                </label>
-                <select
-                  id="problem"
-                  name="problem"
-                  value={formData.problem}
-                  onChange={handleInputChange}
-                  required
-                  className="form-select"
-                >
-                  <option value="">Select a concern</option>
-                  {problemOptions.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Appointment Date and Time Row */}
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="appointment_date" className="form-label">
-                    Preferred Date *
-                  </label>
-                  <input
-                    type="date"
-                    id="appointment_date"
-                    name="appointment_date"
-                    value={selectedDate}
-                    onChange={handleDateChange}
-                    required
-                    min={minDate}
-                    max={maxDate}
-                    className="form-input"
-                  />
-                </div>
-
-                {/* Available Time Slots */}
-                {selectedDate && (
+                {/* Patient Age and Contact Number Row */}
+                <div className="form-row">
                   <div className="form-group">
-                    <label className="form-label">Available Time Slots *</label>
-                    {loading ? (
-                      <div className="text-center py-4">
-                        <div className="loading-spinner"></div>
-                        <p className="mt-2 text-sm text-gray-600">
-                          Loading available slots...
-                        </p>
-                      </div>
-                    ) : availableSlots.length > 0 ? (
-                      <div className="time-slot-grid">
-                        {availableSlots.map((slot) => (
-                          <button
-                            key={slot.time}
-                            type="button"
-                            onClick={() =>
-                              setFormData((prev) => ({
-                                ...prev,
-                                appointment_time: slot.time,
-                              }))
-                            }
-                            className={`time-slot-button ${
-                              formData.appointment_time === slot.time
-                                ? "selected"
-                                : ""
-                            }`}
-                          >
-                            {formatTime(slot.time)}
-                          </button>
-                        ))}
-                      </div>
-                    ) : (
-                      <p className="text-sm text-red-600">
-                        No available slots for this date. Please select another
-                        date.
-                      </p>
-                    )}
+                    <label htmlFor="patient_age" className="form-label">
+                      Age *
+                    </label>
+                    <input
+                      type="number"
+                      id="patient_age"
+                      name="patient_age"
+                      value={formData.patient_age || ""}
+                      onChange={handleInputChange}
+                      required
+                      min="1"
+                      max="120"
+                      className="form-input"
+                      placeholder="Enter your age"
+                    />
                   </div>
-                )}
+
+                  <div className="form-group">
+                    <label htmlFor="contact_number" className="form-label">
+                      Contact Number *
+                    </label>
+                    <input
+                      type="tel"
+                      id="contact_number"
+                      name="contact_number"
+                      value={formData.contact_number}
+                      onChange={handleInputChange}
+                      required
+                      pattern="[0-9]{10}"
+                      className="form-input"
+                      placeholder="Enter 10-digit mobile number"
+                    />
+                  </div>
+                </div>
+
+                {/* Patient Address */}
+                <div className="form-group">
+                  <label htmlFor="patient_address" className="form-label">
+                    Address *
+                  </label>
+                  <textarea
+                    id="patient_address"
+                    name="patient_address"
+                    value={formData.patient_address}
+                    onChange={handleInputChange}
+                    required
+                    rows={3}
+                    className="form-textarea"
+                    placeholder="Enter your complete address"
+                  />
+                </div>
+              </div>
+
+              {/* Medical Information Section */}
+              <div className="form-section">
+                <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                  Medical Information
+                </h3>
+
+                {/* Problem/Issue */}
+                <div className="form-group">
+                  <label htmlFor="problem" className="form-label">
+                    What brings you here? *
+                  </label>
+                  <select
+                    id="problem"
+                    name="problem"
+                    value={formData.problem}
+                    onChange={handleInputChange}
+                    required
+                    className="form-select"
+                  >
+                    <option value="">Select a concern</option>
+                    {problemOptions.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {/* Appointment Scheduling Section */}
+              <div className="form-section">
+                <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                  Appointment Scheduling
+                </h3>
+
+                {/* Appointment Date and Time Row */}
+                <div className="form-row">
+                  <div className="form-group">
+                    <label htmlFor="appointment_date" className="form-label">
+                      Preferred Date *
+                    </label>
+                    <input
+                      type="date"
+                      id="appointment_date"
+                      name="appointment_date"
+                      value={selectedDate}
+                      onChange={handleDateChange}
+                      required
+                      min={minDate}
+                      max={maxDate}
+                      className="form-input"
+                    />
+                  </div>
+
+                  {/* Available Time Slots */}
+                  {selectedDate && (
+                    <div className="form-group">
+                      <label className="form-label">
+                        Available Time Slots *
+                      </label>
+                      {loading ? (
+                        <div className="text-center py-6">
+                          <div className="loading-spinner"></div>
+                          <p className="mt-3 text-sm text-gray-600">
+                            Loading available slots...
+                          </p>
+                        </div>
+                      ) : availableSlots.length > 0 ? (
+                        <div className="time-slot-grid">
+                          {availableSlots.map((slot) => (
+                            <button
+                              key={slot.time}
+                              type="button"
+                              onClick={() =>
+                                setFormData((prev) => ({
+                                  ...prev,
+                                  appointment_time: slot.time,
+                                }))
+                              }
+                              className={`time-slot-button ${
+                                formData.appointment_time === slot.time
+                                  ? "selected"
+                                  : ""
+                              }`}
+                            >
+                              {formatTime(slot.time)}
+                            </button>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="text-center py-4">
+                          <p className="text-sm text-red-600 font-medium">
+                            No available slots for this date. Please select
+                            another date.
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
               </div>
 
               {/* Submit Button */}
@@ -421,6 +458,7 @@ export default function AppointmentPage() {
               </div>
             )}
 
+            <br />
             {/* Important Notes */}
             <div className="important-notes-card">
               <h3 className="important-notes-title">Important Notes</h3>
@@ -428,15 +466,15 @@ export default function AppointmentPage() {
                 <li className="important-notes-item">
                   Please arrive 10 minutes before your scheduled appointment
                 </li>
-                <li className="important-notes-item">
+                {/* <li className="important-notes-item">
                   Bring a valid ID proof for verification
-                </li>
-                <li className="important-notes-item">
+                </li> */}
+                {/* <li className="important-notes-item">
                   Consultation fee of ₹99 is payable at the clinic
-                </li>
-                <li className="important-notes-item">
+                </li> */}
+                {/* <li className="important-notes-item">
                   Cancellations must be made at least 2 hours in advance
-                </li>
+                </li> */}
                 <li className="important-notes-item">
                   Doctor is not available on Mondays
                 </li>
@@ -445,6 +483,7 @@ export default function AppointmentPage() {
                 </li>
               </ul>
             </div>
+            <br />
           </div>
         </div>
       </div>

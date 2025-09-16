@@ -6,194 +6,255 @@
 
 .appointment-header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
+  padding: 2rem 0;
 }
 
 .appointment-title {
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: 3rem;
+  font-weight: 800;
   color: #1f2937;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.025em;
 }
 
 .appointment-subtitle {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   color: #6b7280;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+  font-weight: 400;
+  line-height: 1.6;
 }
 
 .appointment-info-card {
-  background: #dbeafe;
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
   border: 1px solid #93c5fd;
-  border-radius: 0.5rem;
-  padding: 1rem;
-  margin-top: 1rem;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.1);
 }
 
 .appointment-info-text {
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: #1e40af;
-  font-weight: 500;
+  font-weight: 600;
+  line-height: 1.6;
+  margin: 0;
 }
 
 .appointment-form-card {
   background: white;
-  border-radius: 0.75rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  padding: 2.5rem;
   max-width: 1000px;
   margin: 0 auto;
+  border: 1px solid #e5e7eb;
 }
 
 .appointment-form-title {
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-size: 1.5rem;
+  font-weight: 700;
   color: #1f2937;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #e5e7eb;
 }
 
 .form-group {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.75rem;
 }
 
 .form-label {
   display: block;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  color: #1f2937;
-  margin-bottom: 0.5rem;
+  color: #374151;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.025em;
 }
 
 .form-input {
   width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #d1d5db;
-  border-radius: 0.375rem;
+  padding: 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.5rem;
   font-size: 1rem;
   color: #1f2937;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background-color: #fafafa;
 }
 
 .form-input:focus {
   outline: none;
   border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+  background-color: white;
+}
+
+.form-input:hover {
+  border-color: #9ca3af;
+  background-color: white;
 }
 
 .form-textarea {
   width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #d1d5db;
-  border-radius: 0.375rem;
+  padding: 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.5rem;
   font-size: 1rem;
   color: #1f2937;
   resize: vertical;
-  min-height: 80px;
-  transition: all 0.2s ease-in-out;
+  min-height: 100px;
+  transition: all 0.3s ease-in-out;
+  background-color: #fafafa;
+  font-family: inherit;
 }
 
 .form-textarea:focus {
   outline: none;
   border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+  background-color: white;
+}
+
+.form-textarea:hover {
+  border-color: #9ca3af;
+  background-color: white;
 }
 
 .form-select {
   width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #d1d5db;
-  border-radius: 0.375rem;
+  padding: 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.5rem;
   font-size: 1rem;
   color: #1f2937;
-  background-color: white;
-  transition: all 0.2s ease-in-out;
+  background-color: #fafafa;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 .form-select:focus {
   outline: none;
   border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+  background-color: white;
+}
+
+.form-select:hover {
+  border-color: #9ca3af;
+  background-color: white;
 }
 
 .time-slot-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 0.5rem;
-  margin-top: 0.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.75rem;
+  margin-top: 1rem;
 }
 
 .time-slot-button {
-  padding: 0.75rem;
-  border: 1px solid #d1d5db;
-  border-radius: 0.375rem;
+  padding: 1rem 0.75rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.5rem;
   background: white;
-  color: #1f2937;
-  font-size: 0.875rem;
+  color: #374151;
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .time-slot-button:hover {
-  background: #f9fafb;
-  border-color: #9ca3af;
+  background: #f8fafc;
+  border-color: #3b82f6;
+  color: #1e40af;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.15);
 }
 
 .time-slot-button.selected {
   background: #3b82f6;
   color: white;
   border-color: #3b82f6;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
 .time-slot-button:disabled {
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: not-allowed;
+  background: #f3f4f6;
+  color: #9ca3af;
 }
 
 .submit-button {
   width: 100%;
-  background: #3b82f6;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
   color: white;
-  padding: 0.75rem 1rem;
+  padding: 1.25rem 2rem;
   border: none;
-  border-radius: 0.375rem;
-  font-size: 1rem;
-  font-weight: 600;
+  border-radius: 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 2rem;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
 .submit-button:hover:not(:disabled) {
-  background: #2563eb;
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+}
+
+.submit-button:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
 .submit-button:disabled {
-  opacity: 0.5;
+  opacity: 0.6;
   cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
 }
 
 .appointment-summary-card {
   background: white;
-  border-radius: 0.75rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border: 1px solid #e5e7eb;
 }
 
 .appointment-summary-title {
-  font-size: 1.125rem;
-  font-weight: 600;
+  font-size: 1.25rem;
+  font-weight: 700;
   color: #1f2937;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #e5e7eb;
 }
 
 .summary-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 0;
+  padding: 1rem 0;
   border-bottom: 1px solid #f3f4f6;
 }
 
@@ -202,28 +263,34 @@
 }
 
 .summary-label {
-  color: #374151;
-  font-size: 0.875rem;
-  font-weight: 500;
+  color: #6b7280;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .summary-value {
-  font-weight: 500;
+  font-weight: 700;
   color: #1f2937;
+  font-size: 1rem;
 }
 
 .important-notes-card {
-  background: #fef3c7;
-  border: 1px solid #f59e0b;
-  border-radius: 0.75rem;
-  padding: 1.5rem;
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border: 2px solid #f59e0b;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15);
 }
 
 .important-notes-title {
-  font-size: 1.125rem;
-  font-weight: 600;
+  font-size: 1.25rem;
+  font-weight: 700;
   color: #92400e;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #f59e0b;
 }
 
 .important-notes-list {
@@ -234,18 +301,22 @@
 
 .important-notes-item {
   color: #92400e;
-  font-size: 0.875rem;
-  margin-bottom: 0.5rem;
-  padding-left: 1rem;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
   position: relative;
+  line-height: 1.6;
+  font-weight: 500;
 }
 
 .important-notes-item:before {
-  content: "•";
+  content: "▶";
   position: absolute;
   left: 0;
   color: #f59e0b;
   font-weight: bold;
+  font-size: 0.8rem;
+  top: 0.1rem;
 }
 
 .important-notes-item:last-child {
@@ -290,10 +361,23 @@
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  gap: 1.5rem;
+  margin-bottom: 1.75rem;
 }
 
 .form-row .form-group {
+  margin-bottom: 0;
+}
+
+/* Add section dividers */
+.form-section {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.form-section:last-child {
+  border-bottom: none;
   margin-bottom: 0;
 }
 
@@ -301,24 +385,40 @@
 @media (max-width: 1280px) {
   .form-row {
     grid-template-columns: 1fr;
+    gap: 0;
   }
 
   .form-row .form-group {
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.75rem;
   }
 }
 
 @media (max-width: 768px) {
+  .appointment-container {
+    padding: 1rem 0;
+  }
+
+  .appointment-header {
+    margin-bottom: 2rem;
+    padding: 1rem 0;
+  }
+
   .appointment-title {
-    font-size: 2rem;
+    font-size: 2.25rem;
   }
 
   .appointment-subtitle {
-    font-size: 1rem;
+    font-size: 1.1rem;
+  }
+
+  .appointment-info-card {
+    padding: 1.25rem;
+    margin-top: 1rem;
   }
 
   .time-slot-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
   }
 
   .appointment-form-card,
@@ -329,15 +429,35 @@
 
   .form-row {
     grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
   }
 }
 
 @media (max-width: 480px) {
   .appointment-title {
-    font-size: 1.75rem;
+    font-size: 1.875rem;
+  }
+
+  .appointment-subtitle {
+    font-size: 1rem;
   }
 
   .time-slot-grid {
     grid-template-columns: 1fr;
+  }
+
+  .appointment-form-card,
+  .appointment-summary-card,
+  .important-notes-card {
+    padding: 1.25rem;
+  }
+
+  .submit-button {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
   }
 }
