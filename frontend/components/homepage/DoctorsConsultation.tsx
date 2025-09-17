@@ -82,7 +82,7 @@ const benefits = [
 
 export default function DoctorsConsultation() {
   const handleWhatsAppConsultation = (doctorName: string) => {
-    const whatsappUrl = "https://wa.link/xmhij6";
+    const whatsappUrl = "/appointment";
     window.open(whatsappUrl, "_blank");
   };
 
@@ -214,7 +214,6 @@ export default function DoctorsConsultation() {
             onClick={() => handleWhatsAppConsultation("our Ayurvedic doctors")}
             className="main-consultation-btn"
           >
-            <FaWhatsapp />
             Get Free Consultation
           </button>
         </div>

@@ -48,7 +48,7 @@ const slides = [
     mobileImage: "/assets/images/banners/mobile/4.png",
     desktopImage: "/assets/images/banners/4.png",
     alt: "Banner 2",
-    href: "#doctors-consultation", // Example link, adjust as needed
+    href: "/appointment", // Example link, adjust as needed
   },
   {
     id: 3,
