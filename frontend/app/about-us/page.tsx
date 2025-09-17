@@ -5,8 +5,6 @@ export default function AboutUs() {
     <div style={{ background: "white", minHeight: "100vh" }}>
       <div
         className="container"
-        // style={{ padding: "60px 20px" }}
-
         style={{
           padding: "20px 20px",
           marginBottom: "20px",
@@ -128,10 +126,10 @@ export default function AboutUs() {
                 margin: "0 auto",
               }}
             >
-              Our latest launches – No More Addiction (a natural solution to
-              overcome harmful habits) and Sleep-O-Fit (herbal support for deep,
-              restful sleep) continue our mission of promoting complete physical
-              and mental well-being.
+              Our latest launches – <b>No More Addiction</b> (a natural solution
+              to overcome harmful habits) and <b>Sleep-O-Fit</b> (herbal support
+              for deep, restful sleep) continue our mission of promoting
+              complete physical and mental well-being.
             </p>
           </div>
 
@@ -147,7 +145,7 @@ export default function AboutUs() {
             }}
           >
             <img
-              src="/assets/images/banners/1.png"
+              src="/assets/images/about-us2.png"
               alt="Ayurvedic Heritage Banner"
               style={{
                 width: "100%",
@@ -196,7 +194,7 @@ export default function AboutUs() {
             {/* Left Column - Image */}
             <div style={{ flex: "1" }}>
               <img
-                src="http://localhost:8000/_next/image?url=%2Fassets%2Fimages%2Fabout-us.png&w=640&q=75"
+                src="/assets/images/about-us3.png"
                 alt="Ayurvedic Products Collection"
                 style={{
                   width: "100%",
@@ -273,25 +271,13 @@ export default function AboutUs() {
               people reconnect with nature, even in today's fast-paced life, and
               achieve long term wellness the natural way.
             </p>
-            <p
-              style={{
-                color: "#1a4d2e",
-                fontSize: "1.3rem",
-                fontWeight: "600",
-                margin: "0 auto",
-                fontStyle: "italic",
-              }}
-            >
-              {fitfusionConfig.brand.name} – The Power of Nature, For Your
-              Health
-            </p>
           </div>
         </div>
 
         {/* Bottom Image Section */}
         <div style={{ marginTop: "60px", textAlign: "center" }}>
           <img
-            src="/assets/images/banners/3.png"
+            src="/assets/images/about-us1.png"
             alt="Ayurvedic Wellness"
             style={{
               width: "100%",
