@@ -13,16 +13,26 @@ const Items = ({ order }: ItemsProps) => {
   return (
     <div>
       <h3 className="h5 mb-3">Order Items</h3>
-      <div className="table-responsive">
-        <table className="table table-hover">
+      <div className="table-responsive order-items-table">
+        <table className="table table-hover mb-0">
           <thead className="table-light">
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Image</th>
+              <th scope="col" className="d-none d-sm-table-cell">
+                #
+              </th>
+              <th scope="col" className="d-none d-md-table-cell">
+                Image
+              </th>
               <th scope="col">Product</th>
-              <th scope="col">Unit Price</th>
-              <th scope="col">Quantity</th>
-              <th scope="col">Total</th>
+              <th scope="col" className="d-none d-lg-table-cell">
+                Unit Price
+              </th>
+              <th scope="col" className="text-center">
+                Qty
+              </th>
+              <th scope="col" className="text-end">
+                Total
+              </th>
             </tr>
           </thead>
           <tbody data-testid="products-table">

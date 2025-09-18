@@ -20,54 +20,48 @@ const OrderSummary = ({ order }: OrderSummaryProps) => {
   return (
     <div>
       <h3 className="h5 mb-3">Order Summary</h3>
-      <div className="row mb-2">
-        <div className="col-6">
-          <strong>Subtotal</strong>
+      <div className="order-summary-item">
+        <div className="d-flex justify-content-between align-items-center mb-2">
+          <span>
+            <strong>Subtotal</strong>
+          </span>
+          <span>
+            <strong>{getAmount(order.subtotal)}</strong>
+          </span>
         </div>
-        <div className="col-6 text-end">
-          <strong>{getAmount(order.subtotal)}</strong>
-        </div>
-      </div>
 
-      <div className="row mb-1">
         {order.discount_total > 0 && (
-          <>
-            <div className="col-6">Discount</div>
-            <div className="col-6 text-end text-danger">
+          <div className="d-flex justify-content-between align-items-center mb-1">
+            <span>Discount</span>
+            <span className="text-danger">
               - {getAmount(order.discount_total)}
-            </div>
-          </>
+            </span>
+          </div>
         )}
-      </div>
 
-      <div className="row mb-1">
         {order.gift_card_total > 0 && (
-          <>
-            <div className="col-6">Gift Card</div>
-            <div className="col-6 text-end text-danger">
+          <div className="d-flex justify-content-between align-items-center mb-1">
+            <span>Gift Card</span>
+            <span className="text-danger">
               - {getAmount(order.gift_card_total)}
-            </div>
-          </>
+            </span>
+          </div>
         )}
-      </div>
 
-      <div className="row mb-1">
-        <div className="col-6">Shipping</div>
-        <div className="col-6 text-end">{getAmount(order.shipping_total)}</div>
-      </div>
-
-      <div className="row mb-3">
-        <div className="col-6">Taxes</div>
-        <div className="col-6 text-end">{getAmount(order.tax_total)}</div>
-      </div>
-
-      <hr className="my-3" />
-
-      <div className="row">
-        <div className="col-6">
-          <h5 className="mb-0">Total</h5>
+        <div className="d-flex justify-content-between align-items-center mb-1">
+          <span>Shipping</span>
+          <span>{getAmount(order.shipping_total)}</span>
         </div>
-        <div className="col-6 text-end">
+
+        <div className="d-flex justify-content-between align-items-center mb-3">
+          <span>Taxes</span>
+          <span>{getAmount(order.tax_total)}</span>
+        </div>
+
+        <hr className="my-3" />
+
+        <div className="d-flex justify-content-between align-items-center">
+          <h5 className="mb-0">Total</h5>
           <h5 className="mb-0 text-primary">{getAmount(order.total)}</h5>
         </div>
       </div>
