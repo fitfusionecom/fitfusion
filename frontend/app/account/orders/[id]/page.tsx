@@ -4,6 +4,7 @@ import { retrieveOrder } from "@/lib/data/orders";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import { convertToLocale } from "@/lib/util/money";
 import {
   FaExclamationTriangle,
   FaArrowLeft,
@@ -34,13 +35,6 @@ export default function OrderDetailPage() {
   const [order, setOrder] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
-
-  const formatCurrency = (amount: number, currency: string = "INR") => {
-    return new Intl.NumberFormat("en-IN", {
-      style: "currency",
-      currency: currency,
-    }).format(amount / 100);
-  };
 
   const getStatusColor = (status: string) => {
     const statusColors: { [key: string]: string } = {
@@ -271,10 +265,10 @@ export default function OrderDetailPage() {
                           <div className="d-flex align-items-center justify-content-between">
                             <span className="fw-bold">
                               {item.quantity} x{" "}
-                              {formatCurrency(
-                                item.unit_price,
-                                order.currency_code
-                              )}{" "}
+                              {convertToLocale({
+                                amount: item.unit_price,
+                                currency_code: order.currency_code,
+                              })}{" "}
                             </span>
                           </div>
                         </div>
@@ -313,32 +307,47 @@ export default function OrderDetailPage() {
                       {order.items?.length || 0} item
                     </div>
                     <div className="fw-medium">
-                      {formatCurrency(
-                        order.subtotal || order.total,
-                        order.currency_code
-                      )}
+                      {convertToLocale({
+                        amount: order.subtotal || order.total,
+                        currency_code: order.currency_code,
+                      })}
                     </div>
                   </div>
                 </div>
 
-                <div className="d-flex justify-content-between mb-2">
-                  <span className="text-muted">Discount</span>
-                  <div className="text-end">
-                    <div className="small text-muted">New customer</div>
-                    <div className="fw-medium text-success">
-                      -{formatCurrency(100, order.currency_code)}
+                {order.discount_total && order.discount_total > 0 && (
+                  <div className="d-flex justify-content-between mb-2">
+                    <span className="text-muted">Discount</span>
+                    <div className="text-end">
+                      <div className="small text-muted">
+                        {order.discounts?.length > 0
+                          ? order.discounts.map((d: any) => d.code).join(", ")
+                          : "Applied discount"}
+                      </div>
+                      <div className="fw-medium text-success">
+                        -
+                        {convertToLocale({
+                          amount: order.discount_total,
+                          currency_code: order.currency_code,
+                        })}
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
 
                 <div className="d-flex justify-content-between mb-2">
                   <span className="text-muted">Shipping</span>
                   <div className="text-end">
                     <div className="small text-muted">
-                      Free shipping (0.0 lb)
+                      {order.shipping_total === 0
+                        ? "Free shipping"
+                        : "Standard shipping"}
                     </div>
                     <div className="fw-medium">
-                      {formatCurrency(0, order.currency_code)}
+                      {convertToLocale({
+                        amount: order.shipping_total || 0,
+                        currency_code: order.currency_code,
+                      })}
                     </div>
                   </div>
                 </div>
@@ -348,14 +357,20 @@ export default function OrderDetailPage() {
                 <div className="d-flex justify-content-between mb-3">
                   <span className="fw-bold">Total</span>
                   <span className="fw-bold">
-                    {formatCurrency(order.total - 100, order.currency_code)}
+                    {convertToLocale({
+                      amount: order.total,
+                      currency_code: order.currency_code,
+                    })}
                   </span>
                 </div>
 
                 <div className="d-flex justify-content-between mb-2">
                   <span className="text-muted">Paid by customer</span>
                   <span className="fw-medium">
-                    {formatCurrency(0, order.currency_code)}
+                    {convertToLocale({
+                      amount: order.paid_total || order.total,
+                      currency_code: order.currency_code,
+                    })}
                   </span>
                 </div>
 
