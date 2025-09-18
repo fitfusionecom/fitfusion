@@ -5,6 +5,26 @@
   padding: 1rem 0;
 }
 
+/* Global Link Overrides for Account Pages */
+.account-layout a {
+  color: #1a1a1a !important;
+  text-decoration: none;
+}
+
+.account-layout a:hover {
+  color: #1a1a1a !important;
+  text-decoration: none;
+}
+
+.account-layout a:visited {
+  color: #1a1a1a !important;
+}
+
+.account-layout a:focus {
+  color: #1a1a1a !important;
+  text-decoration: none;
+}
+
 .account-container {
   width: 100%;
   max-width: 1200px;
@@ -542,28 +562,53 @@
   text-decoration: none;
   font-weight: 400;
   transition: all 0.2s ease;
-  color: #666;
+  color: #1a1a1a !important;
   background: transparent;
 }
 
 .nav-link:hover {
   background: #f3f4f6;
-  color: #1a1a1a;
+  color: #1a1a1a !important;
+  text-decoration: none;
+}
+
+.nav-link:visited {
+  color: #1a1a1a !important;
+}
+
+.nav-link:focus {
+  color: #1a1a1a !important;
+  text-decoration: none;
 }
 
 .nav-link.active {
-  background: #1a1a1a;
-  color: #ffffff;
+  background: #1a1a1a !important;
+  color: #ffffff !important;
   font-weight: 600;
 }
 
+.nav-link.active:hover {
+  background: #1a1a1a !important;
+  color: #ffffff !important;
+}
+
+.nav-link.active:visited {
+  background: #1a1a1a !important;
+  color: #ffffff !important;
+}
+
+.nav-link.active:focus {
+  background: #1a1a1a !important;
+  color: #ffffff !important;
+}
+
 .nav-link.logout {
-  color: #dc3545;
+  color: #dc3545 !important;
 }
 
 .nav-link.logout:hover {
   background: #fef2f2;
-  color: #dc2626;
+  color: #dc2626 !important;
 }
 
 .list-group-item {
@@ -571,25 +616,125 @@
   padding: 1rem 1.5rem;
   text-decoration: none;
   transition: all 0.2s ease;
-  color: black !important;
+  color: #1a1a1a !important;
 }
 
 .list-group-item:hover {
   background: #f3f4f6;
+  color: #1a1a1a !important;
+  text-decoration: none;
+}
+
+.list-group-item:visited {
+  color: #1a1a1a !important;
+}
+
+.list-group-item:focus {
+  color: #1a1a1a !important;
+  text-decoration: none;
 }
 
 .list-group-item.active {
-  background: #1a1a1a;
-  color: #ffffff;
+  background: #1a1a1a !important;
+  color: #ffffff !important;
+}
+
+.list-group-item.active:hover {
+  background: #1a1a1a !important;
+  color: #ffffff !important;
+}
+
+.list-group-item.active:visited {
+  background: #1a1a1a !important;
+  color: #ffffff !important;
+}
+
+.list-group-item.active:focus {
+  background: #1a1a1a !important;
+  color: #ffffff !important;
 }
 
 .list-group-item.logout {
-  color: #dc3545;
+  color: #dc3545 !important;
 }
 
 .list-group-item.logout:hover {
   background: #fef2f2;
-  color: #dc2626;
+  color: #dc2626 !important;
+}
+
+/* Account Navigation Specific Styles */
+.account-nav a {
+  color: #1a1a1a !important;
+  text-decoration: none !important;
+}
+
+.account-nav a:hover {
+  color: #1a1a1a !important;
+  text-decoration: none !important;
+}
+
+.account-nav a:visited {
+  color: #1a1a1a !important;
+  text-decoration: none !important;
+}
+
+.account-nav a:focus {
+  color: #1a1a1a !important;
+  text-decoration: none !important;
+}
+
+.account-nav .nav-link,
+.account-nav .list-group-item {
+  color: #1a1a1a !important;
+  text-decoration: none !important;
+}
+
+.account-nav .nav-link:hover,
+.account-nav .list-group-item:hover {
+  color: #1a1a1a !important;
+  text-decoration: none !important;
+}
+
+.account-nav .nav-link:visited,
+.account-nav .list-group-item:visited {
+  color: #1a1a1a !important;
+  text-decoration: none !important;
+}
+
+.account-nav .nav-link:focus,
+.account-nav .list-group-item:focus {
+  color: #1a1a1a !important;
+  text-decoration: none !important;
+}
+
+/* Active State Overrides - Highest Specificity */
+.account-nav .nav-link.active,
+.account-nav .list-group-item.active {
+  background: #1a1a1a !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+.account-nav .nav-link.active:hover,
+.account-nav .list-group-item.active:hover {
+  background: #1a1a1a !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+.account-nav .nav-link.active:visited,
+.account-nav .list-group-item.active:visited {
+  background: #1a1a1a !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+.account-nav .nav-link.active:focus,
+.account-nav .list-group-item.active:focus {
+  background: #1a1a1a !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
 }
 
 /* Loading States */

@@ -70,7 +70,7 @@ export default function AccountLayout({ children }: AccountLayoutProps) {
   return (
     <div className="account-layout">
       <div className="account-container">
-        <div className="container">
+        <div className="container pt-3">
           <div className="row">
             {/* Sidebar Navigation */}
             <div className="col-lg-3 col-md-4 mb-4">
@@ -86,7 +86,7 @@ export default function AccountLayout({ children }: AccountLayoutProps) {
           </div>
 
           {/* Footer Section */}
-          <div className="row mt-5">
+          <div className="row mt-1">
             <div className="col-12">
               <div className="account-card">
                 <div className="account-card-body">
