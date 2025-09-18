@@ -35,7 +35,8 @@ export default function OrderCard({ order }: OrderCardProps) {
   return (
     <Link href={`/account/orders/${order.id}`} className="order-card">
       <div className="order-card-body">
-        <div className="row align-items-center">
+        {/* Desktop Layout */}
+        <div className="d-none d-md-flex row align-items-center">
           <div className="col-md-3">
             <small className="order-label d-block">Order Date</small>
             <span className="order-value">
@@ -66,6 +67,38 @@ export default function OrderCard({ order }: OrderCardProps) {
             </span>
           </div>
           <div className="col-md-2 text-end">
+            <FaChevronRight className="order-arrow" />
+          </div>
+        </div>
+
+        {/* Mobile Layout */}
+        <div className="d-md-none">
+          <div className="d-flex justify-content-between align-items-start mb-2">
+            <div>
+              <small className="order-label d-block">
+                Order #{order.display_id}
+              </small>
+              <span className="order-value">
+                {formatCurrency(order.total, order.currency_code)}
+              </span>
+            </div>
+            <div className="text-end">
+              <span
+                className="badge"
+                style={{
+                  background: getStatusColor(order.status),
+                  color: "#fff",
+                  fontSize: "0.7rem",
+                }}
+              >
+                {getStatusText(order.status)}
+              </span>
+            </div>
+          </div>
+          <div className="d-flex justify-content-between align-items-center">
+            <small className="order-label">
+              {new Date(order.created_at).toLocaleDateString()}
+            </small>
             <FaChevronRight className="order-arrow" />
           </div>
         </div>
