@@ -25,6 +25,7 @@ export async function generateStaticParams() {
     const products = await listProducts({
       countryCode,
       queryParams: { fields: "handle" },
+      useStatic: true,
     }).then(({ response }) => response.products);
 
     if (!products) {

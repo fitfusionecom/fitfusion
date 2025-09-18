@@ -3,7 +3,7 @@
 import { sdk } from "@/lib/config"
 import { HttpTypes } from "@medusajs/types"
 import { sortProducts } from "@/lib/util/sort-products"
-import { getAuthHeaders, getCacheOptions } from "./cookies"
+import { getAuthHeaders, getCacheOptions, getStaticAuthHeaders, getStaticCacheOptions } from "./cookies"
 
 
 export type StoreProductReview = {
@@ -20,11 +20,13 @@ export const listProducts = async ({
     queryParams,
     countryCode,
     regionId,
+    useStatic = false,
 }: {
     pageParam?: number
     queryParams?: HttpTypes.FindParams & HttpTypes.StoreProductParams
     countryCode?: string
     regionId?: string
+    useStatic?: boolean
 }): Promise<{
     response: { products: HttpTypes.StoreProduct[]; count: number }
     nextPage: number | null
@@ -55,13 +57,13 @@ export const listProducts = async ({
     //     }
     // }
 
-    const headers = {
-        ...(await getAuthHeaders()),
-    }
+    const headers = useStatic
+        ? getStaticAuthHeaders()
+        : { ...(await getAuthHeaders()) }
 
-    const next = {
-        ...(await getCacheOptions("products")),
-    }
+    const next = useStatic
+        ? getStaticCacheOptions("products")
+        : { ...(await getCacheOptions("products")) }
 
     return sdk.client
         .fetch<{ products: HttpTypes.StoreProduct[]; count: number }>(

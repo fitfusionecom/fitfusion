@@ -79,3 +79,12 @@ export const removeCartId = async () => {
     maxAge: -1,
   });
 };
+
+// Static versions for generateStaticParams (no dynamic server usage)
+export const getStaticAuthHeaders = () => {
+  return {};
+};
+
+export const getStaticCacheOptions = (tag) => {
+  return {};
+};
