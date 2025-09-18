@@ -155,6 +155,8 @@ class MyShiproketProviders extends AbstractFulfillmentProviderService {
 
     const pickupLocations = await this.client.company.retrieveAll();
 
+    console.log("pickupLocations", JSON.stringify(pickupLocations, null, 2));
+
     let newOrder = {
       order_id: order.id,
       order_date: new Date().toISOString().split("T")[0],
@@ -214,6 +216,8 @@ class MyShiproketProviders extends AbstractFulfillmentProviderService {
 
     // wait 1 second for token call
     await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    console.log("newOrder", JSON.stringify(newOrder, null, 2));
 
     const response = await this.client.orders.createCustom(newOrder);
 

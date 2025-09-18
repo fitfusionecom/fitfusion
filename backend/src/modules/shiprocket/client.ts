@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjc3NzIyOTEsInNvdXJjZSI6InNyLWF1dGgtaW50IiwiZXhwIjoxNzU4MTc4MjUyLCJqdGkiOiJONDdvdWVFQ0JoMm9LZFkyIiwiaWF0IjoxNzU3MzE0MjUyLCJpc3MiOiJodHRwczovL3NyLWF1dGguc2hpcHJvY2tldC5pbi9hdXRob3JpemUvdXNlciIsIm5iZiI6MTc1NzMxNDI1MiwiY2lkIjo2NDU5NjkyLCJ0YyI6MzYwLCJ2ZXJib3NlIjpmYWxzZSwidmVuZG9yX2lkIjowLCJ2ZW5kb3JfY29kZSI6IiJ9._h66dl7SbE2rDjsde2T7OlAbbYlqC9UimnTu84FhXmw"
+const token = process.env.SHIPROCKET_TOKEN as string;
 
 class Shiprocket {
   protected client_: any;
@@ -300,6 +300,7 @@ class Shiprocket {
         })
           .then(({ data: { courier_data } }) => courier_data)
           .catch((err) => {
+            console.log("err", err);
             console.log(err.response.data);
             throw new Error("Shiprocket Courier: Failed to retrieveAll");
           });
