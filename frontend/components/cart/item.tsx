@@ -17,9 +17,17 @@ type ItemProps = {
   item: HttpTypes.StoreCartLineItem;
   type?: "full" | "preview";
   currencyCode: string;
+  index?: number;
+  isOrder?: boolean;
 };
 
-const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
+const Item = ({
+  item,
+  type = "full",
+  currencyCode,
+  index,
+  isOrder = false,
+}: ItemProps) => {
   const [updating, setUpdating] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -78,7 +86,7 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
 
   return (
     <tr>
-      <td>1</td>
+      <td>{index || 1}</td>
       <td>
         <ProductImage
           thumbnail={item.thumbnail}
@@ -90,6 +98,7 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
       </td>
       <td>
         <h6
+          className="mb-0"
           style={{
             display: "-webkit-box",
             WebkitLineClamp: 2,
@@ -109,35 +118,32 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
         />
       </td>
       <td>
-        {/* <input type="number" defaultValue={1} min={1} /> */}
-
-        <input
-          type="number"
-          value={item.quantity}
-          className="text-center max-w-[100px]"
-          onChange={(value: any) => {
-            if (
-              !isNaN(parseInt(value.target.value)) &&
-              parseInt(value.target.value) <= 100
-            ) {
-              changeQuantity(parseInt(value.target.value));
-            }
-          }}
-        />
-        {updating && <Spinner />}
+        {isOrder ? (
+          <div className="d-flex align-items-center gap-2">
+            <input
+              type="number"
+              value={item.quantity}
+              className="form-control text-center"
+              style={{ maxWidth: "80px" }}
+              onChange={(value: any) => {
+                if (
+                  !isNaN(parseInt(value.target.value)) &&
+                  parseInt(value.target.value) <= 100
+                ) {
+                  changeQuantity(parseInt(value.target.value));
+                }
+              }}
+            />
+            {updating && <Spinner />}
+          </div>
+        ) : (
+          <div className="d-flex align-items-center gap-2">{item.quantity}</div>
+        )}
       </td>
       <td>
-        <span className="!pr-0">
-          <LineItemPrice
-            item={item}
-            style="tight"
-            currencyCode={currencyCode}
-          />
-        </span>
+        <LineItemPrice item={item} style="tight" currencyCode={currencyCode} />
       </td>
-      <td>
-        <DeleteButton id={item.id} />
-      </td>
+      <td>{isOrder ? <div /> : <DeleteButton id={item.id} />}</td>
     </tr>
   );
 };
