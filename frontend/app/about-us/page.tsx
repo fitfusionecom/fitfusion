@@ -88,51 +88,7 @@ export default function AboutUs() {
         </div>
 
         {/* New Section with Heading and Banner */}
-        <div style={{ marginTop: "60px", textAlign: "center" }}>
-          {/* Section Heading */}
-          <h2
-            style={{
-              color: "black",
-              fontSize: "2rem",
-              fontWeight: "600",
-              margin: "0 0 30px 0",
-            }}
-          >
-            Our Ayurvedic Heritage
-          </h2>
-
-          {/* Content about formula blending */}
-          <div style={{ marginBottom: "30px" }}>
-            <p
-              style={{
-                color: "black",
-                fontSize: "1.1rem",
-                lineHeight: "1.6",
-                maxWidth: "800px",
-                margin: "0 auto",
-                marginBottom: "20px",
-              }}
-            >
-              Each formula is the result of blending time-tested Ayurvedic
-              wisdom with modern research, ensuring that every pack delivers not
-              just results, but also trust.
-            </p>
-            <p
-              style={{
-                color: "black",
-                fontSize: "1.1rem",
-                lineHeight: "1.6",
-                maxWidth: "800px",
-                margin: "0 auto",
-              }}
-            >
-              Our latest launches – <b>No More Addiction</b> (a natural solution
-              to overcome harmful habits) and <b>Sleep-O-Fit</b> (herbal support
-              for deep, restful sleep) continue our mission of promoting
-              complete physical and mental well-being.
-            </p>
-          </div>
-
+        <div style={{ marginTop: "30px", textAlign: "center" }}>
           {/* Banner Image */}
           <div
             style={{
@@ -169,7 +125,7 @@ export default function AboutUs() {
               position: "relative",
             }}
           >
-            Holistic Solutions for Your Everyday Needs
+            Our Ayurvedic Heritage
             <div
               style={{
                 width: "120px",
@@ -207,25 +163,36 @@ export default function AboutUs() {
 
             {/* Right Column - Text Description */}
             <div style={{ flex: "1", textAlign: "left" }}>
-              <p
-                style={{
-                  color: "black",
-                  fontSize: "1.1rem",
-                  lineHeight: "1.7",
-                  margin: "0",
-                  textAlign: "justify",
-                }}
-              >
-                {fitfusionConfig.brand.name} products are developed by Ayurvedic
-                experts with decades of experience in Ayurveda and a deep
-                understanding of the scientific principles behind Ayurvedic
-                ingredients. {fitfusionConfig.brand.shortName} offers Holistic
-                Ayurvedic solutions for every health needs like immunity,
-                energy, stress, sleep, gut health, pain and more. All our
-                products carry the hallmark of the 5000-year-old science of
-                Ayurveda and hence, they are prevention-oriented solutions that
-                help in disease management.
-              </p>
+              <div>
+                <p
+                  style={{
+                    color: "black",
+                    fontSize: "1.1rem",
+                    lineHeight: "1.6",
+                    maxWidth: "800px",
+                    margin: "0 auto",
+                    marginBottom: "20px",
+                  }}
+                >
+                  Each formula is the result of blending time-tested Ayurvedic
+                  wisdom with modern research, ensuring that every pack delivers
+                  not just results, but also trust.
+                </p>
+                <p
+                  style={{
+                    color: "black",
+                    fontSize: "1.1rem",
+                    lineHeight: "1.6",
+                    maxWidth: "800px",
+                    margin: "0 auto",
+                  }}
+                >
+                  Our latest launches – <b>No More Addiction</b> (a natural
+                  solution to overcome harmful habits) and <b>Sleep-O-Fit</b>{" "}
+                  (herbal support for deep, restful sleep) continue our mission
+                  of promoting complete physical and mental well-being.
+                </p>
+              </div>
             </div>
           </div>
         </div>
