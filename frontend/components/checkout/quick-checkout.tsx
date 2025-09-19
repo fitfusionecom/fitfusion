@@ -22,7 +22,7 @@ interface QuickCheckoutProps {
 
 const paymentMethodMapForShippingMethod = {
   // prepaid
-  so_01K1TDQ89AWZRP53YQB3PSF813: "pp_razorpay_my-custom-payment",
+  so_01K5DTTKJBPJFB7VARRWM6XS6H: "pp_razorpay_my-custom-payment",
   //   cod
   so_01K4HM35WWKXST70X573GZ71NX: "pp_system_default",
 };
