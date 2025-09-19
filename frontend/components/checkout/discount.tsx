@@ -19,8 +19,6 @@ type DiscountCodeProps = {
 const firstOrderDiscountCode = "FITFA15";
 
 const DiscountCode: React.FC<DiscountCodeProps> = ({ cart, isBuyNow }) => {
-  const [isOpen, setIsOpen] = React.useState(false);
-
   const { items = [], promotions = [] } = cart;
 
   const removePromotionCode = async (code: string) => {
@@ -86,41 +84,54 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart, isBuyNow }) => {
           action={(a) => addPromotionCode(a)}
           className="w-100 mb-4"
         >
-          <label className="d-flex gap-2 my-2 align-items-center">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              type="button"
-              className="btn btn-link text-primary text-decoration-none p-0 border-0 bg-transparent discount-toggle-btn"
-              data-testid="add-discount-button"
+          <div className="mb-3">
+            <h6
+              className="h6 text-dark mb-2"
+              style={{ color: "#333", fontWeight: "600" }}
             >
-              Add Promotion Code(s)
-            </button>
-          </label>
+              Apply Promocode
+            </h6>
+          </div>
 
-          {isOpen && (
-            <>
-              <div className="d-flex w-100 gap-2 discount-input-group">
-                <input
-                  className="flex-fill p-2 discount-input "
-                  style={{
-                    textTransform: "uppercase",
-                    color: "black",
-                  }}
-                  id="promotion-input"
-                  name="code"
-                  type="text"
-                  autoFocus={false}
-                  data-testid="discount-input"
-                />
-                <button
-                  className="btn btn-dark px-3 discount-apply-btn"
-                  data-testid="discount-apply-button"
-                >
-                  Apply
-                </button>
-              </div>
-            </>
-          )}
+          <div className="d-flex w-100 gap-2 discount-input-group">
+            <input
+              className="flex-fill p-2 discount-input"
+              style={{
+                textTransform: "uppercase",
+                color: "black",
+                border: "1px solid #ced4da",
+                borderRadius: "0.375rem",
+                outline: "none",
+                transition:
+                  "border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
+              }}
+              id="promotion-input"
+              name="code"
+              type="text"
+              autoFocus={false}
+              data-testid="discount-input"
+              onFocus={(e) => {
+                e.target.style.borderColor = "#000";
+                e.target.style.boxShadow = "0 0 0 0.2rem rgba(0, 0, 0, 0.25)";
+              }}
+              onBlur={(e) => {
+                e.target.style.borderColor = "#ced4da";
+                e.target.style.boxShadow = "none";
+              }}
+              placeholder="Enter promo code"
+            />
+            <button
+              className="btn btn-dark px-3 discount-apply-btn"
+              data-testid="discount-apply-button"
+              style={{
+                backgroundColor: "#000",
+                borderColor: "#000",
+                fontWeight: "500",
+              }}
+            >
+              Apply
+            </button>
+          </div>
         </form>
 
         {promotions.length > 0 && (

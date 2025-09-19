@@ -60,7 +60,7 @@ const ShippingAddress = ({
     "shipping_address.first_name": cart?.shipping_address?.first_name || "",
     "shipping_address.last_name": cart?.shipping_address?.last_name || "",
     "shipping_address.address_1": cart?.shipping_address?.address_1 || "",
-    "shipping_address.company": cart?.shipping_address?.company || "",
+    // "shipping_address.company": cart?.shipping_address?.company || "",
     "shipping_address.postal_code": cart?.shipping_address?.postal_code || "",
     "shipping_address.city": cart?.shipping_address?.city || "",
     "shipping_address.country_code": cart?.shipping_address?.country_code || "",
@@ -92,7 +92,7 @@ const ShippingAddress = ({
         "shipping_address.first_name": address?.first_name || "",
         "shipping_address.last_name": address?.last_name || "",
         "shipping_address.address_1": address?.address_1 || "",
-        "shipping_address.company": address?.company || "",
+        // "shipping_address.company": address?.company || "",
         "shipping_address.postal_code": address?.postal_code || "",
         "shipping_address.city": address?.city || "",
         "shipping_address.country_code": address?.country_code || "",
@@ -109,11 +109,11 @@ const ShippingAddress = ({
 
   useEffect(() => {
     if (cart && cart.shipping_address) {
-      setFormAddress(cart?.shipping_address, cart?.email);
+      setFormAddress(cart?.shipping_address, "");
     }
 
     if (cart && !cart.email && customer?.email) {
-      setFormAddress(undefined, customer.email);
+      setFormAddress(undefined, "");
     }
   }, [cart]);
 
@@ -202,7 +202,7 @@ const ShippingAddress = ({
           </div>
         </div>
 
-        <div className="col-lg-6 col-md-6 col-sm-12">
+        {/* <div className="col-lg-6 col-md-6 col-sm-12">
           <div className="ayur-form-input ayur-check-form">
             <label>Company</label>
             <input
@@ -215,7 +215,7 @@ const ShippingAddress = ({
               data-testid="shipping-company-input"
             />
           </div>
-        </div>
+        </div> */}
 
         <div className="col-lg-6 col-md-6 col-sm-12">
           <div className="ayur-form-input ayur-check-form">
@@ -308,9 +308,7 @@ const ShippingAddress = ({
 
         <div className="col-lg-6 col-md-6 col-sm-12">
           <div className="ayur-form-input ayur-check-form">
-            <label>
-              Email <span>*</span>
-            </label>
+            <label>Email</label>
             <input
               name="email"
               type="email"
@@ -318,7 +316,6 @@ const ShippingAddress = ({
               placeholder=""
               value={formData.email}
               onChange={handleChange}
-              required
               data-testid="shipping-email-input"
             />
           </div>

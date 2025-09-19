@@ -35,13 +35,14 @@ export default async function Checkout({ searchParams }: CheckoutProps) {
     <div className="checkout-page">
       {/* Checkout Form */}
       <div className="container mt-2">
-        <div className="row g-4 checkout-layout">
-          <div className="col-12 col-lg-8 mb-4 mb-lg-0 checkout-form-section">
-            <CheckoutForm cart={cart} customer={customer} isBuyNow={!!cartId} />
-          </div>
-          <div className="col-12 col-lg-4 checkout-summary-section">
+        <div className="row g-4 checkout-layout flex-column flex-lg-row">
+          {/* On mobile, summary comes first, then form. On desktop, form left, summary right */}
+          <div className="col-12 col-lg-4 order-1 order-lg-2 checkout-summary-section">
             <CheckoutSummary cart={cart} />
             <DiscountCode cart={cart} isBuyNow={!!cartId} />
+          </div>
+          <div className="col-12 col-lg-8 mb-4 mb-lg-0 order-2 order-lg-1 checkout-form-section">
+            <CheckoutForm cart={cart} customer={customer} isBuyNow={!!cartId} />
           </div>
         </div>
       </div>

@@ -28,14 +28,26 @@ export async function setAddressForBuyNow(currentState: unknown, formData: FormD
                 last_name: formData.get("shipping_address.last_name"),
                 address_1: formData.get("shipping_address.address_1"),
                 address_2: "",
-                company: formData.get("shipping_address.company"),
+                company: "N/A",
                 postal_code: formData.get("shipping_address.postal_code"),
                 city: formData.get("shipping_address.city"),
                 country_code: formData.get("shipping_address.country_code"),
                 province: formData.get("shipping_address.province"),
                 phone: formData.get("shipping_address.phone"),
             },
-            email: formData.get("email"),
+            email: (() => {
+                const email = formData.get("email");
+                if (email && typeof email === "string" && email.trim() !== "") {
+                    return email;
+                }
+                const phone = formData.get("shipping_address.phone");
+                if (phone && typeof phone === "string" && phone.trim() !== "") {
+                    // Remove all non-numeric characters from the phone number
+                    const cleanedPhone = phone.replace(/\D/g, "");
+                    return `${cleanedPhone}@fitfusion.com`;
+                }
+                return "";
+            })(),
         } as any
 
         data.billing_address = data.shipping_address
