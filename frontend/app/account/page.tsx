@@ -86,7 +86,7 @@ export default function AccountOverview() {
       </div>
 
       {/* Stats Cards */}
-      <div className="row mb-4">
+      {/* <div className="row mb-4">
         <div className="col-md-6 mb-3">
           <div className="stats-card">
             <div className="stats-card-body">
@@ -113,7 +113,7 @@ export default function AccountOverview() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Recent Orders */}
       <div className="mb-4">

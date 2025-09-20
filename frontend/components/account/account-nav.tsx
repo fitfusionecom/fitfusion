@@ -33,12 +33,12 @@ export default function AccountNav({ customer }: AccountNavProps) {
       icon: <FaHome className="icon-sm" />,
       testId: "overview-link",
     },
-    {
-      href: "/account/profile",
-      label: "Profile",
-      icon: <FaUser className="icon-sm" />,
-      testId: "profile-link",
-    },
+    // {
+    //   href: "/account/profile",
+    //   label: "Profile",
+    //   icon: <FaUser className="icon-sm" />,
+    //   testId: "profile-link",
+    // },
     {
       href: "/account/addresses",
       label: "Addresses",
