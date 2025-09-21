@@ -1,13 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { FaChevronRight } from "react-icons/fa";
+import { FaChevronRight, FaTimes } from "react-icons/fa";
 
 interface OrderCardProps {
   order: any;
+  onOrderCancelled?: () => void;
 }
 
-export default function OrderCard({ order }: OrderCardProps) {
+export default function OrderCard({ order, onOrderCancelled }: OrderCardProps) {
   const formatCurrency = (amount: number, currency: string = "INR") => {
     return new Intl.NumberFormat("en-IN", {
       style: "currency",
@@ -30,6 +31,14 @@ export default function OrderCard({ order }: OrderCardProps) {
 
   const getStatusText = (status: string) => {
     return status.charAt(0).toUpperCase() + status.slice(1);
+  };
+
+  const canCancelOrder = (order: any) => {
+    return (
+      order.status === "pending" ||
+      order.status === "confirmed" ||
+      order.status === "processing"
+    );
   };
 
   return (
@@ -67,7 +76,19 @@ export default function OrderCard({ order }: OrderCardProps) {
             </span>
           </div>
           <div className="col-md-2 text-end">
-            <FaChevronRight className="order-arrow" />
+            <div className="d-flex align-items-center justify-content-end gap-2">
+              {canCancelOrder(order) && (
+                <Link
+                  href={`/account/orders/${order.id}/cancel`}
+                  className="btn btn-sm btn-outline-danger"
+                  title="Cancel Order"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <FaTimes />
+                </Link>
+              )}
+              <FaChevronRight className="order-arrow" />
+            </div>
           </div>
         </div>
 
@@ -99,8 +120,34 @@ export default function OrderCard({ order }: OrderCardProps) {
             <small className="order-label">
               {new Date(order.created_at).toLocaleDateString()}
             </small>
-            <FaChevronRight className="order-arrow" />
+            <div className="d-flex align-items-center gap-2">
+              {canCancelOrder(order) && (
+                <Link
+                  href={`/account/orders/${order.id}/cancel`}
+                  className="btn btn-sm btn-outline-danger"
+                  title="Cancel Order"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <FaTimes />
+                </Link>
+              )}
+              <FaChevronRight className="order-arrow" />
+            </div>
           </div>
+
+          {/* Show cancellation details if order is cancelled */}
+          {order.status === "canceled" && order.metadata && (
+            <div className="mt-2 p-2 bg-light border rounded">
+              <small className="text-danger d-block">
+                <strong>Cancelled:</strong> {order.metadata.cancellation_reason}
+              </small>
+              {order.metadata.cancelled_at && (
+                <small className="text-muted d-block">
+                  {new Date(order.metadata.cancelled_at).toLocaleString()}
+                </small>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </Link>

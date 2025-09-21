@@ -27,12 +27,10 @@ export default function OrdersPage() {
         <div className="error-state text-center py-5">
           <h5 className="text-danger mb-3">Failed to load orders</h5>
           <p className="text-muted mb-3">
-            {error?.message || "Something went wrong while loading your orders."}
+            {error?.message ||
+              "Something went wrong while loading your orders."}
           </p>
-          <button 
-            className="btn btn-primary" 
-            onClick={() => refetch()}
-          >
+          <button className="btn btn-primary" onClick={() => refetch()}>
             Try Again
           </button>
         </div>
@@ -54,7 +52,7 @@ export default function OrdersPage() {
           <div className="row">
             {orders.map((order) => (
               <div key={order.id} className="col-12 mb-3">
-                <OrderCard order={order} />
+                <OrderCard order={order} onOrderCancelled={() => refetch()} />
               </div>
             ))}
           </div>

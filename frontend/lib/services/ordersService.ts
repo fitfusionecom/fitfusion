@@ -1,6 +1,7 @@
 import { sdk } from "@/lib/config";
 import { HttpTypes } from "@medusajs/types";
 
+
 export const ordersService = {
     // Client-side function to fetch orders
     async listOrders(limit: number = 10, offset: number = 0) {
@@ -101,9 +102,7 @@ export const ordersService = {
                     "Authorization": `Bearer ${token}`,
                 },
                 credentials: "include",
-                next: {
-                    revalidate: 60,
-                },
+                cache: "no-store",
             });
 
             if (!response.ok) {
@@ -118,6 +117,28 @@ export const ordersService = {
             return data.order;
         } catch (error) {
             console.error("Error fetching order:", error);
+            throw error;
+        }
+    },
+
+    // Cancel order with reason (Public API - Uses publishable API key)
+    async cancelOrder(orderId: string, cancellationReason: string, cancelledBy?: string) {
+        try {
+            const data = await sdk.client.fetch(`/store/orders/${orderId}/cancel`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: {
+                    cancellation_reason: cancellationReason,
+                    cancelled_by: cancelledBy,
+                    no_notification: false
+                },
+            });
+
+            return data;
+        } catch (error) {
+            console.error("Error cancelling order:", error);
             throw error;
         }
     }

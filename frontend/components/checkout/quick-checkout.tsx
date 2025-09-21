@@ -22,7 +22,7 @@ interface QuickCheckoutProps {
 
 const paymentMethodMapForShippingMethod = {
   // prepaid
-  so_01K5DTTKJBPJFB7VARRWM6XS6H: "pp_razorpay_my-custom-payment",
+  so_01K5K3Q3RCFAZGGH5S9QRAW3QD: "pp_system_default",
   //   cod
   so_01K4HM35WWKXST70X573GZ71NX: "pp_system_default",
 };
@@ -51,7 +51,8 @@ const QuickCheckout = ({
   const [isLoading, setIsLoading] = useState(false);
 
   const [shippingMethodId, setShippingMethodId] = useState<string | null>(
-    cart.shipping_methods?.at(-1)?.shipping_option_id || null
+    cart.shipping_methods?.at(-1)?.shipping_option_id ||
+      "so_01K5K3Q3RCFAZGGH5S9QRAW3QD"
   );
 
   const activeSession = cart.payment_collection?.payment_sessions?.find(
@@ -158,6 +159,9 @@ const QuickCheckout = ({
             </button>
           )}
         </div>
+
+        {/* {JSON.stringify({ shipping  MethodId, paymentMethodId })} */}
+
         {isOpen ? (
           <div className="p-3">
             <div className="shipping-methods-container">

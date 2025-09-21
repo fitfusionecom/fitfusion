@@ -1,0 +1,257 @@
+/* Order Cancel Modal Styles */
+.order-cancel-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  padding: 1rem;
+}
+
+.order-cancel-modal-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  cursor: pointer;
+}
+
+.order-cancel-modal-content {
+  position: relative;
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  max-width: 28rem;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: modalSlideIn 0.2s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.order-cancel-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.order-cancel-modal-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.order-cancel-modal-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: #fef2f2;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.order-cancel-modal-icon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #dc2626;
+}
+
+.order-cancel-modal-close {
+  color: #9ca3af;
+  transition: color 0.2s;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.order-cancel-modal-close:hover {
+  color: #6b7280;
+}
+
+.order-cancel-modal-close:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.order-cancel-modal-body {
+  padding: 1.5rem;
+}
+
+.order-cancel-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  background-color: #f9fafb;
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+
+.order-cancel-modal-button {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 6rem;
+}
+
+.order-cancel-modal-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.order-cancel-modal-button-secondary {
+  color: #374151;
+  background-color: white;
+  border-color: #d1d5db;
+}
+
+.order-cancel-modal-button-secondary:hover:not(:disabled) {
+  background-color: #f9fafb;
+}
+
+.order-cancel-modal-button-danger {
+  color: white;
+  background-color: #dc2626;
+  border-color: #dc2626;
+}
+
+.order-cancel-modal-button-danger:hover:not(:disabled) {
+  background-color: #b91c1c;
+}
+
+.order-cancel-modal-form-group {
+  margin-bottom: 1rem;
+}
+
+.order-cancel-modal-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.order-cancel-modal-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  font-size: 0.875rem;
+  transition: all 0.2s;
+}
+
+.order-cancel-modal-input:focus {
+  outline: none;
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+.order-cancel-modal-input:disabled {
+  background-color: #f3f4f6;
+  cursor: not-allowed;
+}
+
+.order-cancel-modal-textarea {
+  resize: vertical;
+  min-height: 6rem;
+}
+
+.order-cancel-modal-error {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 0.375rem;
+  padding: 0.75rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.order-cancel-modal-error-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #f87171;
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+.order-cancel-modal-error-text {
+  font-size: 0.875rem;
+  color: #991b1b;
+}
+
+.order-cancel-modal-loading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.order-cancel-modal-spinner {
+  width: 1rem;
+  height: 1rem;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .order-cancel-modal {
+    padding: 0.5rem;
+  }
+
+  .order-cancel-modal-content {
+    max-width: 100%;
+  }
+
+  .order-cancel-modal-header,
+  .order-cancel-modal-body,
+  .order-cancel-modal-footer {
+    padding: 1rem;
+  }
+
+  .order-cancel-modal-footer {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .order-cancel-modal-button {
+    width: 100%;
+  }
+}

@@ -13,8 +13,8 @@ export const useOrders = (limit: number = 10, offset: number = 0) => {
     } = useQuery({
         queryKey: ["orders", limit, offset],
         queryFn: () => ordersService.listOrders(limit, offset),
-        staleTime: 1000 * 60 * 5, // 5 minutes
-        cacheTime: 1000 * 60 * 10, // 10 minutes
+        staleTime: 0, // No stale time - always fetch fresh data
+        cacheTime: 0, // No cache time - don't cache
         retry: (failureCount, error: any) => {
             // Don't retry on authentication errors
             if (error?.message?.includes("Authentication failed")) {
@@ -52,8 +52,8 @@ export const useOrder = (orderId: string) => {
         queryKey: ["order", orderId],
         queryFn: () => ordersService.getOrder(orderId),
         enabled: !!orderId, // Only run if orderId exists
-        staleTime: 1000 * 60 * 5, // 5 minutes
-        cacheTime: 1000 * 60 * 10, // 10 minutes
+        staleTime: 0, // No stale time - always fetch fresh data
+        cacheTime: 0, // No cache time - don't cache
         retry: (failureCount, error: any) => {
             if (error?.message?.includes("Authentication failed")) {
                 return false;
