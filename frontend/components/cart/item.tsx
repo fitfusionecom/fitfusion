@@ -107,7 +107,9 @@ const Item = ({
             textOverflow: "ellipsis",
           }}
         >
-          {item.product_title}
+          {item.product_title && item.product_title.length > 30
+            ? item.product_title.slice(0, 30) + "..."
+            : item.product_title}
         </h6>
       </td>
       <td>
@@ -118,7 +120,7 @@ const Item = ({
         />
       </td>
       <td>
-        {isOrder ? (
+        {!isOrder ? (
           <div className="d-flex align-items-center gap-2">
             <input
               type="number"

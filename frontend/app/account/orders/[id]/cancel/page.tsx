@@ -70,7 +70,7 @@ export default function CancelOrderPage({ params }: CancelOrderPageProps) {
   };
 
   return (
-    <div className="py-5">
+    <div className="">
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-12">
