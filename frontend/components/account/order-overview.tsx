@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { FaBox, FaArrowLeft, FaShoppingCart, FaStar } from "react-icons/fa";
+import { convertToLocale } from "@/lib/util/money";
 
 interface OrderOverviewProps {
   order: any;
@@ -9,10 +10,11 @@ interface OrderOverviewProps {
 
 export default function OrderOverview({ order }: OrderOverviewProps) {
   const formatCurrency = (amount: number, currency: string = "INR") => {
-    return new Intl.NumberFormat("en-IN", {
-      style: "currency",
-      currency: currency,
-    }).format(amount / 100);
+    // Use convertToLocale like in product pages for consistent formatting
+    return convertToLocale({
+      amount: amount,
+      currency_code: currency,
+    });
   };
 
   const getStatusColor = (status: string) => {
@@ -84,7 +86,12 @@ export default function OrderOverview({ order }: OrderOverviewProps) {
                 <div className="text-end">
                   <div className="text-muted">Order Total</div>
                   <div className="h4 mb-0 order-value">
-                    {formatCurrency(order.total, order.currency_code)}
+                    {order.status === "cancelled" ||
+                    order.status === "canceled" ? (
+                      <span className="text-muted">-</span>
+                    ) : (
+                      formatCurrency(order.total, order.currency_code)
+                    )}
                   </div>
                 </div>
               </div>
@@ -191,7 +198,12 @@ export default function OrderOverview({ order }: OrderOverviewProps) {
                 <div className="d-flex justify-content-between fw-bold">
                   <span>Total</span>
                   <span className="order-value">
-                    {formatCurrency(order.total, order.currency_code)}
+                    {order.status === "cancelled" ||
+                    order.status === "canceled" ? (
+                      <span className="text-muted">-</span>
+                    ) : (
+                      formatCurrency(order.total, order.currency_code)
+                    )}
                   </span>
                 </div>
               </div>

@@ -12,6 +12,7 @@ import {
   FaUser,
   FaShoppingCart,
 } from "react-icons/fa";
+import { convertToLocale } from "@/lib/util/money";
 
 export default function AccountOverview() {
   const [customer, setCustomer] = useState<any>(null);
@@ -62,10 +63,11 @@ export default function AccountOverview() {
   };
 
   const formatCurrency = (amount: number, currency: string = "INR") => {
-    return new Intl.NumberFormat("en-IN", {
-      style: "currency",
-      currency: currency,
-    }).format(amount / 100);
+    // Use convertToLocale like in product pages for consistent formatting
+    return convertToLocale({
+      amount: amount,
+      currency_code: currency,
+    });
   };
 
   return (
@@ -151,7 +153,12 @@ export default function AccountOverview() {
                           Total amount
                         </small>
                         <span className="order-value">
-                          {formatCurrency(order.total, order.currency_code)}
+                          {order.status === "cancelled" ||
+                          order.status === "canceled" ? (
+                            <span className="text-muted">-</span>
+                          ) : (
+                            formatCurrency(order.total, order.currency_code)
+                          )}
                         </span>
                       </div>
                       <div className="col-md-3 text-end">

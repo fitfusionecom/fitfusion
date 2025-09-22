@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { FaChevronRight, FaTimes } from "react-icons/fa";
+import { FaChevronRight } from "react-icons/fa";
+import { convertToLocale } from "@/lib/util/money";
 
 interface OrderCardProps {
   order: any;
@@ -10,10 +11,11 @@ interface OrderCardProps {
 
 export default function OrderCard({ order, onOrderCancelled }: OrderCardProps) {
   const formatCurrency = (amount: number, currency: string = "INR") => {
-    return new Intl.NumberFormat("en-IN", {
-      style: "currency",
-      currency: currency,
-    }).format(amount / 100);
+    // Use convertToLocale like in product pages for consistent formatting
+    return convertToLocale({
+      amount: amount,
+      currency_code: currency,
+    });
   };
 
   const getStatusColor = (status: string) => {
@@ -31,14 +33,6 @@ export default function OrderCard({ order, onOrderCancelled }: OrderCardProps) {
 
   const getStatusText = (status: string) => {
     return status.charAt(0).toUpperCase() + status.slice(1);
-  };
-
-  const canCancelOrder = (order: any) => {
-    return (
-      order.status === "pending" ||
-      order.status === "confirmed" ||
-      order.status === "processing"
-    );
   };
 
   return (
@@ -59,7 +53,11 @@ export default function OrderCard({ order, onOrderCancelled }: OrderCardProps) {
           <div className="col-md-2">
             <small className="order-label d-block">Total Amount</small>
             <span className="order-value">
-              {formatCurrency(order.total, order.currency_code)}
+              {order.status === "cancelled" || order.status === "canceled" ? (
+                <span className="text-muted">-</span>
+              ) : (
+                formatCurrency(order.total, order.currency_code)
+              )}
             </span>
           </div>
           <div className="col-md-2">
@@ -76,19 +74,7 @@ export default function OrderCard({ order, onOrderCancelled }: OrderCardProps) {
             </span>
           </div>
           <div className="col-md-2 text-end">
-            <div className="d-flex align-items-center justify-content-end gap-2">
-              {canCancelOrder(order) && (
-                <Link
-                  href={`/account/orders/${order.id}/cancel`}
-                  className="btn btn-sm btn-outline-danger"
-                  title="Cancel Order"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <FaTimes />
-                </Link>
-              )}
-              <FaChevronRight className="order-arrow" />
-            </div>
+            <FaChevronRight className="order-arrow" />
           </div>
         </div>
 
@@ -100,7 +86,11 @@ export default function OrderCard({ order, onOrderCancelled }: OrderCardProps) {
                 Order #{order.display_id}
               </small>
               <span className="order-value">
-                {formatCurrency(order.total, order.currency_code)}
+                {order.status === "cancelled" || order.status === "canceled" ? (
+                  <span className="text-muted">-</span>
+                ) : (
+                  formatCurrency(order.total, order.currency_code)
+                )}
               </span>
             </div>
             <div className="text-end">
@@ -120,34 +110,8 @@ export default function OrderCard({ order, onOrderCancelled }: OrderCardProps) {
             <small className="order-label">
               {new Date(order.created_at).toLocaleDateString()}
             </small>
-            <div className="d-flex align-items-center gap-2">
-              {canCancelOrder(order) && (
-                <Link
-                  href={`/account/orders/${order.id}/cancel`}
-                  className="btn btn-sm btn-outline-danger"
-                  title="Cancel Order"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <FaTimes />
-                </Link>
-              )}
-              <FaChevronRight className="order-arrow" />
-            </div>
+            <FaChevronRight className="order-arrow" />
           </div>
-
-          {/* Show cancellation details if order is cancelled */}
-          {order.status === "canceled" && order.metadata && (
-            <div className="mt-2 p-2 bg-light border rounded">
-              <small className="text-danger d-block">
-                <strong>Cancelled:</strong> {order.metadata.cancellation_reason}
-              </small>
-              {order.metadata.cancelled_at && (
-                <small className="text-muted d-block">
-                  {new Date(order.metadata.cancelled_at).toLocaleString()}
-                </small>
-              )}
-            </div>
-          )}
         </div>
       </div>
     </Link>
