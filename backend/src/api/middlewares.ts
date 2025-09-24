@@ -13,6 +13,7 @@ import { PutAdminBlogSchema } from "./admin/blogs/[id]/route";
 import { GetAvailableSlotsSchema, CreateAppointmentSchema } from "./store/appointments/route";
 import { GetAdminAppointmentsSchema, UpdateAppointmentStatusSchema, DeleteAppointmentSchema } from "./admin/appointments/route";
 import { DeleteHolidaySchema } from "./admin/appointments/holidays/route";
+import { SendWhatsAppMessageSchema } from "./admin/appointments/whatsapp/route";
 
 import multer from "multer";
 
@@ -209,6 +210,14 @@ export default defineMiddlewares({
       middlewares: [
         // @ts-ignore
         validateAndTransformBody(DeleteHolidaySchema),
+      ],
+    },
+    {
+      matcher: "/admin/appointments/whatsapp",
+      method: ["POST"],
+      middlewares: [
+        // @ts-ignore
+        validateAndTransformBody(SendWhatsAppMessageSchema),
       ],
     },
 

@@ -211,32 +211,18 @@ export default function AppointmentsPage() {
     try {
       setWhatsappLoading(true);
 
-      const body = {
-        key: "AbCdEfGhIjKlMnOpQrStUvWxYz123456",
+      const payload = {
         to: appointmentForWhatsApp.contact_number,
-        languageCode: "en_US",
-        TemplateName: "sample_Template",
-        headertype: "image",
-        link: "https://www.xyz.com//Files/b4063f333fdec6.jpeg",
-        filename: "",
-        headertext: "",
-        BodyParameter: [
+        templateName: "appointment",
+        bodyParameters: [
           { type: "text", text: appointmentForWhatsApp.patient_name },
-          {
-            type: "text",
-            text: formatDate(appointmentForWhatsApp.appointment_date),
-          },
-          {
-            type: "text",
-            text: formatTime(appointmentForWhatsApp.appointment_time),
-          },
           { type: "text", text: meetingLink },
         ],
       };
 
       const response = await axios.post(
-        "https://waba2waba.com/api/v1/sendTemplateMessage",
-        body,
+        "/admin/appointments/whatsapp",
+        payload,
         {
           headers: {
             "Content-Type": "application/json",
@@ -881,6 +867,17 @@ export default function AppointmentsPage() {
                     onChange={(e) => setMeetingLink(e.target.value)}
                     className="w-full"
                   />
+                  <div className="mt-2 p-2 bg-blue-50 rounded border-l-4 border-blue-400">
+                    <Text className="text-xs text-blue-700">
+                      <strong>Sample Links:</strong>
+                      <br />
+                      • Google Meet: https://meet.google.com/abc-def-ghi
+                      <br />
+                      • Zoom: https://zoom.us/j/123456789
+                      <br />• Microsoft Teams:
+                      https://teams.microsoft.com/l/meetup-join/...
+                    </Text>
+                  </div>
                 </div>
 
                 <div className="p-3 bg-gray-50 rounded-lg">
