@@ -1,7 +1,12 @@
-import axios from "axios"
 import { Modules } from "@medusajs/framework/utils"
 import { IOrderModuleService } from "@medusajs/framework/types"
 import { SubscriberArgs, type SubscriberConfig } from "@medusajs/framework"
+import {
+    WhatsAppService,
+    OrderNotificationService,
+    createWhatsAppService
+} from "../utils/whatsapp-service"
+
 
 /**
  * WhatsApp Order Placed Notification Subscriber
@@ -20,136 +25,96 @@ export default async function orderPlacedWhatsAppHandler({
 
     try {
         logger.info(`Order placed event received for order ${data.id}`)
-        logger.info(`Order data: ${JSON.stringify(data)}`)
 
         // Fetch the complete order details including customer information
         const order = await orderService.retrieveOrder(data.id, {
             relations: ["shipping_address", "billing_address"]
         })
 
-        logger.info(`Order: ${JSON.stringify(order)}`)
+        logger.info(`Order retrieved: ${order.id}`)
 
-        // Extract user email from order
-        const userEmail = order?.email
-        logger.info(`User email: ${userEmail}`)
+        // Extract mobile number using the utility function
+        const mobileResult = WhatsAppService.extractMobileNumber(order)
 
-        // Extract mobile number from email format (e.g., 7354657459@fitfusion.com)
-        let mobileNumber: string | null = null
-        if (userEmail && userEmail.includes('@fitfusion.com')) {
-            const extractedNumber = userEmail.split('@')[0]
-            // Validate that it's a valid mobile number (10 digits)
-            if (/^\d{10}$/.test(extractedNumber)) {
-                mobileNumber = extractedNumber
-                logger.info(`Mobile number extracted from email: ${mobileNumber}`)
-            } else {
-                logger.warn(`Invalid mobile number format in email: ${extractedNumber}`)
-            }
-        }
+        if (!mobileResult.isValid || !mobileResult.mobileNumber) {
+            logger.warn(`No valid mobile number found for order ${order.id}. Source: ${mobileResult.source}`)
 
-        // Fallback to shipping address mobile number if not found in email
-        if (!mobileNumber) {
-            const shippingAddress = (order as any).shipping_address
-            if (shippingAddress && shippingAddress.phone) {
-                // Clean the phone number (remove any non-digit characters)
-                const cleanPhone = shippingAddress.phone.replace(/\D/g, '')
-                if (/^\d{10}$/.test(cleanPhone)) {
-                    mobileNumber = cleanPhone
-                    logger.info(`Using mobile number from shipping address: ${mobileNumber}`)
-                } else {
-                    logger.warn(`Invalid mobile number format in shipping address: ${shippingAddress.phone}`)
+            // Update order metadata to track notification failure
+            const notificationService = new OrderNotificationService(orderService)
+            await notificationService.updateNotificationStatus(
+                order.id,
+                "wa_placed_notification",
+                {
+                    status: "failed",
+                    error: "No valid mobile number found"
                 }
-            }
-        }
-
-        if (!mobileNumber) {
-            logger.warn(`No mobile number found for order ${order.id}. Cannot send WhatsApp message.`)
-
-            // Update order metadata to track notification failure due to missing mobile number
-            await orderService.updateOrders(order.id, {
-                metadata: {
-                    ...order.metadata,
-                    wa_placed_notification: "failed",
-                    wa_placed_notification_error: "No valid mobile number found"
-                }
-            })
+            )
 
             logger.info(`Updated order ${order.id} metadata: WhatsApp notification failed - no mobile number`)
             return
         }
 
-        // Prepare WhatsApp message body parameters
-        const bodyParameters = [
-            { type: "text", text: order.id },
-            { type: "text", text: `/${order.id}` },
-        ]
+        logger.info(`Mobile number found: ${mobileResult.mobileNumber} (source: ${mobileResult.source})`)
 
-        const body = {
-            key: "5b3acc6fcb52468091f9792a1543d444",
-            to: mobileNumber, // Using mobile number as the recipient identifier
-            languageCode: "en",
-            TemplateName: "appointment",
-            headertype: "image",
-            link: "https://www.xyz.com//Files/b4063f333fdec6.jpeg",
-            filename: "",
-            headertext: "",
-            BodyParameter: bodyParameters,
-        }
+        // Create WhatsApp service and send message
+        const whatsappService = createWhatsAppService()
+        const template = WhatsAppService.createOrderPlacedTemplate(order.id)
 
-        logger.info(`Sending WhatsApp message to ${mobileNumber} for order ${order.id}`)
-        logger.info(`Body parameters: ${JSON.stringify(bodyParameters)}`)
+        logger.info(`Sending WhatsApp message to ${mobileResult.mobileNumber} for order ${order.id}`)
 
-        const response = await axios.post(
-            "https://waba2waba.com/api/v1/sendTemplateMessage",
-            body,
-            {
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            }
+        const response = await whatsappService.sendTemplateMessage(
+            mobileResult.mobileNumber,
+            template
         )
 
-        logger.info(`WhatsApp message sent successfully for order ${order.id}: ${JSON.stringify(response.data)}`)
+        logger.info(`WhatsApp API response for order ${order.id}: ${JSON.stringify(response)}`)
 
         // Check if WhatsApp message was sent successfully
-        if (response.data.ErrorCode !== "000") {
-            logger.error(`Error sending WhatsApp message for order ${order.id}: ${JSON.stringify(response.data)}`)
+        if (!WhatsAppService.isSuccessResponse(response)) {
+            const errorMessage = WhatsAppService.getErrorMessage(response)
+            logger.error(`Error sending WhatsApp message for order ${order.id}: ${errorMessage}`)
 
             // Update order metadata to track failed notification
-            await orderService.updateOrders(order.id, {
-                metadata: {
-                    ...order.metadata,
-                    wa_placed_notification: "failed",
-                    wa_placed_notification_error: response.data.ErrorMessage || "Unknown error"
+            const notificationService = new OrderNotificationService(orderService)
+            await notificationService.updateNotificationStatus(
+                order.id,
+                "wa_placed_notification",
+                {
+                    status: "failed",
+                    error: errorMessage
                 }
-            })
+            )
 
             logger.info(`Updated order ${order.id} metadata: WhatsApp notification failed`)
             return
         }
 
         // Update order metadata to track successful notification
-        await orderService.updateOrders(order.id, {
-            metadata: {
-                ...order.metadata,
-                wa_placed_notification: "success"
+        const notificationService = new OrderNotificationService(orderService)
+        await notificationService.updateNotificationStatus(
+            order.id,
+            "wa_placed_notification",
+            {
+                status: "success"
             }
-        })
+        )
 
         logger.info(`Updated order ${order.id} metadata: WhatsApp notification sent successfully`)
 
-        // Add your custom logic here when order is placed
-        // For example: send notifications, update external systems, etc.
-
     } catch (error) {
         logger.error(`Error processing order placed event for order ${data.id}:`, error)
+
         // Update order metadata to track notification failure due to system error
         try {
-            await orderService.updateOrders(data.id, {
-                metadata: {
-                    wa_placed_notification: "failed",
-                    wa_placed_notification_error: error instanceof Error ? error?.message : String(error)
+            const notificationService = new OrderNotificationService(orderService)
+            await notificationService.updateNotificationStatus(
+                data.id,
+                "wa_placed_notification",
+                {
+                    status: "failed",
+                    error: error instanceof Error ? error.message : String(error)
                 }
-            })
+            )
 
             logger.info(`Updated order ${data.id} metadata: WhatsApp notification failed - system error`)
         } catch (metadataError) {

@@ -3,7 +3,8 @@ import {
     MedusaResponse,
 } from "@medusajs/framework/http"
 import { z } from "zod"
-import axios from "axios"
+
+import { WhatsAppService, createWhatsAppService, WhatsAppTemplate } from "../../../../utils/whatsapp-service"
 
 export const SendWhatsAppMessageSchema = z.object({
     to: z.string().min(1, "Phone number is required"),
@@ -12,6 +13,9 @@ export const SendWhatsAppMessageSchema = z.object({
         type: z.string(),
         text: z.string(),
     })).min(1, "Body parameters are required"),
+    headerType: z.enum(["image", "text"]).optional(),
+    headerText: z.string().optional(),
+    headerImageUrl: z.string().optional(),
 })
 
 export const POST = async (
@@ -20,34 +24,39 @@ export const POST = async (
 ) => {
     try {
         const validatedBody = SendWhatsAppMessageSchema.parse(req.body)
-        const { to, templateName, bodyParameters } = validatedBody
+        const { to, templateName, bodyParameters, headerType, headerText, headerImageUrl } = validatedBody
 
-        const body = {
-            key: "5b3acc6fcb52468091f9792a1543d444",
-            to: to,
-            languageCode: "en",
-            TemplateName: templateName,
-            headertype: "image",
-            link: "https://www.xyz.com//Files/b4063f333fdec6.jpeg",
-            filename: "",
-            headertext: "",
-            BodyParameter: bodyParameters,
+        // Create WhatsApp service
+        const whatsappService = createWhatsAppService()
+
+        // Create template
+        const template: WhatsAppTemplate = {
+            templateName,
+            bodyParameters,
+            headerType: headerType || "image",
+            headerText,
+            headerImageUrl
         }
 
-        const response = await axios.post(
-            "https://waba2waba.com/api/v1/sendTemplateMessage",
-            body,
-            {
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            }
-        )
+        // Send message
+        const response = await whatsappService.sendTemplateMessage(to, template)
+
+        // Check if message was sent successfully
+        if (!WhatsAppService.isSuccessResponse(response)) {
+            const errorMessage = WhatsAppService.getErrorMessage(response)
+
+            return res.status(400).json({
+                success: false,
+                message: "Failed to send WhatsApp message",
+                error: errorMessage,
+                data: response,
+            })
+        }
 
         res.json({
             success: true,
             message: "WhatsApp message sent successfully",
-            data: response.data,
+            data: response,
         })
     } catch (error) {
         console.error("Error sending WhatsApp message:", error)
