@@ -105,7 +105,7 @@ export default async function orderCancelledHandler({
 }
 
 export const config: SubscriberConfig = {
-    event: "order.cancelled",
+    event: "order.canceled",
     context: {
         subscriberId: "order-cancelled-handler",
     },
