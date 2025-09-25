@@ -225,6 +225,36 @@ export class WhatsAppService {
             headerType: "image"
         }
     }
+
+    /**
+     * Create cart abandonment first notification template
+     */
+    static createCartAbandonmentFirstTemplate(customerName: string, cartId: string): WhatsAppTemplate {
+        return {
+            templateName: "cart_abandonment_first",
+            bodyParameters: [
+                { type: "text", text: customerName },
+                { type: "text", text: cartId },
+                { type: "text", text: `/${cartId}` }
+            ],
+            headerType: "image"
+        }
+    }
+
+    /**
+     * Create cart abandonment second notification template
+     */
+    static createCartAbandonmentSecondTemplate(customerName: string, cartId: string): WhatsAppTemplate {
+        return {
+            templateName: "cart_abandonment_second",
+            bodyParameters: [
+                { type: "text", text: customerName },
+                { type: "text", text: cartId },
+                { type: "text", text: `/${cartId}` }
+            ],
+            headerType: "image"
+        }
+    }
 }
 
 /**
