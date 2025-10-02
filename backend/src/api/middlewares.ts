@@ -14,6 +14,13 @@ import { GetAvailableSlotsSchema, CreateAppointmentSchema } from "./store/appoin
 import { GetAdminAppointmentsSchema, UpdateAppointmentStatusSchema, DeleteAppointmentSchema } from "./admin/appointments/route";
 import { DeleteHolidaySchema } from "./admin/appointments/holidays/route";
 import { SendWhatsAppMessageSchema } from "./admin/appointments/whatsapp/route";
+import { z } from "zod";
+
+// Password change validation schema
+const StoreChangePasswordSchema = z.object({
+  email: z.string().email("Invalid email format"),
+  newPassword: z.string().min(8, "Password must be at least 8 characters long")
+});
 
 import multer from "multer";
 
@@ -218,6 +225,16 @@ export default defineMiddlewares({
       middlewares: [
         // @ts-ignore
         validateAndTransformBody(SendWhatsAppMessageSchema),
+      ],
+    },
+
+    // Store password change route (for customers to change their own password)
+    {
+      matcher: "/store/change-password",
+      method: ["POST"],
+      middlewares: [
+        // @ts-ignore
+        validateAndTransformBody(StoreChangePasswordSchema),
       ],
     },
 
