@@ -161,10 +161,10 @@ export class WhatsAppService {
      */
     static createOrderPlacedTemplate(orderId: string): WhatsAppTemplate {
         return {
-            templateName: "appointment",
+            templateName: "order_placed",
             bodyParameters: [
                 { type: "text", text: orderId },
-                { type: "text", text: `/${orderId}` },
+                { type: "text", text: `https://www.fitfusionayurveda.com/account/orders/${orderId}` },
             ],
             headerType: "image"
         }
@@ -175,10 +175,9 @@ export class WhatsAppService {
      */
     static createOrderCancelledTemplate(orderId: string, reason?: string): WhatsAppTemplate {
         return {
-            templateName: "appointment", // You may need to create this template
+            templateName: "order_cancelled", // You may need to create this template
             bodyParameters: [
                 { type: "text", text: orderId },
-                { type: "text", text: reason || "Order cancelled" },
             ],
             headerType: "image"
         }
