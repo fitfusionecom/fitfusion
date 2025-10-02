@@ -1,3 +1,4 @@
+"use client";
 import { fitfusionConfig } from "@/lib/fitfusion-config";
 
 export default function AboutUs() {
@@ -141,14 +142,24 @@ export default function AboutUs() {
           <div
             style={{
               display: "flex",
+              flexDirection: "row",
               alignItems: "center",
               gap: "50px",
               maxWidth: "1000px",
               margin: "0 auto",
+              flexWrap: "wrap",
             }}
           >
             {/* Left Column - Image */}
-            <div style={{ flex: "1" }}>
+            <div
+              style={{
+                flex: "1 1 300px",
+                minWidth: "260px",
+                width: "100%",
+                marginBottom: "24px",
+                boxSizing: "border-box",
+              }}
+            >
               <img
                 src="/assets/images/about-us3.png"
                 alt="Ayurvedic Products Collection"
@@ -157,12 +168,21 @@ export default function AboutUs() {
                   height: "auto",
                   borderRadius: "8px",
                   boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+                  display: "block",
                 }}
               />
             </div>
 
             {/* Right Column - Text Description */}
-            <div style={{ flex: "1", textAlign: "left" }}>
+            <div
+              style={{
+                flex: "1 1 300px",
+                minWidth: "260px",
+                width: "100%",
+                textAlign: "left",
+                boxSizing: "border-box",
+              }}
+            >
               <div>
                 <p
                   style={{
@@ -194,6 +214,17 @@ export default function AboutUs() {
                 </p>
               </div>
             </div>
+            <style jsx>{`
+              @media (max-width: 900px) {
+                div[style*="display: flex"] {
+                  flex-direction: column !important;
+                  gap: 24px !important;
+                }
+                div[style*="flex: 1 1 300px"] {
+                  min-width: 0 !important;
+                }
+              }
+            `}</style>
           </div>
         </div>
 
