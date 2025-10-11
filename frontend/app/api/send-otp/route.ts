@@ -75,24 +75,31 @@ export async function POST(request: NextRequest) {
       }, { status: 400 });
     }
 
-    // Send OTP via WhatsApp directly (same structure as backend)
+    // Format mobile number with country code for WhatsApp
+    const formattedMobileNumber = mobileNumber.startsWith('+91') ? mobileNumber : `+91${mobileNumber}`;
+
+    // Send OTP via WhatsApp directly (matching template structure)
     const whatsappBody = {
       key: WHATSAPP_CONFIG.apiKey,
-      to: mobileNumber,
-      languageCode: WHATSAPP_CONFIG.languageCode,
-      TemplateName: "appointment", // Using existing template that works in backend
-      headertype: "text",
-      link: WHATSAPP_CONFIG.headerImageUrl,
+      to: formattedMobileNumber,
+      languageCode: "en_GB",
+      TemplateName: "reset_otp_fitfusion",
+      headertype: "none",
+      link: "",
       filename: "",
-      headertext: "Password Reset OTP",
+      headertext: "",
       BodyParameter: [
         {
           type: "text",
-          text: `OTP: ${decryptedOtp}` // Patient name field - using decrypted OTP
-        },
+          text: decryptedOtp // Maps to {{1}} in template body
+        }
+      ],
+      FooterParameter: [],
+      ButtonParameter: [
         {
-          type: "text",
-          text: "Password Reset" // Meeting link field - using purpose
+          type: "url",
+          text: "Copy code",
+          url: `https://www.whatsapp.com/otp/code/?otp_type=COPY_CODE&code_expiration_minutes=10&code=otp${decryptedOtp}`
         }
       ]
     };
@@ -114,19 +121,32 @@ export async function POST(request: NextRequest) {
 
     // Log the response for debugging
     console.log("WhatsApp API Response:", whatsappResult);
+    console.log("Formatted Mobile Number:", formattedMobileNumber);
+    console.log("Decrypted OTP:", decryptedOtp);
 
     if (whatsappResult.ErrorCode === "000") {
       return NextResponse.json({
         success: true,
         message: "OTP sent successfully to your WhatsApp",
-        mobileNumber: mobileNumber.replace(/(\d{2})(\d{4})(\d{4})/, "$1****$3") // Masked number
+        mobileNumber: mobileNumber.replace(/(\d{2})(\d{4})(\d{4})/, "$1****$3"), // Masked number
+        debug: {
+          formattedMobileNumber,
+          templateName: "reset_otp_fitfusion",
+          languageCode: WHATSAPP_CONFIG.languageCode
+        }
       });
     } else {
+      console.error("WhatsApp API Error:", whatsappResult);
       return NextResponse.json({
         success: false,
         message: "Failed to send OTP via WhatsApp",
         error: whatsappResult.ErrorMessage || "Unknown WhatsApp API error",
-        response: whatsappResult // Include full response for debugging
+        response: whatsappResult, // Include full response for debugging
+        debug: {
+          formattedMobileNumber,
+          templateName: "reset_otp_fitfusion",
+          languageCode: WHATSAPP_CONFIG.languageCode
+        }
       }, { status: 400 });
     }
 
