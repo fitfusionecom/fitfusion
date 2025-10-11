@@ -16,8 +16,8 @@ export const fitfusionConfig = {
     supportEmail: "support@fitfusion.com",
     salesEmail: "sales@fitfusion.com",
     infoEmail: "info@fitfusion.com",
-    phone: "+91 98765 43210",
-    whatsapp: "+91 98765 43210",
+    phone: "+91 9045221769",
+    whatsapp: "+91 9045221769",
     address: {
       street: "Amaria, Pilibhit, Uttar Pradesh - 262121",
       city: "Pilibhit",
