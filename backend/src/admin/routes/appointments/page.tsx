@@ -19,8 +19,15 @@ import {
   Eye,
   Trash,
 } from "@medusajs/icons";
-import { Stethoscope, Filter, Download, MoreHorizontal } from "lucide-react";
+import {
+  Stethoscope,
+  Filter,
+  Download,
+  MoreHorizontal,
+  MessageSquare,
+} from "lucide-react";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 interface Appointment {
   id: string;
@@ -79,6 +86,11 @@ export default function AppointmentsPage() {
   const [showRevertModal, setShowRevertModal] = useState(false);
   const [appointmentToRevert, setAppointmentToRevert] =
     useState<Appointment | null>(null);
+  const [showWhatsAppModal, setShowWhatsAppModal] = useState(false);
+  const [appointmentForWhatsApp, setAppointmentForWhatsApp] =
+    useState<Appointment | null>(null);
+  const [meetingLink, setMeetingLink] = useState("");
+  const [whatsappLoading, setWhatsappLoading] = useState(false);
   const [filters, setFilters] = useState({
     status: "all",
     start_date: "",
@@ -182,6 +194,55 @@ export default function AppointmentsPage() {
       setAppointmentToRevert(null);
     } catch (error) {
       console.error("Error reverting appointment:", error);
+    }
+  };
+
+  const openWhatsAppModal = (appointment: Appointment) => {
+    setAppointmentForWhatsApp(appointment);
+    setShowWhatsAppModal(true);
+    setMeetingLink("");
+  };
+
+  const sendWhatsAppMessage = async () => {
+    if (!appointmentForWhatsApp || !meetingLink.trim()) {
+      return;
+    }
+
+    try {
+      setWhatsappLoading(true);
+
+      const payload = {
+        to: appointmentForWhatsApp.contact_number,
+        templateName: "appointment",
+        bodyParameters: [
+          { type: "text", text: appointmentForWhatsApp.patient_name },
+          { type: "text", text: meetingLink },
+        ],
+      };
+
+      const response = await axios.post(
+        "/admin/appointments/whatsapp",
+        payload,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log("WhatsApp Response:", response.data);
+
+      // Close modal and reset state
+      setShowWhatsAppModal(false);
+      setAppointmentForWhatsApp(null);
+      setMeetingLink("");
+    } catch (error) {
+      console.error(
+        "Error sending WhatsApp message:",
+        error instanceof Error ? error.message : String(error)
+      );
+    } finally {
+      setWhatsappLoading(false);
     }
   };
 
@@ -404,6 +465,14 @@ export default function AppointmentsPage() {
                           View Details
                         </DropdownMenu.Item>
 
+                        <DropdownMenu.Item
+                          onClick={() => openWhatsAppModal(appointment)}
+                          className="text-green-600"
+                        >
+                          <MessageSquare className="h-4 w-4 mr-2" />
+                          Send WhatsApp Message
+                        </DropdownMenu.Item>
+
                         {appointment.status === "scheduled" && (
                           <>
                             <DropdownMenu.Item
@@ -578,6 +647,17 @@ export default function AppointmentsPage() {
                       </Button>
                     </DropdownMenu.Trigger>
                     <DropdownMenu.Content align="end" className="w-48">
+                      <DropdownMenu.Item
+                        onClick={() => {
+                          openWhatsAppModal(selectedAppointment);
+                          setShowModal(false);
+                        }}
+                        className="text-green-600"
+                      >
+                        <MessageSquare className="h-4 w-4 mr-2" />
+                        Send WhatsApp Message
+                      </DropdownMenu.Item>
+
                       {selectedAppointment.status === "scheduled" && (
                         <>
                           <DropdownMenu.Item
@@ -741,6 +821,97 @@ export default function AppointmentsPage() {
                 className="bg-orange-600 hover:bg-orange-700"
               >
                 Revert to Scheduled
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* WhatsApp Message Modal */}
+      {showWhatsAppModal && appointmentForWhatsApp && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="flex-shrink-0 w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                <MessageSquare className="h-5 w-5 text-green-600" />
+              </div>
+              <div>
+                <Heading
+                  level="h2"
+                  className="text-lg font-semibold text-gray-900"
+                >
+                  Send WhatsApp Message
+                </Heading>
+                <Text className="text-sm text-gray-500">
+                  Send meeting link to patient
+                </Text>
+              </div>
+            </div>
+
+            <div className="mb-6">
+              <Text className="text-sm text-gray-700 mb-4">
+                Sending message to{" "}
+                <span className="font-semibold">
+                  {appointmentForWhatsApp.patient_name}
+                </span>{" "}
+                ({appointmentForWhatsApp.contact_number})
+              </Text>
+
+              <div className="space-y-3">
+                <div>
+                  <Text className="text-sm font-medium mb-2">Meeting Link</Text>
+                  <Input
+                    type="url"
+                    placeholder="Enter meeting link (e.g., https://meet.google.com/abc-def-ghi)"
+                    value={meetingLink}
+                    onChange={(e) => setMeetingLink(e.target.value)}
+                    className="w-full"
+                  />
+                  <div className="mt-2 p-2 bg-blue-50 rounded border-l-4 border-blue-400">
+                    <Text className="text-xs text-blue-700">
+                      <strong>Sample Links:</strong>
+                      <br />
+                      • Google Meet: https://meet.google.com/abc-def-ghi
+                      <br />
+                      • Zoom: https://zoom.us/j/123456789
+                      <br />• Microsoft Teams:
+                      https://teams.microsoft.com/l/meetup-join/...
+                    </Text>
+                  </div>
+                </div>
+
+                <div className="p-3 bg-gray-50 rounded-lg">
+                  <Text className="text-xs text-gray-600">
+                    <strong>Appointment Details:</strong>
+                    <br />
+                    Date: {formatDate(appointmentForWhatsApp.appointment_date)}
+                    <br />
+                    Time: {formatTime(appointmentForWhatsApp.appointment_time)}
+                    <br />
+                    Problem: {appointmentForWhatsApp.problem}
+                  </Text>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex gap-3 justify-end">
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  setShowWhatsAppModal(false);
+                  setAppointmentForWhatsApp(null);
+                  setMeetingLink("");
+                }}
+                disabled={whatsappLoading}
+              >
+                Cancel
+              </Button>
+              <Button
+                onClick={sendWhatsAppMessage}
+                disabled={!meetingLink.trim() || whatsappLoading}
+                className="bg-green-600 hover:bg-green-700"
+              >
+                {whatsappLoading ? "Sending..." : "Send Message"}
               </Button>
             </div>
           </div>

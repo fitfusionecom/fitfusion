@@ -146,6 +146,18 @@ export default function LoginForm() {
                 "Submit"
               )}
             </button>
+
+            {/* Forgot Password Link - Only show on login tab */}
+            {tab === "login" && (
+              <div className="text-center mt-3">
+                <Link
+                  href="/change-password"
+                  className="text-decoration-none text-primary"
+                >
+                  Forgot Password?
+                </Link>
+              </div>
+            )}
           </form>
 
           <p className="login-footer">
