@@ -24,7 +24,7 @@ const paymentMethodMapForShippingMethod = {
   // prepaid
   so_01K5DTTKJBPJFB7VARRWM6XS6H: "pp_razorpay_my-custom-payment",
   //   cod
-  so_01K4HM35WWKXST70X573GZ71NX: "pp_system_default",
+  so_01K7GNM83JZ6CJA4GNNH3BTSE1: "pp_system_default",
 };
 
 const defaultPaymentMethodId = "pp_razorpay_my-custom-payment";
