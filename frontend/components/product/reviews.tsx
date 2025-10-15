@@ -56,10 +56,6 @@ export default function ProductReviews({ productId }: ProductReviewsProps) {
     setRefreshTrigger((prev) => prev + 1);
   };
 
-  if (reviews.length === 0) {
-    return null;
-  }
-
   return (
     <div className="product-page-constraint">
       {/* <div className="flex flex-col items-center text-center mb-16">
@@ -107,89 +103,97 @@ export default function ProductReviews({ productId }: ProductReviewsProps) {
           <div className="row">
             <div className="col-12">
               <div className="position-relative">
-                <Swiper
-                  modules={[Autoplay]}
-                  spaceBetween={20}
-                  slidesPerView={1}
-                  navigation={{
-                    nextEl: ".custom-swiper-nav.swiper-button-next",
-                    prevEl: ".custom-swiper-nav.swiper-button-prev",
-                  }}
-                  pagination={{
-                    clickable: true,
-                    el: ".custom-swiper-pagination",
-                  }}
-                  autoplay={{
-                    delay: 5000,
-                    disableOnInteraction: false,
-                  }}
-                  breakpoints={{
-                    576: {
-                      slidesPerView: 2,
-                      spaceBetween: 20,
-                    },
-                    768: {
-                      slidesPerView: 2,
-                      spaceBetween: 30,
-                    },
-                    992: {
-                      slidesPerView: 3,
-                      spaceBetween: 30,
-                    },
-                    1200: {
-                      slidesPerView: 3,
-                      spaceBetween: 40,
-                    },
-                  }}
-                  className="google-reviews-swiper"
-                >
-                  {reviews.map((review) => (
-                    <SwiperSlide key={review.id}>
-                      <div className="card border-0 shadow-sm h-100">
-                        <div className="card-body p-4">
-                          {/* Rating Stars */}
-                          <div className="mb-3">
-                            {Array.from({ length: 5 }).map((_, index) => (
-                              <span key={index}>
-                                {index < review.rating ? (
-                                  <StarSolid className="text-ui-tag-orange-icon" />
-                                ) : (
-                                  <Star />
-                                )}
-                              </span>
-                            ))}
-                          </div>
+                {reviews.length === 0 && (
+                  <div className="text-center text-gray-500 py-8">
+                    No reviews yet. Share your experience with this product!
+                  </div>
+                )}
 
-                          {/* Review Text */}
-                          <p
-                            className="card-text text-muted mb-3"
-                            style={{ fontSize: "14px", lineHeight: "1.5" }}
-                          >
-                            {review.content}
-                          </p>
+                {reviews.length > 0 && (
+                  <Swiper
+                    modules={[Autoplay]}
+                    spaceBetween={20}
+                    slidesPerView={1}
+                    navigation={{
+                      nextEl: ".custom-swiper-nav.swiper-button-next",
+                      prevEl: ".custom-swiper-nav.swiper-button-prev",
+                    }}
+                    pagination={{
+                      clickable: true,
+                      el: ".custom-swiper-pagination",
+                    }}
+                    autoplay={{
+                      delay: 5000,
+                      disableOnInteraction: false,
+                    }}
+                    breakpoints={{
+                      576: {
+                        slidesPerView: 2,
+                        spaceBetween: 20,
+                      },
+                      768: {
+                        slidesPerView: 2,
+                        spaceBetween: 30,
+                      },
+                      992: {
+                        slidesPerView: 3,
+                        spaceBetween: 30,
+                      },
+                      1200: {
+                        slidesPerView: 3,
+                        spaceBetween: 40,
+                      },
+                    }}
+                    className="google-reviews-swiper"
+                  >
+                    {reviews.map((review) => (
+                      <SwiperSlide key={review.id}>
+                        <div className="card border-0 shadow-sm h-100">
+                          <div className="card-body p-4">
+                            {/* Rating Stars */}
+                            <div className="mb-3">
+                              {Array.from({ length: 5 }).map((_, index) => (
+                                <span key={index}>
+                                  {index < review.rating ? (
+                                    <StarSolid className="text-ui-tag-orange-icon" />
+                                  ) : (
+                                    <Star />
+                                  )}
+                                </span>
+                              ))}
+                            </div>
 
-                          {/* Reviewer Name */}
-                          <h6
-                            className="card-title mb-2 text-dark"
-                            style={{ fontSize: "16px", fontWeight: "600" }}
-                          >
-                            {review.first_name} {review.last_name}
-                          </h6>
-
-                          {/* Source */}
-                          <div className="d-flex align-items-center">
-                            <small
-                              className="text-muted"
-                              style={{ fontSize: "12px" }}
+                            {/* Review Text */}
+                            <p
+                              className="card-text text-muted mb-3"
+                              style={{ fontSize: "14px", lineHeight: "1.5" }}
                             >
-                              Posted on Fit Fusion Ayurveda
-                            </small>
+                              {review.content}
+                            </p>
+
+                            {/* Reviewer Name */}
+                            <h6
+                              className="card-title mb-2 text-dark"
+                              style={{ fontSize: "16px", fontWeight: "600" }}
+                            >
+                              {review.first_name} {review.last_name}
+                            </h6>
+
+                            {/* Source */}
+                            <div className="d-flex align-items-center">
+                              <small
+                                className="text-muted"
+                                style={{ fontSize: "12px" }}
+                              >
+                                Posted on Fit Fusion Ayurveda
+                              </small>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+                )}
 
                 <div className="mt-4 d-flex justify-content-center align-items-center">
                   <ProductReviewsForm
