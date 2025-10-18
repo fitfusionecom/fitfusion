@@ -53,23 +53,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
         {/* Favicon */}
         <link rel="icon" href="/images/favicon.png" />
-      </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {/* Google Analytics */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-42YDYGV4BG"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-42YDYGV4BG');
-          `}
-        </Script>
 
         {/* Meta Pixel Code */}
         <Script id="meta-pixel" strategy="afterInteractive">
@@ -95,6 +78,23 @@ export default function RootLayout({ children }: RootLayoutProps) {
             alt=""
           />
         </noscript>
+      </head>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-42YDYGV4BG"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-42YDYGV4BG');
+          `}
+        </Script>
 
         <PrimaryLayout>{children}</PrimaryLayout>
       </body>
