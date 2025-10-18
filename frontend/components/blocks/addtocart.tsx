@@ -200,6 +200,7 @@ const AddToCartButton = ({
 
             {isValidVariant && (
               <button
+                data-action="add-to-cart"
                 onClick={handleAddToCart}
                 disabled={!inStock || isAdding}
                 className="ayur-btn ayur-btn-primary"
@@ -216,6 +217,7 @@ const AddToCartButton = ({
   return (
     <div className="grid gap-3">
       <button
+        data-action="add-to-cart"
         onClick={handleAddToCart}
         disabled={
           !inStock ||
