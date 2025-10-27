@@ -30,7 +30,11 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
   switch (true) {
     case isManual(paymentSession?.provider_id):
       return (
-        <ManualTestPaymentButton notReady={notReady} data-testid={dataTestId} />
+        <ManualTestPaymentButton
+          cart={cart}
+          notReady={notReady}
+          data-testid={dataTestId}
+        />
       );
     case isRazorpay(paymentSession?.provider_id):
       return (
@@ -46,12 +50,18 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
   }
 };
 
-const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
+const ManualTestPaymentButton = ({
+  cart,
+  notReady,
+}: {
+  cart: HttpTypes.StoreCart;
+  notReady: boolean;
+}) => {
   const [submitting, setSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const onPaymentCompleted = async () => {
-    await placeOrder()
+    await placeOrder(cart.id)
       .catch((err) => {
         setErrorMessage(err.message);
       })
@@ -62,7 +72,6 @@ const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
 
   const handlePayment = () => {
     setSubmitting(true);
-
     onPaymentCompleted();
   };
 
