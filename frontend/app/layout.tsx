@@ -28,6 +28,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <head>
+        <meta
+          name="facebook-domain-verification"
+          content="qbrlvyqyzgki39p4uxr4ff6el0l6t0"
+        />
         {/* Google Tag Manager */}
         <Script id="google-tag-manager" strategy="afterInteractive">
           {`
