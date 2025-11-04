@@ -6,7 +6,6 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 // import RelatedProductsInline from "./related-products-inline";
 import "./product-accordion.css";
 import "./product-description.css";
-import Image from "next/image";
 
 type ProductAccordionProps = {
   product: HttpTypes.StoreProduct;
@@ -30,7 +29,7 @@ export default function ProductAccordion({
   product,
   countryCode,
 }: ProductAccordionProps) {
-  const [openSections, setOpenSections] = useState<string[]>([]);
+  const [openSections, setOpenSections] = useState<string[]>(["description"]);
 
   const toggleSection = (sectionId: string) => {
     setOpenSections((prev) =>

@@ -20,6 +20,7 @@ import ProductFeature from "./product-feature";
 import PaymentOptions from "./payment-options";
 import BuyNowButton from "@/components/blocks/buy-now-button";
 import ButtonSpinner from "@/components/blocks/button-spinner";
+import { useBuyNow } from "@/hooks/useBuyNow";
 
 type ProductDetailsProps = {
   product: HttpTypes.StoreProduct;
@@ -48,9 +49,11 @@ const ProductDetails = ({
     {}
   );
   const [isAdding, setIsAdding] = useState(false);
+  const [isBuyingNow, setIsBuyingNow] = useState(false);
 
   // Use cart context for global state management
   const { openCartPopover, triggerCartRefresh } = useCartContext();
+  const { buyNow } = useBuyNow();
 
   const setOptionValue = (optionId: string, value: string) => {
     setOptions((prev) => ({
@@ -169,10 +172,95 @@ const ProductDetails = ({
         <meta name="twitter:image" content={productImages[0]} />
       </Head>
 
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+          @keyframes codPulse {
+            0%, 100% {
+              box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7),
+                          0 0 10px 2px rgba(40, 167, 69, 0.3);
+              transform: scale(1);
+            }
+            50% {
+              box-shadow: 0 0 0 8px rgba(40, 167, 69, 0),
+                          0 0 20px 4px rgba(40, 167, 69, 0.5);
+              transform: scale(1.02);
+            }
+          }
+
+          @keyframes codShine {
+            0% {
+              background-position: -200% center;
+            }
+            100% {
+              background-position: 200% center;
+            }
+          }
+
+          .cod-badge-flashy {
+            animation: codPulse 2s ease-in-out infinite;
+            background: linear-gradient(
+              135deg,
+              #28a745 0%,
+              #20c997 50%,
+              #28a745 100%
+            );
+            background-size: 200% auto;
+            position: relative;
+            overflow: hidden;
+            color: white !important;
+            font-weight: 700 !important;
+            border: 2px solid #fff !important;
+            box-shadow: 0 0 15px rgba(40, 167, 69, 0.4),
+                        0 4px 8px rgba(0, 0, 0, 0.1) !important;
+          }
+
+          .cod-badge-flashy::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+              90deg,
+              transparent,
+              rgba(255, 255, 255, 0.4),
+              transparent
+            );
+            animation: codShine 3s infinite;
+            z-index: 1;
+          }
+
+          .cod-badge-flashy:hover {
+            animation: codPulse 1s ease-in-out infinite;
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(40, 167, 69, 0.6),
+                        0 6px 12px rgba(0, 0, 0, 0.15) !important;
+          }
+
+          .cod-badge-flashy > * {
+            position: relative;
+            z-index: 2;
+          }
+
+          @media (max-width: 767.98px) {
+            .pb-mobile-sticky {
+              padding-bottom: 80px !important;
+            }
+          }
+        `,
+        }}
+      />
+
       {/*----------- Header Section End ---------*/}
       {/*----------- Breadcrumb Section end ---------*/}
       {/*----------- Shop single page Section start ---------*/}
-      <div className="ayur-bgcover pb-1">
+      <div
+        className={`ayur-bgcover pb-1 ${
+          selectedVariant ? "pb-mobile-sticky" : ""
+        }`}
+      >
         <div className="container">
           <div>
             <nav aria-label="breadcrumb" className="mb-3  pt-2 pt-md-0">
@@ -230,22 +318,70 @@ const ProductDetails = ({
                   {product.subtitle}
                 </div>
                 {/* Stock Status */}
-                <div className="mb-2">
+                <div className="mb-2 d-flex align-items-center gap-2 gap-md-3 flex-wrap">
                   {inStock ? (
                     <span
-                      className=" text-success"
-                      style={{ fontSize: "1rem", fontWeight: "600" }}
+                      className="text-success d-inline-flex align-items-center"
+                      style={{
+                        fontSize: "clamp(0.875rem, 2.5vw, 1rem)",
+                        fontWeight: "600",
+                      }}
                     >
-                      <BiCheck size={22} /> In Stock
+                      <BiCheck
+                        size={22}
+                        className="d-none d-sm-inline-flex"
+                        style={{ flexShrink: 0 }}
+                      />
+                      <BiCheck
+                        size={20}
+                        className="d-inline-flex d-sm-none"
+                        style={{ flexShrink: 0 }}
+                      />
+                      <span className="ms-1">In Stock</span>
                     </span>
                   ) : (
                     <span
                       className="text-danger"
-                      style={{ fontSize: "1rem", fontWeight: "600" }}
+                      style={{
+                        fontSize: "clamp(0.875rem, 2.5vw, 1rem)",
+                        fontWeight: "600",
+                      }}
                     >
                       Out of Stock
                     </span>
                   )}
+                  {/* COD Badge */}
+                  <span
+                    className="cod-badge-flashy d-inline-flex align-items-center gap-1"
+                    style={{
+                      fontSize: "clamp(0.75rem, 2vw, 0.875rem)",
+                      padding: "clamp(6px, 1.5vw, 8px) clamp(14px, 3vw, 18px)",
+                      borderRadius: "25px",
+                      whiteSpace: "nowrap",
+                      cursor: "pointer",
+                      transition: "all 0.3s ease",
+                    }}
+                  >
+                    <BiCheck
+                      size={18}
+                      className="d-none d-sm-inline-flex"
+                      style={{
+                        flexShrink: 0,
+                        filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.2))",
+                      }}
+                    />
+                    <BiCheck
+                      size={16}
+                      className="d-inline-flex d-sm-none"
+                      style={{
+                        flexShrink: 0,
+                        filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.2))",
+                      }}
+                    />
+                    <span style={{ textShadow: "0 1px 2px rgba(0,0,0,0.2)" }}>
+                      COD Available
+                    </span>
+                  </span>
                 </div>
 
                 {reviews && (
@@ -253,6 +389,16 @@ const ProductDetails = ({
                     ⭐ {reviews?.average_rating} ({reviews?.count} reviews)
                   </div>
                 )}
+
+                {/* @ts-ignore  */}
+                {product?.variants?.at(0)?.inventory?.at(0)?.sku ? (
+                  <div className="mt-2 mb-1 text-muted">
+                    <small className="sku-text">
+                      SKU : {/* @ts-ignore  */}
+                      {String(product?.variants?.at(0)?.inventory?.at(0)?.sku)}
+                    </small>
+                  </div>
+                ) : null}
 
                 <ProductPrice product={product} variant={selectedVariant} />
 
@@ -403,7 +549,7 @@ const ProductDetails = ({
                 <div className="mt-4">
                   {/* Features Section */}
                   <PaymentOptions />
-                  <ProductFeature />
+                  {/* <ProductFeature /> */}
                 </div>
               </div>
             </div>
@@ -414,6 +560,86 @@ const ProductDetails = ({
       <div className="ayur-bgshape ayur-shopsin">
         <img src="/assets/images/bg-shape1.png" alt="img" />
       </div>
+
+      {/* Sticky Mobile Add to Cart Section */}
+      {selectedVariant && (
+        <div
+          className="d-md-none sticky-mobile-cart"
+          style={{
+            position: "fixed",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            backgroundColor: "#fff",
+            borderTop: "1px solid #e0e0e0",
+            padding: "12px 16px",
+            boxShadow: "0 -2px 10px rgba(0, 0, 0, 0.1)",
+            zIndex: 1000,
+          }}
+        >
+          <div className="d-flex gap-2 w-100">
+            <button
+              className="ayur-btn btn btn-primary flex-fill"
+              style={{
+                padding: "12px 20px",
+                fontSize: "0.95rem",
+                fontWeight: "600",
+              }}
+              onClick={handleAddToCart}
+              disabled={
+                !inStock || !selectedVariant || isAdding || !isValidVariant
+              }
+            >
+              {!selectedVariant ? (
+                "Select variant"
+              ) : !inStock || !isValidVariant ? (
+                "Out of stock"
+              ) : (
+                <>
+                  {isAdding && <ButtonSpinner />}
+                  Add to cart
+                </>
+              )}
+            </button>
+
+            <button
+              className="ayur-btn btn btn-secondary flex-fill"
+              style={{
+                padding: "12px 20px",
+                fontSize: "0.95rem",
+                fontWeight: "600",
+                position: "relative",
+              }}
+              onClick={async () => {
+                if (!selectedVariant?.id) return null;
+                if (quantity > 100) {
+                  alert("Maximum Quantity 100");
+                  return;
+                }
+                setIsBuyingNow(true);
+                try {
+                  await buyNow({
+                    variantId: selectedVariant.id,
+                    quantity,
+                    countryCode,
+                  });
+                } catch (error) {
+                  console.error("Failed to buy now:", error);
+                  alert("Failed to proceed with buy now. Please try again.");
+                } finally {
+                  setIsBuyingNow(false);
+                }
+              }}
+              disabled={
+                !inStock || !selectedVariant || !isValidVariant || isBuyingNow
+              }
+            >
+              {isBuyingNow && <ButtonSpinner />}
+              Buy Now
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 };
