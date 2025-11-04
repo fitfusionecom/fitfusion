@@ -192,22 +192,32 @@ export default function ProductAccordion({
 
   return (
     <div className="ayur-product-accordion">
-      {info && info?.banner && (
-        <div className="container">
-          <div className="accordion-item w-full">
-            <div className="accordion-collapse collapse show w-full">
-              <div className="accordion-body d-flex justify-content-center align-items-center w-full p-0">
-                <img
-                  className="border w-100"
-                  src={info.banner}
-                  alt="Banner"
-                  style={{ objectFit: "cover", width: "100%" }}
-                />
+      {/* Show banner only if it is a valid URL and does not contain 'n/a' using regex */}
+      {info &&
+        info?.banner &&
+        (() => {
+          // Regex for a basic image URL (http/https, ending in common image extensions)
+          const urlRegex =
+            /^https?:\/\/[^\s]+(\.(jpg|jpeg|png|gif|webp|bmp|svg))(\?[^\s]*)?$/i;
+          const isValidUrl = urlRegex.test(info?.banner);
+          const doesNotContainNA = !/n\s*\/\s*a/i.test(info?.banner);
+          return isValidUrl && doesNotContainNA;
+        })() && (
+          <div className="container">
+            <div className="accordion-item w-full">
+              <div className="accordion-collapse collapse show w-full">
+                <div className="accordion-body d-flex justify-content-center align-items-center w-full p-0">
+                  <img
+                    className="border w-100"
+                    src={info.banner}
+                    alt="Banner"
+                    style={{ objectFit: "cover", width: "100%" }}
+                  />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
       <div className="container">
         <div className="row">
