@@ -574,7 +574,7 @@ const ProductDetails = ({
             borderTop: "1px solid #e0e0e0",
             padding: "12px 16px",
             boxShadow: "0 -2px 10px rgba(0, 0, 0, 0.1)",
-            zIndex: 1000,
+            zIndex: 10000,
           }}
         >
           <div className="d-flex gap-2 w-100">

@@ -63,6 +63,7 @@ const FloatingChatbot = () => {
           width: "50px",
           height: "50px",
         }}
+        className="floating-chatbot-btn"
         onMouseEnter={(e) => {
           e.currentTarget.style.transform = "scale(1.1)";
           e.currentTarget.style.backgroundColor = "#047857";
@@ -84,6 +85,7 @@ const FloatingChatbot = () => {
       {isOpen && (
         <div
           ref={popoverRef}
+          className="floating-chatbot-popover"
           style={{
             position: "fixed",
             bottom: "100px",
@@ -223,6 +225,18 @@ const FloatingChatbot = () => {
           to {
             opacity: 1;
             transform: translateY(0);
+          }
+        }
+
+        /* Adjust chatbot position on mobile when sticky cart is present */
+        @media (max-width: 767.98px) {
+          .floating-chatbot-btn {
+            bottom: 90px !important;
+          }
+
+          /* Adjust popover position when open on mobile */
+          .floating-chatbot-popover {
+            bottom: 170px !important;
           }
         }
       `}</style>
