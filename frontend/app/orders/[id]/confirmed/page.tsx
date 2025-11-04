@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import { useOrder } from "@/hooks/useOrders";
+import { convertToLocale } from "@/lib/util/money";
+import Image from "next/image";
 import {
   FaCheck,
   FaEnvelope,
@@ -21,30 +23,17 @@ import {
 export default function OrderConfirmedPage() {
   const params = useParams();
   const orderId = params.id as string;
-  const [order, setOrder] = useState<any>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const { order, isLoading, error } = useOrder(orderId);
 
-  useEffect(() => {
-    const loadOrder = async () => {
-      try {
-        // In a real implementation, you would fetch the specific order
-        // For now, we'll simulate loading
-        const response = await fetch(`/api/orders/${orderId}`);
-        if (response.ok) {
-          const orderData = await response.json();
-          setOrder(orderData);
-        }
-      } catch (error) {
-        console.error("Error loading order:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    if (orderId) {
-      loadOrder();
+  const getAmount = (amount?: number | null) => {
+    if (!amount || !order) {
+      return;
     }
-  }, [orderId]);
+    return convertToLocale({
+      amount,
+      currency_code: order.currency_code,
+    });
+  };
 
   if (isLoading) {
     return (
@@ -55,6 +44,20 @@ export default function OrderConfirmedPage() {
         <div className="spinner-border text-primary" role="status">
           <span className="visually-hidden">Loading...</span>
         </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div
+        className="d-flex flex-column justify-content-center align-items-center"
+        style={{ minHeight: "40vh" }}
+      >
+        <h5 className="text-danger mb-3">Failed to load order</h5>
+        <p className="text-muted">
+          {error?.message || "Something went wrong while loading your order."}
+        </p>
       </div>
     );
   }
@@ -197,6 +200,191 @@ export default function OrderConfirmedPage() {
           </div>
         </div>
       </div>
+
+      {/* Order Products */}
+      {order && order.items && order.items.length > 0 && (
+        <div className="row justify-content-center mb-5">
+          <div className="col-lg-8">
+            <div
+              className="card shadow-sm"
+              style={{ borderRadius: "1rem", border: "none" }}
+            >
+              <div className="card-body p-4">
+                <h4
+                  className="mb-4"
+                  style={{ color: "black", fontWeight: 700 }}
+                >
+                  Order Items
+                </h4>
+                <div className="row">
+                  {order.items.map((item: any, index: number) => {
+                    const productImage =
+                      item.thumbnail ||
+                      item.variant?.product?.images?.[0]?.url ||
+                      null;
+                    const productTitle = item.product_title || "Product";
+                    const productDescription =
+                      item.variant?.product?.subtitle || "";
+                    const sku = item.variant?.sku || "N/A";
+                    const quantity = item.quantity || 1;
+
+                    return (
+                      <div key={item.id || index} className="col-12 mb-4">
+                        <div
+                          className="d-flex gap-3 p-3"
+                          style={{
+                            background: "#f9f9f9",
+                            borderRadius: "0.75rem",
+                          }}
+                        >
+                          {/* Product Image */}
+                          <div
+                            className="flex-shrink-0 position-relative"
+                            style={{
+                              width: "100px",
+                              height: "100px",
+                              minWidth: "100px",
+                            }}
+                          >
+                            {productImage ? (
+                              <Image
+                                src={productImage}
+                                alt={productTitle}
+                                fill
+                                className="rounded"
+                                style={{
+                                  objectFit: "cover",
+                                }}
+                                sizes="100px"
+                              />
+                            ) : (
+                              <div className="d-flex align-items-center justify-content-center bg-light rounded position-absolute top-0 start-0 w-100 h-100">
+                                <FaShoppingCart
+                                  size={24}
+                                  className="text-muted"
+                                />
+                              </div>
+                            )}
+                          </div>
+
+                          {/* Product Details */}
+                          <div className="flex-grow-1">
+                            <h6
+                              id={`product-title-${index}`}
+                              className="mb-2"
+                              style={{ color: "black", fontWeight: 600 }}
+                            >
+                              {productTitle}
+                            </h6>
+                            {productDescription && (
+                              <p
+                                id={`product-subtitle-${index}`}
+                                className="text-muted small mb-2"
+                                style={{
+                                  display: "-webkit-box",
+                                  WebkitLineClamp: 2,
+                                  WebkitBoxOrient: "vertical",
+                                  overflow: "hidden",
+                                  textOverflow: "ellipsis",
+                                }}
+                              >
+                                {productDescription}
+                              </p>
+                            )}
+                            <div className="d-flex flex-wrap gap-3 align-items-center">
+                              <span
+                                id={`product-sku-${index}`}
+                                className="text-muted small sku-text"
+                              >
+                                <strong>SKU:</strong> {sku}
+                              </span>
+                              <span className="text-muted small">
+                                <strong>Qty:</strong> {quantity}
+                              </span>
+                              {item.unit_price && (
+                                <span className="text-muted small">
+                                  <strong>Price:</strong>{" "}
+                                  {getAmount(item.unit_price)}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+
+                          {/* Item Total */}
+                          {item.total && (
+                            <div className="flex-shrink-0 text-end">
+                              <div
+                                className="h6 mb-0"
+                                style={{ color: "black", fontWeight: 600 }}
+                              >
+                                {getAmount(item.total)}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* Order Total */}
+                <div className="mt-4 pt-4 border-top">
+                  <div className="d-flex justify-content-between align-items-center">
+                    <div>
+                      <div className="d-flex justify-content-between align-items-center mb-2">
+                        <span className="text-muted">Subtotal</span>
+                        <span className="text-muted">
+                          {getAmount(order.subtotal)}
+                        </span>
+                      </div>
+                      {order.discount_total > 0 && (
+                        <div className="d-flex justify-content-between align-items-center mb-2">
+                          <span className="text-muted">Discount</span>
+                          <span className="text-danger">
+                            - {getAmount(order.discount_total)}
+                          </span>
+                        </div>
+                      )}
+                      {order.shipping_total > 0 && (
+                        <div className="d-flex justify-content-between align-items-center mb-2">
+                          <span className="text-muted">Shipping</span>
+                          <span className="text-muted">
+                            {getAmount(order.shipping_total)}
+                          </span>
+                        </div>
+                      )}
+                      {order.tax_total > 0 && (
+                        <div className="d-flex justify-content-between align-items-center mb-2">
+                          <span className="text-muted">Taxes</span>
+                          <span className="text-muted">
+                            {getAmount(order.tax_total)}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <hr className="my-3" />
+                  <div className="d-flex justify-content-between align-items-center">
+                    <h5
+                      className="mb-0"
+                      style={{ color: "black", fontWeight: 700 }}
+                    >
+                      Total
+                    </h5>
+                    <h5
+                      id="order-total-price"
+                      className="mb-0"
+                      style={{ color: "#cd8973", fontWeight: 700 }}
+                    >
+                      {getAmount(order.total)}
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Action Buttons */}
       <div className="row justify-content-center">

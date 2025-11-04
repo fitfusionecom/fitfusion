@@ -89,6 +89,23 @@ export const ordersService = {
     // Get single order
     async getOrder(id: string) {
         try {
+            // First try the API route (server-side with proper auth)
+            const apiResponse = await fetch(`/api/orders/${id}`, {
+                method: "GET",
+                credentials: "include", // Important for cookies
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            if (apiResponse.ok) {
+                const data = await apiResponse.json();
+                if (data.success) {
+                    return data.order || null;
+                }
+            }
+
+            // Fallback to direct API call if API route fails
             const token = this.getAuthToken();
 
             if (!token) {
