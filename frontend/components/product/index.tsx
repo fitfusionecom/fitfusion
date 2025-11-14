@@ -256,11 +256,7 @@ const ProductDetails = ({
       {/*----------- Header Section End ---------*/}
       {/*----------- Breadcrumb Section end ---------*/}
       {/*----------- Shop single page Section start ---------*/}
-      <div
-        className={`ayur-bgcover pb-1 ${
-          selectedVariant ? "pb-mobile-sticky" : ""
-        }`}
-      >
+      <div className={`ayur-bgcover pb-1 ${selectedVariant ? "" : ""}`}>
         <div className="container">
           <div>
             <nav aria-label="breadcrumb" className="mb-3  pt-2 pt-md-0">
@@ -506,7 +502,7 @@ const ProductDetails = ({
                   </p>
 
                   {selectedVariant && (
-                    <div className="d-md-flex d-grid gap-2">
+                    <div className="d-none d-md-flex gap-2">
                       <button
                         className="ayur-btn btn btn-primary"
                         style={{
