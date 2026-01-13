@@ -15,6 +15,7 @@ import { convertToLocale } from "@/lib/util/money";
 import { deleteLineItem, updateLineItem } from "@/lib/data/cart";
 import { useIsMobile } from "@/lib/hooks/use-mobile";
 import Link from "next/link";
+import { getProxiedImageUrl } from "@/lib/utils/image-proxy";
 
 interface CartPopoverProps {
   isOpen: boolean;
@@ -279,7 +280,7 @@ export default function CartPopover({
                       <div className="item-image-compact">
                         {item.thumbnail ? (
                           <img
-                            src={item.thumbnail}
+                            src={getProxiedImageUrl(item.thumbnail)}
                             alt={item.title || "Product"}
                             className="product-image-compact"
                           />

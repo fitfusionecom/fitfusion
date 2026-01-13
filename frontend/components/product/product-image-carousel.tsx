@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Thumbs } from "swiper/modules";
 import Lightbox from "yet-another-react-lightbox";
@@ -16,6 +16,7 @@ import "swiper/css";
 import "swiper/css/thumbs";
 import "swiper/css/navigation";
 import { BsArrowsFullscreen } from "react-icons/bs";
+import { getProxiedImageUrls, getProxiedImageUrl } from "@/lib/utils/image-proxy";
 
 interface ProductImageCarouselProps {
   images: string[];
@@ -29,6 +30,11 @@ const ProductImageCarousel = ({
   const [activeImage, setActiveImage] = useState(0);
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
   const [lightboxOpen, setLightboxOpen] = useState(false);
+
+  // Proxy images to handle HTTP images on HTTPS pages
+  const proxiedImages = useMemo(() => {
+    return getProxiedImageUrls(images);
+  }, [images]);
 
   if (!images || images.length === 0) {
     return (
@@ -46,8 +52,8 @@ const ProductImageCarousel = ({
     );
   }
 
-  // Prepare slides for Lightbox
-  const lightboxSlides = images.map((img, idx) => ({
+  // Prepare slides for Lightbox (use original URLs for lightbox as it handles HTTP)
+  const lightboxSlides = proxiedImages.map((img, idx) => ({
     src: img,
     alt: `${productTitle} - View ${idx + 1}`,
   }));
@@ -69,7 +75,7 @@ const ProductImageCarousel = ({
           className="h-100 product-image-carousel"
           onSlideChange={(swiper) => setActiveImage(swiper.activeIndex)}
         >
-          {images.map((image, index) => (
+          {proxiedImages.map((image, index) => (
             <SwiperSlide key={index}>
               <div className="position-relative w-100 h-100">
                 <Image
@@ -119,7 +125,7 @@ const ProductImageCarousel = ({
               msOverflowStyle: "none",
             }}
           >
-            {images.map((image, index) => (
+            {proxiedImages.map((image, index) => (
               <div
                 key={index}
                 className="position-relative cursor-pointer flex-shrink-0"

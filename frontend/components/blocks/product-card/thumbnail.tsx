@@ -1,5 +1,6 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
+import { getProxiedImageUrl } from "@/lib/utils/image-proxy";
 
 type ProductImageProps = {
   thumbnail?: string | null;
@@ -27,7 +28,11 @@ const ProductImage: React.FC<ProductImageProps> = ({
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
-  const initialImage = thumbnail || images?.[0]?.url;
+  // Proxy images to handle HTTP images on HTTPS pages
+  const initialImage = useMemo(() => {
+    const imageUrl = thumbnail || images?.[0]?.url;
+    return getProxiedImageUrl(imageUrl);
+  }, [thumbnail, images]);
 
   const handleImageLoad = () => {
     setIsLoading(false);

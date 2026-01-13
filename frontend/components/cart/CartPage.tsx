@@ -6,6 +6,7 @@ import { HttpTypes } from "@medusajs/types";
 import { useState } from "react";
 import { BiArrowBack } from "react-icons/bi";
 import { useRouter } from "next/navigation";
+import { getProxiedImageUrl } from "@/lib/utils/image-proxy";
 import "./CartPage.css";
 
 export default function CartPage() {
@@ -211,7 +212,7 @@ export default function CartPage() {
                 <div className="item-image">
                   {item.thumbnail ? (
                     <img
-                      src={item.thumbnail}
+                      src={getProxiedImageUrl(item.thumbnail)}
                       alt={item.title || "Product"}
                       className="product-image"
                     />

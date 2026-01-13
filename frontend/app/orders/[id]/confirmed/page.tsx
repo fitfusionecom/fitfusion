@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useOrder } from "@/hooks/useOrders";
 import { convertToLocale } from "@/lib/util/money";
 import Image from "next/image";
+import { getProxiedImageUrl } from "@/lib/utils/image-proxy";
 import {
   FaCheck,
   FaEnvelope,
@@ -248,7 +249,7 @@ export default function OrderConfirmedPage() {
                           >
                             {productImage ? (
                               <Image
-                                src={productImage}
+                                src={getProxiedImageUrl(productImage)}
                                 alt={productTitle}
                                 fill
                                 className="rounded"
