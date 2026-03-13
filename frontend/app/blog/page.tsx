@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 }
 
 export default async function BlogPage() {
+  //@ts-ignore
   const { blogs, count } = await getBlogs();
-
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="bg-white border-b border-gray-200">
