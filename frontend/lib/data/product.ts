@@ -208,18 +208,27 @@ export const getBlogs = async () => {
 }
 
 export const getBlogBySlug = async (slug: string) => {
-    const headers = {
-        ...(await getAuthHeaders()),
-    }
+    try {
+        const headers = {
+            ...(await getAuthHeaders()),
+        }
 
-    return sdk.client.fetch<{
-        blog: any
-    }>(`/store/blogs/${slug}`, {
-        headers,
-        next: {
-            ...(await getCacheOptions(`blog-${slug}`)),
-        },
-    })
+        const response = await sdk.client.fetch<{
+            blog: any
+        }>(`/store/blogs/${slug}`, {
+            headers,
+            next: {
+                ...(await getCacheOptions(`blog-${slug}`)),
+            },
+        })
+
+        return response
+
+    }
+    catch (error) {
+        console.error("Error fetching blog:", error);
+        return null;
+    }
 
 }
 
