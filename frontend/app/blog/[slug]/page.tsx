@@ -7,6 +7,43 @@ type BlogPostPageProps = {
   }>;
 };
 
+
+export async function generateMetadata({ params }: BlogPostPageProps) {
+  const { slug } = await params;
+  const blog: any = await getBlogBySlug(slug);
+
+  if (!blog) {
+    return {
+      title: "Blog Not Found",
+      description: "The blog post you're looking for doesn't exist."
+    };
+  }
+
+  return {
+    title: blog.title,
+    description: blog.subtitle || "",
+    openGraph: {
+      title: blog.title,
+      description: blog.subtitle || "",
+      type: "article",
+      url: `https://yourdomain.com/blog/${blog.slug}`,
+      publishedTime: blog.published_at,
+      modifiedTime: blog.updated_at,
+      authors: blog.author_name ? [blog.author_name] : undefined,
+      tags: blog.tags,
+      images: blog.cover_image
+        ? [{ url: blog.cover_image, alt: blog.title }]
+        : undefined
+    },
+    twitter: {
+      card: blog.cover_image ? "summary_large_image" : "summary",
+      title: blog.title,
+      description: blog.subtitle || "",
+      images: blog.cover_image ? [blog.cover_image] : undefined
+    },
+  };
+}
+
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
 
